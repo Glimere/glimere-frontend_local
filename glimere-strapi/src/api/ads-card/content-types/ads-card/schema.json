@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ads_cards",
+  "info": {
+    "singularName": "ads-card",
+    "pluralName": "ads-cards",
+    "displayName": "AdsCard",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "adsid": {
+      "type": "integer"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "info": {
+      "type": "text"
+    },
+    "trigger": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "adsimg": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
