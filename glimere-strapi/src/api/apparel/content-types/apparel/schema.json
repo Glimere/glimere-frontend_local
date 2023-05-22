@@ -58,6 +58,9 @@
     },
     "variants": {
       "type": "json"
+    },
+    "rating": {
+      "type": "integer"
     }
   }
 }

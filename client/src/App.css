@@ -1,0 +1,13 @@
+.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    /* Add additional styles for the sticky navbar */
+  }
+
+  .carousel {
+    height: 380px; /* Set the desired height */
+  }
+ 

@@ -13,26 +13,35 @@ import Register from './auth/Register'
 import { ToastContainer } from 'react-toastify'
 import Home from './pages/Home'
 import { AuthProvider } from './auth/Auth'
+import ForgotPassword from './auth/ForgotPassword'
+import ViewProduct from './components/ViewProduct'
 
 function App() {
 
   return (
     <>
     <AuthProvider>
-      <Navbar />
+     
+      <Routes> 
+        {/* Authentication routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+      </Routes>
+
+        <Navbar />
+
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home/>} />
         <Route path="/about" element={<About />} />
 
-        {/* Authentication routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
+       
         {/* Protected routes */}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/view-product/:id" element={<ViewProduct />} />
 
         {/* 404 Not Found */}
         {/* <Route path="*" element={<NotFound />} /> */}

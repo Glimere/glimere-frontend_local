@@ -6,6 +6,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify';
 import { setCookie } from 'nookies'
 import { useNavigate } from 'react-router-dom'
+import { constants } from './constants'
 // import dotenv from 'dotenv';
 
 
@@ -44,12 +45,12 @@ console.log('user', user)
 
 
 const handleLogin = async () => {
-  const url = "http://localhost:1337/api/auth/local"
+  const url = `${constants.url}/api/auth/local`
   try{
     if(user.identifier && user.password) {
     const res = await axios.post(url, user)
 
-    sessionStorage.setItem('jwt', res.data.jwt);
+    localStorage.setItem('user', JSON.stringify(res.data));
 
     // setCookie({ res }, 'jwt', res.data.jwt, {
     //   httpOnly: true,
@@ -114,7 +115,7 @@ const signUp = async () => {
     password: registerUser.password
   }
 
-   const url = "http://localhost:1337/api/auth/local/register"
+   const url = `${constants.url}/api/auth/local/register`
 
    try {
     if(registerUser.firstname && registerUser.lastname && registerUser.email && registerUser.password) {

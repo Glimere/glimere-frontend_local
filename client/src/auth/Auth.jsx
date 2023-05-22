@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { constants } from './constants';
+import { logout } from '../pages/api/logout';
 
 const AuthContext = createContext();
 
@@ -10,36 +12,25 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Check if the user is authenticated (e.g., by verifying the token)
     const checkAuthentication = () => {
-      const jwtToken = sessionStorage.getItem('jwt');
-      if (jwtToken && jwtToken.length > 0) {
+      const userData = JSON.parse(localStorage.getItem('user'));
+      // console.log('userData', userData)
+      // if (jwtToken && jwtToken.length > 0) {
+      if (userData) {
+
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
+        navigate('/login');
       }
 
     };
     checkAuthentication();
-   
-      if (!isAuthenticated) {
-        navigate('/login');
-      }
 
   }, []);
 
   const login = (token) => {
-    sessionStorage.setItem('jwt', token);
+    localStorage.setItem('jwt', token);
     setIsAuthenticated(true);
-  };
-
-  const logout = async () => {
-    try {
-      await axios.get('/api/logout');
-      navigate('/login');
-    } catch (e) {
-      console.log(e);
-    }
-    sessionStorage.removeItem('jwt');
-    setIsAuthenticated(false);
   };
 
 
