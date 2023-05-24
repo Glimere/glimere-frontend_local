@@ -15,7 +15,7 @@ export const ProductCard = ({ apparel }) => {
         <div className="font-bold text-[15px] mb-2">{apparel.attributes.name}</div>
         <span className="text-gray-600 text-sm">${apparel.attributes.price}</span>
         {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
-        <StarRating rating={apparel.attributes.rating} />
+        
       </div>
    
     </div>

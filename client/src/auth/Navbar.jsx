@@ -4,7 +4,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import {BiSearch} from "react-icons/bi"
 import { AiOutlineHeart } from 'react-icons/ai'
 import { FiShoppingCart } from 'react-icons/fi'
-import { AiOutlineMenu } from 'react-icons/ai'
+import { CgProfile } from 'react-icons/cg'
 
 // import {ReactComponent as Corner} from '../assets/images/corners.svg'
 import { logout } from '../pages/api/logout'
@@ -265,11 +265,11 @@ export default function Navbar() {
               <FiShoppingCart className={`w-[22px] ${menuVisible || isSticky ? "text-black" : "text-[#be7f2d]"} `}/>
               <p className='text-[12px] ml-[5px] text-[#684419]'>Cart</p>
             </div>
-            <div className={`peer p-[9px] ${menuVisible || isSticky ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}
+            <div className={`peer ${menuVisible || isSticky ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}
             onClick={logout}
             onMouseEnter={()=>{setMenuToggle(true)}}
             >
-              <AiOutlineMenu className={`w-[30px] ${menuVisible || isSticky ? "text-black" : "text-[#be7f2d]"} duration-200 ${menuToggle ? "rotate-90" : ""}`}/>
+              <CgProfile className={` text-[24px] ${menuVisible || isSticky ? "text-black" : "text-[#be7f2d]"} duration-200 `}/>
             </div>
             </div>
           </div>
@@ -284,23 +284,20 @@ export default function Navbar() {
       >
         <div className="w-full h-full mt-[80px]"
         onMouseEnter={()=>{setMenuToggle(true)}}
-        onMouseLeave={()=>{setMenuToggle(false)}}
+        onMouseLeave={()=>{setMenuToggle(false)
+        setMenuVisible(false)
+        }}
         >
           <ul className='w-full h-[250px] flex flex-col justify-center'>
-          <li className='text-white flex justify-center items-center hover:bg-[#FFF7E9] hover:text-[#be7f2d] text-[13px] flex-1'>
-            <p>Home</p>
+          <li className='text-white flex justify-center items-center hover:bg-[#fff0d7] hover:text-[#be7f2d] text-[13px] flex-1'>
+            <p>Orders</p>
           </li>
-          <li className='text-white flex justify-center items-center hover:bg-[#FFF7E9] hover:text-[#be7f2d] text-[13px] flex-1'>
-            <p>Home</p>
+          <li className='text-white flex justify-center items-center hover:bg-[#fff0d7] hover:text-[#be7f2d] text-[13px] flex-1'>
+            <p>Profile</p>
           </li>
-          <li className='text-white flex justify-center items-center hover:bg-[#FFF7E9] hover:text-[#be7f2d] text-[13px] flex-1'>
-            <p>Home</p>
-          </li>
-          <li className='text-white flex justify-center items-center hover:bg-[#FFF7E9] hover:text-[#be7f2d] text-[13px] flex-1'>
-            <p>Home</p>
-          </li>
-          <li className='text-white flex justify-center items-center hover:bg-[#FFF7E9] hover:text-[#be7f2d] text-[13px] flex-1'>
-            <p>Home</p>
+        
+          <li className='text-white flex justify-center bg-[#e2912e] items-center hover:bg-[#fff0d7] hover:text-[#be7f2d] text-[13px] flex-1'>
+            <p>Sign in</p>
           </li>
           
         </ul>

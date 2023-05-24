@@ -93,6 +93,11 @@ export default function Home() {
     arrows: false,
   };
 
+  // const slide = document.getElementsByClassName('slick-slide')
+
+  // const slideAttribute = slide.getAttribute('data-index');
+
+  // console.log('slideAttribute', slideAttribute)
 
 
   // console.log('ads', ads[0].attributes.adsimg.data.attributes.url)
@@ -110,6 +115,7 @@ export default function Home() {
           <Slider {...settings} className="rounded-xl">
           {carousels?.map((carousel, id) => {
             return (
+              
               <div key={id} className="h-[100vh] w-full">
               {carousel.attributes.carouselimg.data.map((img, id) => {
                 return (
@@ -120,6 +126,7 @@ export default function Home() {
               })
                 }
             </div>
+            
             )
           })}
             
@@ -127,7 +134,6 @@ export default function Home() {
           </Slider>
 
 
-      
         
 
         </div>
@@ -167,21 +173,21 @@ export default function Home() {
 
           <div className="flex-[2.2] w-[25%] pt-[80px] ">
           <div className="pb-[40px]">
-            <h1 className="text-[30px] text-white pl-[60px] mt-[50px]">Your</h1>
-          <h1 className="text-[90px] text-white pl-[60px]">Fashion,</h1>
+            <h1 className="text-[30px] text-white pl-[40px] mt-[50px]">Your</h1>
+          <h1 className="text-[90px] text-white pl-[40px]">Fashion,</h1>
           </div>
           {/* {console.log('url', constants.url + ads[0].attributes.adsimg.data.attributes.url)} */}
 
-          <div className="h-[400px] w-[400px] flex justify-center items-center rounded-full bg-[#f7d08a]">
+          <div className="h-[350px] w-[350px] flex justify-center items-center rounded-full ml-[40px] bg-[#f7d08a]">
        
                 
-                  <div className="h-[350px] w-[350px] bg-cover bg-center bg-no-repeat rounded-full bg-white"
+                  <div className="h-[300px] w-[300px] bg-cover bg-center bg-no-repeat rounded-full bg-white"
                   style={{ backgroundImage: `url(${adsUrl1})` }}
                   ></div>
                 
-         <div className="h-[400px] w-[400px] absolute flex justify-end">
-          <Link>
-            <div className="h-[150px] w-[150px] rounded-full bg-white "></div>
+         <div className="h-[400px] w-[400px] pt-[20px] pr-[20px] absolute flex justify-end">
+          <Link className="h-[100px] w-[100px]">
+            <div className="h-[100px] w-[100px] rounded-full bg-white p-[30px]"></div>
             </Link>
          </div>
           </div>
@@ -202,8 +208,8 @@ export default function Home() {
           </div>
 
           <div className="">
-            <h1 className="text-[30px] text-right pr-[60px] text-black">Your</h1>
-            <h1 className="text-[80px] text-right text-black pr-[60px] mb-[50px]"> Style</h1>
+            <h1 className="text-[30px] text-right pr-[40px] text-black">Your</h1>
+            <h1 className="text-[80px] text-right text-black pr-[40px] mb-[50px]"> Style</h1>
           </div>
           </div>
 
@@ -211,13 +217,67 @@ export default function Home() {
 
       </div>
 
-      <div className="w-full h-[100vh] bg-[#9D5C0D]"></div>
+      <div className="w-full h-[100vh] bg-[#e2912e] flex flex-row p-[50px]">
+          {ads?.map((ad) => {
+            return (
+              <div className="h-full w-[400px]  bg-cover bg-center bg-no-repeat transition-transform transform-gpu hover:scale-105 mx-[20px]"
+              style={{ backgroundImage: `url(${constants.url}${ad.attributes.adsimg.data.attributes.url})` }}
+              >
+                <div className="h-full w-full flex justify-center items-center duration-300 bg-[#0000007c] hover:bg-[#000000bd]">
+                  <div className="h-[200px] w-[200px]">
+                    <h1 className="text-[30px] text-white font-semibold mb-[50px]">{ad.attributes.heading}</h1>
+                    <p className="text-[15px] text-white">{ad.attributes.info}</p>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        
+      </div>
 
-      <div className="w-full grid grid-cols-4 gap-2 py-[50px] px-[50px] bg-[#FFF7E9]">
+      <div className="w-full grid grid-cols-4 gap-2 p-[50px] bg-[#FFF7E9]">
         {apparels.map((apparel) => (
           <ProductCard key={apparel.id} apparel={apparel} />
         ))}
       </div>
+
+      <footer className="bg-gray-900 text-white py-10">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between">
+        <div className="flex flex-col md:flex-row items-center">
+          <img src="/logo.png" alt="Brand Logo" className="w-16 h-16 mb-4 md:mb-0" />
+          <h1 className="text-xl font-semibold ml-2">Glimere</h1>
+        </div>
+        <nav className="flex flex-wrap justify-center md:justify-start">
+          <a href="/" className="text-gray-300 hover:text-white mr-4 mb-2">Home</a>
+          <a href="/shop" className="text-gray-300 hover:text-white mr-4 mb-2">Shop</a>
+          <a href="/about" className="text-gray-300 hover:text-white mr-4 mb-2">About</a>
+          <a href="/contact" className="text-gray-300 hover:text-white mr-4 mb-2">Contact</a>
+          <a href="/blog" className="text-gray-300 hover:text-white mr-4 mb-2">Blog</a>
+        </nav>
+        <div className="flex items-center justify-center md:justify-start">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white mr-4">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white mr-4">
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white mr-4">
+            <i className="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+      <div className="bg-gray-800 mt-8 py-4">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between">
+          <div className="text-gray-300 text-sm mb-2 md:mb-0">© 2023 Glimere. All rights reserved.</div>
+          <nav className="flex flex-wrap justify-center md:justify-end">
+            <a href="/privacy-policy" className="text-gray-300 hover:text-white mr-4 mb-2">Privacy Policy</a>
+            <a href="/terms-of-use" className="text-gray-300 hover:text-white mr-4 mb-2">Terms of Use</a>
+            <a href="/return-policy" className="text-gray-300 hover:text-white mr-4 mb-2">Return Policy</a>
+            <a href="/sitemap" className="text-gray-300 hover:text-white mr-4 mb-2">Site Map</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
     </>
   )
 }

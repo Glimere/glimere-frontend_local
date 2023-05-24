@@ -5,16 +5,16 @@ import { constants } from '../auth/constants';
 
 const VerticalCarousel = ({ images }) => {
   return (
-    <div className="flex flex-col items-center justify-center pt-[15px]">
+    <div className="flex flex-col items-center h-[87vh] justify-center">
       <Carousel
-        showStatus={true}
+        showStatus={false}
         showThumbs={true}
         showArrows={true}
         axis="vertical"
         selectedItem={0}
       >
         {images.map((img, id) => (
-          <div key={id} style={{ width: '300px', height: '500px' }}>
+          <div key={id} style={{ width: '86%', height: '500px' }}>
             <img src={`${constants.url}${img.attributes.url}`} alt={`Image ${id + 1}`} />
             <div
               className="h-full bg-cover bg-center bg-no-repeat"
