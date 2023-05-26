@@ -6,7 +6,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify';
 import { setCookie } from 'nookies'
 import { useNavigate } from 'react-router-dom'
-import { constants } from './constants'
+import { constants } from '../global-components/constants'
 // import dotenv from 'dotenv';
 
 
@@ -116,6 +116,7 @@ const signUp = async () => {
   }
 
    const url = `${constants.url}/api/auth/local/register`
+	console.log("url", url)
 
    try {
     if(registerUser.firstname && registerUser.lastname && registerUser.email && registerUser.password) {

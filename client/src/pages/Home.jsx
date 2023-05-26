@@ -17,7 +17,7 @@ export default function Home() {
   const [adsUrl1, setAdsUrl1] = useState('')
   const [adsUrl2, setAdsUrl2] = useState('')
 
-  const jwt = localStorage.getItem('user').jwt
+ //  const jwt = localStorage.getItem('user').jwt
 
 
 
