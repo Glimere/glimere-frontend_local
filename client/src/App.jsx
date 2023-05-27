@@ -15,6 +15,8 @@ import Home from './pages/Home'
 import { AuthProvider } from './auth/Auth'
 import ForgotPassword from './auth/ForgotPassword'
 import ViewProduct from './components/ViewProduct'
+import Orders from './pages/Orders'
+import Likes from './pages/Likes'
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/likes" element={<Likes />} />
         <Route path="/view-product/:id" element={<ViewProduct />} />
 
         {/* 404 Not Found */}

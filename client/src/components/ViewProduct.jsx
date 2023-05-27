@@ -10,10 +10,12 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import VerticalCarousel from './VerticalCarousel';
 import { StarRating } from './StarRating';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function ViewProduct() {
 
+  const navigate = useNavigate()
   const location = useLocation()
 
   const [quantity, setQuantity] = useState(1)
@@ -25,12 +27,11 @@ export default function ViewProduct() {
     <div className='h-[100vh] flex flex-row pt-[80px] w-full relative z-[5]'>
 
       <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
-        <Link to='/'>
-          <div className="h-[50px] w-[50px] flex justify-center items-center rounded-full bg-[#FFF7E9]"
+          <div className="h-[50px] w-[50px] flex justify-center items-center rounded-full bg-[#FFF7E9] cursor-pointer"
+        onClick={() => navigate(-1)}
         >
           <SlArrowLeft className="text-[#ED7534] text-[20px]" />
         </div>
-        </Link>
         
       </div>
 
