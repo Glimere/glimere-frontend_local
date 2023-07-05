@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { constants } from '../auth/constants'
+import { constants } from '../global-components/constants';
 import { IoIosAdd } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";

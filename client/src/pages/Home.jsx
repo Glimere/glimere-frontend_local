@@ -1,4 +1,4 @@
-import { constants } from "../auth/constants";
+import { constants } from "../global-components/constants";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { RxArrowTopRight } from 'react-icons/rx'
@@ -7,81 +7,60 @@ import Slider from 'react-slick';
 import { ProductCard } from "../components/ProductCard";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-
 import clothRack from '../assets/images/cloth-rack.png'
-
+import { useSelector, useDispatch } from "react-redux";
+import { selectAllApparels, getApparelsStatus, getApparelsError, fetchApparels } from "../slice/apparelSlice";
+import { selectAllAds, getAdsError, getAdsStatus, fetchAds } from "../slice/adSlice";
+import { selectAllCarousels, getCarouselError, getCarouselStatus, fetchCarousels } from "../slice/carouselSlice";
+import { selectAllUsers, getUserError, getUserStatus } from "../slice/userSlice";
 
 export default function Home() {
 
+  const dispatch = useDispatch()
+  const apparels = useSelector(selectAllApparels)
+  const apparelStatus = useSelector(getApparelsStatus)
+  const apparelError = useSelector(getApparelsError)
+
+  const ads = useSelector(selectAllAds)
+  const adsStatus = useSelector(getAdsStatus)
+  const adsError = useSelector(getAdsError)
+
+  const carousels = useSelector(selectAllCarousels)
+  const carouselStatus = useSelector(getCarouselStatus)
+  const carouselError = useSelector(getCarouselError)
+
+  const userss = useSelector(selectAllUsers)
+
+console.log('userss', userss)
   const [user, setUser] = useState({});
-  const [apparels, setApparels] = useState([]);
-  const [ads, setAds] = useState([])
-  const [carousels, setCarousels] = useState([])
   const [adsUrl1, setAdsUrl1] = useState('')
   const [adsUrl2, setAdsUrl2] = useState('')
 
-  //  const jwt = localStorage.getItem('user').jwt
 
-
-
-  // console.log('jwt', jwt)
   useEffect(() => {
 
-    const fetchApparels = async () => {
-      try {
-        const { data } = await axios.get(`${constants.url}/api/apparels?populate=*`, {
-          // headers: {
-          //   Authorization: `Bearer ${jwt}`,
-          // },
-        });
-        setApparels(data.data);
-      } catch (e) {
-        console.log(e);
-      }
+    console.log('apparelStatus', apparelStatus)
+    if (apparelStatus === "idle") {
+      dispatch(fetchApparels())
+    }
+    console.log('apparels', apparels)
+
+    if (adsStatus === "idle") {
+      dispatch(fetchAds())
     }
 
-    const fetchAds = async () => {
-      try {
-        const { data } = await axios.get(`${constants.url}/api/ads-cards?populate=*`, {
-          // headers: {
-          //   Authorization: `Bearer ${jwt}`,
-          // },
-        });
 
-        const adsUrl1 = constants.url + data.data[0].attributes.adsimg.data.attributes.url
-        const adsUrl2 = constants.url + data.data[1].attributes.adsimg.data.attributes.url
-        setAdsUrl1(adsUrl1)
-        setAdsUrl2(adsUrl2)
-
-        setAds(data.data);
-      } catch (e) {
-        console.log(e);
-      }
+    if (carouselStatus === "idle") {
+      dispatch(fetchCarousels())
     }
 
-    const fetchCarousels = async () => {
-      try {
-        const { data } = await axios.get(`${constants.url}/api/carousels?populate=*`, {
-          // headers: {
-          //   Authorization: `Bearer ${jwt}`,
-          // },
-        });
-        setCarousels(data.data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    fetchApparels()
-    fetchAds()
-    fetchCarousels()
+  }, [dispatch, apparelStatus, adsStatus, carouselStatus])
 
-  }, [])
-
-  console.log('ads', ads)
-  console.log('apparels', apparels)
-  console.log('carousel', carousels)
-  console.log('adsUrl1', adsUrl1)
-  console.log('adsUrl2', adsUrl2)
+  useEffect(() => {
+    // Set the URLs for the ads
+    setAdsUrl1(constants.url + ads[0]?.attributes.adsimg.data.attributes.url);
+    setAdsUrl2(constants.url + ads[1]?.attributes.adsimg.data.attributes.url);
+  }, [ads]);
 
 
 
@@ -96,14 +75,6 @@ export default function Home() {
     arrows: false,
   };
 
-  // const slide = document.getElementsByClassName('slick-slide')
-
-  // const slideAttribute = slide.getAttribute('data-index');
-
-  // console.log('slideAttribute', slideAttribute)
-
-
-  // console.log('ads', ads[0].attributes.adsimg.data.attributes.url)
   return (
     <>
       <div className="w-full h-[100vh] flex flex-row overflow-hidden">
@@ -143,31 +114,6 @@ export default function Home() {
 
           <div className="flex-[2.5] w-[25%] flex flex-col justify-end bg-[#f7d08a]">
 
-
-            {/* <div className="flex-[4] pl-[30px] pt-[70px]">
-            <h1 className="text-[20px]">Your Fashion, Your Statement.</h1>
-          </div>
-          <div className="flex-[6] flex flex-col">
-            {ads?.map((ad) => {
-              return (
-                <div key={ad.id} className={`h-full w-full ${ad.attributes.type == 'photo' ? 'bg-cover bg-center bg-no-repeat' : 'bg-none'} p-[10px] mr-[2px]`}
-                  style={{ backgroundImage: `url(${constants.url}${ad.attributes.adsimg.data.attributes.url})` }}
-                >
-                  <div className="flex flex-col items-end">
-                    <div className="h-[32px] w-[32px] rounded-full flex flex-row justify-center items-center bg-[#ffffff] cursor-pointer">
-                      <RxArrowTopRight className='w-[22px] text-black' />
-                    </div>
-
-                    <h1 className=""></h1>
-                  </div>
-                  <div className=""></div>
-                </div>
-              )
-
-            })
-
-            }
-            </div> */}
           </div>
         </div>
 
@@ -176,8 +122,8 @@ export default function Home() {
 
           <div className="flex-[2.2] w-[25%] pt-[80px] ">
             <div className="pb-[40px]">
-              <h1 className="text-[30px] text-white pl-[40px] mt-[50px]" style={{fontFamily: "Edensor"}}>Your</h1>
-              <h1 className="text-[90px] text-white pl-[40px]" style={{fontFamily: "Edensor"}}>Fashion,</h1>
+              <h1 className="text-[30px] text-white pl-[40px] mt-[50px]" style={{ fontFamily: "Edensor" }}>Your</h1>
+              <h1 className="text-[90px] text-white pl-[40px]" style={{ fontFamily: "Edensor" }}>Fashion,</h1>
             </div>
             {/* {console.log('url', constants.url + ads[0].attributes.adsimg.data.attributes.url)} */}
 
@@ -191,7 +137,7 @@ export default function Home() {
               <div className="h-[400px] w-[400px] pt-[20px] pr-[20px] absolute flex justify-end">
                 <Link className="h-[100px] w-[100px]">
                   <div className="h-[100px] w-[100px] rounded-full flex justify-center items-center bg-white p-[20px]">
-                    <h1 style={{fontFamily: "Edensor"}} className="text-[20px] text-center font-bold">50% Off</h1>
+                    <h1 style={{ fontFamily: "Edensor" }} className="text-[20px] text-center font-bold">50% Off</h1>
                   </div>
                 </Link>
               </div>
@@ -213,8 +159,8 @@ export default function Home() {
             </div>
 
             <div className="">
-              <h1 className="text-[30px] text-right pr-[40px] text-black" style={{fontFamily: "Edensor"}}>Your</h1>
-              <h1 className="text-[80px] text-right text-black pr-[40px] mb-[50px]" style={{fontFamily: "Edensor"}}> Style</h1>
+              <h1 className="text-[30px] text-right pr-[40px] text-black" style={{ fontFamily: "Edensor" }}>Your</h1>
+              <h1 className="text-[80px] text-right text-black pr-[40px] mb-[50px]" style={{ fontFamily: "Edensor" }}> Style</h1>
             </div>
           </div>
 
@@ -230,7 +176,7 @@ export default function Home() {
             >
               <div className="h-full w-full flex justify-center items-center duration-300 bg-[#0000007c] hover:bg-[#000000bd]">
                 <div className="h-[200px] w-[200px]">
-                  <h1 className="text-[30px] text-white font-semibold mb-[50px]" style={{fontFamily: "Edensor"}}>{ad.attributes.heading}</h1>
+                  <h1 className="text-[30px] text-white font-semibold mb-[50px]" style={{ fontFamily: "Edensor" }}>{ad.attributes.heading}</h1>
                   <p className="text-[15px] text-white">{ad.attributes.info}</p>
                 </div>
               </div>
@@ -250,7 +196,7 @@ export default function Home() {
       <div className="flex items-center h-[70vh] pl-[80px]">
 
         <div className="w-[60%]">
-          <h2 className="text-[#9d5c0d] text-[30px] mb-4 " style={{fontFamily: "Edensor"}}>Subscribe to our Newsletter</h2>
+          <h2 className="text-[#9d5c0d] text-[30px] mb-4 " style={{ fontFamily: "Edensor" }}>Subscribe to our Newsletter</h2>
           <p className="mt-[20px] text-[13px]">Don't miss out on the opportunity to elevate your fashion game and stay connected with Glimere. Subscribe now and embrace the world of style and luxury!</p>
           <form className="flex mt-[30px]">
             <input type="email" placeholder="Enter your email" className="bg-[#FFF7E9] w-[300px] placeholder:text-[#e2912e] placeholder:text-[13px] px-4 py-2 rounded-l focus:outline-none" />
@@ -265,8 +211,8 @@ export default function Home() {
       </div>
 
 
-<Footer />
-      
+      <Footer />
+
     </>
   )
 }

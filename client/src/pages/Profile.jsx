@@ -9,54 +9,43 @@ import Footer from '../components/Footer';
 import { AiOutlineUser } from 'react-icons/ai'
 import { IoIosAdd } from 'react-icons/io'
 import { ProductCard } from '../components/ProductCard';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllUsers, getUserStatus, fetchUsers } from '../slice/userSlice';
 
 
 export default function Profile() {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  const [user, setUser] = useState(null);
+  const user = useSelector(selectAllUsers)
+  const userStatus = useSelector(getUserStatus)
+  // const userError = useSelector(getUserError)
+
+
   const [tab, setTab] = useState(1)
 
-  const { isAuthenticated, logout } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
   // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-  };
-
-  console.log('cons', constants.url)
-
   useEffect(() => {
-    const jwt = JSON.parse(localStorage.getItem('user')).jwt
-    console.log('jwt', jwt)
-    if (jwt) {
-      const fetchUser = async () => {
-        try {
-          const { data } = await axios.get(`${constants.url}/api/users/me`, {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          });
-          setUser(data);
-        } catch (e) {
-          console.log(e);
-        }
-      };
+   
+    console.log('userStatus', userStatus)
+    if (userStatus === "idle") {
+      
+      dispatch(fetchUsers(constants.user.jwt))
 
-      fetchUser();
-    } else {
-      navigate('/login');
-    }
-  }, [navigate]);
+    } 
+  }, [navigate, userStatus, dispatch]);
 
   console.log('user', user)
 
-  if (!user) {
-    return null; // Render loading state or redirect
-  }
-
   const { email, username } = user;
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
 
   return (
     <>
@@ -84,7 +73,9 @@ export default function Profile() {
           </div>
          
         </div>
-        <div className="py-[8px] px-[15px] flex justify-center items-center text-[10px]  text-[#ED7534] border-[#ED7534] border-solid border rounded-full mt-[20px] cursor-pointer duration-300 hover:bg-[#ffe9c3]">Sign Out</div>
+        <div className="py-[8px] px-[15px] flex justify-center items-center text-[10px]  text-[#ED7534] border-[#ED7534] border-solid border rounded-full mt-[20px] cursor-pointer duration-300 hover:bg-[#ffe9c3]"
+        onClick={handleLogout}>Sign Out</div>
+
       </div>
       <div className="flex-[2] pt-[80px]">
         <div className="w-full h-[70px] flex px-[50px]">

@@ -6,11 +6,15 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { FiShoppingCart } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
 import { Link } from 'react-router-dom'
-
-// import {ReactComponent as Corner} from '../assets/images/corners.svg'
 import { logout } from '../pages/api/logout'
 import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllUsers, getUserStatus, fetchUsers } from '../slice/userSlice';
+import { useNavigate } from 'react-router-dom'
 
+
+const user = JSON.parse(localStorage.getItem('user'))
+console.log('user', user)
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -120,8 +124,12 @@ export default function Navbar() {
   const [menuVisible, setMenuVisible] = useState(false)
   const [card, setCard] = useState(0)
   const [menuToggle, setMenuToggle] = useState(false)
-
   const [isSticky, setIsSticky] = useState(false);
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const user = useSelector(selectAllUsers)
+  const userStatus = useSelector(getUserStatus)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,6 +149,10 @@ export default function Navbar() {
     };
   }, []);
   
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login')
+  };
 
 
   return (
@@ -307,11 +319,16 @@ export default function Navbar() {
           </li>
           </Link>
           
+          {user ? <Link to="/" onClick={handleLogout} className='flex-1'>
+            <li className='text-white h-full flex justify-center bg-[#e2912e] items-center hover:bg-[#fff0d7] hover:text-[#be7f2d] text-[13px]'>
+            <p>Sign out</p>
+          </li>
+          </Link> :
           <Link to="/" className='flex-1'>
             <li className='text-white h-full flex justify-center bg-[#e2912e] items-center hover:bg-[#fff0d7] hover:text-[#be7f2d] text-[13px]'>
             <p>Sign in</p>
           </li>
-          </Link>
+          </Link>}
           
           
         </ul>

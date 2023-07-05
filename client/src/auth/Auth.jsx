@@ -1,20 +1,23 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { constants } from './constants';
-import { logout } from '../pages/api/logout';
+import { constants } from '../global-components/constants';
+import { selectAllUsers } from '../slice/userSlice';
+import { useSelector } from 'react-redux'
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const user = useSelector(selectAllUsers)
+
+  console.log('user', user)
 
   useEffect(() => {
     // Check if the user is authenticated (e.g., by verifying the token)
     const checkAuthentication = () => {
       const userData = JSON.parse(localStorage.getItem('user'));
-      // console.log('userData', userData)
-      // if (jwtToken && jwtToken.length > 0) {
+
       if (userData) {
 
         setIsAuthenticated(true);
@@ -28,16 +31,10 @@ const AuthProvider = ({ children }) => {
 
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem('jwt', token);
-    setIsAuthenticated(true);
-  };
-
-
-    
+  
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

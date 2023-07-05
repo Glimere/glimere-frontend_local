@@ -1,13 +1,11 @@
 import './App.css'
-import { Routes } from 'react-router-dom'
+import { Routes, useLocation } from 'react-router-dom'
 import { Route } from 'react-router-dom'
-// import { Home, Dashboard, Login, Signup, NotFound } from './pages'
-
 import AdminDashboard from './auth/AdminDashboard'
 import About from './pages/About'
 import Profile from './pages/Profile'
 import Cart from './pages/Cart'
-import Navbar from './auth/Navbar'
+import Navbar from './global-components/Navbar'
 import Login from './auth/Login'
 import Register from './auth/Register'
 import { ToastContainer } from 'react-toastify'
@@ -20,25 +18,26 @@ import Likes from './pages/Likes'
 
 function App() {
 
+  const location = useLocation();
+  
+  const hideNavbarRoutes = ['/login'];
+
+  const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+
   return (
     <>
     <AuthProvider>
-     
+     {showNavbar && <Navbar />}
       <Routes> 
         {/* Authentication routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-      </Routes>
 
-        <Navbar />
-
-      <Routes>
         {/* Public routes */}
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
 
-       
         {/* Protected routes */}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/profile" element={<Profile />} />

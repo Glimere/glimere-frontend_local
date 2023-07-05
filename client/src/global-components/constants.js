@@ -1,3 +1,4 @@
-export const constants ={
-	url: "http://localhost:1337"   
+export const constants = {
+    url: import.meta.env.VITE_APP_URL,
+    user: JSON.parse(localStorage.getItem('user'))
 }
