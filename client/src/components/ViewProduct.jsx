@@ -23,7 +23,10 @@ export default function ViewProduct() {
 
   const [apparel, setApparel] = useState(location.state)
   console.log('apparel', apparel)
+
+
   return (
+    <div className="w-full  bg-white relative">
     <div className='h-[100vh] flex flex-row pt-[80px] w-full relative z-[5]'>
 
       <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
@@ -122,6 +125,15 @@ export default function ViewProduct() {
         </div>
       </div>
       <div className="flex-[4.3] -z-50"></div>
+    </div>
+    
+
+    <div className="w-full h-[800px]">
+              <div className="flex-[4] flex bg-[#FFF7E9]">
+
+              </div>
+              <div className="flex-[4.3] -z-50"></div>
+    </div>
     </div>
   )
 }

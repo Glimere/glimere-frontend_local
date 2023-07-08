@@ -7,5 +7,8 @@ import svgr from '@svgr/rollup';
 export default defineConfig({
   plugins: [react(), replace({
     'process.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL),
-  }), svgr()]
+  }), svgr()],
+  optimizeDeps: {
+    exclude: ['swiper/react', 'swiper/modules']
+  }
 })

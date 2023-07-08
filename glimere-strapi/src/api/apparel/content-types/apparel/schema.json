@@ -21,9 +21,6 @@
     "desc": {
       "type": "text"
     },
-    "category": {
-      "type": "json"
-    },
     "brand": {
       "type": "string"
     },
@@ -61,6 +58,9 @@
     },
     "rating": {
       "type": "integer"
+    },
+    "category": {
+      "type": "string"
     }
   }
 }

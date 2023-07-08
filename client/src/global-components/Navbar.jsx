@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllUsers, getUserStatus, fetchUsers } from '../slice/userSlice';
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 
 const user = JSON.parse(localStorage.getItem('user'))
@@ -121,6 +122,8 @@ function classNames(...classes) {
 
 export default function Navbar() {
 
+  const location = useLocation()
+
   const [menuVisible, setMenuVisible] = useState(false)
   const [card, setCard] = useState(0)
   const [menuToggle, setMenuToggle] = useState(false)
@@ -130,6 +133,9 @@ export default function Navbar() {
   const dispatch = useDispatch()
   const user = useSelector(selectAllUsers)
   const userStatus = useSelector(getUserStatus)
+
+  const pageLocation = location.pathname.split('/')[1]
+  console.log('pageLocation', pageLocation)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -214,8 +220,11 @@ export default function Navbar() {
           {/* <img src={glimere} alt="" style={{ fill: '#ffffff' }} />
           <img src={glimereLogo} alt="" style={{ fill: 'white' }} /> */}
           <div className="flex flex-row items-center">
+            <Link to="/">
             <GlimereLogo style={{ color: '#ed7534' }} height="35" className={`mr-[10px] duration-300 ${isSticky ? 'text-[100px] block' : ' hidden '}`}/> 
           <GlimereSweet style={{ color: '#ed7534'}} height="35" className={`${isSticky ? 'hidden' : ''}`} />
+            </Link>
+            
           </div>
           
           
@@ -271,23 +280,23 @@ export default function Navbar() {
              {/* <Corner className="w-[30px] h-[30px] fill-[#ed7534]"/> */}
             <div className="h-[50px] w-[200px] flex flex-row justify-between items-center rounded-bl-[20px]">
               <Link to="/likes">
-                <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}>
-              <AiOutlineHeart className={`w-[22px] ${menuVisible || isSticky ? "text-black" : "text-[#be7f2d]"} `}/>
-              <p className='text-[12px] ml-[5px] text-[#684419]'>likes</p>
+                <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
+              <AiOutlineHeart className={`w-[22px] ${menuVisible || isSticky || pageLocation ? "text-black" : "text-[#ffffff]"} `}/>
+              <p className={`text-[12px] ml-[5px]  ${menuVisible || isSticky || pageLocation ? "text-[#684419]": "text-[#ffffff]"}`}>likes</p>
             </div>
               </Link>
             
               <Link to="/cart">
-                <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}>
-              <FiShoppingCart className={`w-[22px] ${menuVisible || isSticky ? "text-black" : "text-[#be7f2d]"} `}/>
-              <p className='text-[12px] ml-[5px] text-[#684419]'>Cart</p>
+                <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
+              <FiShoppingCart className={`w-[22px] ${menuVisible || isSticky || pageLocation ? "text-black" : "text-[#ffffff]"} `}/>
+              <p className={`text-[12px] ml-[5px] ${menuVisible || isSticky || pageLocation ? "text-[#684419]": "text-[#ffffff]"}`}>Cart</p>
             </div>
               </Link>
             
-            <div className={`peer ${menuVisible || isSticky ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}
+            <div className={`peer ${menuVisible || isSticky || pageLocation ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}
             onMouseEnter={()=>{setMenuToggle(true)}}
             >
-              <CgProfile className={` text-[24px] ${menuVisible || isSticky ? "text-black" : "text-[#be7f2d]"} duration-200 `}/>
+              <CgProfile className={` text-[24px] ${menuVisible || isSticky || pageLocation ? "text-black" : "text-[#ffffff]"} duration-200 `}/>
             </div>
             </div>
           </div>
