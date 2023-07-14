@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { constants } from "../global-components/constants";
+import { constants } from "../../global-components/constants";
 
 export const fetchAds = createAsyncThunk("ads/fetchAds", async () => {
     try {

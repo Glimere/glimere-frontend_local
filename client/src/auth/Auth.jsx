@@ -1,24 +1,27 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { constants } from '../global-components/constants';
-import { selectAllUsers } from '../slice/userSlice';
+import { selectAllUsers } from '../slice/users/userSlice';
 import { useSelector } from 'react-redux'
+
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const user = useSelector(selectAllUsers)
+  const users = useSelector(selectAllUsers)
 
-  console.log('user', user)
+
 
   useEffect(() => {
     // Check if the user is authenticated (e.g., by verifying the token)
-    const checkAuthentication = () => {
-      const userData = JSON.parse(localStorage.getItem('user'));
+    // const checkAuthentication = () => {
+      const loggedIn = localStorage.getItem('loggedin')
 
-      if (userData) {
+      console.log('loggedIn', loggedIn)
+      
+      if (loggedIn) {
 
         setIsAuthenticated(true);
       } else {
@@ -26,8 +29,8 @@ const AuthProvider = ({ children }) => {
         navigate('/login');
       }
 
-    };
-    checkAuthentication();
+    // };
+    // checkAuthentication();
 
   }, []);
 

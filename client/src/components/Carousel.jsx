@@ -46,13 +46,12 @@ export default function Carousel(props) {
         {props.carousels?.map((carousel) => {
           return (
             <div key={carousel.id}>
-              {console.log('carousel.id', carousel.id)}
               {carousel.attributes.carouselimg.data?.map((img) => {
                 return (
                   <div key={img.id}>
-                    <SwiperSlide>
+                    <SwiperSlide key={img.id}>
                       <div className="">
-                        <div className="bg-[#00000060] absolute h-full w-full flex justify-start p-[80px] items-center">
+                        <div className="bg-[#00000060] absolute h-full w-full flex justify-start p-[60px] items-center">
                           <div className="">
                             <p className='text-[15px] text-white mb-[10px]'>Deals and promotions</p>
                             <h1 className='text-[40px] text-white font-bold'>{carousel.attributes.name}</h1>

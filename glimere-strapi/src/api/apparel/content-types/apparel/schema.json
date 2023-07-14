@@ -53,14 +53,19 @@
     "quantity": {
       "type": "integer"
     },
-    "variants": {
-      "type": "json"
-    },
     "rating": {
       "type": "integer"
     },
     "category": {
       "type": "string"
+    },
+    "variant": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::variant.variant"
+    },
+    "discount": {
+      "type": "integer"
     }
   }
 }

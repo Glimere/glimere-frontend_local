@@ -9,14 +9,39 @@ import 'slick-carousel/slick/slick-theme.css';
 import FontLoad from './global-components/FontLoad.jsx'
 import store from './store/store.js'
 import { Provider } from 'react-redux';
+import { fetchApparels } from './slice/apparels/apparelSlice.js'
+import { fetchAds } from './slice/ads/adSlice.js'
+import { fetchCarousels } from './slice/carousel/carouselSlice.js'
+import { fetchUsers } from './slice/users/userSlice.js'
+
+const fetchData = async () => {
+  try {
+    await Promise.all([
+      store.dispatch(fetchApparels()),
+      store.dispatch(fetchAds()),
+      store.dispatch(fetchCarousels())
+    ]);
+
+    if (localStorage.getItem("loggedin") === "true") {
+      const jwt = JSON.parse(localStorage.getItem('jwt'));
+      await store.dispatch(fetchUsers(jwt));
+    }
+  } catch (error) {
+    // Handle any error that occurred during fetching data
+    console.error('Error fetching data:', error);
+  }
+};
+
+fetchData();
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-    <Provider store={store}>
-          <App />
-    </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
 )

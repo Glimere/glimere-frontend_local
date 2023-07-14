@@ -6,12 +6,12 @@ import { ProductCard } from "../components/ProductCard";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { selectAllApparels, getApparelsStatus, getApparelsError, fetchApparels } from "../slice/apparelSlice";
-import { selectAllAds, getAdsError, getAdsStatus, fetchAds } from "../slice/adSlice";
-import { selectAllCarousels, getCarouselError, getCarouselStatus, fetchCarousels } from "../slice/carouselSlice";
-import { selectAllUsers, getUserError, getUserStatus } from "../slice/userSlice";
+import { selectAllAds, getAdsError, getAdsStatus } from "../slice/ads/adSlice";
+import { selectAllApparels, getApparelsStatus, getApparelsError } from "../slice/apparels/apparelSlice";
+import { selectAllCarousels, getCarouselError, getCarouselStatus } from "../slice/carousel/carouselSlice";
+import { selectAllUsers, getUserError, getUserStatus, selectLoggedInUser, updateUsers, fetchUsers } from "../slice/users/userSlice";
 import Carousel from "../components/Carousel";
-import ProductDisplay from "./ProductDisplay";
+import ProductDisplay from "../components/ProductDisplay";
 import Categories from "../components/Categories";
 import Newsletter from "../components/Newsletter";
 
@@ -34,33 +34,34 @@ export default function Home() {
   const carouselStatus = useSelector(getCarouselStatus)
   const carouselError = useSelector(getCarouselError)
 
-  const userss = useSelector(selectAllUsers)
+  const users = useSelector(selectAllUsers)
+  const userStatus = useSelector(getUserStatus)
+  const userError = useSelector(getUserError)
+  // const loggedIn = useSelector(selectLoggedInUser)
 
-  console.log('userss', userss)
   const [user, setUser] = useState({});
   const [adsUrl, setAdsUrl] = useState({})
 
+// console.log('loggedIn', loggedIn)
+
+// console.log('JSON.parse(localStorage.getItem', JSON.parse(localStorage.getItem('user')))
+
+console.log('users', users)
+
+// if (users !== {} && users !== undefined && users !== null) {
+//   localStorage.removeItem('user')
+//   console.log('localstorage user removed')
+// }
 
 
+// useEffect(() => {
+//   if (userStatus === 'idle') {
+//     // Fetch users' data only if it is not already present
+//     dispatch(fetchUsers(loggedIn.jwt));
+//   }
+// }, [dispatch, userStatus]);
 
-  useEffect(() => {
-
-    console.log('apparelStatus', apparelStatus)
-    if (apparelStatus === "idle") {
-      dispatch(fetchApparels())
-    }
-    console.log('apparels', apparels)
-
-    if (adsStatus === "idle") {
-      dispatch(fetchAds())
-    }
-
-
-    if (carouselStatus === "idle") {
-      dispatch(fetchCarousels())
-    }
-
-  }, [dispatch, apparelStatus, adsStatus, carouselStatus])
+// console.log('user', users)
 
   useEffect(() => {
     setAdsUrl({
@@ -90,14 +91,15 @@ export default function Home() {
       <div className="w-full h-[100vh] flex flex-row overflow-hidden">
         <Carousel carousels={carousels} />
       </div>
-      <div className="px-[80px] py-[40px]">
+      <div className="px-[60px] py-[40px]">
         <ProductDisplay adsUrl={adsUrl} />
-        <Categories data={apparels} carousels={carousels} contentType="featured" />
+        
         <Categories data={apparels} carousels={carousels} contentType="apparel" headerType="view"  color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} contentType="carousel"  color="#FFF7E9"/>
         <Categories data={apparels} carousels={carousels} contentType="apparel" headerType="timeline"  color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} contentType="brand" headerType="view" color="#FFF7E9"/>
-        <Categories data={apparels} carousels={carousels} contentType="collection" headerType="view" color="#FFF7E9"/>
+        <Categories data={apparels} carousels={carousels} contentType="featured" />
+        <Categories data={apparels} carousels={carousels} contentType="brand" headerType="view" color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} contentType="collection" headerType="view" color="#ffffff"/>
 
 
 

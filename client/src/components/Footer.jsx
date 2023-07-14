@@ -8,7 +8,7 @@ import twitter from '../assets/images/twitter.svg'
 export default function Footer() {
   return (
     <footer className="bg-[#9d5c0d] text-white h-[70vh] flex flex-col">
-        <div className="flex-[5]  px-[80px] pb-[80px] pt-[50px] flex flex-row">
+        <div className="flex-[5]  px-[60px] pb-[80px] pt-[50px] flex flex-row">
 
           <div className="flex-[1] container mx-auto flex flex-col justify-between">
             <div className="flex flex-col md:flex-row items-center">

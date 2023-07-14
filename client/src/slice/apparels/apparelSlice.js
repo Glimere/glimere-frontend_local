@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { constants } from "../global-components/constants";
+import { constants } from "../../global-components/constants";
 
 export const fetchApparels = createAsyncThunk("apparels/fetchApparels", async () => {
     try {
@@ -31,6 +31,15 @@ export const deleteApparels = createAsyncThunk("apparels/deleteApparel", async (
         console.log(error);
     }
 }); 
+
+export const filterApparels = async (value,apparel, brands, category, minPrice, maxPrice, colors, selectedSizes, minDiscount) => {
+    try {
+        const response = await axios.get(`${constants.url}/api/apparels?populate=*&filters[${value}][$contains]=${apparel}&filter[brand][$in]=${brands.join(',')}&filter[category][$contains]=${category}&filter[price][$gte]=${minPrice}&filter[price][$lte]=${maxPrice}&filter[size][$in]=${selectedSizes.join(',')}&filter[color][$in]=${colors.join(',')}&filter[discount][$gte]=${minDiscount}`)
+        return response.data.data || []
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // export const updateApparels = createAsyncThunk("apparels/updateApparel", async (apparel) => {
 //     try {
@@ -88,6 +97,17 @@ const apparelsReducer = createSlice({
             state.status = "failed";
             state.error = action.error.message;
         })
+        // .addCase(filterApparels.pending, (state, action) => {
+        //     state.status = "loading";
+        // })
+        // .addCase(filterApparels.fulfilled, (state, action) => {
+        //     state.status = "succeeded";
+        //     state.apparels = action.payload;
+        // })
+        // .addCase(filterApparels.rejected, (state, action) => {
+        //     state.status = "failed";
+        //     state.error = action.error.message;
+        // })
         // .addCase(updateApparels.pending, (state, action) => {
         //     state.status = "loading";
         // })

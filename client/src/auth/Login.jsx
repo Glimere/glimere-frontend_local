@@ -6,9 +6,9 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import { constants } from '../global-components/constants'
-import { selectAllUsers, getUserError, getUserStatus, fetchUsers } from '../slice/userSlice'
+// import { getUserError, getUserStatus } from '../slice/users/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { addUser } from '../slice/userSlice'
+import { addUser,loginSuccess } from '../slice/users/userSlice'
 
 // import dotenv from 'dotenv';
 
@@ -17,11 +17,6 @@ export default function Login() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch()
-
-  const loggedInUser = useSelector(state => state.users.loggedInUser);
-  const { users } = useSelector(selectAllUsers)
-  const userStatus = useSelector(getUserStatus)
-  const userError = useSelector(getUserError)
 
   // dotenv.config()
   const initialUser = {
@@ -43,6 +38,7 @@ export default function Login() {
   const [registerUser, setRegisterUser] = useState(initialRegisterUser)
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState("")
+  
 
   const handleChange = ({ target }) => {
     const { name, value } = target
@@ -60,32 +56,28 @@ export default function Login() {
       if (user.identifier && user.password) {
         const res = await axios.post(url, user)
 
-        dispatch({ type: 'users/login', payload: res.data })
 
         console.log('res.user.confirmed', res.data.user.confirmed)
         if (res.data.user.confirmed == true) {
-          localStorage.setItem('user', JSON.stringify(res.data))
-          navigate('/'); // Replace '/' with the actual route of your homepage
-        }
+          // dispatch(loginSuccess(res.data))
 
-        if (users) {
-          // Fetch users' data only if it is not already present
-          dispatch(fetchUsers(JSON.parse(localStorage.getItem('user').jwt)));
+          localStorage.setItem('loggedin', "true")
+          localStorage.setItem('jwt', JSON.stringify(res.data.jwt))
+          window.location.reload();
+          navigate('/'); // Replace '/' with the actual route of your homepage
+          
         }
 
       }
     } catch (error) {
       console.log('error', error)
-      res.status(400).send(e.response.data.message[0].messages[0]);
+      // res.status(400).send(e.response.data.message[0].messages[0]);
       toast.error(error.message, {
         hideProgressBar: true
       })
 
     }
   }
-
-  console.log('users', users)
-  console.log('loggedInUser', loggedInUser)
 
   const handleUserChange = ({ target }) => {
     const { name, value } = target

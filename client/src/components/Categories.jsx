@@ -20,21 +20,23 @@ export default function Categories(props) {
 
   const [contentType, setContentType] = useState(props.contentType)
   const [headerType, setHeaderType] = useState(props.headerType)
-  const [carousels, setCarousels] = useState()
+  const [carousels, setCarousels] = useState([])
+  const [apparels, setApparels] = useState([])
 
   useEffect(() => {
     if (props.carousels) {
 
       setCarousels(props.carousels)
-
+      setApparels(props.data)
 
     }
-  }, [props.carousels])
+  }, [props.carousels, props.data])
 
   const notCarousel = (apparel) => {
     return (
       <>
         {contentType === "apparel" ? <Swiper
+        spaceBetween={20}
           slidesPerView={4}
           centeredSlides={false}
           slidesPerGroupSkip={4}
@@ -57,9 +59,9 @@ export default function Categories(props) {
 
 
 
-          {props.data.map((apparel, id) => (
+          {apparels.map((apparel, id) => (
             <SwiperSlide key={id}>
-              <div className="relative pr-[20px]">
+              <div className="relative">
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                   <div className=" rounded overflow-hidden">
                     <div
@@ -87,6 +89,7 @@ export default function Categories(props) {
         </Swiper> : ""}
 
         {contentType === "featured" ? <Swiper
+        spaceBetween={20}
           slidesPerView={3}
           centeredSlides={false}
           slidesPerGroupSkip={3}
@@ -107,18 +110,18 @@ export default function Categories(props) {
           className="mySwiper"
         >
 
-          {props.data.map((apparel, id) => (
+          {apparel.map((apparel, id) => (
             <SwiperSlide key={id}>
-              <div className="relative pr-[20px]">
+              <div className="relative">
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
-                  <div className="h-[250px] rounded-[10px] overflow-hidden">
+                  <div className="h-[200px] rounded-[10px] overflow-hidden">
                     <div
-                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative  p-[40px]"
+                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative  p-[30px] flex justify-start items-center"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                       alt={apparel.attributes.name}
                     >
 
-                      <div className="h-[15vh] flex flex-col py-4 pb-8 z-[2] relative">
+                      <div className="flex flex-col py-4 pb-8 z-[2] relative">
                         <div className="font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
                         <span className="text-gray-600 text-[10px] text-sm">${apparel.attributes.price}</span>
                         {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
@@ -144,13 +147,13 @@ export default function Categories(props) {
 
   return (
     <>
-      <div className={`bg-[${props.color}] ${contentType === "apparel" ? "px-[40px] pb-[40px] pt-[1px] mt-[20px]" : ""} ${contentType === "featured" ? "pt-[20px]" : ""} w-full`}>
+      <div className={`bg-[${props.color}] rounded-[10px] ${contentType !== "carousel" && contentType !== "featured" ? "px-[40px] pb-[40px] pt-[1px] mt-[30px]" : ""} ${contentType === "featured" ? "pt-[30px]" : ""} w-full`}>
         <div className="w-full">
           {headerType === "timeline" ?
 
-            <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] mt-[30px]">
+            <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] mt-[30px] rounded-[5px]">
               <div className="flex items-center">
-                <img src={gucci} alt="" className='w-[45px] mr-[15px]' />
+                <img src={gucci} alt="" className='w-[30px] mr-[15px]' />
                 <h1 className='text-[20px] text-white font-semibold'>Featured {headingContent}</h1>
               </div>
 
@@ -167,14 +170,15 @@ export default function Categories(props) {
               </div> : ""
           }
 
-          <div className="w-full flex flex-wrap">
+          <div className="w-full flex gap-[25px] flex-wrap">
             {contentType === "collection"
-              ? props.data.map((apparel, id) => (<div className="relative">
-                <div className="w-[150px] h-[170px] m-[10px] rounded-[10px] overflow-hidden">
+              ? apparels.map((apparel, id) => (
+              <div className="relative" key={id}>
+                <div className="w-[150px] h-[170px] overflow-hidden">
 
                   <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                     <div
-                      className="h-[80%] w-full bg-cover bg-center bg-no-repeat z-[2] relative"
+                      className="h-[80%] w-full bg-cover bg-center bg-no-repeat z-[2] relative  rounded-[10px]"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                       alt={apparel.attributes.name}
                     >
@@ -189,10 +193,10 @@ export default function Categories(props) {
 
 
 
-          <div className="w-full flex flex-wrap">
+          <div className="w-full flex flex-wrap gap-[25px]">
             {contentType === "brand" ?
-              props.data.map((apparel, id) => (
-                <div className="h-[150px] w-[150px] relative mr-[15px]">
+              apparels.map((apparel, id) => (
+                <div className="h-[150px] w-[150px] relative" key={id}>
                   <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                     <div
                       className="h-full w-full m-[10px] bg-cover bg-center bg-no-repeat z-[2] relative rounded-full"
@@ -212,10 +216,10 @@ export default function Categories(props) {
               : ""}
           </div>
 
-          {contentType !== "carousel" ? notCarousel(props.data) : ""}
+          {contentType !== "carousel" ? notCarousel(apparels) : ""}
 
           {contentType === "carousel" ? <div className="relative">
-            <div className=" rounded overflow-hidden  mt-[30px]">
+            <div className="rounded-[10px] overflow-hidden  mt-[30px]">
               <CarouselCatergories carousels={props.carousels} />
             </div>
           </div> : ""

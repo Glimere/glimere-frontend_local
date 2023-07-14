@@ -67,6 +67,10 @@ body {
   width: 100%;
   height: 100%;
 }
+/* .swiper-wrapper {
+  display: flex;
+  gap: 25px;
+} */
 
 .swiper-slide {
   background-position: center;
@@ -111,4 +115,32 @@ body {
 .swiper-pagination-bullet-active {
   background-color: white !important;
 }
+.MuiSlider-valueLabelOpen, .MuiSlider-valueLabel {
+  display: none !important;
+}
 
+.MuiSlider-thumb.Mui-focusVisible, .MuiSlider-thumb:hover {
+  box-shadow:none !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  padding-right: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff5ee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fdb38b;
+  border-radius: 5px;
+  -webkit-animation: scroll 3s ;
+  animation: scroll 3s ;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ed7534;
+  transition: 3s ease;
+}

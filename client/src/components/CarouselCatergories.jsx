@@ -46,11 +46,10 @@ export default function CarouselCatergories(props) {
         {props.carousels?.map((carousel) => {
           return (
             <div key={carousel.id}>
-              {console.log('carousel.id', carousel.id)}
               {carousel.attributes.carouselimg.data?.map((img) => {
                 return (
                   <div key={img.id}>
-                    <SwiperSlide>
+                    <SwiperSlide key={img.id}>
                       <div className="relative w-full h-[50vh] overflow-hidden bg-center bg-no-repeat"
                       style={{ backgroundImage: `url(${constants.url}${img.attributes.url})` }}
                       >

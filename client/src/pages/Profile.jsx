@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../auth/Auth';
 import { useContext } from 'react';
-import { logout } from './api/logout';
+import logout from '../auth/logout';
 import { constants } from '../global-components/constants';
 import Footer from '../components/Footer';
 import { AiOutlineUser } from 'react-icons/ai'
 import { IoIosAdd } from 'react-icons/io'
 import { ProductCard } from '../components/ProductCard';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAllUsers, getUserStatus, fetchUsers } from '../slice/userSlice';
+import { selectAllUsers, getUserStatus, fetchUsers } from '../slice/users/userSlice';
 
 
 export default function Profile() {
@@ -28,15 +28,15 @@ export default function Profile() {
   const { isAuthenticated } = useContext(AuthContext);
   // const navigate = useNavigate();
 
-  useEffect(() => {
+  // useEffect(() => {
    
-    console.log('userStatus', userStatus)
-    if (userStatus === "idle") {
+  //   console.log('userStatus', userStatus)
+  //   if (userStatus === "idle") {
       
-      dispatch(fetchUsers(constants.user.jwt))
+  //     dispatch(fetchUsers(users.jwt))
 
-    } 
-  }, [navigate, userStatus, dispatch]);
+  //   } 
+  // }, [navigate, userStatus, dispatch]);
 
   console.log('user', user)
 

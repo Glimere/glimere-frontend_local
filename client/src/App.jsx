@@ -15,6 +15,7 @@ import ForgotPassword from './auth/ForgotPassword'
 import ViewProduct from './components/ViewProduct'
 import Orders from './pages/Orders'
 import Likes from './pages/Likes'
+import Search from './components/Search'
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/likes" element={<Likes />} />
         <Route path="/view-product/:id" element={<ViewProduct />} />
+        <Route path="/search" element={<Search />} />
 
         {/* 404 Not Found */}
         {/* <Route path="*" element={<NotFound />} /> */}
