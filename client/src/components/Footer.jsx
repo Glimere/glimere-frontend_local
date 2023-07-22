@@ -8,8 +8,9 @@ import twitter from '../assets/images/twitter.svg'
 export default function Footer() {
   return (
     <footer className="bg-[#9d5c0d] text-white h-[70vh] flex flex-col">
-        <div className="flex-[5]  px-[60px] pb-[80px] pt-[50px] flex flex-row">
+      <div className="flex-[5] px-[40px] sm:px-[60px] pb-[60px] sm:pb-[80px] pt-[50px] flex flex-col sm:flex-row">
 
+        <div className="flex flex-row">
           <div className="flex-[1] container mx-auto flex flex-col justify-between">
             <div className="flex flex-col md:flex-row items-center">
               <GlimereSweet className={`text-white h-[40px]`} />
@@ -17,7 +18,7 @@ export default function Footer() {
             </div>
 
             <div className="col-span-1">
-              <h3 className="text-[17px] font-bold mb-4" style={{fontFamily: "Edensor"}}>Quick Links</h3>
+              <h3 className="text-[17px] font-bold mb-4" style={{ fontFamily: "Edensor" }}>Quick Links</h3>
               <ul className="list-none">
                 <li className=""><a href="#" className="text-[11px]">Shop</a></li>
                 <li className=""><a href="#" className="text-[11px]">About</a></li>
@@ -27,9 +28,10 @@ export default function Footer() {
             </div>
           </div>
 
+
           <div className="flex-[1] flex flex-col justify-end">
             <div className="col-span-1">
-              <h3 className="text-[17px] font-bold mb-4" style={{fontFamily: "Edensor"}}>Customer Care</h3>
+              <h3 className="text-[17px] font-bold mb-4" style={{ fontFamily: "Edensor" }}>Customer Care</h3>
               <ul className="list-none">
                 <li className=""><a href="#" className="text-[11px]">Track Your Order</a></li>
                 <li className=""><a href="#" className="text-[11px]">Return/Exchange</a></li>
@@ -38,52 +40,63 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-          <div className="flex-[1] flex flex-col justify-end">
-            <div className="col-span-1">
-              <h3 className="text-[17px] font-bold mb-4" style={{fontFamily: "Edensor"}}>Promotions</h3>
-              <ul className="list-none">
-                <li className=""><a href="#" className="text-[11px]">Promo Terms</a></li>
-                <li className=""><a href="#" className="text-[11px]">Giveaways</a></li>
-                <li className=""><a href="#" className="text-[11px]">Affiliate Program</a></li>
-                <li className=""><a href="#" className="text-[11px]">Student Discount</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex-[1] flex flex-col justify-end">
-            <div className="flex h-[40px] flex-row w-[80%] sm:w-[100%]">
-              <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-                <a href="https://web.facebook.com/Glimere" target="_blank">
-                  <img src={facebook} alt="" className='w-[30px]' />
-                </a>
-              </div>
-              <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-                <a href="https://twitter.com/glmere" target="_blank">
-                  <img src={twitter} alt="" className='w-[30px]' />
-                </a>
-              </div>
-              <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-                <a href="https://www.instagram.com/glimereofficial/" target="_blank">
-                  <img src={instagram} alt="" className='w-[30px]' />
-                </a>
-              </div>
-              <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-                <a href="https://www.linkedin.com/company/glimere/" target="_blank">
-                  <img src={linkedin} alt="" className='w-[30px]' />
-                </a>
-              </div>
-            </div>
+        </div>
 
 
+        <div className="flex flex-col">
+
+          <div className="flex-[1] flex flex-col justify-end">
+          <div className="col-span-1">
+            <h3 className="text-[17px] font-bold mb-4" style={{ fontFamily: "Edensor" }}>Promotions</h3>
+            <ul className="list-none">
+              <li className=""><a href="#" className="text-[11px]">Promo Terms</a></li>
+              <li className=""><a href="#" className="text-[11px]">Giveaways</a></li>
+              <li className=""><a href="#" className="text-[11px]">Affiliate Program</a></li>
+              <li className=""><a href="#" className="text-[11px]">Student Discount</a></li>
+            </ul>
           </div>
+        </div>
+
+        <div className="flex-[1] flex flex-col justify-end">
+          <div className="flex h-[40px] flex-row w-[80%] sm:w-[100%]">
+            <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
+              <a href="https://web.facebook.com/Glimere" target="_blank">
+                <img src={facebook} alt="" className='w-[30px]' />
+              </a>
+            </div>
+            <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
+              <a href="https://twitter.com/glmere" target="_blank">
+                <img src={twitter} alt="" className='w-[30px]' />
+              </a>
+            </div>
+            <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
+              <a href="https://www.instagram.com/glimereofficial/" target="_blank">
+                <img src={instagram} alt="" className='w-[30px]' />
+              </a>
+            </div>
+            <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
+              <a href="https://www.linkedin.com/company/glimere/" target="_blank">
+                <img src={linkedin} alt="" className='w-[30px]' />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        
+
+        
 
 
         </div>
 
 
-        <div className="bg-[#c07820] py-4 flex-[1] flex justify-center items-center">
-          <p className="text-[#ffe4b1] text-sm mb-2 md:mb-0">© 2023 Glimere. All rights reserved.</p>
-        </div>
+      </div>
 
-      </footer>
+
+      <div className="bg-[#c07820] py-4 flex-[1] flex justify-center items-center">
+        <p className="text-[#ffe4b1] text-sm mb-2 md:mb-0">© 2023 Glimere. All rights reserved.</p>
+      </div>
+
+    </footer>
   )
 }

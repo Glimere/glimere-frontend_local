@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { constants } from '../global-components/constants';
 import { selectAllUsers } from '../slice/users/userSlice';
 import { useSelector } from 'react-redux'
@@ -13,28 +13,29 @@ const AuthProvider = ({ children }) => {
   const users = useSelector(selectAllUsers)
 
 
+  // const location = useLocation();
+
+  // const hideNavbarRoutes = ['/login'];
+
+  // const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
   useEffect(() => {
-    // Check if the user is authenticated (e.g., by verifying the token)
-    // const checkAuthentication = () => {
-      const loggedIn = localStorage.getItem('loggedin')
+    const checkAuthentication = () => {
+      const jwt = localStorage.getItem('jwt');
+      const loggedIn = localStorage.getItem('loggedin');
 
-      console.log('loggedIn', loggedIn)
-      
-      if (loggedIn) {
 
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
+
+      if (!(loggedIn && jwt)) {
         navigate('/login');
       }
+    };
 
-    // };
-    // checkAuthentication();
+    checkAuthentication();
+  }, [navigate]);
 
-  }, []);
 
-  
+
 
   return (
     <AuthContext.Provider value={{ isAuthenticated }}>

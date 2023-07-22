@@ -11,7 +11,7 @@ import { StarRating } from "./StarRating";
 
 
 
-export const ProductCard = ({ apparel }) => {
+export const ProductCard = (props) => {
 
   const dispatch = useDispatch()
   const user = useSelector(selectAllUsers)
@@ -20,19 +20,17 @@ export const ProductCard = ({ apparel }) => {
 
   return (
     <>
-      {apparel.map((apparel) => (
-        <div className="w-[200px] h-[280px] relative bg-white rounded-[10px] overflow-hidden" key={apparel.attributes.productid}>
+      {props.apparel.map((apparel) => (
+        <div className={` ${props.viewToggle ? "w-full" : "w-full"} h-[280px] relative bg-white rounded-[10px] overflow-hidden`} key={apparel.attributes.productid}>
           <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
-            <div className="h-full w-full flex flex-col items-center justify-center">
+            <div className={`h-full w-full flex ${props.viewToggle ? "flex-row" : "flex-col"}  items-center justify-center`}>
               <div
-                className="w-full bg-cover bg-center bg-no-repeat z-[2] relative flex-[3]"
+                className={`w-full h-full ${props.viewToggle ? "flex-[1]" : "flex-[3]"} bg-cover bg-center bg-no-repeat z-[2] relative `}
                 style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                 alt={apparel.attributes.name}
-              >
+              ></div>
 
-
-              </div>
-              <div className="flex-[1] w-full flex flex-col p-[15px] pb-[19px] bg-white z-[2] relative">
+              <div className={`w-full ${props.viewToggle ? "flex-[3]" : "flex-[1]"} flex flex-col p-[15px] pb-[19px] bg-white z-[2] relative`}>
                 <p className="font-bold text-[10px]">{apparel.attributes.brand}</p>
                 <div className="text-[12px] mb-[5px]">{apparel.attributes.name}</div>
                 <div className="flex flex-row justify-between">

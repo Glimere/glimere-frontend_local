@@ -4,9 +4,9 @@ import clothRack from '../assets/images/cloth-rack.png'
 
 export default function Newsletter() {
   return (
-    <div className="flex justify-between items-center h-[70vh]  pl-[60px] pr-[30px] bg-white">
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center h-full sm:h-[70vh] pt-[40px] sm:pt-0 pl-[40px]  sm:pl-[60px] pr-[40px] sm:pr-[30px] bg-white">
 
-        <div className="w-[50%]">
+        <div className="w-full sm:w-[50%]">
           <h2 className="text-[#9d5c0d] text-[30px] mb-4 " style={{ fontFamily: "Edensor" }}>Subscribe to our Newsletter</h2>
           <p className="mt-[20px] text-[13px]">Don't miss out on the opportunity to elevate your fashion game and stay connected with Glimere. Subscribe now and embrace the world of style and luxury!</p>
           <form className="flex mt-[30px]">

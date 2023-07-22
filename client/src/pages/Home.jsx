@@ -91,7 +91,7 @@ console.log('users', users)
       <div className="w-full h-[100vh] flex flex-row overflow-hidden">
         <Carousel carousels={carousels} />
       </div>
-      <div className="px-[60px] py-[40px]">
+      <div className="px-[30px] sm:px-[60px] py-[40px]">
         <ProductDisplay adsUrl={adsUrl} />
         
         <Categories data={apparels} carousels={carousels} contentType="apparel" headerType="view"  color="#ffffff"/>
@@ -110,9 +110,7 @@ console.log('users', users)
       </div> */}
 
       </div>
-      <Newsletter />
 
-      <Footer />
 
     </>
   )

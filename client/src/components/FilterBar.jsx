@@ -21,7 +21,7 @@ export default function FilterBar(props) {
     // console.log('isSticky', isSticky)
 
   return (
-    <div className={`w-[270px] bg-white shadow-md duration-300 flex flex-col rounded-[10px] absolute p-[30px]`}>
+    <div className={`w-[270px] bg-white shadow-md duration-300 flex flex-col rounded-[10px]  p-[30px]`}>
 
           <div className="flex flex-col w-full mb-4">
             <div className="flex flex-col w-full">
@@ -99,7 +99,7 @@ export default function FilterBar(props) {
       > */}
                 <div className="flex flex-wrap gap-[3px]">
                   {apparels.map((apparel, id) => (
-                    <div key={id} className={`flex h-[50px] w-[50px] p-[3px] justify-center items-center border-solid ${props.selectedColors.includes(apparel.attributes.color[0]) ? "border-[1px]" : ""} border-[#ED7534] hover:border-[1px] rounded-full cursor-pointer`}
+                    <div key={id} className={`flex h-[50px] w-[50px] p-[3px] justify-center items-center border-solid ${props.selectedColors.includes(apparel.attributes.color[0]) ? "bg-[#fcc3a4]" : ""} border-[1px] rounded-full cursor-pointer duration-150`}
                       onClick={() => { props.handleColorChange(apparel.attributes.color[0]) }}
                     >
                       <div className={`flex h-full w-full justify-center items-center ${apparel.attributes.color[0].toLowerCase() === "black" ? "bg-[#000000]" : apparel.attributes.color[0].toLowerCase() === "blue" ? "bg-blue-500" : ""} rounded-full`}>

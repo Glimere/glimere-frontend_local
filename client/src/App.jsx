@@ -16,6 +16,9 @@ import ViewProduct from './components/ViewProduct'
 import Orders from './pages/Orders'
 import Likes from './pages/Likes'
 import Search from './components/Search'
+import Footer from './components/Footer'
+import Newsletter from './components/Newsletter'
+import Checkout from './pages/Checkout'
 
 function App() {
 
@@ -23,7 +26,14 @@ function App() {
   
   const hideNavbarRoutes = ['/login'];
 
+  const hideFooterRoutes = ['login', 'view-product'];
+
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+
+  const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
+
+  const showNewsletter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
+  
 
   return (
     <>
@@ -47,10 +57,14 @@ function App() {
         <Route path="/likes" element={<Likes />} />
         <Route path="/view-product/:id" element={<ViewProduct />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/checkout" element={<Checkout />} />
 
         {/* 404 Not Found */}
         {/* <Route path="*" element={<NotFound />} /> */}
+        
       </Routes>
+      {showNewsletter && <Newsletter />}
+      {showFooter && <Footer />}
       <ToastContainer />
       </AuthProvider>
     </>

@@ -63,9 +63,9 @@ export default function Login() {
 
           localStorage.setItem('loggedin', "true")
           localStorage.setItem('jwt', JSON.stringify(res.data.jwt))
-          window.location.reload();
-          navigate('/'); // Replace '/' with the actual route of your homepage
           
+          navigate('/'); // Replace '/' with the actual route of your homepage
+          window.location.reload();
         }
 
       }

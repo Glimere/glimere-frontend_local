@@ -24,7 +24,7 @@ export default function Categories(props) {
   const [apparels, setApparels] = useState([])
 
   useEffect(() => {
-    if (props.carousels) {
+    if (props.carousels || props.data) {
 
       setCarousels(props.carousels)
       setApparels(props.data)
@@ -147,11 +147,11 @@ export default function Categories(props) {
 
   return (
     <>
-      <div className={`bg-[${props.color}] rounded-[10px] ${contentType !== "carousel" && contentType !== "featured" ? "px-[40px] pb-[40px] pt-[1px] mt-[30px]" : ""} ${contentType === "featured" ? "pt-[30px]" : ""} w-full`}>
+      <div className={`bg-[${props.color}] rounded-[10px] ${contentType !== "carousel" && contentType !== "featured" ? "px-[35px] pb-[35px] pt-[1px] mt-[30px]" : ""} ${contentType === "featured" ? "pt-[30px]" : ""} w-full pt-[30px]`}>
         <div className="w-full">
           {headerType === "timeline" ?
 
-            <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] mt-[30px] rounded-[5px]">
+            <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] rounded-[5px]">
               <div className="flex items-center">
                 <img src={gucci} alt="" className='w-[30px] mr-[15px]' />
                 <h1 className='text-[20px] text-white font-semibold'>Featured {headingContent}</h1>
@@ -161,10 +161,10 @@ export default function Categories(props) {
               <button className="bg-transparent rounded-md text-white">View All</button>
             </div>
             : headerType === "single" ?
-              <div className="flex justify-center items-center mb-[20px] mt-[30px]">
+              <div className="flex justify-center items-center mb-[20px]">
                 <h1 className='text-[25px] font-semibold'>Featured {headingContent}</h1>
               </div>
-              : headerType === "view" ? <div className="flex justify-between items-center mb-[20px] mt-[30px]">
+              : headerType === "view" ? <div className="flex justify-between items-center mb-[20px]">
                 <h1 className='text-[25px] font-semibold'>Featured {headingContent}</h1>
                 <button className="bg-transparent rounded-md">View All</button>
               </div> : ""
