@@ -6,7 +6,7 @@ export default function ProductDisplay(props) {
   let adsUrl = props.adsUrl
   return (
     <>
-      <div className="w-full h-[70vh] sm:h-[90vh] bg-[#FFF7E9] grid grid-rows-6 sm:grid-rows-4 grid-cols-4 sm:grid-cols-3 grid-flow-col gap-3 sm:gap-5">
+      <div className="w-full h-[70vh] mb-[30px] px-[25px] sm:px-[60px] sm:h-[90vh] bg-[#FFF7E9] grid grid-rows-6 sm:grid-rows-4 grid-cols-4 sm:grid-cols-3 grid-flow-col gap-3 sm:gap-5">
 
 
         <div className="row-span-2 col-span-2 sm:col-auto bg-cover bg-center bg-no-repeat "

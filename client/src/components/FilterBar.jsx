@@ -21,7 +21,7 @@ export default function FilterBar(props) {
     // console.log('isSticky', isSticky)
 
   return (
-    <div className={`w-[270px] bg-white shadow-md duration-300 flex flex-col rounded-[10px]  p-[30px]`}>
+    <div className={`w-full sm:w-[270px] bg-white shadow-md duration-300 sm:flex hidden flex-col rounded-[10px]  p-[30px]`}>
 
           <div className="flex flex-col w-full mb-4">
             <div className="flex flex-col w-full">

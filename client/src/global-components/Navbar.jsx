@@ -286,7 +286,7 @@ export default function Navbar() {
         </div>
 
 
-        <div className={`w-full h-[80px] px-[25px] sm:px-[60px] duration-300 flex flex-row ${isSticky ? 'bg-white' : 'bg-transparent'} absolute z-10`}>
+        <div className={`w-full h-[80px] px-[25px] sm:px-[60px] duration-300 flex flex-row ${isSticky ? 'bg-white shadow-sm' : 'bg-transparent'} absolute z-10`}>
 
           <div className="flex-[1] sm:flex-[2.18] py-[12px] hidden sm:flex flex-row items-center justify-between">
                 <div className="flex flex-row items-center">
@@ -313,7 +313,7 @@ export default function Navbar() {
                     setCard(1)
                   }}
                   >
-                  <AiOutlineMenu className={`w-[20px] h-[20px]  ${menuVisible || isSticky ? " text-black" : "text-white "} group-hover:relative`} />
+                  <AiOutlineMenu className={`w-[20px] h-[20px]  ${menuVisible || isSticky || pageLocation ? " text-black" : "text-white "} group-hover:relative`} />
                   </div>
                   <div className={`peer  ${searchSelected ? "h-[15px] w-[15px]" : "h-[40px] px-[15px]"} hidden sm:flex justify-center items-center mr-[8px] rounded-full ${card == 1 ? "bg-[#5e5e5ec2] text-white" : "bg-[#f1f1f1c2] text-black"} duration-300 cursor-pointer`}
                     onMouseEnter={() => {
@@ -416,7 +416,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className={`absolute right-0 overflow-hidden ${menuToggle ? "h-[320px] sm:h-[390px]" : "h-[0px]"} w-[37%] sm:w-[300px] duration-300 bg-[#f7c467]`}
+        <div className={`absolute right-0 overflow-hidden ${menuToggle ? "h-[320px] sm:h-[390px]" : "h-[0px]"} w-[45%] sm:w-[300px] duration-300 bg-[#f7c467]`}
           onMouseLeave={() => { setMenuToggle(false) }}
         >
           <div className="w-full h-full mt-[80px]"

@@ -78,12 +78,36 @@ export default function ViewProduct() {
 
   return (
     <>
-      <div className="w-full  bg-white relative">
+      <div className="w-full  bg-white relative ">
 
-        <div className={`w-[45%] h-[100vh] flex flex-row right-0 bottom-0 ${inView ? "absolute" : "fixed"}  z-[10]`}>
+        
+
+
+        <div className='h-full sm:h-[100vh] flex flex-col sm:flex-row pt-[80px] w-full z-[5]'>
+
+          <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
+            <div className="h-[50px] w-[50px] flex justify-center items-center rounded-full bg-[#FFF7E9] cursor-pointer"
+              onClick={() => navigate(-1)}
+            >
+              <SlArrowLeft className="text-[#ED7534] text-[20px]" />
+            </div>
+
+          </div>
+
+
+
+
+          <div className="flex-[5.5] flex">
+            <div className="h-[93vh] sm:h-full pt-[35px] sm:pt-0 pb-[1px] sm:pb-0 w-full overflow-hidden items-center">
+              <VerticalCarousel images={apparel.attributes.imageUrl.data} />
+            </div>
+          </div>
+
+
+          <div className={`w-full sm:w-[45%] h-[90vh] sm:h-[100vh] flex flex-row right-0 bottom-0 ${inView ? "relative sm:absolute" : "relative sm:fixed"}  z-[10]`}>
           {/* <div className="w-full h-[70px] bg-[#f7d08a]"></div> */}
-          <div className="w-full h-full pt-[80px] bg-[#FFF7E9] ">
-            <div className="w-full h-full px-[50px] pb-[50px] pt-[20px] flex flex-col  justify-between">
+          <div className="w-full h-full pt-[40px] sm:pt-[80px] bg-[#FFF7E9] ">
+            <div className="w-full h-full px-[40px] sm:px-[50px] pb-[50px] pt-[20px] flex flex-col  justify-between">
               <div className="">
                 <h1 className="text-[30px]">{apparel.attributes.name}</h1>
                 <div className="flex flex-row items-center mt-[10px]">
@@ -184,39 +208,20 @@ export default function ViewProduct() {
               </div>
             </div>
           </div>
-          <div className="relative pt-[80px] h-full bg-white">
+          {/* <div className="relative pt-[80px] h-full bg-white">
             <CheckoutSummary />
-          </div>
-
+          </div> */}
 
         </div>
 
 
-        <div className='h-[100vh] flex flex-row pt-[80px] w-full relative z-[5]'>
 
-          <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
-            <div className="h-[50px] w-[50px] flex justify-center items-center rounded-full bg-[#FFF7E9] cursor-pointer"
-              onClick={() => navigate(-1)}
-            >
-              <SlArrowLeft className="text-[#ED7534] text-[20px]" />
-            </div>
-
-          </div>
-
-
-
-
-          <div className="flex-[5.5] flex">
-            <div className="h-[87vh] w-full overflow-hidden items-center">
-              <VerticalCarousel images={apparel.attributes.imageUrl.data} />
-            </div>
-          </div>
-          <div className="flex-[4.5] -z-50"></div>
+          <div className="flex-[4.5] -z-50 hidden sm:block"></div>
         </div>
 
 
-        <div className="flex flex-row w-full pt-[20px] pb-[60px]">
-          <div className="flex flex-col flex-[5.5] px-[60px]">
+        <div className="flex flex-col sm:flex-row w-full pt-[20px] pb-[60px]">
+          <div className="flex flex-col flex-[5.5] px-[40px] sm:px-[60px]">
             <div className="w-full">
               {/* <hr /> */}
               <h1 className='text-[23px] font-medium text-[#ED7534]'>Description</h1>

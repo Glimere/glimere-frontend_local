@@ -31,12 +31,10 @@ export default function SearchList(props) {
 
 
             <div className="flex-[65] w-[65%]">
-                <div className="flex relative justify-between items-center z-[20]">
-                    <div className="">
-                        <p className="text-[#000000] text-[12px] font-bold"><span>1</span> - <span>16</span> over <span>7000</span> result for "{props.apparelSearch}" </p>
-                    </div>
+                <div className="flex flex-row relative justify-between items-center z-[20]">
+                   
 
-                    <div className="flex flex-row items-center">
+                       <div className="w-full flex flex-row items-center justify-end">
                         <p className='text-[12px] mr-[7px]'>Sort by:</p>
                         <div className="relative w-[200px] bg-white mr-[7px] rounded-[5px] border-solid border-black border-[1px]">
                             <div className="flex flex-row items-center justify-between py-[5px] px-[15px] cursor-pointer"
@@ -106,12 +104,14 @@ export default function SearchList(props) {
 
                         </div>
 
-                    </div>
+                    </div> 
+              
+                    
 
                 </div>
 
                 <div className="py-[10px] w-full flex items-center flex-wrap">
-                    <div className="flex items-center min-h-[40px] gap-[4px]">
+                    <div className="flex items-center min-h-[20px] sm:min-h-[40px] gap-[4px]">
                         {props.filters.map((filter, id) => (
 
                             <button key={id} className={`px-[10px] py-[5px] mr-[10px] ${filter.value === "" || filter.value.length <= 0 || filter.value === 0 ? "hidden" : ""} bg-white rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
@@ -134,7 +134,7 @@ export default function SearchList(props) {
 
 
                 </div>
-                <div className={`w-full rounded-[10px] grid  ${viewToggle ? "grid-cols-1" : "grid-cols-4 max-[1127px]:grid-cols-3 max-[972px]:grid-cols-2 max-[749px]:grid-cols-1 "} gap-[20px]`}>
+                <div className={`w-full rounded-[10px] grid  ${viewToggle ? "grid-cols-1" : "grid-cols-5 max-[1127px]:grid-cols-4 max-[972px]:grid-cols-3 max-[640px]:grid-cols-2 "} gap-[15px] sm:gap-[20px]`}>
                     <ProductCard apparel={props.searchResults} viewToggle={viewToggle} />
                 </div>
 
@@ -161,7 +161,7 @@ export default function SearchList(props) {
                                         <a href="#" className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                                             <span className="sr-only">Previous</span>
                                             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                                                <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
                                             </svg>
                                         </a>
                                         {/* <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" --> */}
@@ -175,7 +175,7 @@ export default function SearchList(props) {
                                         <a href="#" className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                                             <span className="sr-only">Next</span>
                                             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
                                             </svg>
                                         </a>
                                     </nav>

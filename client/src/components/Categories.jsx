@@ -20,6 +20,7 @@ export default function Categories(props) {
 
   const [contentType, setContentType] = useState(props.contentType)
   const [headerType, setHeaderType] = useState(props.headerType)
+  const [headerTitle, setHeaderTitle] = useState(props.headerTitle)
   const [carousels, setCarousels] = useState([])
   const [apparels, setApparels] = useState([])
 
@@ -147,14 +148,14 @@ export default function Categories(props) {
 
   return (
     <>
-      <div className={`bg-[${props.color}] rounded-[10px] ${contentType !== "carousel" && contentType !== "featured" ? "px-[35px] pb-[35px] pt-[1px] mt-[30px]" : ""} ${contentType === "featured" ? "pt-[30px]" : ""} w-full pt-[30px]`}>
+      <div className={`bg-[${props.color}] ${contentType !== "carousel" && contentType !== "featured" ? "px-[55px] pb-[35px] pt-[1px]" : "px-[25px] sm:px-[60px]"} ${contentType === "featured" ? "pt-[30px] mb-[30px]" : ""} w-full pt-[30px]`}>
         <div className="w-full">
           {headerType === "timeline" ?
 
             <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] rounded-[5px]">
               <div className="flex items-center">
                 <img src={gucci} alt="" className='w-[30px] mr-[15px]' />
-                <h1 className='text-[20px] text-white font-semibold'>Featured {headingContent}</h1>
+                <h1 className='text-[20px] text-white font-semibold'>{headerTitle}</h1>
               </div>
 
               <CountdownTimer headerType={headerType} />
@@ -162,10 +163,10 @@ export default function Categories(props) {
             </div>
             : headerType === "single" ?
               <div className="flex justify-center items-center mb-[20px]">
-                <h1 className='text-[25px] font-semibold'>Featured {headingContent}</h1>
+                <h1 className='text-[20px] font-bold'>{headerTitle}</h1>
               </div>
               : headerType === "view" ? <div className="flex justify-between items-center mb-[20px]">
-                <h1 className='text-[25px] font-semibold'>Featured {headingContent}</h1>
+                <h1 className='text-[20px] font-bold'>{headerTitle}</h1>
                 <button className="bg-transparent rounded-md">View All</button>
               </div> : ""
           }
@@ -219,7 +220,7 @@ export default function Categories(props) {
           {contentType !== "carousel" ? notCarousel(apparels) : ""}
 
           {contentType === "carousel" ? <div className="relative">
-            <div className="rounded-[10px] overflow-hidden  mt-[30px]">
+            <div className="rounded-[10px] overflow-hidden  mt-[30px] mb-[30px]">
               <CarouselCatergories carousels={props.carousels} />
             </div>
           </div> : ""

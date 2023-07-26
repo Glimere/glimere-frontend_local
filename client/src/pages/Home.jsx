@@ -91,15 +91,15 @@ console.log('users', users)
       <div className="w-full h-[100vh] flex flex-row overflow-hidden">
         <Carousel carousels={carousels} />
       </div>
-      <div className="px-[30px] sm:px-[60px] py-[40px]">
+      <div className="pt-[30px]">
+        
         <ProductDisplay adsUrl={adsUrl} />
         
-        <Categories data={apparels} carousels={carousels} contentType="apparel" headerType="view"  color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} contentType="carousel"  color="#FFF7E9"/>
-        <Categories data={apparels} carousels={carousels} contentType="apparel" headerType="timeline"  color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} contentType="featured" />
-        <Categories data={apparels} carousels={carousels} contentType="brand" headerType="view" color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} contentType="collection" headerType="view" color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="Latest Arrivals" contentType="apparel" headerType="view"  color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="Flash Sales" contentType="apparel" headerType="timeline"  color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="Top Brands" contentType="brand" headerType="view" color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="Featured Collections" contentType="collection" headerType="view" color="#ffffff"/>
 
 
 

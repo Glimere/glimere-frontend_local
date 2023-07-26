@@ -177,10 +177,11 @@ export default function Search() {
 
   return (
     <div className="w-full h-full bg-[#fffbf5]">
-      <div className="w-full flex gap-[20px]  px-[60px] pb-[40px] pt-[80px]">
+      <div className="w-full flex gap-[20px] px-[15px] sm:px-[60px] pb-[40px] pt-[80px]">
 
-        <div className="w-full relative flex gap-[20px] mt-[20px]">
-          <FilterBar 
+        <div className="w-full flex gap-0 sm:gap-[20px] mt-[20px]">
+          {/* <div className="sm:relative hidden flex absolute w-full sm:flex flex-col z-[40]"> */}
+            <FilterBar 
           apparelSearch={apparelSearch} 
           handleSizeChange={handleSizeChange} 
           handleDiscountChange={handleDiscountChange} 
@@ -200,6 +201,10 @@ export default function Search() {
           selectedDiscount={selectedDiscount}
           selectedSizes={selectedSizes}
           />
+
+          {/* <div className="w-full h-[100px bg-white shadow-md]"></div>
+          </div> */}
+          
 
 
           <SearchList
