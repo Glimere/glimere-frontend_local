@@ -98,6 +98,7 @@ console.log('users', users)
         <Categories data={apparels} carousels={carousels} headerTitle="Latest Arrivals" contentType="apparel" headerType="view"  color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9"/>
         <Categories data={apparels} carousels={carousels} headerTitle="Flash Sales" contentType="apparel" headerType="timeline"  color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="" contentType="featured" headerType=""  color=""/>
         <Categories data={apparels} carousels={carousels} headerTitle="Top Brands" contentType="brand" headerType="view" color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} headerTitle="Featured Collections" contentType="collection" headerType="view" color="#ffffff"/>
 
