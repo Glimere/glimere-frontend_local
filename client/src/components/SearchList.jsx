@@ -134,7 +134,7 @@ export default function SearchList(props) {
 
 
                 </div>
-                <div className={`w-full rounded-[10px] grid  ${viewToggle ? "grid-cols-1" : "grid-cols-5 max-[1127px]:grid-cols-4 max-[972px]:grid-cols-3 max-[640px]:grid-cols-2 "} gap-[15px] sm:gap-[20px]`}>
+                <div className={`w-full min-h-[50vh] rounded-[10px] grid  ${viewToggle ? "grid-cols-1" : "grid-cols-5 max-[1127px]:grid-cols-4 max-[972px]:grid-cols-3 max-[640px]:grid-cols-2 "} gap-[15px] sm:gap-[20px]`}>
                     <ProductCard apparel={props.searchResults} viewToggle={viewToggle} />
                 </div>
 

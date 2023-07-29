@@ -317,7 +317,7 @@ export default function ViewProduct() {
       </div>
 
       <div ref={ref} className="">
-        <div className='w-full h-[75vh] py-[5vh] px-[30px] bg-[#ffefd1]'>
+        <div className='w-full] py-[5vh] bg-[#ffefd1]'>
           <h2 className="text-lg font-semibold pl-[30px] mb-4">Similar Apparels</h2>
           <Categories data={apparels} contentType="apparel" color="#ffffff" />
         </div>

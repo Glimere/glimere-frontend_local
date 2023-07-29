@@ -129,7 +129,7 @@ export default function Categories(props) {
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                   <div className="h-[200px] rounded-[10px] overflow-hidden hover:shadow-lg duration-200">
                     <div
-                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative  p-[30px] flex justify-start items-center"
+                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative p-[15px] sm:p-[30px] flex justify-start items-center"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                       alt={apparel.attributes.name}
                     >
@@ -188,11 +188,11 @@ export default function Categories(props) {
               </div> : ""
           }
 
-          <div className="w-full flex gap-[25px] flex-wrap">
+          <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
             {contentType === "collection"
               ? apparels.map((apparel, id) => (
                 <div className="relative" key={id}>
-                  <div className="w-[150px] h-[170px] overflow-hidden">
+                  <div className="w-[77px] sm:w-[150px] h-[100px] sm:h-[170px] overflow-hidden">
 
                     <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                       <div
@@ -201,8 +201,8 @@ export default function Categories(props) {
                         alt={apparel.attributes.name}
                       >
                       </div>
-                      <div className="w-full h-[20%] flex flex-col justify-center items-center px-6 py-4 pb-8 bg-white z-[2] relative">
-                        <h1 className='text-[15px] font-bold'>{apparel.attributes.category}</h1>
+                      <div className="w-full h-[20%] flex flex-col justify-center items-center bg-white z-[2] relative">
+                        <h1 className='text-[12px] sm:text-[15px] font-bold'>{apparel.attributes.category}</h1>
                       </div>
                     </Link>
                   </div>
@@ -211,18 +211,18 @@ export default function Categories(props) {
 
 
 
-          <div className="w-full flex flex-wrap gap-[25px]">
+          <div className="w-full flex flex-wrap gap-[12px] sm:gap-[25px]">
             {contentType === "brand" ?
               apparels.map((apparel, id) => (
-                <div className="h-[150px] w-[150px] relative" key={id}>
+                <div className="h-[105px] sm:h-[150px] w-[105px] sm:w-[150px] relative" key={id}>
                   <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                     <div
-                      className="h-full w-full m-[10px] bg-cover bg-center bg-no-repeat z-[2] relative rounded-full"
+                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative rounded-full"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                       alt={apparel.attributes.name}
                     >
                       <div className=" flex justify-center items-center  h-full w-full bg-[#00000044] rounded-full">
-                        <h1 className='text-white text-[15px] font-bold'>{apparel.attributes.brand}</h1>
+                        <h1 className='text-white text-[12px] sm:text-[15px] font-bold'>{apparel.attributes.brand}</h1>
 
                       </div>
 
