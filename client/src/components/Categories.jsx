@@ -38,27 +38,27 @@ export default function Categories(props) {
       <>
         {contentType === "apparel" ? <Swiper
           spaceBetween={5}
-          slidesPerView={3}
+          slidesPerView={2}
           centeredSlides={false}
-          slidesPerGroupSkip={3}
+          slidesPerGroupSkip={2}
           grabCursor={false}
           keyboard={{
             enabled: true,
           }}
           breakpoints={{
             769: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
+              slidesPerView: 3,
+              slidesPerGroup: 3,
               spaceBetween: 5,
             },
             972: {
-              slidesPerView: 5,
-              slidesPerGroup: 5,
+              slidesPerView: 4,
+              slidesPerGroup: 4,
               spaceBetween: 10,
             },
             1127: {
-              slidesPerView: 6,
-              slidesPerGroup: 6,
+              slidesPerView: 5,
+              slidesPerGroup: 5,
               spaceBetween: 15,
             }
 
@@ -78,14 +78,14 @@ export default function Categories(props) {
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                   <div className="shadow-sm rounded overflow-hidden">
                     <div
-                      className="h-[16vh] sm:h-[30vh] duration-200 w-full bg-cover bg-center bg-no-repeat z-[2] relative"
+                      className="h-[18vh] sm:h-[40vh] duration-200 w-full bg-cover bg-center bg-no-repeat z-[2] relative"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                       alt={apparel.attributes.name}
                     >
 
 
                     </div>
-                    <div className="h-[9.5vh] sm:h-[15vh] flex flex-col p-[10px] pb-8 bg-white z-[2] relative">
+                    <div className="h-[11.5vh] sm:h-[19vh] flex flex-col p-[10px] pb-8 bg-white z-[2] relative">
                       <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
                       <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
                       {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
@@ -129,17 +129,20 @@ export default function Categories(props) {
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                   <div className="h-[200px] rounded-[10px] overflow-hidden hover:shadow-lg duration-200">
                     <div
-                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative p-[15px] sm:p-[30px] flex justify-start items-center"
+                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                       alt={apparel.attributes.name}
                     >
-
-                      <div className="flex flex-col py-4 pb-8 z-[2] relative">
-                        <div className="font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
-                        <span className="text-gray-600 text-[10px] text-sm">${apparel.attributes.price}</span>
+                      <div className="bg-[#00000044] h-full w-full p-[15px] sm:p-[30px] flex justify-start items-center">
+                        <div className="flex flex-col py-4 pb-8 z-[2] relative">
+                        <div className="text-white font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
+                        <span className="text-white text-[10px] text-sm">${apparel.attributes.price}</span>
                         {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
 
                       </div>
+                      </div>
+
+                      
                     </div>
 
 
@@ -156,7 +159,7 @@ export default function Categories(props) {
   }
 
 
-  const headingContent = contentType.charAt(0).toUpperCase() + contentType.slice(1);
+  // const headingContent = contentType.charAt(0).toUpperCase() + contentType.slice(1);
 
   return (
     <>

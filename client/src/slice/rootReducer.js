@@ -5,6 +5,7 @@ import carouselsReducer from './carousel/carouselSlice'
 import usersReducer from './users/userSlice'
 import likeSlice from './like/likeSlice'
 import cartSlice from './cart/cartSlice'
+import brandSlice from './brand/brandSlice'
 
 const rootReducer = combineReducers({
     apparels: apparelsReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     carousels: carouselsReducer,
     users: usersReducer,
     likes: likeSlice,
-    carts: cartSlice
+    carts: cartSlice,
+    brands: brandSlice
 })
 
 export default rootReducer

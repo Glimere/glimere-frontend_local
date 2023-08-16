@@ -133,6 +133,7 @@ export default function Navbar() {
   // const [toggleCategory, setToggleCategory] = useState(false);
   // const [apparel, setapparel] = useState([]);
   const [suggestions, setSuggestions] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -144,11 +145,17 @@ export default function Navbar() {
   const apparelsStatus = useSelector(getApparelsStatus)
   const apparelsError = useSelector(getApparelsError)
 
-  const loggedIn = useSelector(selectLoggedInUser) ?? localStorage.getItem('loggedin')
-
   const pageLocation = location.pathname.split('/')[1]
 
   const searchRef = useRef(null);
+  useEffect(() => {
+    setLoggedIn(localStorage.getItem('jwt') && localStorage.getItem('loggedin'))
+  }, [loggedIn])
+
+  useEffect(() => {
+    navigate
+  }, [loggedIn])
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -165,6 +172,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+
   }, []);
 
   const handleLogout = async () => {
@@ -444,7 +452,7 @@ export default function Navbar() {
                   <p>Sign out</p>
                 </li>
               </Link> :
-                <Link to="/" className='flex-1'>
+                <Link to="/login" className='flex-1'>
                   <li className='text-white h-full flex justify-center bg-[#e2912e] items-center hover:bg-[#fff0d7] hover:text-[#be7f2d] text-[13px]'>
                     <p>Sign in</p>
                   </li>

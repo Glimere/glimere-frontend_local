@@ -13,13 +13,15 @@ import { fetchApparels } from './slice/apparels/apparelSlice.js'
 import { fetchAds } from './slice/ads/adSlice.js'
 import { fetchCarousels } from './slice/carousel/carouselSlice.js'
 import { fetchUsers } from './slice/users/userSlice.js'
+import { fetchBrands } from './slice/brand/brandSlice.js'
 
 const fetchData = async () => {
   try {
     await Promise.all([
       store.dispatch(fetchApparels()),
       store.dispatch(fetchAds()),
-      store.dispatch(fetchCarousels())
+      store.dispatch(fetchCarousels()),
+      store.dispatch(fetchBrands())
     ]);
 
     if (localStorage.getItem("loggedin") === "true") {

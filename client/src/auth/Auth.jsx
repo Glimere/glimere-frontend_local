@@ -24,8 +24,6 @@ const AuthProvider = ({ children }) => {
       const jwt = localStorage.getItem('jwt');
       const loggedIn = localStorage.getItem('loggedin');
 
-
-
       if (!(loggedIn && jwt)) {
         navigate('/login');
       }

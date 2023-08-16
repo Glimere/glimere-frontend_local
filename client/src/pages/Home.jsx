@@ -1,19 +1,15 @@
 import { constants } from "../global-components/constants";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { RxArrowTopRight } from 'react-icons/rx'
-import { ProductCard } from "../components/ProductCard";
-import { Link } from "react-router-dom";
-import Footer from "../components/Footer";
-import { useSelector, useDispatch } from "react-redux";
-import { selectAllAds, getAdsError, getAdsStatus } from "../slice/ads/adSlice";
-import { selectAllApparels, getApparelsStatus, getApparelsError } from "../slice/apparels/apparelSlice";
-import { selectAllCarousels, getCarouselError, getCarouselStatus } from "../slice/carousel/carouselSlice";
-import { selectAllUsers, getUserError, getUserStatus, selectLoggedInUser, updateUsers, fetchUsers } from "../slice/users/userSlice";
+import { useSelector } from "react-redux";
+import { selectAllAds } from "../slice/ads/adSlice";
+import { selectAllApparels } from "../slice/apparels/apparelSlice";
+import { selectAllCarousels } from "../slice/carousel/carouselSlice";
+import { selectAllUsers } from "../slice/users/userSlice";
+import { selectAllBrands } from "../slice/brand/brandSlice";
 import Carousel from "../components/Carousel";
 import ProductDisplay from "../components/ProductDisplay";
 import Categories from "../components/Categories";
-import Newsletter from "../components/Newsletter";
+
 
 
 
@@ -21,25 +17,17 @@ import Newsletter from "../components/Newsletter";
 
 export default function Home() {
 
-  const dispatch = useDispatch()
   const apparels = useSelector(selectAllApparels)
-  const apparelStatus = useSelector(getApparelsStatus)
-  const apparelError = useSelector(getApparelsError)
 
   const ads = useSelector(selectAllAds)
-  const adsStatus = useSelector(getAdsStatus)
-  const adsError = useSelector(getAdsError)
 
   const carousels = useSelector(selectAllCarousels)
-  const carouselStatus = useSelector(getCarouselStatus)
-  const carouselError = useSelector(getCarouselError)
 
   const users = useSelector(selectAllUsers)
-  const userStatus = useSelector(getUserStatus)
-  const userError = useSelector(getUserError)
+
+  const brands = useSelector(selectAllBrands)
   // const loggedIn = useSelector(selectLoggedInUser)
 
-  const [user, setUser] = useState({});
   const [adsUrl, setAdsUrl] = useState({})
 
 // console.log('loggedIn', loggedIn)
@@ -91,9 +79,9 @@ console.log('users', users)
       <div className="w-full h-[100vh] flex flex-row overflow-hidden">
         <Carousel carousels={carousels} />
       </div>
-      <div className="pt-[30px]">
+      <div className="">
         
-        <ProductDisplay adsUrl={adsUrl} />
+        {/* <ProductDisplay adsUrl={adsUrl} /> */}
         
         <Categories data={apparels} carousels={carousels} headerTitle="Latest Arrivals" contentType="apparel" headerType="view"  color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9"/>

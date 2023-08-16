@@ -25,7 +25,7 @@ export default function Profile() {
 
   const [tab, setTab] = useState(1)
 
-  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated } = useContext(AuthContext);
   // const navigate = useNavigate();
 
   // useEffect(() => {
@@ -115,5 +115,5 @@ export default function Profile() {
     </>
     
   );
-};
+}
 

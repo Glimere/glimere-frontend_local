@@ -37,7 +37,7 @@ function App() {
 
   return (
     <>
-    <AuthProvider>
+    {/* <AuthProvider> */}
      {showNavbar && <Navbar />}
       <Routes> 
         {/* Authentication routes */}
@@ -66,7 +66,7 @@ function App() {
       {showNewsletter && <Newsletter />}
       {showFooter && <Footer />}
       <ToastContainer />
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </>
   )
 }
