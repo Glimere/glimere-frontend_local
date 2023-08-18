@@ -18,7 +18,7 @@ export default function Search() {
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedDiscount, setSelectedDiscount] = useState('');
-  const [value, setValue] = useState([500, 100000]);
+  const [value, setValue] = useState([0, 100000]);
   const [minPrice, setMinPrice] = useState(value[0]);
   const [maxPrice, setMaxPrice] = useState(value[1]);
   const [selectedSizes, setSelectedSizes] = useState([]);
@@ -176,7 +176,7 @@ export default function Search() {
 
 
   return (
-    <div className="w-full h-full bg-[#fffbf5]">
+    <div className="w-full h-full bg-white">
       <div className="w-full flex gap-[20px] px-[15px] sm:px-[60px] pb-[40px] pt-[80px]">
 
         <div className="w-full flex gap-0 sm:gap-[20px] mt-[20px]">

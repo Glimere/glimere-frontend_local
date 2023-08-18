@@ -2,7 +2,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-const initialState = {};
+const initialState = {
+  cartItems: [],
+  cartTotalQuantity: 0,
+  cartTotalAmount: 0,
+  timeCreated: null,
+  timeUpdated: null,
+  status: "idle", // "idle" | "loading" | "succeeded" | "failed"
+  error: null,
+};
 
 const cartSlice = createSlice({
   name: 'cart',

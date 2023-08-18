@@ -18,6 +18,7 @@ import Categories from "../components/Categories";
 export default function Home() {
 
   const apparels = useSelector(selectAllApparels)
+  console.log('apparels', apparels)
 
   const ads = useSelector(selectAllAds)
 
@@ -26,7 +27,6 @@ export default function Home() {
   const users = useSelector(selectAllUsers)
 
   const brands = useSelector(selectAllBrands)
-  // const loggedIn = useSelector(selectLoggedInUser)
 
   const [adsUrl, setAdsUrl] = useState({})
 
@@ -87,7 +87,7 @@ console.log('users', users)
         <Categories data={apparels} carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9"/>
         <Categories data={apparels} carousels={carousels} headerTitle="Flash Sales" contentType="apparel" headerType="timeline"  color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} headerTitle="" contentType="featured" headerType=""  color=""/>
-        <Categories data={apparels} carousels={carousels} headerTitle="Top Brands" contentType="brand" headerType="view" color="#ffffff"/>
+        <Categories data={brands} carousels={carousels} headerTitle="Top Brands" contentType="brand" headerType="view" color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} headerTitle="Featured Collections" contentType="collection" headerType="view" color="#ffffff"/>
 
 
