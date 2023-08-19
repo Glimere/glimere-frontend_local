@@ -10,9 +10,6 @@ import Carousel from "../components/Carousel";
 import ProductDisplay from "../components/ProductDisplay";
 import Categories from "../components/Categories";
 
-
-
-
 // import '@coreui/coreui/dist/css/coreui.min.css'
 
 export default function Home() {
@@ -30,9 +27,6 @@ export default function Home() {
 
   const [adsUrl, setAdsUrl] = useState({})
 
-// console.log('loggedIn', loggedIn)
-
-// console.log('JSON.parse(localStorage.getItem', JSON.parse(localStorage.getItem('user')))
 
 console.log('users', users)
 

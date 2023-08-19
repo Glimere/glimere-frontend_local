@@ -14,6 +14,8 @@ import { fetchAds } from './slice/ads/adSlice.js'
 import { fetchCarousels } from './slice/carousel/carouselSlice.js'
 import { fetchUsers } from './slice/users/userSlice.js'
 import { fetchBrands } from './slice/brand/brandSlice.js'
+import { fetchCategory } from './slice/category/categorySlice.js'
+import { fetchSubcategory } from './slice/subCategory/subCategorySlice.js'
 
 const fetchData = async () => {
   try {
@@ -21,7 +23,9 @@ const fetchData = async () => {
       store.dispatch(fetchApparels()),
       store.dispatch(fetchAds()),
       store.dispatch(fetchCarousels()),
-      store.dispatch(fetchBrands())
+      store.dispatch(fetchBrands()),
+      store.dispatch(fetchCategory()),
+      store.dispatch(fetchSubcategory()),
     ]);
 
     if (localStorage.getItem("loggedin") === "true") {

@@ -5,6 +5,9 @@ import CountdownTimer from './CountdownTimer';
 import CarouselCatergories from './CarouselCatergories';
 import gucci from "./../assets/images/gucci.png"
 import { FiArrowRight } from "react-icons/fi";
+import { AiOutlineHeart } from 'react-icons/ai'
+import { IoIosAdd } from "react-icons/io";
+
 
 
 // Import Swiper styles
@@ -74,24 +77,39 @@ export default function Categories(props) {
 
 
 
-          {data.map((apparel, id) => (
+          {data?.map((apparel, id) => (
             <SwiperSlide key={id}>
               <div className="relative rounded-[5px] p-[5px] border-transparent duration-200 hover:border-[#ffdcb1] border-solid border-[1px]">
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
-                  <div className="shadow-sm rounded overflow-hidden relative">
-                    <div
-                      className="h-[18vh] sm:h-[40vh] duration-200 w-full bg-cover bg-center bg-no-repeat z-[2] relative"
-                      style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
-                      alt={apparel.attributes.name}
-                    >
-
-
+                  <div className="group shadow-sm rounded overflow-hidden relative">
+                    <div className="h-[18vh] sm:h-[40vh] duration-200 w-full relative">
+                      <div
+                        className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
+                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[1]?.attributes.url})` }}
+                        alt={apparel.attributes.name}
+                      ></div>
+                      <div
+                        className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2]"
+                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[0]?.attributes.url})` }}
+                        alt={apparel.attributes.name}
+                      ></div>
                     </div>
-                    <div className="h-[11.5vh] sm:h-[19vh] flex flex-col p-[10px] pb-8 bg-white z-[2] relative">
+
+                    <div className="h-[11.5vh] sm:h-[19vh] flex flex-col p-[10px] pb-[10px] bg-white z-[2] relative">
                       <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
                       <div className="flex flex-row gap-[10px]">
-                        <span className="text-gray-300 text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
+                        <span className="text-gray-300 line-through text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
                         <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
+                      </div>
+                      
+                      <div className="group-hover:flex hidden justify-between items-end z-20 mt-[10px]">
+                        <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-[#ED7534] cursor-pointer">
+                          <div className="flex flex-row">
+                            <p className='text-white text-center text-[9px]'>ADD TO CART</p>
+                            <IoIosAdd className="text-[15px] text-white" />
+                          </div>
+                        </div>
+                        <AiOutlineHeart className={`w-[25px] text-[30px] text-[#be7f2d] ml-[20px]`} />
                       </div>
                       {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
 

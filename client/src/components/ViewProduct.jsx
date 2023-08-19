@@ -228,7 +228,7 @@ export default function ViewProduct() {
               <hr />
             </div>
             <div className="w-full mt-[20px]">
-              <p className="text-[12px]">Introducing the XYZ Fashion Black Gown: A captivating masterpiece that exudes elegance and sophistication. This stunning black gown features intricate hand-embroidered embellishments, a flattering silhouette, and a touch of shimmer. Perfect for special occasions, it embraces timeless style and showcases impeccable craftsmanship. Elevate your look with XYZ Fashion's Exquisite Black Gown and make a lasting impression.</p>
+              <p className="text-[12px]">Introducing the XYZ Fashion Black Gown: A captivating masterpiece that exudes elegance and sophistication. This stunning black gown features intricate hand-embroidered embellishments, a flattering silhouette, and a touch of shimmer. Perfect for special occasions, it embraces timeless style and showcases impeccable craftsmanship. Elevate your look with XYZ Fashion&rsquo;s Exquisite Black Gown and make a lasting impression.</p>
             </div>
 
             <div className="mt-[40px]">
