@@ -78,7 +78,7 @@ export default function FilterBar(props) {
                 disableSwap={true}
 
                 getAriaLabel={() => 'Temperature range'}
-                min={500}
+                min={0}
                 max={300000}
                 value={props.value}
                 onChange={props.handlePriceChange}

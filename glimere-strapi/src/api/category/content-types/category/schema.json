@@ -1,45 +1,43 @@
 {
   "kind": "collectionType",
-  "collectionName": "brands",
+  "collectionName": "categories",
   "info": {
-    "singularName": "brand",
-    "pluralName": "brands",
-    "displayName": "Brand",
-    "description": ""
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "category"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "brandId": {
-      "type": "integer"
-    },
-    "name": {
+    "title": {
       "type": "string"
     },
     "desc": {
       "type": "text"
     },
-    "logo": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "img": {
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
-    },
-    "website": {
-      "type": "text"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "apparels": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::apparel.apparel",
-      "inversedBy": "brands"
+      "mappedBy": "categories"
+    },
+    "subcategories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subcategory.subcategory",
+      "mappedBy": "categories"
     }
   }
 }

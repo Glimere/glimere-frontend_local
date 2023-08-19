@@ -21,9 +21,6 @@
     "desc": {
       "type": "text"
     },
-    "brand": {
-      "type": "string"
-    },
     "price": {
       "type": "decimal"
     },
@@ -56,9 +53,6 @@
     "rating": {
       "type": "integer"
     },
-    "category": {
-      "type": "string"
-    },
     "variant": {
       "type": "relation",
       "relation": "oneToOne",
@@ -66,6 +60,38 @@
     },
     "discount": {
       "type": "integer"
+    },
+    "isNew": {
+      "type": "boolean"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "apparels"
+    },
+    "subcategories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subcategory.subcategory",
+      "inversedBy": "apparels"
+    },
+    "brands": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::brand.brand",
+      "mappedBy": "apparels"
+    },
+    "oldPrice": {
+      "type": "decimal"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "normal",
+        "featured",
+        "trending"
+      ]
     }
   }
 }

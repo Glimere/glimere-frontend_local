@@ -7,13 +7,13 @@ import twitter from '../assets/images/twitter.svg'
 
 export default function Footer() {
   return (
-    <footer className="bg-[#9d5c0d] text-white sm:h-[50vh] h-full flex flex-col">
+    <footer className="bg-[#ffe9b8] text-[#9d5c0d] sm:h-[50vh] h-full flex flex-col">
       <div className="flex-[5] px-[25px] sm:px-[60px] pb-[60px] sm:pb-[40px] pt-[60px] flex flex-col sm:flex-row">
 
         {/* <div className="flex flex-row sm:flex-[5]"> */}
         <div className="flex-[2.3] container mx-auto flex flex-row justify-between">
           <div className="flex flex-col items-start pb-[20px] w-full">
-            <GlimereSweet className={`text-white h-[40px] mb-[20px]`} />
+            <GlimereSweet className={`text-[#9d5c0d] h-[40px] mb-[20px]`} />
             <h1 className="text-[15px] ">Simplifying fashion problems with technology</h1>
           </div>
 

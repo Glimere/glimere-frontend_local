@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import CountdownTimer from './CountdownTimer';
 import CarouselCatergories from './CarouselCatergories';
 import gucci from "./../assets/images/gucci.png"
+import { FiArrowRight } from "react-icons/fi";
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -22,13 +24,13 @@ export default function Categories(props) {
   const [headerType, setHeaderType] = useState(props.headerType)
   const [headerTitle, setHeaderTitle] = useState(props.headerTitle)
   const [carousels, setCarousels] = useState([])
-  const [apparels, setApparels] = useState([])
+  const [data, setData] = useState([])
 
   useEffect(() => {
     if (props.carousels || props.data) {
 
       setCarousels(props.carousels)
-      setApparels(props.data)
+      setData(props.data)
 
     }
   }, [props.carousels, props.data])
@@ -72,11 +74,11 @@ export default function Categories(props) {
 
 
 
-          {apparels.map((apparel, id) => (
+          {data.map((apparel, id) => (
             <SwiperSlide key={id}>
               <div className="relative rounded-[5px] p-[5px] border-transparent duration-200 hover:border-[#ffdcb1] border-solid border-[1px]">
                 <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
-                  <div className="shadow-sm rounded overflow-hidden">
+                  <div className="shadow-sm rounded overflow-hidden relative">
                     <div
                       className="h-[18vh] sm:h-[40vh] duration-200 w-full bg-cover bg-center bg-no-repeat z-[2] relative"
                       style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
@@ -87,11 +89,17 @@ export default function Categories(props) {
                     </div>
                     <div className="h-[11.5vh] sm:h-[19vh] flex flex-col p-[10px] pb-8 bg-white z-[2] relative">
                       <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
-                      <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
+                      <div className="flex flex-row gap-[10px]">
+                        <span className="text-gray-300 text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
+                        <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
+                      </div>
                       {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
 
                     </div>
 
+                    {apparel.attributes.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-[#FFF7E9] flex justify-center items-center z-[10]">
+                      <p className='text-[#9d5c0d] text-[10px]'>New</p>
+                    </div> : ""}
                   </div>
                 </Link>
               </div>
@@ -135,14 +143,14 @@ export default function Categories(props) {
                     >
                       <div className="bg-[#00000044] h-full w-full p-[15px] sm:p-[30px] flex justify-start items-center">
                         <div className="flex flex-col py-4 pb-8 z-[2] relative">
-                        <div className="text-white font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
-                        <span className="text-white text-[10px] text-sm">${apparel.attributes.price}</span>
-                        {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
+                          <div className="text-white font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
+                          <span className="text-white text-[10px] text-sm">${apparel.attributes.price}</span>
+                          {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
 
-                      </div>
+                        </div>
                       </div>
 
-                      
+
                     </div>
 
 
@@ -193,20 +201,22 @@ export default function Categories(props) {
 
           <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
             {contentType === "collection"
-              ? apparels.map((apparel, id) => (
+              ? data.map((apparel, id) => (
                 <div className="relative" key={id}>
-                  <div className="w-[77px] sm:w-[150px] h-[100px] sm:h-[170px] overflow-hidden">
+                  <div className="w-[105px] sm:w-[230px] h-[140px] sm:h-[270px] overflow-hidden">
 
                     <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
                       <div
-                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat z-[2] relative  rounded-[10px]"
+                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat z-[2] relative p-[10px] sm:p-[25px] rounded-[10px] flex items-end"
                         style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
                         alt={apparel.attributes.name}
                       >
+                        <div className="w-full h-[25%] py-[10px] px-[15px] flex flex-row justify-between items-center bg-white rounded-[8px] z-[2] relative">
+                          <h1 className='text-[11px] sm:text-[15px] font-bold'>{apparel.attributes.category}</h1>
+                          <FiArrowRight className="text-[11px] sm:text-[15px] ml-[5px]" />
+                        </div>
                       </div>
-                      <div className="w-full h-[20%] flex flex-col justify-center items-center bg-white z-[2] relative">
-                        <h1 className='text-[12px] sm:text-[15px] font-bold'>{apparel.attributes.category}</h1>
-                      </div>
+
                     </Link>
                   </div>
                 </div>)) : ""
@@ -214,20 +224,17 @@ export default function Categories(props) {
 
 
 
-          <div className="w-full flex flex-wrap gap-[12px] sm:gap-[25px]">
+          <div className="w-full flex flex-wrap gap-[12px]">
             {contentType === "brand" ?
-              apparels.map((apparel, id) => (
-                <div className="h-[105px] sm:h-[150px] w-[105px] sm:w-[150px] relative" key={id}>
-                  <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
+              data.map((brand, id) => (
+                <div className="h-[80px] sm:h-[130px] w-[105px] sm:w-[150px] relative" key={id}>
+                  <Link to={`/view-product/${brand.attributes.productid}`} state={brand}>
                     <div
-                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative rounded-full"
-                      style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
-                      alt={apparel.attributes.name}
+                      className="h-full w-full z-[2] relative rounded-full flex justify-center items-center"
+                      // style={{ backgroundImage: `url(${constants.url}${brand.attributes.imageUrl.data[0].attributes.url})` }}
+                      alt={brand.attributes.name}
                     >
-                      <div className=" flex justify-center items-center  h-full w-full bg-[#00000044] rounded-full">
-                        <h1 className='text-white text-[12px] sm:text-[15px] font-bold'>{apparel.attributes.brand}</h1>
-
-                      </div>
+                      <img src={constants.url + brand.attributes.logo.data.attributes.url} alt="" className="w-[80px] hover:w-[100px] duration-75 ease-out" />
 
                     </div>
 
@@ -237,7 +244,7 @@ export default function Categories(props) {
               : ""}
           </div>
 
-          {contentType !== "carousel" ? notCarousel(apparels) : ""}
+          {contentType !== "carousel" ? notCarousel(data) : ""}
 
           {contentType === "carousel" ? <div className="relative">
             <div className="rounded-[10px] overflow-hidden  mt-[30px] mb-[30px]">
