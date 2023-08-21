@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-
-import { filterApparels } from '../slice/apparels/apparelSlice';
 import FilterBar from './FilterBar';
 import SearchList from './SearchList';
+import useFetch from '../global-components/useFetch';
 
 
 
@@ -13,9 +12,9 @@ export default function Search() {
   const [apparelSearch, setApparelSearch] = useState(location.state)
   const [searchResults, setSearchResults] = useState([])
 
-  const [selectedCategory, setSelectedCategory] = useState('');
+  // const [selectedCategory, setSelectedCategory] = useState('');
 
-  const [selectedColors, setSelectedColors] = useState([]);
+  // const [selectedColors, setSelectedColors] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedDiscount, setSelectedDiscount] = useState('');
   const [value, setValue] = useState([0, 100000]);
@@ -23,7 +22,7 @@ export default function Search() {
   const [maxPrice, setMaxPrice] = useState(value[1]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [isSticky, setIsSticky] = useState(false);
-
+  const [sort, setSort] = useState('desc');
 
   useEffect(() => {
     setApparelSearch(location.state || ''); // Set initial apparelSearch from location.state
@@ -38,28 +37,26 @@ export default function Search() {
 
 
 
+const {data, loading, error} = useFetch(`/api/apparels?populate=*&filters[name][$contains]=${apparelSearch}${selectedBrands.map((brand) => `&[filters][brands][id][$eq]=${brand}`)}&[filters][price][$lte]=${maxPrice}&[filters][price][$gte]=${minPrice}${selectedSizes.map((size) => `&[filters][sizes][id][$eq]=${size}`)}&filters[discount][$gte]=${selectedDiscount}&sort=price:${sort}`);
 
+  // useEffect(() => {
+  //   if (apparelSearch) {
+  //     filterApparels(``)
+  //       .then((searchResult) => {
+  //         // Handle the search results here
+  //         setSearchResults(searchResult)
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }, [apparelSearch, selectedBrands, selectedCategory, minPrice, maxPrice, selectedColors, selectedSizes, selectedDiscount]);
 
-  useEffect(() => {
-    if (apparelSearch) {
-      filterApparels('name', apparelSearch, selectedBrands, selectedCategory, minPrice, maxPrice, selectedColors, selectedSizes, selectedDiscount)
-        .then((searchResult) => {
-          // Handle the search results here
-          setSearchResults(searchResult)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [apparelSearch, selectedBrands, selectedCategory, minPrice, maxPrice, selectedColors, selectedSizes, selectedDiscount]);
-
-
+console.log('sort', sort)
   
   console.log('apparelSearch', apparelSearch)
 
-  console.log('searcResults', searchResults)
-
-
+  console.log('searcResults', data)
 
     const handleSizeChange = (size) => {
         if (selectedSizes.includes(size)) {
@@ -80,19 +77,19 @@ export default function Search() {
       };
     
     
-      const handleCategoryChange = (category) => {
-        setSelectedCategory(category);
-      };
+      // const handleCategoryChange = (category) => {
+      //   setSelectedCategory(category);
+      // };
     
     
-      const handleColorChange = (color) => {
-        if (selectedColors.includes(color)) {
-          setSelectedColors(selectedColors.filter((s) => s !== color));
-        } else {
-          setSelectedColors([...selectedColors, color]);
-        }
-        console.log("selectedColors", selectedColors);
-      };
+      // const handleColorChange = (color) => {
+      //   if (selectedColors.includes(color)) {
+      //     setSelectedColors(selectedColors.filter((s) => s !== color));
+      //   } else {
+      //     setSelectedColors([...selectedColors, color]);
+      //   }
+      //   console.log("selectedColors", selectedColors);
+      // };
     
     
     
@@ -107,11 +104,7 @@ export default function Search() {
     
       const handleFilterChange = (type, filter) => {
         if (type === "category") {
-          setSelectedCategory("");
-        } else if (type === "colors") {
-          setSelectedColors([]);
-        } else if (type === "brand") {
-          setSelectedBrands("");
+            setSelectedBrands("");
         } else if (type === "sizes") {
           setSelectedSizes([]);
         } else if (type === "discount") {
@@ -124,19 +117,13 @@ export default function Search() {
       }
     
       const handleClearAllFilters = () => {
-        setSelectedCategory("");
-        setSelectedColors([]);
         setSelectedBrands([]);
         setSelectedSizes([]);
         setSelectedDiscount("");
-        setMinPrice(0);
-        setMaxPrice(0);
       }
     
       const isFilterApplied = () => {
         return (
-          selectedCategory ||
-          selectedColors.length > 0 ||
           selectedBrands.length > 0 ||
           selectedSizes.length > 0 ||
           selectedDiscount
@@ -146,8 +133,6 @@ export default function Search() {
       console.log('isFilterApplied', isFilterApplied())
     
       const filters = [
-        { type: "category", value: selectedCategory },
-        { type: "colors", value: selectedColors },
         { type: "brand", value: selectedBrands },
         { type: "sizes", value: selectedSizes },
         { type: "discount", value: selectedDiscount }
@@ -186,17 +171,14 @@ export default function Search() {
           handleSizeChange={handleSizeChange} 
           handleDiscountChange={handleDiscountChange} 
           handlePriceChange={handlePriceChange} 
-          handleCategoryChange={handleCategoryChange}
-          handleColorChange={handleColorChange}
+          // handleCategoryChange={handleCategoryChange}
+          // handleColorChange={handleColorChange}
           handleBrandChange={handleBrandChange}
           handleFilterChange={handleFilterChange}
           handleClearAllFilters={handleClearAllFilters}
           isFilterApplied={isFilterApplied}
           filters={filters}
           value={value}
-          setSelectedCategory={setSelectedCategory}
-          selectedCategory={selectedCategory}
-          selectedColors={selectedColors}
           selectedBrands={selectedBrands}
           selectedDiscount={selectedDiscount}
           selectedSizes={selectedSizes}
@@ -208,12 +190,14 @@ export default function Search() {
 
 
           <SearchList
+          loading={loading}
           filters={filters}
           apparelSearch={apparelSearch} 
-          searchResults={searchResults}
+          searchResults={data}
           handleFilterChange={handleFilterChange}
           isFilterApplied={isFilterApplied}
           handleClearAllFilters={handleClearAllFilters}
+          setSort={setSort}
           />
 
 

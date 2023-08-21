@@ -32,15 +32,6 @@ export const deleteApparels = createAsyncThunk("apparels/deleteApparel", async (
     }
 }); 
 
-export const filterApparels = async (value,apparel, brands, category, minPrice, maxPrice, colors, selectedSizes, minDiscount) => {
-    try {
-        const response = await axios.get(`${constants.url}/api/apparels?populate=*&filters[${value}][$contains]=${apparel}&filter[brand][$in]=${brands.join(',')}&filter[category][$contains]=${category}&filter[price][$gte]=${minPrice}&filter[price][$lte]=${maxPrice}&filter[size][$in]=${selectedSizes.join(',')}&filter[color][$in]=${colors.join(',')}&filter[discount][$gte]=${minDiscount}`)
-        return response.data.data || []
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 // export const updateApparels = createAsyncThunk("apparels/updateApparel", async (apparel) => {
 //     try {
 //         const response = await axios.put(`${constants.url}/api/apparels/${apparel.id}`, apparel);

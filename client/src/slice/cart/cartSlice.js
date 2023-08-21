@@ -1,37 +1,40 @@
-
-import { createSlice } from '@reduxjs/toolkit';
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItems: [],
-  cartTotalQuantity: 0,
-  cartTotalAmount: 0,
-  timeCreated: null,
-  timeUpdated: null,
-  status: "idle", // "idle" | "loading" | "succeeded" | "failed"
-  error: null,
-};
+  apparels: [],
+  // cartTotalQuantity: 0,
+  // cartTotalAmount: 0,
+  // timeCreated: null,
+  // timeUpdated: null,
+  // status: "idle", // "idle" | "loading" | "succeeded" | "failed"
+  // error: null,
+}; 
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addItem: (state, action) => {
-      const { userId, item } = action.payload;
-      if (!state[userId]) {
-        state[userId] = [];
+      const item = state.apparels.find((item) => item.id === action.payload.id);
+      if (item) {
+        item.quantity += action.payload.quantity;
+      } else {
+        state.apparels.push(action.payload);
       }
-      state[userId].push(item);
     },
     removeItem: (state, action) => {
-      const { userId, itemId } = action.payload;
-      if (state[userId]) {
-        state[userId] = state[userId].filter((item) => item.id !== itemId);
-      }
+      state.apparels = state.apparels.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+    resetCart: (state) => {
+      state.apparels = [];
     },
   },
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const selectCart = (state) => state.cart.apparels;
+
+export const { addItem, removeItem, resetCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

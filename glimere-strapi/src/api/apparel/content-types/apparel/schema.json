@@ -22,16 +22,7 @@
       "type": "text"
     },
     "price": {
-      "type": "decimal"
-    },
-    "color": {
-      "type": "json"
-    },
-    "size": {
-      "type": "json"
-    },
-    "material": {
-      "type": "string"
+      "type": "integer"
     },
     "gender": {
       "type": "string"
@@ -90,8 +81,51 @@
       "enum": [
         "normal",
         "featured",
-        "trending"
+        "trending",
+        "special"
       ]
+    },
+    "sizes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::size.size",
+      "mappedBy": "apparels"
+    },
+    "material": {
+      "type": "enumeration",
+      "enum": [
+        "Cotton",
+        "Polyester",
+        "Silk",
+        "Wool",
+        "Linen",
+        "Denim",
+        "Leather",
+        "Velvet",
+        "Satin",
+        "Rayon",
+        "Nylon",
+        "Spandex",
+        "Cashmere",
+        "Corduroy",
+        "Chiffon",
+        "Tulle",
+        "Fleece",
+        "Knit",
+        "Chambray",
+        "Suede",
+        "Organza",
+        "Brocade",
+        "Twill",
+        "Flannel",
+        "Lace"
+      ]
+    },
+    "colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::color.color",
+      "mappedBy": "apparels"
     }
   }
 }

@@ -6,6 +6,7 @@ import { IoIosAdd } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { BiMessageAltDetail } from 'react-icons/bi'
 import { SlArrowLeft } from 'react-icons/sl'
@@ -17,15 +18,20 @@ import { useNavigate } from 'react-router-dom';
 import Categories from './Categories';
 import { useSelector } from 'react-redux';
 import { selectAllApparels } from '../slice/apparels/apparelSlice';
+import { selectWishlist } from '../slice/wishList/wishListSlice';
+import { addWish } from '../slice/wishList/wishListSlice';
 import CheckoutSummary from './CheckoutSummary';
 import Newsletter from './Newsletter';
 import Footer from './Footer';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../slice/cart/cartSlice';
 
 
 export default function ViewProduct() {
 
   const navigate = useNavigate()
   const location = useLocation()
+  const dispatch = useDispatch()
   const { ref: ref, inView: inView } = useInView({
     /* Optional options */
     threshold: 0,
@@ -40,7 +46,13 @@ export default function ViewProduct() {
   const [apparelSize, setApparelSize] = useState('M')
   const [apparel, setApparel] = useState(location.state)
   const [IsSticky, setIsSticky] = useState(true)
-  const [selectedColors, setSelectedColors] = useState([apparel.attributes.color[0]])
+  const [selectedColors, setSelectedColors] = useState([apparel.attributes.colors.data[0].attributes.name])
+
+  const wishlist = useSelector(selectWishlist)
+
+  const isWishlistChecked = (id) => {
+    return wishlist.some((item) => item.id === id)
+  }
 
   console.log('apparel', apparel)
 
@@ -135,11 +147,11 @@ export default function ViewProduct() {
 
               <div className="w-full">
                 <div className="flex flex-wrap gap-[3px]">
-                  {apparel.attributes.color.map((color, id) => (
-                    <div key={id} className={`flex h-[40px] w-[40px] p-[3px] hover:p-[4px] justify-center items-center ${selectedColors.includes(color) ? "bg-[#ffcaad]" : ""} border-[1px] border-[#ED7534] hover:border-[1px] rounded-full cursor-pointer duration-100`}
-                      onClick={() => { handleColorChange(color) }}
+                  {apparel.attributes.colors.data.map((color, id) => (
+                    <div key={color.id} className={`flex h-[40px] w-[40px] p-[3px] hover:p-[4px] justify-center items-center ${selectedColors.includes(color.id) ? "bg-[#ffcaad]" : ""} border-[1px] border-[#ED7534] hover:border-[1px] rounded-full cursor-pointer duration-100`}
+                      onClick={() => { handleColorChange(color.id) }}
                     >
-                      <div className={`flex h-full w-full justify-center items-center ${color.toLowerCase() === "black" ? "bg-[#000000]" : color.toLowerCase() === "blue" ? "bg-blue-500" : ""} rounded-full`}>
+                      <div className={`flex h-full w-full justify-center items-center ${`bg-[${color.attributes.code}]`} rounded-full`}>
                         {/* <p className='text-[10px] text-white'>{apparel.attributes.color[0]}</p> */}
                       </div>
                     </div>
@@ -183,12 +195,12 @@ export default function ViewProduct() {
 
                 <div className="flex flex-row items-center">
                   {/* <p className='text-[12px] text-[#ED7534] mr-[3px]'>SIZE: </p> */}
-                  {apparel.attributes.size.map((size, id) => {
+                  {apparel.attributes.sizes.data.map((size, id) => {
                     return (
-                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size ? "bg-[#ED7534] text-white" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
-                        onClick={() => setApparelSize(size)}
+                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-[#ED7534] text-white" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
+                        onClick={() => setApparelSize(size.attributes.short_name)}
                       >
-                        <p className="text-[9px]">{size}</p>
+                        <p className="text-[9px]">{size.attributes.short_name}</p>
                       </div>
                     )
                   })}
@@ -197,14 +209,30 @@ export default function ViewProduct() {
 
               <div className="flex flex-row items-center justify-between">
                 {/* <p className='text-[11px] flex-[1]'>Enjoy a special discount when you add up to three items to your cart!</p> */}
-                <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-[#ED7534] cursor-pointer">
+                <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-[#ED7534] cursor-pointer"
+                onClick={() => {
+                  dispatch(addItem({
+                    id: apparel.id,
+                    name: apparel.attributes.name,
+                    price: apparel.attributes.price,
+                    desc: apparel.attributes.desc,
+                    imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
+                    quantity: quantity
+                  }))
+                }}
+                >
                   <div className="flex flex-row">
                     <p className='text-white text-[13px] mr-[3px]'>ADD TO CART</p>
                     <IoIosAdd className="w-[20px] h-[20px] text-white" />
                   </div>
-
                 </div>
-                <AiOutlineHeart className={`w-[25px] text-[40px] text-[#be7f2d] ml-[20px]`} />
+                <div className="cursor-pointer"
+                onClick={() => dispatch(addWish(apparel))}
+                >
+                  {isWishlistChecked(apparel.id) ? <AiFillHeart className={`w-[25px] text-[40px] text-[#be7f2d] ml-[20px]`} /> :
+                <AiOutlineHeart className={`w-[25px] text-[40px] text-[#be7f2d] ml-[20px]`} />}
+                </div>
+                
               </div>
             </div>
           </div>
@@ -228,7 +256,7 @@ export default function ViewProduct() {
               <hr />
             </div>
             <div className="w-full mt-[20px]">
-              <p className="text-[12px]">Introducing the XYZ Fashion Black Gown: A captivating masterpiece that exudes elegance and sophistication. This stunning black gown features intricate hand-embroidered embellishments, a flattering silhouette, and a touch of shimmer. Perfect for special occasions, it embraces timeless style and showcases impeccable craftsmanship. Elevate your look with XYZ Fashion's Exquisite Black Gown and make a lasting impression.</p>
+              <p className="text-[12px]">Introducing the XYZ Fashion Black Gown: A captivating masterpiece that exudes elegance and sophistication. This stunning black gown features intricate hand-embroidered embellishments, a flattering silhouette, and a touch of shimmer. Perfect for special occasions, it embraces timeless style and showcases impeccable craftsmanship. Elevate your look with XYZ Fashion&rsquo;s Exquisite Black Gown and make a lasting impression.</p>
             </div>
 
             <div className="mt-[40px]">
@@ -319,7 +347,7 @@ export default function ViewProduct() {
       <div ref={ref} className="">
         <div className='w-full] py-[5vh] bg-[#ffefd1]'>
           <h2 className="text-lg font-semibold pl-[30px] mb-4">Similar Apparels</h2>
-          <Categories data={apparels} contentType="apparel" color="#ffffff" />
+          <Categories contentType="apparel" type="trending" color="#ffffff"/>
         </div>
         <Newsletter />
         <Footer />

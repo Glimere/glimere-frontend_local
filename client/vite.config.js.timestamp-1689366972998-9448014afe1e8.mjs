@@ -5,7 +5,7 @@ import replace from "file:///C:/Users/josey/Desktop/glimere-official/client/node
 import svgr from "file:///C:/Users/josey/Desktop/glimere-official/node_modules/@svgr/rollup/dist/index.js";
 var vite_config_default = defineConfig({
   plugins: [react(), replace({
-    "process.env.VITE_API_URL": JSON.stringify(process.env.VITE_API_URL)
+    "process.env.VITE_API_URL": JSON.stringify(import.meta.env.VITE_API_URL)
   }), svgr()],
   optimizeDeps: {
     exclude: ["swiper/react", "swiper/modules"]

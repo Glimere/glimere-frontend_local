@@ -6,12 +6,10 @@ import { selectAllApparels } from "../slice/apparels/apparelSlice";
 import { selectAllCarousels } from "../slice/carousel/carouselSlice";
 import { selectAllUsers } from "../slice/users/userSlice";
 import { selectAllBrands } from "../slice/brand/brandSlice";
+import { selectAllSubcategory } from "../slice/subCategory/subCategorySlice";
 import Carousel from "../components/Carousel";
 import ProductDisplay from "../components/ProductDisplay";
 import Categories from "../components/Categories";
-
-
-
 
 // import '@coreui/coreui/dist/css/coreui.min.css'
 
@@ -28,11 +26,10 @@ export default function Home() {
 
   const brands = useSelector(selectAllBrands)
 
+  const subCategory = useSelector(selectAllSubcategory)
+
   const [adsUrl, setAdsUrl] = useState({})
 
-// console.log('loggedIn', loggedIn)
-
-// console.log('JSON.parse(localStorage.getItem', JSON.parse(localStorage.getItem('user')))
 
 console.log('users', users)
 
@@ -83,12 +80,13 @@ console.log('users', users)
         
         {/* <ProductDisplay adsUrl={adsUrl} /> */}
         
-        <Categories data={apparels} carousels={carousels} headerTitle="Latest Arrivals" contentType="apparel" headerType="view"  color="#ffffff"/>
+        <Categories headerTitle="Latest Arrivals" contentType="apparel" type="normal"  headerType="view"  color="#ffffff"/>
+        <Categories headerTitle="Latest Trends" contentType="apparel" type="trending"  headerType="view"  color="#ffffff"/>
         <Categories data={apparels} carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9"/>
-        <Categories data={apparels} carousels={carousels} headerTitle="Flash Sales" contentType="apparel" headerType="timeline"  color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} headerTitle="" contentType="featured" headerType=""  color=""/>
+        <Categories headerTitle="Flash Sales" contentType="apparel" type="special"  headerType="timeline"  color="#ffffff"/>
+        <Categories data={apparels} carousels={carousels} headerTitle="" contentType="featured"type="featured"  headerType=""  color=""/>
         <Categories data={brands} carousels={carousels} headerTitle="Top Brands" contentType="brand" headerType="view" color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} headerTitle="Featured Collections" contentType="collection" headerType="view" color="#ffffff"/>
+        <Categories data={subCategory} carousels={carousels} headerTitle="Featured Collections" contentType="collection" headerType="view" color="#ffffff"/>
 
 
 
