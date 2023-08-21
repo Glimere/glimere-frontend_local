@@ -4,7 +4,8 @@ import Slider from '@mui/material/Slider';
 import { Hidden } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectAllApparels } from '../slice/apparels/apparelSlice';
-
+import { selectAllBrands } from '../slice/brand/brandSlice';
+import { selectAllSize } from '../slice/size/sizeSlice';
 
 function valuetext(value) {
   return `${value}°C`;
@@ -13,7 +14,9 @@ function valuetext(value) {
 
 export default function FilterBar(props) {
 
+  const brands = useSelector(selectAllBrands)
   const apparels = useSelector(selectAllApparels)
+  const sizes = useSelector(selectAllSize)
 
 
 
@@ -25,14 +28,9 @@ export default function FilterBar(props) {
 
       <div className="flex flex-col w-full mb-4">
         <div className="flex flex-col w-full">
-          <div className="flex flex-col w-full mb-[15px]">
+          {/* <div className="flex flex-col w-full mb-[15px]">
             <h1 className='font-bold text-[12px] mb-[10px]'>Category</h1>
-            {/* <select
-        id="category"
-        className="border border-gray-300 rounded px-2 py-1"
-        value={selectedCategory}
-        onChange={(e) => handleCategoryChange(e.target.value)}
-      > */}
+           
             <div className="w-full flex flex-wrap gap-[5px]">
               {apparels.map((apparel, id) => (
                 <button key={id} className={`px-[10px] py-[5px] mb-[5px] ${props.selectedCategory == apparel.attributes.category ? "bg-[#ED7534]" : ""} rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
@@ -46,6 +44,27 @@ export default function FilterBar(props) {
             </div>
 
 
+          </div> */}
+
+          {/* Brand Filter */}
+          <div className="flex flex-col mb-[15px]  border-solid border-t-[1px] border-t-gray-200">
+            <h1 className='font-bold text-[12px] my-[10px]'>Brands</h1>
+            <div className="flex flex-wrap gap-[10px]">
+              {brands.map((brand) => (
+                <div key={brand.id} className={`flex  px-[7px] py-[4px] justify-center ${props.selectedBrands.includes(brand.id) ? "bg-[#ED7534]" : ""} items-center border-solid border-[#ED7534] border-[1px] rounded-[5px] cursor-pointer`}
+                  onClick={() => { props.handleBrandChange(brand.id) }}
+                >
+                  <div className={`flex h-full w-full justify-center items-center bg-g rounded-full`}>
+                    <p className={`text-[10px] ${props.selectedBrands.includes(brand.id) ? "text-white" : "text-black"} `}>{brand.attributes.name}</p>
+                  </div>
+                </div>
+              ))}
+
+            </div>
+
+
+            {/* Add more options for other brands */}
+            {/* </select> */}
           </div>
 
           {/* Price Range Filter */}
@@ -89,68 +108,22 @@ export default function FilterBar(props) {
           </div>
 
           {/* Color Filter */}
-          <div className="flex flex-col mb-[15px]  border-solid border-t-[1px] border-t-gray-200">
+          {/* <div className="flex flex-col mb-[15px]  border-solid border-t-[1px] border-t-gray-200">
             <h1 className='font-bold text-[12px] my-[10px]'>Color</h1>
-            {/* <select
-        id="color"
-        className="border border-gray-300 rounded px-2 py-1"
-        value={selectedColor}
-        onChange={(e) => props.handleColorChange(e.target.value)}
-      > */}
+         
             <div className="flex flex-wrap gap-[5px]">
               {apparels.map((apparel, id) => (
                 <div key={id} className={`flex h-[40px] w-[40px] p-[3px] justify-center items-center border-solid ${props.selectedColors.includes(apparel.attributes.color[0]) ? "bg-[#fcc3a4]" : ""} border-[1px] rounded-full cursor-pointer duration-150`}
                   onClick={() => { props.handleColorChange(apparel.attributes.color[0]) }}
                 >
                   <div className={`flex h-full w-full justify-center items-center ${apparel.attributes.color[0].toLowerCase() === "black" ? "bg-[#000000]" : apparel.attributes.color[0].toLowerCase() === "blue" ? "bg-blue-500" : ""} rounded-full`}>
-                    {/* <p className='text-[9px] text-white'>{apparel.attributes.color[0]}</p> */}
-                  </div>
-                </div>
-              ))}
-
-              {/* <div className="flex justify-center space-x-2">
-          <input id="nativeColorPicker1" type="color" value="#6590D5" />
-          <button
-            id="burronNativeColor"
-            type="button"
-            className="inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">
-            Button
-          </button>
-        </div> */}
-
-            </div>
-
-
-
-            {/* Add more options for other colors */}
-            {/* </select> */}
-          </div>
-
-          {/* Brand Filter */}
-          <div className="flex flex-col mb-[15px]  border-solid border-t-[1px] border-t-gray-200">
-            <h1 className='font-bold text-[12px] my-[10px]'>Brands</h1>
-            {/* <select
-        id="brand"
-        className="border border-gray-300 rounded px-2 py-1"
-        value={props.selectedBrands}
-      > */}
-            <div className="flex flex-wrap gap-[10px]">
-              {apparels.map((apparel, id) => (
-                <div key={id} className={`flex  px-[7px] py-[4px] justify-center ${props.selectedBrands.includes(apparel.attributes.brand) ? "bg-[#ED7534]" : ""} items-center border-solid border-[#ED7534] border-[1px] rounded-[5px] cursor-pointer`}
-                  onClick={() => { props.handleBrandChange(apparel.attributes.brand) }}
-                >
-                  <div className={`flex h-full w-full justify-center items-center bg-g rounded-full`}>
-                    <p className={`text-[10px] ${props.selectedBrands.includes(apparel.attributes.brand) ? "text-white" : "text-black"} `}>{apparel.attributes.brand}</p>
                   </div>
                 </div>
               ))}
 
             </div>
 
-
-            {/* Add more options for other brands */}
-            {/* </select> */}
-          </div>
+          </div> */}
 
 
           {/* Size Filter */}
@@ -159,73 +132,19 @@ export default function FilterBar(props) {
               <h1 className='font-bold text-[12px] my-[10px]'>Size</h1>
               <div className="checkbox-group flex flex-col">
 
-                <div className='flex flex-row mb-[5px]'>
+                {sizes.map((size)=> (
+                  <div key={size.id} className='flex flex-row mb-[5px]'>
                   <input
                     className='mr-[10px]'
                     type="checkbox"
-                    value="SM"
-                    checked={props.selectedSizes.includes('SM')}
-                    onChange={() => props.handleSizeChange('SM')}
+                    value={size.attributes.short_name}
+                    checked={props.selectedSizes.includes(size.id)}
+                    onChange={() => props.handleSizeChange(size.id)}
                   />
-                  <div>SM</div>
+                  <div>{size.attributes.short_name}</div>
                 </div>
+                ))}
 
-
-                <div className="flex flex-row mb-[5px]">
-                  <input
-                    className='mr-[10px]'
-                    type="checkbox"
-                    value="S"
-                    checked={props.selectedSizes.includes('S')}
-                    onChange={() => props.handleSizeChange('S')}
-                  />
-                  <div>S</div>
-                </div>
-
-
-                <div className="flex flex-row mb-[5px]">
-                  <input
-                    className='mr-[10px]'
-                    type="checkbox"
-                    value="M"
-                    checked={props.selectedSizes.includes('M')}
-                    onChange={() => props.handleSizeChange('M')}
-                  />
-                  <div>M</div>
-                </div>
-
-                <div className="flex flex-row mb-[5px]">
-                  <input
-                    className='mr-[10px]'
-                    type="checkbox"
-                    value="L"
-                    checked={props.selectedSizes.includes('L')}
-                    onChange={() => props.handleSizeChange('L')}
-                  />
-                  <div>L</div>
-                </div>
-
-                <div className="flex flex-row mb-[5px]">
-                  <input
-                    className='mr-[10px]'
-                    type="checkbox"
-                    value="XL"
-                    checked={props.selectedSizes.includes('XL')}
-                    onChange={() => props.handleSizeChange('XL')}
-                  />
-                  <div>XL</div>
-                </div>
-
-                <div className="flex flex-row mb-[5px]">
-                  <input
-                    className='mr-[10px]'
-                    type="checkbox"
-                    value="XXL"
-                    checked={props.selectedSizes.includes('XXL')}
-                    onChange={() => props.handleSizeChange('XXL')}
-                  />
-                  <div>XXL</div>
-                </div>
               </div>
 
               {/* Add more checkboxes for other sizes */}

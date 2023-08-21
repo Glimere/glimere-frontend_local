@@ -6,38 +6,63 @@ import CarouselCatergories from './CarouselCatergories';
 import gucci from "./../assets/images/gucci.png"
 import { FiArrowRight } from "react-icons/fi";
 import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai'
 import { IoIosAdd } from "react-icons/io";
-
-
-
-// Import Swiper styles
+import { useDispatch } from 'react-redux';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-// import required modules
 import { Keyboard, Scrollbar, Navigation, Pagination } from 'swiper/modules';
 import { constants } from '../global-components/constants';
 import { Link } from 'react-router-dom';
+import { addItem } from '../slice/cart/cartSlice';
+import { addWish } from '../slice/wishList/wishListSlice';
+import { selectWishlist } from '../slice/wishList/wishListSlice';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+
 
 export default function Categories(props) {
+
+  const dispatch = useDispatch()
 
   const [contentType, setContentType] = useState(props.contentType)
   const [headerType, setHeaderType] = useState(props.headerType)
   const [headerTitle, setHeaderTitle] = useState(props.headerTitle)
   const [carousels, setCarousels] = useState([])
   const [data, setData] = useState([])
+  const [apparel, setApparel] = useState([])
+
+  const wishlist = useSelector(selectWishlist)
+
+  console.log('wishList', wishlist)
 
   useEffect(() => {
+    const fetchApparels = async () => {
+      try {
+        const response = await axios.get(`${constants.url}/api/apparels?populate=*&[filters][type][$eq]=${props.type}`);
+        // console.log('response.data', response.data)
+        setApparel(response.data.data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchApparels()
     if (props.carousels || props.data) {
 
       setCarousels(props.carousels)
       setData(props.data)
 
     }
-  }, [props.carousels, props.data])
+  }, [props.carousels, props.data, props.type])
 
+  const isWishlistChecked = (id) => {
+    return wishlist.some((item) => item.id === id)
+  }
+
+  console.log('apparel', apparel)
   const notCarousel = (apparel) => {
     return (
       <>
@@ -77,109 +102,135 @@ export default function Categories(props) {
 
 
 
-          {data?.map((apparel, id) => (
+          {apparel?.map((apparel, id) => (
             <SwiperSlide key={id}>
-              <div className="relative rounded-[5px] p-[5px] border-transparent duration-200 hover:border-[#ffdcb1] border-solid border-[1px]">
-                <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
-                  <div className="group shadow-sm rounded overflow-hidden relative">
-                    <div className="h-[18vh] sm:h-[40vh] duration-200 w-full relative">
-                      <div
-                        className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
-                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[1]?.attributes.url})` }}
-                        alt={apparel.attributes.name}
-                      ></div>
-                      <div
-                        className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2]"
-                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[0]?.attributes.url})` }}
-                        alt={apparel.attributes.name}
-                      ></div>
-                    </div>
+              <div className="relative rounded-[5px] p-[5px] border-transparent duration-200  hover:border-[#ffdcb1] border-solid border-[1px]">
+                <div className=" shadow-sm rounded h-[59vh]">
+                  <div className="group overflow-hidden relative">
+                    <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
 
-                    <div className="h-[11.5vh] sm:h-[19vh] flex flex-col p-[10px] pb-[10px] bg-white z-[2] relative">
-                      <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
-                      <div className="flex flex-row gap-[10px]">
-                        <span className="text-gray-300 line-through text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
-                        <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
+                      <div className="h-[18vh] sm:h-[40vh] duration-200 w-full relative">
+                        <div
+                          className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
+                          style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[1]?.attributes.url})` }}
+                          alt={apparel.attributes.name}
+                        ></div>
+                        <div
+                          className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2]"
+                          style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[0]?.attributes.url})` }}
+                          alt={apparel.attributes.name}
+                        ></div>
                       </div>
-                      
-                      <div className="group-hover:flex hidden justify-between items-end z-20 mt-[10px]">
-                        <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-[#ED7534] cursor-pointer">
-                          <div className="flex flex-row">
-                            <p className='text-white text-center text-[9px]'>ADD TO CART</p>
-                            <IoIosAdd className="text-[15px] text-white" />
-                          </div>
+
+                      <div className="h-[5.5vh] sm:h-[10vh] flex flex-col p-[10px] pb-[10px] bg-white z-[2] relative">
+                        <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
+                        <div className="flex flex-row gap-[10px]">
+                          <span className="text-gray-300 line-through text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
+                          <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
                         </div>
-                        <AiOutlineHeart className={`w-[25px] text-[30px] text-[#be7f2d] ml-[20px]`} />
                       </div>
-                      {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
+                    </Link>
 
+                    <div className="group-hover:flex hidden justify-between items-end z-40 mt-[10px] px-[10px]">
+                      <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-[#ED7534] cursor-pointer"
+                        onClick={() => {
+                          dispatch(addItem({
+                            id: apparel.id,
+                            name: apparel.attributes.name,
+                            price: apparel.attributes.price,
+                            desc: apparel.attributes.desc,
+                            imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
+                            quantity: 1
+                          }))
+                        }}
+                      >
+                        <div className="flex flex-row">
+                          <p className='text-white text-center text-[9px]'>ADD TO CART</p>
+                          <IoIosAdd className="text-[15px] text-white" />
+                        </div>
+                      </div>
+                      <div className="cursor-pointer"
+                      onClick={() => dispatch(addWish(apparel))}
+                      >
+                        {isWishlistChecked(apparel.id) ? <AiFillHeart className={`w-[25px] text-[30px] text-[#be7f2d] ml-[20px]`} /> :
+                        <AiOutlineHeart className={`w-[25px] text-[30px] text-[#be7f2d] ml-[20px]`} />
+                        }
+                      </div>
                     </div>
+                    {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
 
-                    {apparel.attributes.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-[#FFF7E9] flex justify-center items-center z-[10]">
-                      <p className='text-[#9d5c0d] text-[10px]'>New</p>
+
+
+                    {apparel.attributes.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-[#ED7534] flex justify-center items-center z-[10]">
+                      <p className='text-white font-bold text-[10px]'>New</p>
                     </div> : ""}
                   </div>
-                </Link>
+                </div>
+
+
               </div>
 
             </SwiperSlide>
           ))}
 
-        </Swiper> : ""}
+        </Swiper > : ""
+        }
 
-        {contentType === "featured" ? <Swiper
-          spaceBetween={20}
-          slidesPerView={3}
-          centeredSlides={false}
-          slidesPerGroupSkip={3}
-          grabCursor={false}
-          keyboard={{
-            enabled: true,
-          }}
-          breakpoints={{
-            769: {
-              slidesPerView: 3,
-              slidesPerGroup: 3,
-            },
-          }}
-          scrollbar={false}
-          navigation={true}
-          pagination={false}
-          modules={[Keyboard, Scrollbar, Navigation, Pagination]}
-          className="mySwiper"
-        >
+        {
+          contentType === "featured" ? <Swiper
+            spaceBetween={20}
+            slidesPerView={3}
+            centeredSlides={false}
+            slidesPerGroupSkip={3}
+            grabCursor={false}
+            keyboard={{
+              enabled: true,
+            }}
+            breakpoints={{
+              769: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+              },
+            }}
+            scrollbar={false}
+            navigation={true}
+            pagination={false}
+            modules={[Keyboard, Scrollbar, Navigation, Pagination]}
+            className="mySwiper"
+          >
 
-          {apparel.map((apparel, id) => (
-            <SwiperSlide key={id}>
-              <div className="relative rounded-[5px]">
-                <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
-                  <div className="h-[200px] rounded-[10px] overflow-hidden hover:shadow-lg duration-200">
-                    <div
-                      className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative"
-                      style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
-                      alt={apparel.attributes.name}
-                    >
-                      <div className="bg-[#00000044] h-full w-full p-[15px] sm:p-[30px] flex justify-start items-center">
-                        <div className="flex flex-col py-4 pb-8 z-[2] relative">
-                          <div className="text-white font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
-                          <span className="text-white text-[10px] text-sm">${apparel.attributes.price}</span>
-                          {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
+            {apparel.map((apparel, id) => (
+              <SwiperSlide key={id}>
+                <div className="relative rounded-[5px]">
+                  <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
+                    <div className="h-[200px] rounded-[10px] overflow-hidden hover:shadow-lg duration-200">
+                      <div
+                        className="h-full w-full bg-cover bg-center bg-no-repeat z-[2] relative"
+                        style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
+                        alt={apparel.attributes.name}
+                      >
+                        <div className="bg-[#00000044] h-full w-full p-[15px] sm:p-[30px] flex justify-start items-center">
+                          <div className="flex flex-col py-4 pb-8 z-[2] relative">
+                            <div className="text-white font-bold text-[13px] mb-2">{apparel.attributes.name}</div>
+                            <span className="text-white text-[10px] text-sm">${apparel.attributes.price}</span>
+                            {/* <p className="text-gray-700 text-base">{apparel.attributes.desc}</p> */}
 
+                          </div>
                         </div>
+
+
                       </div>
 
 
                     </div>
+                  </Link>
+                </div>
 
+              </SwiperSlide>
+            ))}
 
-                  </div>
-                </Link>
-              </div>
-
-            </SwiperSlide>
-          ))}
-
-        </Swiper> : ""}
+          </Swiper> : ""
+        }
       </>
     )
   }
@@ -219,18 +270,18 @@ export default function Categories(props) {
 
           <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
             {contentType === "collection"
-              ? data.map((apparel, id) => (
+              ? data.map((collection, id) => (
                 <div className="relative" key={id}>
                   <div className="w-[105px] sm:w-[230px] h-[140px] sm:h-[270px] overflow-hidden">
 
-                    <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
+                    <Link to={`/view-product/${collection.attributes.productid}`} state={collection}>
                       <div
-                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat z-[2] relative p-[10px] sm:p-[25px] rounded-[10px] flex items-end"
-                        style={{ backgroundImage: `url(${constants.url}${apparel.attributes.imageUrl.data[0].attributes.url})` }}
-                        alt={apparel.attributes.name}
+                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat bg-orange-200 z-[2] relative p-[10px] sm:p-[25px] rounded-[10px] flex items-end"
+                        // style={{ backgroundImage: `url(${constants.url}${collection.attributes.imageUrl.data[0].attributes.url})` }}
+                        alt={collection.attributes.title}
                       >
                         <div className="w-full h-[25%] py-[10px] px-[15px] flex flex-row justify-between items-center bg-white rounded-[8px] z-[2] relative">
-                          <h1 className='text-[11px] sm:text-[15px] font-bold'>{apparel.attributes.category}</h1>
+                          <h1 className='text-[11px] sm:text-[15px] font-bold'>{collection.attributes.title}</h1>
                           <FiArrowRight className="text-[11px] sm:text-[15px] ml-[5px]" />
                         </div>
                       </div>
@@ -262,7 +313,7 @@ export default function Categories(props) {
               : ""}
           </div>
 
-          {contentType !== "carousel" ? notCarousel(data) : ""}
+          {contentType !== "carousel" ? notCarousel(apparel) : ""}
 
           {contentType === "carousel" ? <div className="relative">
             <div className="rounded-[10px] overflow-hidden  mt-[30px] mb-[30px]">

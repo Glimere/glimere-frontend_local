@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sizes",
+  "info": {
+    "singularName": "size",
+    "pluralName": "sizes",
+    "displayName": "size"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "apparels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::apparel.apparel",
+      "inversedBy": "sizes"
+    }
+  }
+}

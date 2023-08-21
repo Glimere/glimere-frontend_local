@@ -50,6 +50,7 @@ export default function SearchList(props) {
                                 <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center text-center hover:bg-[#ffebd1] cursor-pointer"
                                     onClick={() => {
                                         setSortValue("Price (Low to High)")
+                                        props.setSort('asc')
                                         setSortDropdown(false)
                                     }}
                                 >
@@ -58,11 +59,12 @@ export default function SearchList(props) {
                                         <HiArrowLongUp className='text-[17px] text-black' />
                                     </div>
 
-                                    <span className='text-[11px]'>Price (Low to High)</span>
+                                    <span className='text-[11px]'>Price (Lowest First)</span>
                                 </div>
                                 <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
                                     onClick={() => {
                                         setSortValue("Price (High to Low)")
+                                        props.setSort('desc')
                                         setSortDropdown(false)
                                     }}
                                 >
@@ -71,27 +73,29 @@ export default function SearchList(props) {
                                         <HiOutlineArrowLongDown className='text-[17px] text-black' />
                                     </div>
 
-                                    <span className='text-[11px]'>Price (High to Low)</span>
+                                    <span className='text-[11px]'>Price (Highest First)</span>
                                 </div>
 
-                                <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
+                                {/* <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
                                     onClick={() => {
                                         setSortValue("Rating (Highest to Lowest)")
+                                        
                                         setSortDropdown(false)
                                     }}
                                 >
                                     <AiOutlineStar className='text-[17px] text-black mr-[8px]' />
                                     <span className='text-[11px]'>Rating (Highest to Lowest)</span>
-                                </div>
-                                <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
+                                </div> */}
+                                {/* <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
                                     onClick={() => {
                                         setSortValue("Newest Arrivals")
+                                       
                                         setSortDropdown(false)
                                     }}
                                 >
                                     <MdOutlineWorkspacePremium className='text-[17px] text-black mr-[8px]' />
                                     <span className='text-[11px]'>Newest Arrivals</span>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className={`h-[30px] w-[30px] bg-white  border-solid border-black border-[1px] rounded-[5px] flex flex-row items-center justify-center cursor-pointer`}
@@ -134,8 +138,8 @@ export default function SearchList(props) {
 
 
                 </div>
-                <div className={`w-full min-h-[50vh] rounded-[10px] grid  ${viewToggle ? "grid-cols-1" : "grid-cols-5 max-[1127px]:grid-cols-4 max-[972px]:grid-cols-3 max-[640px]:grid-cols-2 "} gap-[15px] sm:gap-[20px]`}>
-                    <ProductCard apparel={props.searchResults} viewToggle={viewToggle} />
+                <div className={`w-full min-h-[50vh] rounded-[10px] grid ${viewToggle ? "grid-cols-1" : "grid-cols-5 max-[1127px]:grid-cols-4 max-[972px]:grid-cols-3 max-[640px]:grid-cols-2 "} gap-[15px] sm:gap-[20px]`}>
+                    <ProductCard apparel={props.searchResults} viewToggle={viewToggle} loading={props.loading}/>
                 </div>
 
                 <div className="w-full flex justify-center items-center bg-white rounded-[10px] mt-[20px]">

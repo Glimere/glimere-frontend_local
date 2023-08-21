@@ -18,8 +18,9 @@ import { BiStore } from 'react-icons/bi'
 import { selectAllCategory } from '../slice/category/categorySlice'
 import { selectAllSubcategory } from '../slice/subCategory/subCategorySlice'
 import { constants } from './constants'
-import { FaTrash } from 'react-icons/fa'
-import { AiOutlineArrowRight } from "react-icons/ai";
+import Cart from '../components/Cart'
+import { selectCart } from '../slice/cart/cartSlice'
+
 
 
 
@@ -45,29 +46,22 @@ export default function Navbar() {
   const [searchSelected, setSearchSelected] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [logoColor, setLogoColor] = useState("");
-  // const [toggleCategory, setToggleCategory] = useState(false);
-  // const [apparel, setapparel] = useState([]);
-  const [suggestions, setSuggestions] = useState(false);
+  const [suggestions, setSuggestions] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
+
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
-
   const user = useSelector(selectAllUsers)
   const userStatus = useSelector(getUserStatus)
-
-  //   const cart = useSelector((state) => state.cart[user.id]);
-  // console.log('cart', cart)
-
-
   const apparels = useSelector(selectAllApparels)
   const apparelsStatus = useSelector(getApparelsStatus)
   const apparelsError = useSelector(getApparelsError)
-
   const category = useSelector(selectAllCategory)
-
   const subCategory = useSelector(selectAllSubcategory)
+  const cart = useSelector(selectCart)
+
+  console.log('cart', cart)
 
   const pageLocation = location.pathname.split('/')[1]
   console.log('pageLocrion', pageLocation)
@@ -161,6 +155,8 @@ export default function Navbar() {
     }
   }, [menuVisible, isSticky, pageLocation])
 
+  const limitedSuggestions = suggestions.slice(0, 8);
+
   return (
     <>
       <div className={`navbar w-full duration-300 ${isSticky ? 'sticky' : ''} z-50 relative`}>
@@ -184,7 +180,7 @@ export default function Navbar() {
                     </p>
                   ))}
                 </div>
-                <div className={`flex-[1.2] pt-[90px] pr-[40px] ${card == category.id ? "grid" : "hidden"} h-full`}>
+                <div className={`flex-[1.2] pt-[90px] pr-[60px] ${card == category.id ? "grid" : "hidden"} h-full`}>
                   <div className="h-[320px] w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${constants.url}${category.attributes.img.data.attributes.url})` }}>
 
                   </div>
@@ -246,7 +242,7 @@ export default function Navbar() {
 
                   <div ref={searchRef} className={`group h-[40px] ${searchSelected ? "w-full bg-white" : "w-[60px] "} ${searchInput !== '' ? "w-full bg-white" : "hover:w-full "} peer-hover:w-full  ${menuVisible ? "bg-[#f3f3f3be]" : "bg-[#f1f1f1c2]"} duration-200 sm:duration-500 ease-linear rounded-full mr-0 sm:mr-[20px] relative flex flex-row justify-center  px-[20px]`}>
                     <div className={`w-full max-h-[400px] absolute rounded-[20px] z-[-1] ${searchSelected || searchInput !== '' ? " bg-white shadow-md" : "bg-transparent "} pt-[40px] overflow-hidden`}>
-                      {searchInput !== '' && suggestions.map((item) => (<div className="hover:bg-[#0000001a] w-full px-[30px] " key={item.id}>
+                      {searchInput !== '' && limitedSuggestions.map((item) => (<div className="hover:bg-[#0000001a] w-full px-[30px] " key={item.id}>
                         <Link to={`/search`} state={item.attributes.name}
                           onClick={() => {
                             resetSearch()
@@ -305,13 +301,13 @@ export default function Navbar() {
 
                   >
                     <FiShoppingCart className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
-                    {/* <p className={`text-[12px] ml-[5px] hidden sm:block ${menuVisible || isSticky || pageLocation ? "text-[#684419]" : "text-[#ffffff]"}`}>Cart</p> */}
-                    <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-[#ed7534] flex justify-center items-center">
-                      <p className='text-[8px] text-white'>5</p>
-                    </div>
+
+                    {cart.length != 0 ? <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-[#ed7534] flex justify-center items-center">
+                      <p className='text-[8px] text-white'>{cart.length}</p>
+                    </div> : null}
                   </div>
 
-                  <Link to="">
+                  <Link to="/profile">
                     <div className={`peer ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#be7f2d]"} border-solid hover:border-b cursor-pointer`}
                     >
                       <CgProfile className={`text-[20px] sm:m-[0px] sm:text-[24px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} duration-200 `} />
@@ -326,60 +322,8 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className={`absolute right-0 overflow-hidden ${menuToggle ? "min-h-[320px] sm:min-h-[390px]" : "h-[0px]"} w-[45%] min-[1127px]:w-[350px] sm:w-[300px] duration-300 bg-[#ffe9b8]`}
-        >
-          <div className="w-full h-full"
-            // onMouseEnter={() => { setMenuToggle(true) }}
-            onMouseLeave={() => {
-              // setMenuToggle(false)
-              setMenuVisible(false)
-            }}
-          >
+        <Cart menuToggle={menuToggle} setMenuToggle={setMenuToggle} cart={cart} />
 
-            {/* <div className='h-full w-full flex justify-center items-center'>
-             <div className="">
-              <p className='text-[#9d5c0d] text-[18px] font-bold'>Cart is empty</p>
-              </div>
-              </div> */}
-
-            <div className="w-full pt-[100px] flex flex-col p-[20px] gap-[5px]">
-
-              {category[0]?.attributes?.apparels.data.map((item) => (
-                <div key={item.id} className="w-full h-[90px] flex flex-row items-center gap-[5px]">
-                  <div className="h-[90px] w-[70px] bg-cover bg-center bg-no-repeat bg-black"
-                  // style={{ backgroundImage: `url(${constants.url}${category.attributes.img.data.attributes.url})` }}
-                  >
-                  </div>
-                  <div className="flex flex-col gap-[5px]">
-                    <h1 className='text-[13px] font-semibold'>{item.attributes.name}</h1>
-                    <p className='text-[10px]'>{item.attributes.desc}</p>
-                    <span className=''>{item.attributes.price}</span>
-                  </div>
-                  <div className="">
-                    <FaTrash className={`text-[15px] text-red-600 duration-200 `} />
-
-
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="w-full flex px-[20px] flex-row justify-between items-center">
-              <h1>SUBTOTAL</h1>
-              <span>$99.99</span>
-            </div>
-
-            <div className="w-full flex px-[20px] flex-row justify-between items-center">
-              <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[160px] bg-[#ED7534] cursor-pointer">
-                <div className="flex flex-row">
-                  <p className='text-white text-center text-[9px]'>PROCEED TO CHECKOUT</p>
-                  <AiOutlineArrowRight className="text-[15px] text-white" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div>
 
     </>

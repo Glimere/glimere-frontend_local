@@ -98,9 +98,9 @@ export default function Profile() {
 
             <div className="w-full mt-[40px] h-[100px]">
               <div className="w-full pt-[20px] flex content-normal ">
-                <button className="h-[100px] w-[150px] py-[4px] px-[9px] flex justify-center items-center text-[15px] text-[#ED7534] bg-[#FFF7E9] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">Retro</button>
-                <button className="h-[100px] w-[150px] py-[4px] px-[9px] flex justify-center items-center text-[15px] text-[#ED7534] bg-[#FFF7E9] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">Vintage</button>
-                <button className="h-[100px] w-[150px] py-[4px] px-[9px] flex justify-center items-center text-[15px] text-[#ED7534] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">Add Style
+                <button className="h-[100px] w-[100px] py-[4px] px-[9px] flex justify-center items-center text-[12px] text-[#ED7534] bg-[#FFF7E9] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">completed</button>
+                <button className="h-[100px] w-[100px] py-[4px] px-[9px] flex justify-center items-center text-[12px] text-[#ED7534] bg-[#FFF7E9] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">pending</button>
+                <button className="h-[100px] w-[100px] py-[4px] px-[9px] flex justify-center items-center text-[15px] text-[#ED7534] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">
                   <IoIosAdd className="text-[13px] ml-[5px]" />
                 </button>
               </div>
