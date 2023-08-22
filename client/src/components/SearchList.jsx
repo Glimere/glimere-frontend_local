@@ -12,11 +12,6 @@ import { MdOutlineWorkspacePremium } from "react-icons/md";
 
 
 
-
-
-
-
-
 export default function SearchList(props) {
 
     const [sortDropdown, setSortDropdown] = useState(false)

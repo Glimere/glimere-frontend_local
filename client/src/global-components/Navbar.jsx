@@ -61,19 +61,17 @@ export default function Navbar() {
   const subCategory = useSelector(selectAllSubcategory)
   const cart = useSelector(selectCart)
 
-  console.log('cart', cart)
 
   const pageLocation = location.pathname.split('/')[1]
-  console.log('pageLocrion', pageLocation)
 
   const searchRef = useRef(null);
   useEffect(() => {
     setLoggedIn(localStorage.getItem('jwt') && localStorage.getItem('loggedin'))
   }, [loggedIn])
 
-  useEffect(() => {
-    navigate
-  }, [loggedIn])
+  // useEffect(() => {
+  //   navigate
+  // }, [loggedIn])
 
 
   useEffect(() => {
@@ -155,7 +153,6 @@ export default function Navbar() {
     }
   }, [menuVisible, isSticky, pageLocation])
 
-  const limitedSuggestions = suggestions.slice(0, 8);
 
   return (
     <>
@@ -167,21 +164,40 @@ export default function Navbar() {
             setSearchSelected(false)
           }}
         >
-          <div className="">
+          <div className="flex flex-col">
+            <div className="flex sm:hidden flex-row flex-[1] pt-[90px] px-[20px]">
+            {category.map((category) => (
+                    <div key={category.id} className={`peer h-[33px] px-[15px] flex justify-center items-center mr-[8px] rounded-full ${card == category.id ? "bg-[#5e5e5ec2] text-white" : "bg-[#f1f1f1c2] text-black"} duration-300 cursor-pointer`}
+                      onMouseEnter={() => {
+                        setMenuVisible(true)
+                        setCard(category.id)
+                      }}
+                    >
+                      <p className={`text-[12px]`}>{category.attributes.title}</p>
+                    </div>
+                  ))}
+            </div>
+            <div className="flex-[3]">
             {category?.map((category) => (
               <div key={category.id} className="flex flex-row">
-                <div className={`flex-[2] grid-cols-3 gap-2 w-full ${card == category.id ? "grid" : "hidden"} pt-[120px] px-[80px] pb-[50px] sm:px-[100px]`}>
-                  {category?.attributes?.subcategories?.data?.map((category) => (
+                <div className={`flex-[2.7] sm:flex-[2] grid-cols-3 gap-2 w-full ${card == category.id ? "grid" : "hidden"} pt-[20px] sm:pt-[120px] px-[20px] pb-[50px] sm:px-[100px]`}>
+                  {category?.attributes?.subcategories?.data?.map((subcategory) => (
+                    <Link key={subcategory.id} to={`/view-collection/${subcategory.id}`} state={subcategory}>
                     <p
-                      key={category.id}
-                      className="py-[1px] px-[3px] text-[12px] text-left text-gray-800 rounded hover:text-black cursor-pointer"
+                      
+                      className="py-[1px] px-[3px] text-[12px] text-left font-medium text-gray-500 rounded hover:text-black cursor-pointer"
+                      onClick={()=> {
+                        setMenuVisible(false)
+                      }}
                     >
-                      {category.attributes.title}
+                      {subcategory.attributes.title}
                     </p>
+                    </Link>
+                    
                   ))}
                 </div>
-                <div className={`flex-[1.2] pt-[90px] pr-[60px] ${card == category.id ? "grid" : "hidden"} h-full`}>
-                  <div className="h-[320px] w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${constants.url}${category.attributes.img.data.attributes.url})` }}>
+                <div className={`flex-[1.2] pt-[20px] sm:pt-[90px] pb-[50px] pr-[20px] sm:pr-[60px] ${card == category.id ? "grid" : "hidden"} h-full`}>
+                  <div className="h-[320px] w-full rounded-[10px] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${constants.url}${category.attributes.img.data.attributes.url})` }}>
 
                   </div>
                 </div>
@@ -191,6 +207,8 @@ export default function Navbar() {
             ))}
 
           </div>
+          </div>
+          
 
 
         </div>
@@ -242,7 +260,7 @@ export default function Navbar() {
 
                   <div ref={searchRef} className={`group h-[40px] ${searchSelected ? "w-full bg-white" : "w-[60px] "} ${searchInput !== '' ? "w-full bg-white" : "hover:w-full "} peer-hover:w-full  ${menuVisible ? "bg-[#f3f3f3be]" : "bg-[#f1f1f1c2]"} duration-200 sm:duration-500 ease-linear rounded-full mr-0 sm:mr-[20px] relative flex flex-row justify-center  px-[20px]`}>
                     <div className={`w-full max-h-[400px] absolute rounded-[20px] z-[-1] ${searchSelected || searchInput !== '' ? " bg-white shadow-md" : "bg-transparent "} pt-[40px] overflow-hidden`}>
-                      {searchInput !== '' && limitedSuggestions.map((item) => (<div className="hover:bg-[#0000001a] w-full px-[30px] " key={item.id}>
+                      {searchInput !== '' && suggestions?.slice(0, 6)?.map((item) => (<div className="hover:bg-[#0000001a] w-full px-[30px] " key={item.id}>
                         <Link to={`/search`} state={item.attributes.name}
                           onClick={() => {
                             resetSearch()
@@ -273,7 +291,6 @@ export default function Navbar() {
                     />
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -283,13 +300,13 @@ export default function Navbar() {
             <div className="flex flex-row justify-end w-full mr-[15px] sm:mr-0">
               <div className="flex flex-row w-full">
                 <div className="h-[50px] w-[100px] sm:w-full flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]">
-                  <Link to="/likes">
+                  <Link to="/stores">
                     <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
                       <BiStore className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
                       <p className={`text-[12px] ml-[5px] hidden sm:block ${menuVisible || isSticky || pageLocation || menuToggle ? "text-[#684419]" : "text-[#ffffff]"}`}>Stores</p>
                     </div>
                   </Link>
-                  <Link to="/likes">
+                  <Link to="/Wishlist">
                     <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
                       <AiOutlineHeart className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
                       <p className={`text-[12px] ml-[5px] hidden sm:block ${menuVisible || isSticky || pageLocation || menuToggle ? "text-[#684419]" : "text-[#ffffff]"}`}>Wishlist</p>

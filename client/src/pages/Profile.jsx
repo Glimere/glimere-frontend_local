@@ -30,18 +30,6 @@ export default function Profile() {
   const [tab, setTab] = useState(1)
   const [togglemenu, settogglemenu] = useState(false)
 
-  // const { isAuthenticated } = useContext(AuthContext);
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-
-  //   console.log('userStatus', userStatus)
-  //   if (userStatus === "idle") {
-
-  //     dispatch(fetchUsers(users.jwt))
-
-  //   } 
-  // }, [navigate, userStatus, dispatch]);
 
   console.log('user', user)
 
@@ -54,10 +42,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className='w-full  flex'>
-        {/* <div>Username: {username}</div>
-      <div>Email: {email}</div>
-      <button onClick={handleLogout}>Logout</button> */}
+      <div className='w-full flex flex-col sm:flex-row'>
         <div className="flex-[1] bg-white pt-[80px] pb-[60px] px-[40px] flex flex-col items-start">
           <div className="w-full py-[20px]">
             <div className="flex flex-row items-center mb-[5px]">
@@ -96,7 +81,7 @@ export default function Profile() {
             <h1 className="text-[21px] font-bold text-[#be7f2d] mt-[30px]" >{username}</h1>
             <p className='text-[12px]'>fashionista</p>
 
-            <div className="w-full mt-[40px] h-[100px]">
+            {/* <div className="w-full mt-[40px] h-[100px]">
               <div className="w-full pt-[20px] flex content-normal ">
                 <button className="h-[100px] w-[100px] py-[4px] px-[9px] flex justify-center items-center text-[12px] text-[#ED7534] bg-[#FFF7E9] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">completed</button>
                 <button className="h-[100px] w-[100px] py-[4px] px-[9px] flex justify-center items-center text-[12px] text-[#ED7534] bg-[#FFF7E9] border-[#ffbf9d] border-solid border rounded-[10px] mr-[5px]">pending</button>
@@ -104,13 +89,13 @@ export default function Profile() {
                   <IoIosAdd className="text-[13px] ml-[5px]" />
                 </button>
               </div>
-            </div>
+            </div> */}
 
           </div>
 
         </div>
 
-        <div className="flex-[1.2] bg-[#FFF7E9] pt-[80px]">
+        <div className="flex-[1.8] bg-[#FFF7E9] pt-[80px]">
           <div className="w-full h-[70px] flex px-[50px]">
             <div className={`flex-1 w-full h-[50px] hover:border-[#ffe0cf] border-solid border-b text-[12px] ${tab == 1 ? "border-[#ED7534]" : "border-transparent"} flex justify-center items-center cursor-pointer duration-300`}
               onClick={() => setTab(1)}

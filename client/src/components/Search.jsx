@@ -11,10 +11,6 @@ export default function Search() {
   const location = useLocation();
   const [apparelSearch, setApparelSearch] = useState(location.state)
   const [searchResults, setSearchResults] = useState([])
-
-  // const [selectedCategory, setSelectedCategory] = useState('');
-
-  // const [selectedColors, setSelectedColors] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedDiscount, setSelectedDiscount] = useState('');
   const [value, setValue] = useState([0, 100000]);
@@ -39,18 +35,7 @@ export default function Search() {
 
 const {data, loading, error} = useFetch(`/api/apparels?populate=*&filters[name][$contains]=${apparelSearch}${selectedBrands.map((brand) => `&[filters][brands][id][$eq]=${brand}`)}&[filters][price][$lte]=${maxPrice}&[filters][price][$gte]=${minPrice}${selectedSizes.map((size) => `&[filters][sizes][id][$eq]=${size}`)}&filters[discount][$gte]=${selectedDiscount}&sort=price:${sort}`);
 
-  // useEffect(() => {
-  //   if (apparelSearch) {
-  //     filterApparels(``)
-  //       .then((searchResult) => {
-  //         // Handle the search results here
-  //         setSearchResults(searchResult)
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // }, [apparelSearch, selectedBrands, selectedCategory, minPrice, maxPrice, selectedColors, selectedSizes, selectedDiscount]);
+
 
 console.log('sort', sort)
   
@@ -75,23 +60,7 @@ console.log('sort', sort)
         setMinPrice(newValue[0]);
         setMaxPrice(newValue[1])
       };
-    
-    
-      // const handleCategoryChange = (category) => {
-      //   setSelectedCategory(category);
-      // };
-    
-    
-      // const handleColorChange = (color) => {
-      //   if (selectedColors.includes(color)) {
-      //     setSelectedColors(selectedColors.filter((s) => s !== color));
-      //   } else {
-      //     setSelectedColors([...selectedColors, color]);
-      //   }
-      //   console.log("selectedColors", selectedColors);
-      // };
-    
-    
+
     
       const handleBrandChange = (brand) => {
         if (selectedBrands.includes(brand)) {
@@ -138,41 +107,18 @@ console.log('sort', sort)
         { type: "discount", value: selectedDiscount }
       ]
     
-      // useEffect(() => {
-      //   const handleScroll = () => {
-      //     const offset = window.pageYOffset;
-      //     if (offset > 200) {
-      //       setIsSticky(true);
-      //     } else {
-      //       setIsSticky(false);
-      //     }
-      //   };
-    
-        
-    
-      //   window.addEventListener('scroll', handleScroll);
-    
-      //   return () => {
-      //     window.removeEventListener('scroll', handleScroll);
-      //   };
-      // }, []);
-
-
-
+  
 
   return (
     <div className="w-full h-full bg-white">
       <div className="w-full flex gap-[20px] px-[15px] sm:px-[60px] pb-[40px] pt-[80px]">
 
         <div className="w-full flex gap-0 sm:gap-[20px] mt-[20px]">
-          {/* <div className="sm:relative hidden flex absolute w-full sm:flex flex-col z-[40]"> */}
             <FilterBar 
           apparelSearch={apparelSearch} 
           handleSizeChange={handleSizeChange} 
           handleDiscountChange={handleDiscountChange} 
           handlePriceChange={handlePriceChange} 
-          // handleCategoryChange={handleCategoryChange}
-          // handleColorChange={handleColorChange}
           handleBrandChange={handleBrandChange}
           handleFilterChange={handleFilterChange}
           handleClearAllFilters={handleClearAllFilters}
@@ -184,9 +130,6 @@ console.log('sort', sort)
           selectedSizes={selectedSizes}
           />
 
-          {/* <div className="w-full h-[100px bg-white shadow-md]"></div>
-          </div> */}
-          
 
 
           <SearchList
