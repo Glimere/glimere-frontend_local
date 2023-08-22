@@ -36,8 +36,6 @@ export default function Categories(props) {
 
   const wishlist = useSelector(selectWishlist)
 
-  console.log('wishList', wishlist)
-
   useEffect(() => {
     const fetchApparels = async () => {
       try {
@@ -62,7 +60,6 @@ export default function Categories(props) {
     return wishlist.some((item) => item.id === id)
   }
 
-  console.log('apparel', apparel)
   const notCarousel = (apparel) => {
     return (
       <>
@@ -105,11 +102,11 @@ export default function Categories(props) {
           {apparel?.map((apparel, id) => (
             <SwiperSlide key={id}>
               <div className="relative rounded-[5px] p-[5px] border-transparent duration-200  hover:border-[#ffdcb1] border-solid border-[1px]">
-                <div className=" shadow-sm rounded h-[59vh]">
+                <div className=" shadow-sm rounded h-[38vh] sm:h-[59vh]">
                   <div className="group overflow-hidden relative">
                     <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
 
-                      <div className="h-[18vh] sm:h-[40vh] duration-200 w-full relative">
+                      <div className="h-[25vh] sm:h-[40vh] duration-200 w-full relative">
                         <div
                           className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
                           style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[1]?.attributes.url})` }}
@@ -122,7 +119,7 @@ export default function Categories(props) {
                         ></div>
                       </div>
 
-                      <div className="h-[5.5vh] sm:h-[10vh] flex flex-col p-[10px] pb-[10px] bg-white z-[2] relative">
+                      <div className="h-[7vh] sm:h-[10vh] flex flex-col p-[10px] pb-[10px] bg-white z-[2] relative">
                         <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
                         <div className="flex flex-row gap-[10px]">
                           <span className="text-gray-300 line-through text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
@@ -131,7 +128,7 @@ export default function Categories(props) {
                       </div>
                     </Link>
 
-                    <div className="group-hover:flex hidden justify-between items-end z-40 mt-[10px] px-[10px]">
+                    <div className="group-hover:flex hidden justify-between items-center z-40 mt-[10px] px-[10px]">
                       <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-[#ED7534] cursor-pointer"
                         onClick={() => {
                           dispatch(addItem({
@@ -145,15 +142,15 @@ export default function Categories(props) {
                         }}
                       >
                         <div className="flex flex-row">
-                          <p className='text-white text-center text-[9px]'>ADD TO CART</p>
+                          <p className='text-white text-center text-[8px] sm:text-[9px]'>ADD TO CART</p>
                           <IoIosAdd className="text-[15px] text-white" />
                         </div>
                       </div>
                       <div className="cursor-pointer"
                       onClick={() => dispatch(addWish(apparel))}
                       >
-                        {isWishlistChecked(apparel.id) ? <AiFillHeart className={`w-[25px] text-[30px] text-[#be7f2d] ml-[20px]`} /> :
-                        <AiOutlineHeart className={`w-[25px] text-[30px] text-[#be7f2d] ml-[20px]`} />
+                        {isWishlistChecked(apparel.id) ? <AiFillHeart className={`w-[25px] text-[23px] sm:text-[30px] text-[#be7f2d] ml-[20px]`} /> :
+                        <AiOutlineHeart className={`w-[25px] text-[23px] sm:text-[30px] text-[#be7f2d] ml-[20px]`} />
                         }
                       </div>
                     </div>
@@ -270,13 +267,13 @@ export default function Categories(props) {
 
           <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
             {contentType === "collection"
-              ? data.map((collection, id) => (
-                <div className="relative" key={id}>
+              ? data.slice(0, 8).map((collection, id) => (
+                <div className="relative" key={collection.id}>
                   <div className="w-[105px] sm:w-[230px] h-[140px] sm:h-[270px] overflow-hidden">
 
-                    <Link to={`/view-product/${collection.attributes.productid}`} state={collection}>
+                    <Link to={`/view-collection/${collection.id}`} state={collection}>
                       <div
-                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat bg-orange-200 z-[2] relative p-[10px] sm:p-[25px] rounded-[10px] flex items-end"
+                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat bg-orange-200 z-[2] relative p-[10px] sm:p-[25px] rounded-[5px] flex items-end"
                         // style={{ backgroundImage: `url(${constants.url}${collection.attributes.imageUrl.data[0].attributes.url})` }}
                         alt={collection.attributes.title}
                       >
@@ -295,7 +292,7 @@ export default function Categories(props) {
 
           <div className="w-full flex flex-wrap gap-[12px]">
             {contentType === "brand" ?
-              data.map((brand, id) => (
+              data.slice(0, 8).map((brand, id) => (
                 <div className="h-[80px] sm:h-[130px] w-[105px] sm:w-[150px] relative" key={id}>
                   <Link to={`/view-product/${brand.attributes.productid}`} state={brand}>
                     <div

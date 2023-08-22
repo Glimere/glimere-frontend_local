@@ -1,29 +1,34 @@
 import './App.css'
+import { lazy, Suspense } from 'react'
 import { Routes, useLocation } from 'react-router-dom'
 import { Route } from 'react-router-dom'
-import AdminDashboard from './auth/AdminDashboard'
-import About from './pages/About'
-import Profile from './pages/Profile'
-import Cart from './pages/Cart'
-import Navbar from './global-components/Navbar'
-import Login from './auth/Login'
-import Register from './auth/Register'
+const AdminDashboard = lazy(() => import('./auth/AdminDashboard'));
+const About = lazy(() => import('./pages/About'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Navbar = lazy(() => import('./global-components/Navbar'));
+const Login = lazy(() => import('./auth/Login'));
+const Register = lazy(() => import('./auth/Register'));
+const Home = lazy(() => import('./pages/Home'));
+const ForgotPassword = lazy(() => import('./auth/ForgotPassword'));
+const ViewProduct = lazy(() => import('./components/ViewProduct'));
+const Orders = lazy(() => import('./pages/Orders'));
+const Wishlist = lazy(() => import('./pages/Wishlist'));
+const Search = lazy(() => import('./components/Search'));
+const Footer = lazy(() => import('./components/Footer'));
+const Newsletter = lazy(() => import('./components/Newsletter'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const ViewCollection = lazy(() => import('./components/ViewCollection'));
+const ViewAll = lazy(() => import('./components/ViewAll'));
+const Stores = lazy(() => import('./pages/stores'));
 import { ToastContainer } from 'react-toastify'
-import Home from './pages/Home'
 import { AuthProvider } from './auth/Auth'
-import ForgotPassword from './auth/ForgotPassword'
-import ViewProduct from './components/ViewProduct'
-import Orders from './pages/Orders'
-import Likes from './pages/Likes'
-import Search from './components/Search'
-import Footer from './components/Footer'
-import Newsletter from './components/Newsletter'
-import Checkout from './pages/Checkout'
+
 
 function App() {
 
   const location = useLocation();
-  
+
   const hideNavbarRoutes = ['/login'];
 
   const hideFooterRoutes = ['login', 'view-product'];
@@ -33,40 +38,44 @@ function App() {
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
   const showNewsletter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
-  
+
 
   return (
     <>
-    {/* <AuthProvider> */}
-     {showNavbar && <Navbar />}
-      <Routes> 
-        {/* Authentication routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+      {/* <AuthProvider> */}
+      <Suspense fallback={<div>Loading...</div>}>
+        {showNavbar && <Navbar />}
+        <Routes>
+          {/* Authentication routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Public routes */}
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+          {/* Public routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
 
-        {/* Protected routes */}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/likes" element={<Likes />} />
-        <Route path="/view-product/:id" element={<ViewProduct />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/checkout" element={<Checkout />} />
+          {/* Protected routes */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/view-product/:id" element={<ViewProduct />} />
+          <Route path="/view-collection/:id" element={<ViewCollection />} />
+          <Route path="/view-all/:id" element={<ViewAll />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/stores" element={<Stores />} />
 
-        {/* 404 Not Found */}
-        {/* <Route path="*" element={<NotFound />} /> */}
-        
-      </Routes>
-      {showNewsletter && <Newsletter />}
-      {showFooter && <Footer />}
-      <ToastContainer />
-      {/* </AuthProvider> */}
+
+        </Routes>
+        {showNewsletter && <Newsletter />}
+        {showFooter && <Footer />}
+        <ToastContainer />
+        {/* </AuthProvider> */}
+      </Suspense>
+
     </>
   )
 }

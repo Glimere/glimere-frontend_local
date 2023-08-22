@@ -19,7 +19,7 @@ export default function Cart(props) {
   }
 
   return (
-    <div className={`absolute right-0 overflow-hidden ${props.menuToggle ? "min-h-[280px] max-h-[350px] sm:min-h-[300px] sm:max-h-[420px]" : "max-h-[0px]"} w-[45%] min-[1127px]:w-[350px] sm:w-[300px] duration-300 bg-[#ffe9b8]`}
+    <div className={`absolute right-0 overflow-hidden ${props.menuToggle ? "min-h-[280px] max-h-[350px] sm:min-h-[300px] sm:max-h-[420px]" : "max-h-[0px]"} w-[60%] m:w-[45%] min-[1127px]:w-[350px] sm:w-[300px] duration-300 bg-[#ffe9b8]`}
     >
       <div className="w-full h-full flex flex-col pb-[20px]">
 
@@ -31,7 +31,7 @@ export default function Cart(props) {
         </div>
           :
           <div className="flex flex-col gap-[12px]">
-            <div className="w-full pt-[100px] flex flex-col  max-h-[300px] overflow-y-scroll">
+            <div className="w-full pt-[80px] sm:pt-[100px] flex flex-col  max-h-[300px] overflow-y-scroll">
 
               {props.cart.map((item) => (
                 <div key={item.id} className="w-full flex flex-row items-center justify-between px-[20px] py-[10px] gap-[10px] hover:bg-[#fff8ea]">
