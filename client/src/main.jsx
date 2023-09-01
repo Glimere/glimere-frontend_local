@@ -36,6 +36,7 @@ const fetchData = async () => {
 
     if (localStorage.getItem("loggedin") === "true") {
       const jwt = JSON.parse(localStorage.getItem('jwt'));
+      // console.log('jwt', jwt)
       await store.dispatch(fetchUsers(jwt));
     }
   } catch (error) {

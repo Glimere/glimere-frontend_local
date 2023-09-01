@@ -50,16 +50,20 @@ export default function Carousel(props) {
                 return (
                   <div key={img.id}>
                     <SwiperSlide key={img.id}>
-                      <div className="">
+                      <div className="h-full">
                         <div className="bg-[#00000060] absolute h-full w-full flex justify-start p-[25px] sm:p-[60px] items-center">
                           <div className="">
-                            <p className='text-[15px] text-white mb-[10px]'>Deals and promotions</p>
-                            <h1 className='text-[40px] text-white font-bold'>{carousel.attributes.name}</h1>
-                            <p className='text-white text-[20px]'>From $<span>{img.id}.99</span></p>
-                            <button className='h-[40px] w-[100px] bg-white rounded-full mt-[20px]'>Shop Now</button>
+                            <p className='text-[10px] sm:text-[15px] text-white mb-[10px]'>Deals and promotions</p>
+                            <h1 className='text-[23px] sm:text-[40px] text-white font-bold'>{carousel.attributes.name}</h1>
+                            <p className='text-white text-[10px] sm:text-[20px]'>From $<span>{img.id}.99</span></p>
+                            <button className='h-[25px] sm:h-[40px] w-[60px] text-[9px] sm:w-[100px] bg-white rounded-full mt-[20px]'>Shop Now</button>
                           </div>
                         </div>
-                        <img src={`${constants.url}${img.attributes.url}`} />
+                        {/* <div
+                          className={`w-full h-full duration-150 bg-cover bg-center bg-no-repeat relative `}
+                          style={{ backgroundImage: `url(${constants.url}${img.attributes.url})` }}
+                        ></div> */}
+                        <img src={`${constants.url}${img.attributes.url}`} className=''/>
                       </div>
                     </SwiperSlide>
                   </div>
