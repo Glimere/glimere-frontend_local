@@ -297,21 +297,21 @@ export default function Navbar() {
           <div className="flex-[2.18] flex flex-row items-center justify-end"
           // onMouseLeave={() => { setMenuToggle(false) }}
           >
-            <div className="flex flex-row justify-end w-full mr-[15px] sm:mr-0">
-              <div className="flex flex-row w-full">
-                <div className="h-[50px] w-[100px] sm:w-full flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]">
+            <div className="flex flex-row justify-end w-full sm:mr-0">
+              <div className="flex flex-row w-full justify-end">
+                <div className="h-[50px] w-[100px] sm:w-[150px] flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]">
                   <Link to="/stores">
                     <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
                       <BiStore className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
                       <p className={`text-[12px] ml-[5px] hidden sm:block ${menuVisible || isSticky || pageLocation || menuToggle ? "text-[#684419]" : "text-[#ffffff]"}`}>Stores</p>
                     </div>
                   </Link>
-                  <Link to="/Wishlist">
+                  {/* <Link to="/Wishlist">
                     <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
                       <AiOutlineHeart className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
                       <p className={`text-[12px] ml-[5px] hidden sm:block ${menuVisible || isSticky || pageLocation || menuToggle ? "text-[#684419]" : "text-[#ffffff]"}`}>Wishlist</p>
                     </div>
-                  </Link>
+                  </Link> */}
 
                   <div className={`py-[9px] px-[5px] pr-[10px] duration-150 relative flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}
                     onClick={() => setMenuToggle(!menuToggle)}

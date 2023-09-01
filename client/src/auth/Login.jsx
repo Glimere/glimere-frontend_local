@@ -10,6 +10,7 @@ import { constants } from '../global-components/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser,loginSuccess } from '../slice/users/userSlice'
 import Signup from './Signup'
+import nookies from 'nookies'
 
 // import dotenv from 'dotenv';
 
@@ -224,7 +225,7 @@ export default function Login() {
                   onClick={handleLogin}
                 >Login</button>
                 <div className="flex flex-row mt-[20px]">
-                  <p className='text-[14px] mr-[5px]'>Don't have an Account?</p>
+                  <p className='text-[14px] mr-[5px]'>Don&rsquo;t have an Account?</p>
                   <p className='text-[14px] cursor-pointer text-[#ed7534]'
                     onClick={() => {
                       setIsVisible(true)

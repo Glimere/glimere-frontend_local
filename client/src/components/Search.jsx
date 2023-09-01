@@ -31,10 +31,7 @@ export default function Search() {
 
   }, [location.state, apparelSearch]);
 
-
-
 const {data, loading, error} = useFetch(`/api/apparels?populate=*&filters[name][$contains]=${apparelSearch}${selectedBrands.map((brand) => `&[filters][brands][id][$eq]=${brand}`)}&[filters][price][$lte]=${maxPrice}&[filters][price][$gte]=${minPrice}${selectedSizes.map((size) => `&[filters][sizes][id][$eq]=${size}`)}&filters[discount][$gte]=${selectedDiscount}&sort=price:${sort}`);
-
 
 
 console.log('sort', sort)
@@ -106,14 +103,13 @@ console.log('sort', sort)
         { type: "sizes", value: selectedSizes },
         { type: "discount", value: selectedDiscount }
       ]
-    
-  
 
   return (
     <div className="w-full h-full bg-white">
       <div className="w-full flex gap-[20px] px-[15px] sm:px-[60px] pb-[40px] pt-[80px]">
 
         <div className="w-full flex gap-0 sm:gap-[20px] mt-[20px]">
+
             <FilterBar 
           apparelSearch={apparelSearch} 
           handleSizeChange={handleSizeChange} 
@@ -142,8 +138,6 @@ console.log('sort', sort)
           handleClearAllFilters={handleClearAllFilters}
           setSort={setSort}
           />
-
-
 
         </div>
 

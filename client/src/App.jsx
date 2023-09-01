@@ -30,15 +30,13 @@ function App() {
   const location = useLocation();
 
   const hideNavbarRoutes = ['/login'];
-
-  const hideFooterRoutes = ['login', 'view-product'];
-
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
+  const hideFooterRoutes = ['login', 'view-product'];
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
-  const showNewsletter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
-
+  const hideNewsletterRoutes = ['login', 'view-product', 'profile'];
+  const showNewsletter = !hideNewsletterRoutes.includes(location.pathname.split('/')[1]);
 
   return (
     <>

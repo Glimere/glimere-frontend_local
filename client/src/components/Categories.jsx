@@ -237,7 +237,7 @@ export default function Categories(props) {
 
   return (
     <>
-      <div className={`bg-[${props.color}] ${contentType !== "carousel" && contentType !== "featured" ? "px-[18px] sm:px-[55px] pb-[35px]  pt-[30px]" : "px-[18px] sm:px-[60px] pt-0"} ${contentType === "featured" ? " my-[30px]" : ""} w-full`}>
+      <div className={`bg-[${props.color}] ${contentType !== "carousel" && contentType !== "featured" ? "px-[18px] sm:px-[55px]  pt-[30px]" : "px-[18px] sm:px-[60px] pt-0"} ${contentType === "featured" ? " my-[30px]" : ""} w-full`}>
         <div className="w-full">
           {headerType === "timeline" ?
 
@@ -267,7 +267,7 @@ export default function Categories(props) {
 
           <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
             {contentType === "collection"
-              ? data.slice(0, 8).map((collection, id) => (
+              ? data.slice(0, 6).map((collection, id) => (
                 <div className="relative" key={collection.id}>
                   <div className="w-[105px] sm:w-[230px] h-[140px] sm:h-[270px] overflow-hidden">
 

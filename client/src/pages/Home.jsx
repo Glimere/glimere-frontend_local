@@ -73,7 +73,7 @@ console.log('users', users)
 
   return (
     <>
-      <div className="w-full h-[100vh] flex flex-row overflow-hidden">
+      <div className="w-full h-[45vh] sm:h-[100vh] flex flex-row overflow-hidden">
         <Carousel carousels={carousels} />
       </div>
       <div className="">
