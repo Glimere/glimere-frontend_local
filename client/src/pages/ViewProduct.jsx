@@ -12,19 +12,21 @@ import { BiMessageAltDetail } from 'react-icons/bi'
 import { SlArrowLeft } from 'react-icons/sl'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import VerticalCarousel from './VerticalCarousel';
-import { StarRating } from './StarRating';
+import VerticalCarousel from '../components/VerticalCarousel';
+import { StarRating } from '../components/StarRating';
 import { useNavigate } from 'react-router-dom';
-import Categories from './Categories';
+import Categories from '../components/Categories';
 import { useSelector } from 'react-redux';
 import { selectAllApparels } from '../slice/apparels/apparelSlice';
 import { selectWishlist } from '../slice/wishList/wishListSlice';
 import { addWish } from '../slice/wishList/wishListSlice';
-import CheckoutSummary from './CheckoutSummary';
-import Newsletter from './Newsletter';
-import Footer from './Footer';
+import CheckoutSummary from '../components/CheckoutSummary';
+import Newsletter from '../components/Newsletter';
+import Footer from '../components/Footer';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../slice/cart/cartSlice';
+import { addToCart } from '../slice/cart/cartSlice';
+
 
 
 export default function ViewProduct() {
@@ -47,13 +49,14 @@ export default function ViewProduct() {
   const [apparel, setApparel] = useState(location.state)
   const [IsSticky, setIsSticky] = useState(true)
   const [selectedColors, setSelectedColors] = useState([apparel.attributes.colors.data[0].attributes.name])
+  
 
   const wishlist = useSelector(selectWishlist)
 
   const isWishlistChecked = (id) => {
     return wishlist.some((item) => item.id === id)
   }
-
+  
   console.log('apparel', apparel)
 
   useEffect(() => {
@@ -213,11 +216,15 @@ export default function ViewProduct() {
                 onClick={() => {
                   dispatch(addItem({
                     id: apparel.id,
-                    name: apparel.attributes.name,
-                    price: apparel.attributes.price,
-                    desc: apparel.attributes.desc,
-                    imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
-                    quantity: quantity
+                            name: apparel.attributes.name,
+                            price: apparel.attributes.price,
+                            desc: apparel.attributes.desc,
+                            colors: apparel.attributes.colors,
+                            imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
+                            material: apparel.attributes.material,
+                            discount: apparel.attributes.discount,
+                            gender: apparel.attributes.gender,
+                            quantity: quantity
                   }))
                 }}
                 >

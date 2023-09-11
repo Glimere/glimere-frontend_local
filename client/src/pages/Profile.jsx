@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import { addWish } from '../slice/wishList/wishListSlice';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -32,6 +33,7 @@ export default function Profile() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const location = useLocation()
 
   const user = useSelector(selectAllUsers)
   const userStatus = useSelector(getUserStatus)
@@ -42,8 +44,11 @@ export default function Profile() {
 
   console.log('wishlist', wishlist)
 
-  const [tab, setTab] = useState(0)
+  const [tab, setTab] = useState(location.state || 0)
   const [togglemenu, settogglemenu] = useState(false)
+
+
+console.log('location', location.stateS)
 
   const tabs = [
     { "tabName": "My Account" },
@@ -86,7 +91,7 @@ export default function Profile() {
               >{tabs.tabName}</div>
             ))}
 
-            <div className={`w-full h-[50px] pl-[20px] hover:bg-[#fcfcfc] border-solid border-b text-[12px] flex items-center cursor-pointer duration-300`}
+            <div className={`w-full h-[50px] pl-[20px] hover:bg-[#fcfcfc] text-red-700 border-solid border-b text-[12px] flex items-center cursor-pointer duration-300`}
               onClick={handleLogout}
             >Log out</div>
 

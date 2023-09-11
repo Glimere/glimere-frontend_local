@@ -4,7 +4,7 @@
   "info": {
     "singularName": "apparel",
     "pluralName": "apparels",
-    "displayName": "Apparel",
+    "displayName": "Product",
     "description": ""
   },
   "options": {
@@ -126,6 +126,18 @@
       "relation": "manyToMany",
       "target": "api::color.color",
       "mappedBy": "apparels"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::review.review",
+      "mappedBy": "products"
+    },
+    "carts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cart.cart",
+      "mappedBy": "products"
     }
   }
 }

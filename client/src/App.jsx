@@ -11,14 +11,14 @@ const Login = lazy(() => import('./auth/Login'));
 const Register = lazy(() => import('./auth/Register'));
 const Home = lazy(() => import('./pages/Home'));
 const ForgotPassword = lazy(() => import('./auth/ForgotPassword'));
-const ViewProduct = lazy(() => import('./components/ViewProduct'));
+const ViewProduct = lazy(() => import('./pages/ViewProduct'));
 const Orders = lazy(() => import('./pages/Orders'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
-const Search = lazy(() => import('./components/Search'));
+const Search = lazy(() => import('./pages/Search'));
 const Footer = lazy(() => import('./components/Footer'));
 const Newsletter = lazy(() => import('./components/Newsletter'));
 const Checkout = lazy(() => import('./pages/Checkout'));
-const ViewCollection = lazy(() => import('./components/ViewCollection'));
+const ViewCollection = lazy(() => import('./pages/ViewCollection'));
 const ViewAll = lazy(() => import('./components/ViewAll'));
 const Stores = lazy(() => import('./pages/stores'));
 import { ToastContainer } from 'react-toastify'

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async (jwt) => {
     try {
-      const response = await axios.get(`${constants.url}/api/users/me`, {
+      const response = await axios.get(`${constants.url}/api/users/me?populate=*`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

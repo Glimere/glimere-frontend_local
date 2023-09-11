@@ -1,4 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { constants } from "../../global-components/constants";
+import axios from "axios";
+
+export const fetchCart = createAsyncThunk("carts/fetchCart", async () => {
+  try {
+      const response = await axios.get(`${constants.url}/api/carts?populate=*`,
+      {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`,
+        },
+
+      }
+      );
+      console.log('response.data', response.data)
+      return response.data.data || []
+  } catch (error) {
+      console.log(error);
+  }
+})
+
+export const addToCart = createAsyncThunk(
+  "carts/addCart",
+  async (item) => {
+    try {
+      const response = await axios.post(
+        `${constants.url}/api/carts`,
+        {data: item},
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem('jwt'))}`,
+          },
+ 
+        }
+      );
+      return response.data || [];
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const initialState = {
   apparels: [],
@@ -8,7 +49,7 @@ const initialState = {
   // timeUpdated: null,
   // status: "idle", // "idle" | "loading" | "succeeded" | "failed"
   // error: null,
-}; 
+};
 
 const cartSlice = createSlice({
   name: "cart",

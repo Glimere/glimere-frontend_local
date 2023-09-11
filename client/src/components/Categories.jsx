@@ -21,7 +21,8 @@ import { addWish } from '../slice/wishList/wishListSlice';
 import { selectWishlist } from '../slice/wishList/wishListSlice';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import { addToCart } from '../slice/cart/cartSlice';
+import { selectAllUsers } from '../slice/users/userSlice';
 
 export default function Categories(props) {
 
@@ -33,8 +34,13 @@ export default function Categories(props) {
   const [carousels, setCarousels] = useState([])
   const [data, setData] = useState([])
   const [apparel, setApparel] = useState([])
+  const [cartItem, setCartItem] = useState([])
 
   const wishlist = useSelector(selectWishlist)
+  const user = useSelector(selectAllUsers)
+
+
+
 
   useEffect(() => {
     const fetchApparels = async () => {
@@ -59,6 +65,7 @@ export default function Categories(props) {
   const isWishlistChecked = (id) => {
     return wishlist.some((item) => item.id === id)
   }
+
 
   const notCarousel = (apparel) => {
     return (
@@ -101,14 +108,14 @@ export default function Categories(props) {
 
           {apparel?.map((apparel, id) => (
             <SwiperSlide key={id}>
-              <div className="relative rounded-[5px] p-[5px] border-transparent duration-200  hover:border-[#ffdcb1] border-solid border-[1px]">
-                <div className=" shadow-sm rounded h-[38vh] sm:h-[59vh]">
+              <div className="relative rounded-[10px] p-[15px] duration-200  border-gray-200 border-solid border-[1px]">
+                <div className="rounded h-[38vh] sm:h-[57vh]">
                   <div className="group overflow-hidden relative">
                     <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
 
-                      <div className="h-[25vh] sm:h-[40vh] duration-200 w-full relative">
+                      <div className="h-[25vh] sm:h-[40vh] rounded-[5px] overflow-hidden duration-200 w-full relative">
                         <div
-                          className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
+                          className="h-full w-full  absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
                           style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[1]?.attributes.url})` }}
                           alt={apparel.attributes.name}
                         ></div>
@@ -131,14 +138,23 @@ export default function Categories(props) {
                     <div className="group-hover:flex hidden justify-between items-center z-40 mt-[10px] px-[10px]">
                       <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-[#ED7534] cursor-pointer"
                         onClick={() => {
-                          dispatch(addItem({
-                            id: apparel.id,
-                            name: apparel.attributes.name,
-                            price: apparel.attributes.price,
-                            desc: apparel.attributes.desc,
-                            imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
-                            quantity: 1
+                          dispatch(addToCart({
+                            quantity: 1,
+                            products: apparel.id,
+                            users_permissions_users: user.id
                           }))
+                          // dispatch(addItem({
+                          //   id: apparel.id,
+                          //   name: apparel.attributes.name,
+                          //   price: apparel.attributes.price,
+                          //   desc: apparel.attributes.desc,
+                          //   colors: apparel.attributes.colors,
+                          //   imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
+                          //   material: apparel.attributes.material,
+                          //   discount: apparel.attributes.discount,
+                          //   gender: apparel.attributes.gender,
+                          //   quantity: 1
+                          // }))
                         }}
                       >
                         <div className="flex flex-row">
@@ -237,7 +253,7 @@ export default function Categories(props) {
 
   return (
     <>
-      <div className={`bg-[${props.color}] ${contentType !== "carousel" && contentType !== "featured" ? "px-[18px] sm:px-[55px]  pt-[30px]" : "px-[18px] sm:px-[60px] pt-0"} ${contentType === "featured" ? " my-[30px]" : ""} w-full`}>
+      <div className={`bg-[${props.color}] ${contentType !== "carousel" && contentType !== "featured" ? "px-[18px] sm:px-[55px] py-[30px]" : "px-[18px] sm:px-[60px] pt-0"} ${contentType === "featured" ? " my-[30px]" : ""} w-full`}>
         <div className="w-full">
           {headerType === "timeline" ?
 
@@ -268,19 +284,21 @@ export default function Categories(props) {
           <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
             {contentType === "collection"
               ? data.slice(0, 6).map((collection, id) => (
-                <div className="relative" key={collection.id}>
-                  <div className="w-[105px] sm:w-[230px] h-[140px] sm:h-[270px] overflow-hidden">
+                <div className="relative " key={collection.id}>
+                  <div className="w-[105px] sm:w-[230px]  h-[140px] sm:h-[270px] overflow-hidden">
 
                     <Link to={`/view-collection/${collection.id}`} state={collection}>
-                      <div
-                        className="h-[80%] w-full bg-cover bg-center bg-no-repeat bg-orange-200 z-[2] relative p-[10px] sm:p-[25px] rounded-[5px] flex items-end"
+                      <div className="h-[80%] w-full p-[15px] border-[1px] border-solid border-gray-200 rounded-[10px]">
+                        <div
+                        className="w-full h-full bg-cover bg-center bg-no-repeat z-[2] relative p-[10px] sm:p-[25px] rounded-[5px] flex items-end"
                         // style={{ backgroundImage: `url(${constants.url}${collection.attributes.imageUrl.data[0].attributes.url})` }}
                         alt={collection.attributes.title}
                       >
-                        <div className="w-full h-[25%] py-[10px] px-[15px] flex flex-row justify-between items-center bg-white rounded-[8px] z-[2] relative">
+                        <div className="w-full h-[25%] py-[10px] p-0 sm:px-[15px] flex flex-row justify-between items-center bg-white rounded-[8px] z-[2] relative">
                           <h1 className='text-[11px] sm:text-[15px] font-bold'>{collection.attributes.title}</h1>
                           <FiArrowRight className="text-[11px] sm:text-[15px] ml-[5px]" />
                         </div>
+                      </div>
                       </div>
 
                     </Link>

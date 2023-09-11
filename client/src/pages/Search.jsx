@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import FilterBar from './FilterBar';
-import SearchList from './SearchList';
+import FilterBar from '../components/FilterBar';
+import SearchList from '../components/SearchList';
 import useFetch from '../global-components/useFetch';
 
 

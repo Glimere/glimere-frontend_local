@@ -70,6 +70,18 @@
     },
     "lastname": {
       "type": "string"
+    },
+    "carts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cart.cart",
+      "mappedBy": "users_permissions_users"
+    },
+    "wishlists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::wishlist.wishlist",
+      "mappedBy": "users_permissions_users"
     }
   }
 }

@@ -18,6 +18,7 @@ import { fetchCategory } from './slice/category/categorySlice.js'
 import { fetchSubcategory } from './slice/subCategory/subCategorySlice.js'
 import { fetchSize } from './slice/size/sizeSlice.js'
 import { fetchColor } from './slice/colors/colorSlice.js'
+import { fetchCart } from './slice/cart/cartSlice.js'
 import { PersistGate } from 'redux-persist/integration/react';
 
 
@@ -32,6 +33,7 @@ const fetchData = async () => {
       store.dispatch(fetchSubcategory()),
       store.dispatch(fetchSize()),
       store.dispatch(fetchColor()),
+      store.dispatch(fetchCart()),
     ]);
 
     if (localStorage.getItem("loggedin") === "true") {
