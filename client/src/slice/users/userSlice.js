@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async (jwt) => {
     try {
-      const response = await axios.get(`${constants.url}/api/users/me`, {
+      const response = await axios.get(`${constants.url}/api/users/me?populate=*`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -16,6 +16,7 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async (jwt) => {
       return response.data || {};
     } catch (error) {
       console.log(error);
+      throw error;
     }
 });
 
@@ -70,7 +71,7 @@ const usersReducer = createSlice({
   name: "users",
   initialState: {
     users: {},
-    loggedInUser: {},
+    loggedIn: {},
     status: "idle",
     error: null,
   },
@@ -81,6 +82,9 @@ const usersReducer = createSlice({
     loginSuccess: (state, action) => {
       state.loggedInUser = action.payload;
     },
+    logoutUser: (state) => {
+      state.loggedInUser = {}
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -88,10 +92,12 @@ const usersReducer = createSlice({
         state.status = "loading";
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
+        console.log('fetchUsers fulfilled', action.payload);
         state.status = "succeeded";
         state.users = action.payload;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
+        console.log('fetchUsers rejected', action.error.message);
         state.status = "failed";
         state.error = action.error.message;
       })
@@ -120,5 +126,5 @@ export const selectUserById = (state, userId) =>
 export const getUserStatus = (state) => state.users.status;
 export const getUserError = (state) => state.users.error;
 
-export const { updateUsers, loginSuccess } = usersReducer.actions;
+export const { updateUsers, loginSuccess, logoutUser } = usersReducer.actions;
 export default usersReducer.reducer;

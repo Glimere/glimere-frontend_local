@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { constants } from '../global-components/constants';
 import { selectAllUsers } from '../slice/users/userSlice';
 import { useSelector } from 'react-redux'
+import { selectLoggedInUser } from '../slice/users/userSlice';
 
 
 const AuthContext = createContext();
@@ -11,6 +12,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const users = useSelector(selectAllUsers)
+  const loggedin = useSelector(selectLoggedInUser)
 
 
   // const location = useLocation();

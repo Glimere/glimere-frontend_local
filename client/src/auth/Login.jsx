@@ -63,13 +63,9 @@ export default function Login() {
 
         console.log('res.user.confirmed', res.data.user.confirmed)
         if (res.data.user.confirmed == true) {
-          // dispatch(loginSuccess(res.data))
-
-          localStorage.setItem('loggedin', "true")
-          localStorage.setItem('jwt', JSON.stringify(res.data.jwt))
-          
-          navigate('/'); // Replace '/' with the actual route of your homepage
-          window.location.reload();
+          dispatch(loginSuccess(res.data))
+          localStorage.setItem("hasFetchedCartData", "false");
+          navigate('/home'); // Replace '/' with the actual route of your homepage
         }
 
       }

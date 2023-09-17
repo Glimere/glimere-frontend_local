@@ -70,6 +70,30 @@
     },
     "lastname": {
       "type": "string"
+    },
+    "carts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cart.cart",
+      "mappedBy": "users_permissions_users"
+    },
+    "wishlists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::wishlist.wishlist",
+      "mappedBy": "users_permissions_users"
+    },
+    "shipping_addresses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::shipping-address.shipping-address",
+      "mappedBy": "users_permissions_users"
+    },
+    "cards": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::card.card",
+      "mappedBy": "users_permissions_users"
     }
   }
 }

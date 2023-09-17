@@ -4,12 +4,25 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { FiEdit2 } from "react-icons/fi";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoIosAdd } from "react-icons/io";
+import { useSelector } from 'react-redux';
+import { selectCart } from '../slice/cart/cartSlice';
+
 
 
 
 export default function Checkout() {
     const [toggleEdit, setToggleEdit] = useState(false)
     const [checkoutTabSwitch, setCheckoutTabSwitch] = useState(1)
+
+    const cart = useSelector(selectCart)
+
+    const totalPrice = () => {
+        let total = 0;
+        cart.forEach((item) => {
+          total += item.price * item.quantity;
+        })
+        return total.toFixed(2);
+      }
 
     console.log('checkoutTabSwitch', checkoutTabSwitch)
 
@@ -110,7 +123,7 @@ export default function Checkout() {
                     </div>
 
                     <div className="flex-[3]">
-                        <CheckoutSummary />
+                    <CheckoutSummary totalPrice={totalPrice()} cart={cart} />
 
                     </div>
                 </div>
@@ -150,7 +163,7 @@ export default function Checkout() {
                     </div>
 
                     <div className="flex-[3]">
-                        <CheckoutSummary />
+                    <CheckoutSummary totalPrice={totalPrice()} cart={cart} />
 
                     </div>
                 </div>
@@ -193,7 +206,7 @@ export default function Checkout() {
                     </div>
 
                     <div className="flex-[3]">
-                        <CheckoutSummary />
+                    <CheckoutSummary totalPrice={totalPrice()} cart={cart} />
 
                     </div>
                 </div>

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipping_addresses",
+  "info": {
+    "singularName": "shipping-address",
+    "pluralName": "shipping-addresses",
+    "displayName": "shipping_address",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "integer"
+    },
+    "country": {
+      "type": "string"
+    },
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "shipping_addresses"
+    }
+  }
+}

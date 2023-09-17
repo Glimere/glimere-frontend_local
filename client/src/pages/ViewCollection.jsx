@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
-import FilterBar from './FilterBar'
-import SearchList from './SearchList'
+import FilterBar from '../components/FilterBar'
+import SearchList from '../components/SearchList'
 import useFetch from '../global-components/useFetch'
 import { useLocation } from 'react-router-dom'
 
@@ -95,7 +95,7 @@ export default function ViewCollection() {
 
   return (
     <>
-      <div className="w-full pt-[100px] px-[15px] sm:px-[55px]">
+      <div className="w-full bg-white pt-[100px] px-[15px] sm:px-[55px]">
         <div className="w-full flex-row">
           <h1 className='text-[30px] text-black font-bold'>{collection.attributes.title}</h1>
         </div>

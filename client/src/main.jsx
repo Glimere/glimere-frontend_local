@@ -34,11 +34,6 @@ const fetchData = async () => {
       store.dispatch(fetchColor()),
     ]);
 
-    if (localStorage.getItem("loggedin") === "true") {
-      const jwt = JSON.parse(localStorage.getItem('jwt'));
-      // console.log('jwt', jwt)
-      await store.dispatch(fetchUsers(jwt));
-    }
   } catch (error) {
     // Handle any error that occurred during fetching data
     console.error('Error fetching data:', error);

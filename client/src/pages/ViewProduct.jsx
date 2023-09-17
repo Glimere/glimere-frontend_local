@@ -12,19 +12,22 @@ import { BiMessageAltDetail } from 'react-icons/bi'
 import { SlArrowLeft } from 'react-icons/sl'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import VerticalCarousel from './VerticalCarousel';
-import { StarRating } from './StarRating';
+import VerticalCarousel from '../components/VerticalCarousel';
+import { StarRating } from '../components/StarRating';
 import { useNavigate } from 'react-router-dom';
-import Categories from './Categories';
 import { useSelector } from 'react-redux';
 import { selectAllApparels } from '../slice/apparels/apparelSlice';
 import { selectWishlist } from '../slice/wishList/wishListSlice';
 import { addWish } from '../slice/wishList/wishListSlice';
-import CheckoutSummary from './CheckoutSummary';
-import Newsletter from './Newsletter';
-import Footer from './Footer';
+import CheckoutSummary from '../components/CheckoutSummary';
+import Newsletter from '../components/Newsletter';
+import Footer from '../components/Footer';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../slice/cart/cartSlice';
+import { addToCart } from '../slice/cart/cartSlice';
+import ProductSession from '../components/ProductSession';
+import { selectAllUsers, selectLoggedInUser } from '../slice/users/userSlice';
+
 
 
 export default function ViewProduct() {
@@ -47,13 +50,16 @@ export default function ViewProduct() {
   const [apparel, setApparel] = useState(location.state)
   const [IsSticky, setIsSticky] = useState(true)
   const [selectedColors, setSelectedColors] = useState([apparel.attributes.colors.data[0].attributes.name])
+  
 
   const wishlist = useSelector(selectWishlist)
+  const user = useSelector(selectAllUsers)
+  const loggedinUser = useSelector(selectLoggedInUser)
 
   const isWishlistChecked = (id) => {
     return wishlist.some((item) => item.id === id)
   }
-
+  
   console.log('apparel', apparel)
 
   useEffect(() => {
@@ -91,10 +97,6 @@ export default function ViewProduct() {
   return (
     <>
       <div className="w-full  bg-white relative ">
-
-        
-
-
         <div className='h-full sm:h-[100vh] flex flex-col sm:flex-row pt-[80px] w-full z-[5]'>
 
           <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
@@ -105,9 +107,6 @@ export default function ViewProduct() {
             </div>
 
           </div>
-
-
-
 
           <div className="flex-[5.5] flex">
             <div className="h-[93vh] sm:h-full pt-[35px] sm:pt-0 pb-[1px] sm:pb-0 w-full overflow-hidden items-center">
@@ -172,26 +171,6 @@ export default function ViewProduct() {
               </div>
 
               <div className="flex flex-row gap-[20px] flex-wrap">
-                <div className="flex flex-row items-center w-[50%] mr-[30px]">
-                  <p className='text-[12px] text-[#ED7534] mr-[3px]'>QUANTITY: </p>
-                  <div className="flex flex-row items-center justify-right w-full">
-                    <div className="flex-[1] h-[25px] w-[25px] rounded-full flex justify-center items-center"
-                      onClick={() => setQuantity(quantity - 1)}
-                    >
-                      <IoMdArrowDropleft className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
-                    </div>
-
-                    <div className="">
-                      <div className="flex-[1] px-[12px] py-[7px] text-[12px] rounded-full flex justify-center items-center bg-white">{quantity}</div>
-                    </div>
-
-                    <div className="flex-[1] h-[25px] w-[25px] rounded-full flex justify-center items-center"
-                      onClick={() => setQuantity(quantity + 1)}
-                    >
-                      <IoMdArrowDropright className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
-                    </div>
-                  </div>
-                </div>
 
                 <div className="flex flex-row items-center">
                   {/* <p className='text-[12px] text-[#ED7534] mr-[3px]'>SIZE: </p> */}
@@ -211,14 +190,27 @@ export default function ViewProduct() {
                 {/* <p className='text-[11px] flex-[1]'>Enjoy a special discount when you add up to three items to your cart!</p> */}
                 <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-[#ED7534] cursor-pointer"
                 onClick={() => {
-                  dispatch(addItem({
-                    id: apparel.id,
-                    name: apparel.attributes.name,
-                    price: apparel.attributes.price,
-                    desc: apparel.attributes.desc,
-                    imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
-                    quantity: quantity
-                  }))
+                  dispatch(addToCart({
+                    item: {
+                        quantity: 1,
+                        image_url: apparel.attributes.imageUrl.data[0].attributes.url,
+                        products: apparel.id,
+                        users_permissions_users: user.id
+                    }, jwt: loggedinUser.jwt
+                }
+                ))
+                  // dispatch(addItem({
+                  //   id: apparel.id,
+                  //           name: apparel.attributes.name,
+                  //           price: apparel.attributes.price,
+                  //           desc: apparel.attributes.desc,
+                  //           colors: apparel.attributes.colors,
+                  //           imageUrl: apparel.attributes.imageUrl.data[0].attributes.url,
+                  //           material: apparel.attributes.material,
+                  //           discount: apparel.attributes.discount,
+                  //           gender: apparel.attributes.gender,
+                  //           quantity: quantity
+                  // }))
                 }}
                 >
                   <div className="flex flex-row">
@@ -347,7 +339,7 @@ export default function ViewProduct() {
       <div ref={ref} className="">
         <div className='w-full] py-[5vh] bg-[#ffefd1]'>
           <h2 className="text-lg font-semibold pl-[30px] mb-4">Similar Apparels</h2>
-          <Categories contentType="apparel" type="trending" color="#ffffff"/>
+          <ProductSession type="trending"/>
         </div>
         <Newsletter />
         <Footer />
