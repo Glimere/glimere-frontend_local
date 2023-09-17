@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useSelector } from 'react-redux';
@@ -9,18 +9,23 @@ import { selectCart } from '../slice/cart/cartSlice';
 import CheckoutSummary from '../components/CheckoutSummary';
 import ProductCounter from '../components/productCounter';
 import ProductColor from '../components/ProductColor';
+import { selectAllUsers } from '../slice/users/userSlice';
+import axios from 'axios';
+import { deleteCart } from '../slice/cart/cartSlice';
+import { selectLoggedInUser } from '../slice/users/userSlice';
 
 export default function Cart(props) {
 
-  const cart = useSelector(selectCart)
-
   const dispatch = useDispatch();
+  const cart = useSelector(selectCart)
+  const jwt = useSelector(selectLoggedInUser).jwt
+
+  console.log('cart', cart)
+
 
   const totalPrice = () => {
     let total = 0;
-    cart.forEach((item) => {
-      total += item.price * item.quantity;
-    })
+    cart.map((items) => items.data.attributes.products.data.forEach((item) => total += item.attributes.price * items.data.attributes.quantity))
     return total.toFixed(2);
   }
   let NGNaira = new Intl.NumberFormat("en-NG", {
@@ -48,24 +53,29 @@ export default function Cart(props) {
                 <h1 className='text-[20px] font-bold mb-[30px]'>Shopping Cart</h1>
 
                 <div className="flex flex-col gap-[20px] justify-between">
-                  {cart.map((item) => (
-                    <div key={item.id} className="w-full h-[250px] flex flex-row gap-[20px] p-[30px] items-center justify-between relative border-[1px] border-solid border-gray-200 rounded-[10px] duration-150 overflow-hidden]">
+                  {cart.map((items, id) => (
+                    <div key={items.data.id} className="w-full h-[250px] flex flex-row gap-[20px] p-[30px] items-center justify-between relative border-[1px] border-solid border-gray-200 rounded-[10px] duration-150 overflow-hidden]">
                       <div className="flex-[2] h-full rounded-[10px] w-[70px] bg-cover bg-center bg-no-repeat bg-black"
-                        style={{ backgroundImage: `url(${constants.url}${item.imageUrl})` }}
+                        style={{ backgroundImage: `url(${constants.url}${items.data.attributes.image_url})` }}
                       >
                       </div>
-                      <div className="flex-[6.5] h-full py-[20px] flex flex-col justify-between gap-[5px]">
-                        <h1 className='text-[13px] font-semibold'>{item.name}</h1>
-                        <p className='text-[10px]'>{item.desc}</p>
-                        <ProductColor colors={item.colors}/>
-                        <span className=''>{item.quantity} x {item.price}</span>
-                        <ProductCounter quantity={item.quantity}/>
-                      </div>
-                      <div className="flex-[i] cursor-pointer"
-                        onClick={() => dispatch(removeItem(item.id))}
-                      >
+
+                      {items.data.attributes.products.data.map((item) => (
+                        <div key={item.id} className="flex-[6.5] h-full py-[20px] flex flex-col justify-between gap-[5px]">
+                          <h1 className='text-[13px] font-semibold'>{item.attributes.name}</h1>
+                          <p className='text-[10px]'>{item.attributes.desc}</p>
+                          {/* <ProductColor colors={item} /> */}
+                          <span className=''>{items.data.attributes.quantity} x {item.attributes.price}</span>
+                          <ProductCounter item={items}/>
+                        </div>
+                      ))}
+                      <button type='button' className="flex-[i] cursor-pointer"
+                        onClick={() => {
+                          console.log("Delete button clicked");
+                          dispatch(deleteCart({id:items.data.id, jwt:jwt}));
+                          }}>
                         <FaTrash className={`text-[15px] text-red-600 duration-200 `} />
-                      </div>
+                      </button>
                     </div>
                   ))}
                 </div>

@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { constants } from "../../global-components/constants";
+import { useSelector } from "react-redux";
 
 export const fetchApparels = createAsyncThunk("apparels/fetchApparels", async () => {
     try {
+        
         const response = await axios.get(`${constants.url}/api/apparels?populate=*`);
         console.log('response.data', response.data)
         return response.data.data || []

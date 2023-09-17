@@ -20,22 +20,22 @@ const Newsletter = lazy(() => import('./components/Newsletter'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const ViewCollection = lazy(() => import('./pages/ViewCollection'));
 const ViewAll = lazy(() => import('./components/ViewAll'));
-const Stores = lazy(() => import('./pages/stores'));
+const Market = lazy(() => import('./pages/Market'));
+const Landing = lazy(() => import('./pages/Landing'));
 import { ToastContainer } from 'react-toastify'
-import { AuthProvider } from './auth/Auth'
 
 
 function App() {
 
   const location = useLocation();
 
-  const hideNavbarRoutes = ['/login'];
+  const hideNavbarRoutes = ['/login', '/'];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
-  const hideFooterRoutes = ['login', 'view-product'];
+  const hideFooterRoutes = ['login', 'view-product', ''];
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
-  const hideNewsletterRoutes = ['login', 'view-product', 'profile'];
+  const hideNewsletterRoutes = ['login', 'view-product', 'profile', ''];
   const showNewsletter = !hideNewsletterRoutes.includes(location.pathname.split('/')[1]);
 
   return (
@@ -44,14 +44,16 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         {showNavbar && <Navbar />}
         <Routes>
+
           {/* Authentication routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
           {/* Public routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/" element={<Landing />} />
 
           {/* Protected routes */}
           <Route path="/admin" element={<AdminDashboard />} />
@@ -64,8 +66,7 @@ function App() {
           <Route path="/view-all/:id" element={<ViewAll />} />
           <Route path="/search" element={<Search />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/stores" element={<Stores />} />
-
+          <Route path="/market" element={<Market />} />
 
         </Routes>
         {showNewsletter && <Newsletter />}

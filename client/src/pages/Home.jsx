@@ -3,50 +3,54 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectAllAds } from "../slice/ads/adSlice";
 import { selectAllApparels } from "../slice/apparels/apparelSlice";
-import { selectAllCarousels } from "../slice/carousel/carouselSlice";
 import { selectAllUsers } from "../slice/users/userSlice";
+import { selectAllCarousels } from "../slice/carousel/carouselSlice";
 import { selectAllBrands } from "../slice/brand/brandSlice";
 import { selectAllSubcategory } from "../slice/subCategory/subCategorySlice";
+import { fetchUsers, getUserStatus } from "../slice/users/userSlice";
+import { selectCart } from "../slice/cart/cartSlice";
 import Carousel from "../components/Carousel";
 import ProductDisplay from "../components/ProductDisplay";
 import Categories from "../components/Categories";
+import ProductSession from "../components/ProductSession";
+import BrandSession from "../components/BrandSession";
+import FeaturedSession from "../components/FeaturedSession";
+import CarouselSession from "../components/CarouselSession";
+import CollectionSession from "../components/CollectionSession";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { addItem } from "../slice/cart/cartSlice";
+import { addMultipleItems } from "../slice/cart/cartSlice";
 
-// import '@coreui/coreui/dist/css/coreui.min.css'
+
+
 
 export default function Home() {
 
+  const dispatch = useDispatch()
+
   const apparels = useSelector(selectAllApparels)
-  console.log('apparels', apparels)
 
   const ads = useSelector(selectAllAds)
 
   const carousels = useSelector(selectAllCarousels)
 
   const users = useSelector(selectAllUsers)
+  const userStatus = useSelector(getUserStatus)
 
-  const brands = useSelector(selectAllBrands)
-
-  const subCategory = useSelector(selectAllSubcategory)
+  const cart = useSelector(selectCart)
 
   const [adsUrl, setAdsUrl] = useState({})
 
+console.log('userStatus', userStatus)
+  console.log('users', users)
+  console.log('cart', cart)
 
-console.log('users', users)
+  // if (users !== {} && users !== undefined && users !== null) {
+  //   localStorage.removeItem('user')
+  //   console.log('localstorage user removed')
+  // }
 
-// if (users !== {} && users !== undefined && users !== null) {
-//   localStorage.removeItem('user')
-//   console.log('localstorage user removed')
-// }
-
-
-// useEffect(() => {
-//   if (userStatus === 'idle') {
-//     // Fetch users' data only if it is not already present
-//     dispatch(fetchUsers(loggedIn.jwt));
-//   }
-// }, [dispatch, userStatus]);
-
-// console.log('user', users)
 
   useEffect(() => {
     setAdsUrl({
@@ -77,16 +81,16 @@ console.log('users', users)
         <Carousel carousels={carousels} />
       </div>
       <div className="">
-        
+
         {/* <ProductDisplay adsUrl={adsUrl} /> */}
-        
-        <Categories headerTitle="Latest Arrivals" contentType="apparel" type="normal"  headerType="view"  color="#ffffff"/>
-        <Categories headerTitle="Latest Trends" contentType="apparel" type="trending"  headerType="view"  color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9"/>
-        <Categories headerTitle="Flash Sales" contentType="apparel" type="special"  headerType="timeline"  color="#ffffff"/>
-        <Categories data={apparels} carousels={carousels} headerTitle="" contentType="featured"type="featured"  headerType=""  color=""/>
-        <Categories data={brands} carousels={carousels} headerTitle="Top Brands" contentType="brand" headerType="view" color="#ffffff"/>
-        <Categories data={subCategory} carousels={carousels} headerTitle="Featured Collections" contentType="collection" headerType="view" color="#ffffff"/>
+
+        <ProductSession headerType="view" headerTitle="Latest Trends" type="normal" />
+        <ProductSession headerTitle="Latest Trend" headerType="view" type="trending" />
+        <CarouselSession headerTitle="" headerType="" />
+        <ProductSession headerTitle="Flash Sales" type="special" headerType="timeline" />
+        <FeaturedSession headerTitle="" type="featured" headerType="" />
+        <BrandSession headerTitle="Top Brands" headerType="view" />
+        <CollectionSession headerTitle="Featured Collections" headerType="view" />
 
 
 

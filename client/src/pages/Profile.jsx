@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Fragment, useCallback, useRef, useState, useEffect } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios';
 import { AuthContext } from '../auth/Auth';
 import { useContext } from 'react';
@@ -24,6 +25,7 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import { addWish } from '../slice/wishList/wishListSlice';
 import { useLocation } from 'react-router-dom';
+import Modal from '../global-components/Modal';
 
 
 
@@ -34,6 +36,8 @@ export default function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const location = useLocation()
+
+  const [open, setOpen] = useState(false)
 
   const user = useSelector(selectAllUsers)
   const userStatus = useSelector(getUserStatus)
@@ -48,7 +52,7 @@ export default function Profile() {
   const [togglemenu, settogglemenu] = useState(false)
 
 
-console.log('location', location.stateS)
+  console.log('location', location.stateS)
 
   const tabs = [
     { "tabName": "My Account" },
@@ -65,10 +69,17 @@ console.log('location', location.stateS)
 
   const { email, username } = user;
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
+
+  const cancelButtonRef = useRef(null)
+
+  const openModal = () => {
+    setOpen(true);
   };
+
+  const closeModal = () => {
+    setOpen(false);
+  };
+
 
   return (
     <>
@@ -91,13 +102,9 @@ console.log('location', location.stateS)
               >{tabs.tabName}</div>
             ))}
 
-            <div className={`w-full h-[50px] pl-[20px] hover:bg-[#fcfcfc] text-red-700 border-solid border-b text-[12px] flex items-center cursor-pointer duration-300`}
-              onClick={handleLogout}
-            >Log out</div>
 
 
           </div>
-
 
 
         </div>
@@ -112,12 +119,16 @@ console.log('location', location.stateS)
                 <p className='text-[11px] '>{user.email}</p>
               </div>
 
-              <div className="flex h-[170px] flex-col justify-between w-full border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer hover:bg-[#fff8ee] duration-150"
-              // onClick={() => { setToggleEdit(true) }}
+              <div className="flex h-[170px] flex-col relative justify-between w-full border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px]  duration-150"
               >
+                <div className="w-[50px] h-[50px] cursor-pointer absolute right-[10px] top-[10px] flex justify-center items-center rounded-full hover:bg-[#fff8ee] duration-150"
+                  onClick={openModal}
+                >
+                  <FiEdit2 className=" text-[#ED7534] text-[20px]" />
+                </div>
+
                 <div className="flex flex-row justify-between items-center mb-[20px]">
                   <h1>Family House</h1>
-                  <FiEdit2 className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
 
                 </div>
                 <div className="flex flex-col">
@@ -133,11 +144,14 @@ console.log('location', location.stateS)
 
             <div className="flex flex-row gap-[20px]">
 
-              <div className="h-[170px] flex flex-col w-full  rounded-[10px] p-[20px] border-[1px] border-gray-200 border-solid">
+              <div className="h-[170px] relative flex flex-col w-full  rounded-[10px] p-[20px] border-[1px] border-gray-200 border-solid">
+                <div className="w-[50px] h-[50px] cursor-pointer absolute right-[10px] top-[10px] flex justify-center items-center rounded-full hover:bg-[#fff8ee] duration-150"
+                  onClick={openModal}
+                >
+                  <FiEdit2 className=" text-[#ED7534] text-[20px]" />
+                </div>
                 <div className="flex flex-row justify-between items-center mb-[20px]">
                   <h1>Payment Method</h1>
-                  <FiEdit2 className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
-
                 </div>
 
                 <div className="flex flex-col">
@@ -234,20 +248,27 @@ console.log('location', location.stateS)
           <div className={`w-full h-full p-[50px]  ${tab == 3 ? "block" : "hidden"}`}>
             <div className="flex flex-col w-full">
               <div className="flex flex-col w-full gap-[15px]">
-                <div className="flex flex-row w-full justify-between items-center border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer hover:bg-[#fff8ee] duration-150">
+                <div className="flex flex-row w-full justify-between items-center border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer duration-150">
                   <div className="flex flex-col">
                     <h1 className='font-medium text-[20px]'>{user.username}</h1>
                     <p>{user.email}</p>
                   </div>
-                  <FiEdit2 className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
+                  <div className="w-[50px] h-[50px] cursor-pointer flex justify-center items-center rounded-full hover:bg-[#fff8ee] duration-150"
+                  >
+                    <FiEdit2 className=" text-[#ED7534] text-[20px]" />
+                  </div>
 
                 </div>
                 <div className="flex flex-row gap-[20px]">
                   {/* Email Subscriptions Card */}
-                  <div className="flex flex-col w-full justify-between border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer hover:bg-[#fff8ee] duration-150">
+                  <div className="flex flex-col w-full relative justify-between border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer duration-150">
+                    <div className="w-[50px] h-[50px] cursor-pointer absolute right-[10px] top-[10px] flex justify-center items-center rounded-full hover:bg-[#fff8ee] duration-150"
+                      onClick={openModal}
+                    >
+                      <FiEdit2 className=" text-[#ED7534] text-[20px]" />
+                    </div>
                     <div className="flex flex-row justify-between items-center mb-[20px]">
                       <h2 className="text-lg font-semibold">Email Subscriptions</h2>
-                      <FiEdit2 className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
                     </div>
                     <div className="flex flex-col">
                       <p className='mb-[10px]'>You are Suscribed</p>
@@ -260,10 +281,15 @@ console.log('location', location.stateS)
 
 
                   {/* Language and Region Card */}
-                  <div className="flex flex-col justify-between w-full border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer hover:bg-[#fff8ee] duration-150">
+                  <div className="flex flex-col relative justify-between w-full border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer  duration-150">
+                    <div className="w-[50px] h-[50px] cursor-pointer absolute right-[10px] top-[10px] flex justify-center items-center rounded-full hover:bg-[#fff8ee] duration-150"
+                      onClick={openModal}
+                    >
+                      <FiEdit2 className=" text-[#ED7534] text-[20px]" />
+                    </div>
+
                     <div className="flex flex-row justify-between items-center mb-[20px]">
                       <h2 className="text-lg font-semibold">Language and Region</h2>
-                      <FiEdit2 className="w-[20px] h-[20px] text-[#ED7534] cursor-pointer" />
                     </div>
                     <div className="flex flex-col">
                       <span className='font-medium'>English</span>
@@ -335,8 +361,13 @@ console.log('location', location.stateS)
       </div>
 
 
+      <Modal open={open} onClose={closeModal}>
+        {/* Place any content you want to display in the modal here */}
+        <h1>Hello from inside the modal!</h1>
+        <button onClick={closeModal}>Close Modal</button>
+      </Modal>
+
     </>
 
   );
 }
-

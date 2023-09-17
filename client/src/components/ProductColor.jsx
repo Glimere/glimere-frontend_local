@@ -4,7 +4,7 @@ export default function ProductColor(props) {
   return (
     <div className="w-full">
                 <div className="flex flex-wrap gap-[3px]">
-                  {props.colors.data.map((color, id) => (
+                  {props.colors.attributes.colors.data.map((color, id) => (
                     <div key={color.id} className={`flex h-[30px] w-[30px] p-[3px] hover:p-[4px] justify-center items-center border-[1px] border-[#ED7534] hover:border-[1px] rounded-full cursor-pointer duration-100`}
                     >
                       <div className={`flex h-full w-full justify-center items-center ${`bg-[${color.attributes.code}]`} rounded-full`}>

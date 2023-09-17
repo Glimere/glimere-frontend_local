@@ -8,7 +8,7 @@ import { HiLocationMarker } from 'react-icons/hi'
 
 
 
-export default function Stores() {
+export default function Market() {
 
   const carousels = useSelector(selectAllCarousels)
 
