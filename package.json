@@ -5,7 +5,8 @@
   "main": "index.js",
   "devDependencies": {
     "@svgr/rollup": "^8.0.1",
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "vite": "^4.4.9"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
