@@ -30,7 +30,7 @@ export const addUser = createAsyncThunk("users/registerUser", async (data) => {
 
     setCookie({ res }, "jwt", res.data.jwt, {
       httpOnly: true,
-      secure: import.meta.env.MODE !== "development",
+      secure: process.env.MODE !== "development",
       maxAge: 30 * 24 * 60 * 60,
       path: "/",
     });
