@@ -1,3 +1,3 @@
 export const constants = {
-    url: process.env.VITE_APP_URL,
+    url: import.meta.env.VITE_APP_URL,
 }

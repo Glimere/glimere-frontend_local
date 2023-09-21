@@ -5,9 +5,7 @@ import svgr from '@svgr/rollup';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), replace({
-    'process.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL),
-  }), svgr()],
+  plugins: [react(), svgr()],
   optimizeDeps: {
     exclude: ['swiper/react', 'swiper/modules']
   }

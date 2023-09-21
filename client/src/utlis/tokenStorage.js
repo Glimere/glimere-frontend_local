@@ -1,4 +1,4 @@
-const TOKEN_KEY = process.env.REACT_APP_GLIMERE_TOKEN;
+const TOKEN_KEY = import.meta.env.REACT_APP_GLIMERE_TOKEN;
 
 export function saveToken(token) {
     localStorage.setItem(TOKEN_KEY, token);
