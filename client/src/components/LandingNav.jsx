@@ -14,12 +14,19 @@ export default function LandingNav() {
                 </div>
                 <div className="flex flex-row items-center">
                     <div className='h-full w-[250px] flex flex-row justify-between items-center mr-[80px]'>
-                        <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">Home</div>
-                        <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">About</div>
+                        <Link to="./services">
+                            <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">Home</div>
+                        </Link>
+                        <Link to="./services">
+                            <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">About</div>
+                        </Link>
                         <Link to="./services">
                             <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">Services</div>
                         </Link>
-                        <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">Contact</div>
+                        <Link to="./services">
+                            <div className="h-[20px] w-[40px] text-[#9d5c0d] text-[15px]">Contact</div>
+                        </Link>
+
                     </div>
                     <div className="">
                         <div className='px-[35px] py-[5px] bg-[#ed7534] duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-full cursor-pointer'
