@@ -4,7 +4,6 @@
   "description": "glimere web store",
   "main": "index.js",
   "devDependencies": {
-    "@svgr/rollup": "^8.0.1",
     "concurrently": "^8.2.1",
     "vite": "^4.4.9"
   },

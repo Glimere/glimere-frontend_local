@@ -11,12 +11,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addUser,loginSuccess } from '../slice/users/userSlice'
 import Signup from './Signup'
 import nookies from 'nookies'
+import { useLocation } from 'react-router-dom'
 
 // import dotenv from 'dotenv';
 
 
 export default function Login() {
 
+  const location = useLocation()
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -33,15 +35,15 @@ export default function Login() {
     email: '',
     password: ''
   }
-
-  const [isVisible, setIsVisible] = useState(false)
+  const [authType, setAuthType] = useState(location.state)
+  const [isVisible, setIsVisible] = useState(authType === "signin" ? true : false)
   const [isCardVisible, setIsCardVisible] = useState(false)
   const [user, setUser] = useState(initialUser)
   const [registerUser, setRegisterUser] = useState(initialRegisterUser)
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState("")
   const [role, setRole] = useState(2)
-  
+
   
 
   const handleChange = ({ target }) => {
@@ -154,6 +156,7 @@ export default function Login() {
             signUp ={signUp}
             setIsVisible={setIsVisible}
             error={[error]}
+            authType={authType}
             />
           </div>
 

@@ -28,12 +28,12 @@ export const addUser = createAsyncThunk("users/registerUser", async (data) => {
   try {
     const res = await axios.post(url, data);
 
-    setCookie({ res }, "jwt", res.data.jwt, {
-      httpOnly: true,
-      secure: import.meta.env.MODE !== "development",
-      maxAge: 30 * 24 * 60 * 60,
-      path: "/",
-    });
+    // setCookie({ res }, "jwt", res.data.jwt, {
+    //   httpOnly: true,
+    //   secure: import.meta.env.MODE !== "development",
+    //   maxAge: 30 * 24 * 60 * 60,
+    //   path: "/",
+    // });
     res.status(200).end();
   } catch (e) {
     console.log("e.message", e.message);

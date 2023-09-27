@@ -29,11 +29,14 @@ export default function LandingNav() {
 
                     </div>
                     <div className="">
+                        <Link to="/login" state="signin">
                         <div className='px-[35px] py-[5px] bg-[#ed7534] duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-full cursor-pointer'
                         // onClick={props.handleButtonClick}
                         >
                             Sign Up
                         </div>
+                        </Link>
+                        
                     </div>
                 </div>
 
