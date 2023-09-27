@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import NavbarDropdown from "./NavbarDropdown";
+import NavbarDropdown from "../global-components/NavbarDropdown";
 import { ReactComponent as GlimereSweet } from "../assets/images/glimere.svg"
 import { ReactComponent as GlimereLogo } from "../assets/images/glimerenew.svg"
 
