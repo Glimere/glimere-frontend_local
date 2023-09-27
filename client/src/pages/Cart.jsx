@@ -7,7 +7,7 @@ import { removeItem, resetCart } from '../slice/cart/cartSlice';
 import { useDispatch } from 'react-redux';
 import { selectCart } from '../slice/cart/cartSlice';
 import CheckoutSummary from '../components/CheckoutSummary';
-import ProductCounter from '../components/productCounter';
+import ProductCounter from '../components/ProductCounter';
 import ProductColor from '../components/ProductColor';
 import { selectAllUsers } from '../slice/users/userSlice';
 import axios from 'axios';
