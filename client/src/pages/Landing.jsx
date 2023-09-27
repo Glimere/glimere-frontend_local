@@ -70,21 +70,27 @@ export default function Landing() {
     <>
       <LandingNav />
 
-      <div className='h-[100vh] bg-[#ffe9b8]  w-full px-[40px] sm:px-[4rem] pt-[80px] pb-[30px] relative flex flex-row items-center'>
+      <div className='h-[100vh] bg-[#ffe9b8]  w-full px-[40px] sm:px-[200px] pt-[80px] pb-[30px] relative flex flex-row items-center'>
 
         <div className="flex-[1] h-full flex flex-col justify-center">
           <div className="w-[90%] mb-[15px]">
-            <h1 className="text-[35px] sm:text-[50px] text-left text-[#9d5c0d] font-semibold mb-[40px]" style={{ fontFamily: "Edensor" }}>Shop African fashion faster and better.</h1>
+            <h1 className="text-[28px] sm:text-[50px] text-left text-[#9d5c0d] mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop African-made fashion faster and better.</h1>
           </div>
 
           <div className="w-[80%] ">
-            <h1 className="text-[15px] text-left text-[#9d5c0d]"> Say goodbye to long hours of searching for the perfect African fashion pieces. Glimere curates a dazzling array of authentic, handcrafted fashion items from talented creators across the continent.</h1>
+            <h1 className="text-[15px] sm:text-[18px] text-left text-[#9d5c0d] font-normal"> Your one-stop shop for authentic African fashion, curated by the continent&rsquo;s top creators</h1>
           </div>
+          <div className="">
+            <button className="text-white bg-[#ED7534] md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]">
+              Get Started
+            </button>
+          </div>
+
         </div>
 
 
 
-        <div className="sm:h-auto h-[500px] w-[500px] bg-[#fff5ee] overflow-hidden rounded-[100px] bg-landingImg sm:bg-none bg-cover flex flex-col justify-end flex-[0.5] sm:flex-[1]">
+        <div className="sm:min-h-[400px] h-[500px] w-[500px] bg-[#fff5ee] overflow-hidden rounded-[100px] bg-landingImg sm:bg-none bg-cover flex flex-col justify-end flex-[0.5] sm:flex-[1]">
           <img src={landingImg} alt="" className='hidden sm:block px-[10px] pt-[10px] sm:px-[30px] sm:pt-[30px]' />
         </div>
 
@@ -245,10 +251,10 @@ export default function Landing() {
       <div ref={playref} className="container bg-[#ffe9b8] max-w-full flex justify-center items-center">
         {/* Other content */}
         <div className="hidden sm:block my-[70px]">
-          <YoutubeVideo />
+          <YoutubeVideo onReady={onReady} />
         </div>
         <div className="block sm:hidden my-[70px]">
-          <YoutubeVideoSmall />
+          <YoutubeVideoSmall onReady={onReady} />
         </div>
         {/* Other content */}
       </div>
