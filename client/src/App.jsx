@@ -33,7 +33,7 @@ function App() {
   const hideNavbarRoutes = ['/login', ''];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
-  const hideFooterRoutes = ['login', 'view-product', ''];
+  const hideFooterRoutes = ['login', 'view-product'];
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
   const hideNewsletterRoutes = ['login', 'view-product', 'profile', ''];
