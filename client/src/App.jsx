@@ -30,13 +30,13 @@ function App() {
 
   const location = useLocation();
 
-  const hideNavbarRoutes = ['/login', '/get-started'];
+  const hideNavbarRoutes = ['/login', ''];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
-  const hideFooterRoutes = ['login', 'view-product'];
+  const hideFooterRoutes = ['login', 'view-product', ''];
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
-  const hideNewsletterRoutes = ['login', 'view-product', 'profile'];
+  const hideNewsletterRoutes = ['login', 'view-product', 'profile', ''];
   const showNewsletter = !hideNewsletterRoutes.includes(location.pathname.split('/')[1]);
 
   return (
@@ -53,9 +53,9 @@ function App() {
             <Route path="/forgot-password" element={<ForgotPassword />} />
 
             {/* Public routes */}
-            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/get-started" element={<Landing />} />
+            <Route path="/" element={<Landing />} />
 
             {/* Protected routes */}
             <Route path="/admin" element={<AdminDashboard />} />
