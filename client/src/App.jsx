@@ -22,6 +22,7 @@ const ViewCollection = lazy(() => import('./pages/ViewCollection'));
 const ViewAll = lazy(() => import('./components/ViewAll'));
 const Market = lazy(() => import('./pages/Market'));
 const Landing = lazy(() => import('./pages/Landing'));
+const Creators = lazy(() => import('./pages/Creators'));
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from './auth/Auth';
 
@@ -30,13 +31,13 @@ function App() {
 
   const location = useLocation();
 
-  const hideNavbarRoutes = ['/login', '/'];
+  const hideNavbarRoutes = ['/login', "/creators", '/'];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
   const hideFooterRoutes = ['login', 'view-product'];
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
-  const hideNewsletterRoutes = ['login', 'view-product', 'profile', ''];
+  const hideNewsletterRoutes = ['login', 'view-product', 'profile', "creators", ''];
   const showNewsletter = !hideNewsletterRoutes.includes(location.pathname.split('/')[1]);
 
   return (
@@ -45,6 +46,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <AuthProvider>
           {showNavbar && <Navbar />}
+        
           <Routes>
 
             {/* Authentication routes */}
@@ -56,6 +58,7 @@ function App() {
             <Route path="/shop" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Landing />} />
+            <Route path="/creators" element={<Creators />} />
 
             {/* Protected routes */}
             <Route path="/admin" element={<AdminDashboard />} />

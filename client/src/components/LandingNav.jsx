@@ -3,8 +3,12 @@ import NavbarDropdown from "../global-components/NavbarDropdown";
 import { ReactComponent as GlimereSweet } from "../assets/images/glimere-primary.svg"
 import { ReactComponent as GlimereLogo } from "../assets/images/glimerenew.svg"
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function LandingNav() {
+
+    const location = useLocation()
+
     const [isOpen, setIsOpen] = useState(false);
     const [scrollPos, setScrollPos] = useState(0);
 
@@ -51,7 +55,19 @@ export default function LandingNav() {
                     </div>
 
                     {/* Menu */}
+                    <div className="flex flex-row w-[200px] items-center justify-between">
+                        <div className={`hover:border-gray-400 border-transparent ${location.pathname == "/" ? "border-white" : ""} border-solid border-b-[3px]`}>
+                            <Link to="/">
+                                <p className="text-white underline cursor-pointer">Shoppers</p>
+                            </Link>
+                        </div>
+                        <div className={`hover:border-gray-400 border-transparent ${location.pathname == "/creator" ? "border-white" : ""} border-solid border-b-[3px]`}>
+                            <Link to="/creators">
+                                <p className="text-white underline cursor-pointer">Fashion Creators</p>
+                            </Link>
+                        </div>
 
+                    </div>
 
                     {/* Button */}
                     <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-head font-medium">
