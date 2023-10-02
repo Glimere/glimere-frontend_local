@@ -26,6 +26,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import YoutubeVideo from '../components/YoutubeVideo';
 import YoutubeVideoSmall from '../components/YoutubeVideoSmall';
+import glimereBg from "../assets/images/glimereBg.jpg"
 
 export default function Landing() {
 
@@ -70,15 +71,17 @@ export default function Landing() {
     <>
       <LandingNav />
 
-      <div className='h-[100vh] bg-[#ffe9b8]  w-full px-[40px] sm:px-[200px] pt-[80px] pb-[30px] relative flex flex-row items-center'>
+      <div className='h-[100vh] bg-[#ffe9b8] bg-cover bg-center bg-no-repeat w-full px-[40px] sm:px-[100px] pt-[80px] pb-[30px] relative flex flex-row items-center'
+        style={{ backgroundImage: `url(${glimereBg})` }}
+      >
 
         <div className="flex-[1] h-full flex flex-col justify-center">
           <div className="w-[90%] mb-[15px]">
-            <h1 className="text-[28px] sm:text-[50px] text-left text-[#9d5c0d] mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop African-made fashion faster and better.</h1>
+            <h1 className="text-[28px] sm:text-[50px] text-left text-white mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop African-made fashion faster and better.</h1>
           </div>
 
           <div className="w-[80%] ">
-            <h1 className="text-[15px] sm:text-[18px] text-left text-[#9d5c0d] font-normal"> Your one-stop shop for authentic African fashion, curated by the continent&rsquo;s top creators</h1>
+            <h1 className="text-[15px] sm:text-[18px] text-left text-white font-normal"> Your one-stop shop for authentic African fashion, curated by the continent&rsquo;s top creators</h1>
           </div>
           <div className="">
             <button className="text-white bg-[#ED7534] md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]">
@@ -90,8 +93,8 @@ export default function Landing() {
 
 
 
-        <div className="sm:min-h-[400px] h-[500px] w-[500px] bg-[#fff5ee] overflow-hidden rounded-[100px] bg-landingImg sm:bg-none bg-cover flex flex-col justify-end flex-[0.5] sm:flex-[1]">
-          <img src={landingImg} alt="" className='hidden sm:block px-[10px] pt-[10px] sm:px-[30px] sm:pt-[30px]' />
+        <div className="sm:min-h-[400px] h-[500px] w-[500px] bg-transparent overflow-hidden rounded-[100px] bg-landingImg sm:bg-none bg-cover flex flex-col justify-end flex-[0.5] sm:flex-[1]">
+          {/* <img src={landingImg} alt="" className='hidden sm:block px-[10px] pt-[10px] sm:px-[30px] sm:pt-[30px]' /> */}
         </div>
 
       </div>
@@ -278,7 +281,7 @@ export default function Landing() {
         </div>
 
       </div>
-
+      {/* 
       <div className="bg-[#4e2012] w-full h-[700px] sm:h-[400px] flex flex-col-reverse sm:flex-row pt-0">
 
         <div className="flex-[1] flex flex-col-reverse justify-center items-start">
@@ -333,7 +336,7 @@ export default function Landing() {
       </div>
       <div className="bg-[#772f1a] w-full h-[80px] border-t-[1px] border-[#ffe9b865] flex justify-center items-center">
         <h1 className='text-[#ffe9b8] text-[12px]'>© 2023 Glimere. All Rights Reserved.</h1>
-      </div>
+      </div> */}
 
 
 

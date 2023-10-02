@@ -23,56 +23,58 @@ const ViewAll = lazy(() => import('./components/ViewAll'));
 const Market = lazy(() => import('./pages/Market'));
 const Landing = lazy(() => import('./pages/Landing'));
 import { ToastContainer } from 'react-toastify'
+import { AuthProvider } from './auth/Auth';
 
 
 function App() {
 
   const location = useLocation();
 
-  const hideNavbarRoutes = ['/login', '/'];
+  const hideNavbarRoutes = ['/login', '/get-started'];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
-  const hideFooterRoutes = ['login', 'view-product', ''];
+  const hideFooterRoutes = ['login', 'view-product'];
   const showFooter = !hideFooterRoutes.includes(location.pathname.split('/')[1]);
 
-  const hideNewsletterRoutes = ['login', 'view-product', 'profile', ''];
+  const hideNewsletterRoutes = ['login', 'view-product', 'profile'];
   const showNewsletter = !hideNewsletterRoutes.includes(location.pathname.split('/')[1]);
 
   return (
     <>
-      {/* <AuthProvider> */}
+
       <Suspense fallback={<div>Loading...</div>}>
-        {showNavbar && <Navbar />}
-        <Routes>
+        <AuthProvider>
+          {showNavbar && <Navbar />}
+          <Routes>
 
-          {/* Authentication routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+            {/* Authentication routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {/* Public routes */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/" element={<Landing />} />
+            {/* Public routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/get-started" element={<Landing />} />
 
-          {/* Protected routes */}
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/view-product/:id" element={<ViewProduct />} />
-          <Route path="/view-collection/:id" element={<ViewCollection />} />
-          <Route path="/view-all/:id" element={<ViewAll />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/market" element={<Market />} />
+            {/* Protected routes */}
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/view-product/:id" element={<ViewProduct />} />
+            <Route path="/view-collection/:id" element={<ViewCollection />} />
+            <Route path="/view-all/:id" element={<ViewAll />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/market" element={<Market />} />
 
-        </Routes>
-        {showNewsletter && <Newsletter />}
-        {showFooter && <Footer />}
-        <ToastContainer />
-        {/* </AuthProvider> */}
+          </Routes>
+          {showNewsletter && <Newsletter />}
+          {showFooter && <Footer />}
+          <ToastContainer />
+        </AuthProvider>
       </Suspense>
 
     </>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavbarDropdown from "../global-components/NavbarDropdown";
-import { ReactComponent as GlimereSweet } from "../assets/images/glimere.svg"
+import { ReactComponent as GlimereSweet } from "../assets/images/glimere-primary.svg"
 import { ReactComponent as GlimereLogo } from "../assets/images/glimerenew.svg"
 import { Link } from "react-router-dom";
 
@@ -56,7 +56,7 @@ export default function LandingNav() {
                     {/* Button */}
                     <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-head font-medium">
                         <Link to="/login" state="signin">
-                            <p className="text-black-100 underline cursor-pointer">SignUp</p>
+                            <p className="text-white underline cursor-pointer">SignUp</p>
                         </Link>
 
 

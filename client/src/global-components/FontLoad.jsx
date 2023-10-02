@@ -1,42 +1,56 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Edensor from "../assets/fonts/Edensor-Free.otf"
+import GeosansLight from "../assets/fonts/GeosansLight.ttf"
+import GeosansLightOblique from "../assets/fonts/GeosansLight-Oblique.ttf"
+import ABeeZeeRegular from "../assets/fonts/ABeeZee-Regular.ttf"
+import ABeeZeeItalic from "../assets/fonts/ABeeZee-Italic.ttf"
+
 
 
 export default function FontLoad() {
 
+const fonts = [
+    {family:"Edensor", font: Edensor, style: "normal"}, 
+    {family:"ABeeZeeRegular", font: ABeeZeeRegular, style: "normal"},
+    {family:"ABeeZeeItalic", font: ABeeZeeItalic, style: "italic"}
+]
 
-     useEffect(() => {
+    useEffect(() => {
 
-        var fontss = new FontFace("Edensor", `url(${Edensor})`, {
-            style: 'normal', weight: '400'
+        fonts.forEach((font) => {
+            var fontss = new FontFace(font.family, `url(${font.font})`, {
+            style: font.style, weight: '400'
         });
 
         //   console.log('font', fonts[i].font.family)
-        
+
         // don't wait for the render tree, initiate an immediate fetch!
-        fontss.load().then(function(loaded_face) {
+        fontss.load().then(function (loaded_face) {
             // apply the font (which may re-render text and cause a page reflow)
             // after the font has finished downloading 
-          
+
             document.fonts.add(loaded_face);
             // document.body.style.fontFamily = `Edensor, serif`;
 
             // console.log("document",document.body.style.fontFamily)
-        
+
             // OR... by default the content is hidden,
             // and it's rendered after the font is available
 
             // var content = document.getElementById(`text${index}`);
             // content.style.visibility = "visible";
             // content.style.fontFamily = `${font.family}`
-            
-     
+
+
             // OR... apply your own render strategy here...
-        }).catch(function(err) {
+        }).catch(function (err) {
             console.log('error', err)
         });
 
+
+    })
+        })
+
         
-      })
 
 }

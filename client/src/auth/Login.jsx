@@ -67,7 +67,7 @@ export default function Login() {
         if (res.data.user.confirmed == true) {
           dispatch(loginSuccess(res.data))
           localStorage.setItem("hasFetchedCartData", "false");
-          navigate('/home'); // Replace '/' with the actual route of your homepage
+          navigate('/'); // Replace '/' with the actual route of your homepage
         }
 
       }

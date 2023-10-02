@@ -14,7 +14,6 @@ const AuthProvider = ({ children }) => {
   const users = useSelector(selectAllUsers)
   const loggedin = useSelector(selectLoggedInUser)
 
-
   // const location = useLocation();
 
   // const hideNavbarRoutes = ['/login'];
@@ -23,12 +22,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const checkAuthentication = () => {
-      const jwt = localStorage.getItem('jwt');
-      const loggedIn = localStorage.getItem('loggedin');
-
-      if (!(loggedIn && jwt)) {
-        navigate('/login');
-      }
+    
     };
 
     checkAuthentication();
