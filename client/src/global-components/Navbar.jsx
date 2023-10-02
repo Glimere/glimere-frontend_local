@@ -263,7 +263,7 @@ export default function Navbar() {
 
           <div className="flex-[1] sm:flex-[2.18] py-[12px] hidden sm:flex flex-row items-center justify-between">
             <div className="flex flex-row items-center">
-              <Link to="/">
+              <Link to="/shop">
                 <GlimereLogo style={{ color: logoColor }} height="35" className={`mr-[10px] duration-300 ${isSticky ? 'text-[100px] block' : 'hidden'}`} />
                 <GlimereSweet style={{ color: logoColor }} height="35" className={`${isSticky ? 'hidden' : 'hidden sm:block'}`} />
               </Link>
