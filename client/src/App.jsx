@@ -30,7 +30,7 @@ function App() {
 
   const location = useLocation();
 
-  const hideNavbarRoutes = ['/login', ''];
+  const hideNavbarRoutes = ['/login', '/'];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
 
   const hideFooterRoutes = ['login', 'view-product'];
