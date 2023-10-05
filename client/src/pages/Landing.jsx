@@ -73,7 +73,7 @@ export default function Landing() {
     <>
       <LandingNav />
 
-      <div className='h-[100vh] bg-black-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
+      <div className='h-[88vh] sm:h-[100vh] bg-black-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
       // style={{ backgroundImage: `url(${glimereBg})` }}
       >
         <div className="absolute h-full w-full flex justify-center items-end">
