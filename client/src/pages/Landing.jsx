@@ -124,10 +124,10 @@ export default function Landing() {
       <div className="h-[100vh] bg-black-100 w-full relative flex flex-col-reverse sm:flex-row-reverse">
         <div className="flex-[1] h-full px-[40px] sm:pl-[4rem] pb-[40px] sm:pb-[0px] flex flex-col justify-center">
           <div className="w-[100%] sm:w-[90%] mb-[15px]">
-            <h1 className="text-[35px] sm:text-[50px] text-left text-[#9d5c0d] font-semibold" style={{ fontFamily: "Edensor" }}>Empower Yourself with Endless Opportunities</h1>
+            <h1 className="text-[35px] sm:text-[50px] text-left text-[#ffffff] font-semibold" style={{ fontFamily: "Edensor" }}>Empower Yourself with Endless Opportunities</h1>
           </div>
           <div className="w-[90%] sm:w-[70%] ">
-            <h1 className="text-[15px] text-left text-[#9d5c0d]">Unlock Limitless Career Opportunities with Glimere&rsquo;s job portal, featuring a wide range of positions in the fashion industry. From design to marketing, discover your dream job and take the next step in your career.</h1>
+            <h1 className="text-[15px] text-left text-[#ffffff] text-[#9d5c0d]">Unlock Limitless Career Opportunities with Glimere&rsquo;s job portal, featuring a wide range of positions in the fashion industry. From design to marketing, discover your dream job and take the next step in your career.</h1>
           </div>
         </div>
 
@@ -158,103 +158,10 @@ export default function Landing() {
 
         </div>
       </div>
-      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row">
-        <div className="flex-[1]">
-          <div className="flex-[1] h-full px-[40px] sm:px-[4rem] flex flex-col justify-center">
-            <div className="w-[]sm:w-[90%] mb-[15px]">
-              <h1 className="text-[38px] sm:text-[50px] text-left text-white font-semibold" style={{ fontFamily: "Edensor" }}>Join a Thriving Fashion Community</h1>
-            </div>
-            <div className="w-[90%] sm:w-[70%] ">
-              <h1 className="text-[15px] text-left text-white">Connect with like-minded individuals who share your passion for fashion. Collaborate with other creatives, exchange ideas, and share your work.</h1>
-            </div>
-          </div>
-        </div>
-        <div className="flex-[0.6] sm:flex-[1.9] flex items-end">
-          <img src={community} alt="" className='w-full' />
-        </div>
-
-      </div>
-
-      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row">
-        <div className="flex-[1] h-[370px] sm:h-auto flex justify-center sm:items-end absolute sm:relative w-full sm:w-auto">
-          <img src={products} alt="" className='h-full rotate-90 sm:rotate-0' />
-        </div>
-
-        <div className="flex-[1.3] mt-[300px] sm:mt-0">
-          <div className="h-full sm:pl-[4rem] px-[40px] flex flex-col justify-center">
-            <div className="w-[90%] mb-[15px]">
-              <h1 className="text-[38px] sm:text-[50px] text-left text-[#9d5c0d] font-semibold" style={{ fontFamily: "Edensor" }}>Showcase Your Creativity and Skills</h1>
-            </div>
-            <div className="w-[70%] ">
-              <h1 className="text-[15px] text-left text-[#9d5c0d]">Showcase your unique style with a stunning portfolio that captures your essence and creativity, and sets you apart in the fashion industry.</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row-reverse">
-        <div className="flex-[1] h-[370px] sm:h-auto flex justify-center sm:items-end sm:mr-[150px] absolute sm:relative w-full sm:w-auto">
-          <img src={tools} alt="" className='h-full rotate-90 sm:rotate-0' />
-        </div>
-
-        <div className="flex-[1.1] mt-[300px] sm:mt-0">
-          <div className="h-full sm:pl-[4rem] px-[40px] flex flex-col justify-center">
-            <div className="w-[90%] mb-[15px]  pt-[30px] sm:pt-0">
-              <h1 className="text-[38px] sm:text-[50px] text-left text-[#9d5c0d] font-semibold" style={{ fontFamily: "Edensor" }}>Get The Realistic Experience</h1>
-            </div>
-            <div className="w-[70%]">
-              <h1 className="text-[15px] text-left text-[#9d5c0d]">Experience fashion like never before with Glimere&rsquo;s cutting-edge augmented reality tools. Our platform combines technology and style to provide an immersive and interactive fashion experience.</h1>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
-      <div className="h-[100vh] bg-[#332f2d] w-full relative flex flex-row-reverse">
-        <div className="flex-[1] items-end hidden sm:flex">
-          <img src={inclusive} alt="" className='h-full' />
-        </div>
 
-        <div className="flex-[1.3]">
-          <div className="flex-[1] h-full px-[40px] sm:pl-[4rem] flex flex-col justify-center">
-            <div className="w-full sm:w-[90%] mb-[40px]">
-              <h1 className="text-[38px] sm:text-[50px] text-left text-white font-semibold" style={{ fontFamily: "Edensor" }}>We Value Inclusivity</h1>
-            </div>
-            <div className="w-full sm:w-[70%] ">
-              <h1 className="text-[15px] text-left text-[#cec1ba]">At Glimere, we believe in a platform that welcomes everyone. We celebrate diversity and are committed to providing a safe and welcoming space for individuals from all walks of life.
-
-                Our community is built on the foundation of respect and understanding, and we believe in creating a culture where everyone feels valued and empowered to express themselves freely and authentically.
-
-                We encourage individuals to showcase their unique style and creativity, regardless of their race, gender, age, or background.</h1>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row pb-[190px] sm:pb-0 ">
-        <div className='flex-[1] overflow-hidden z-10 flex flex-col items-start py-[0px] sm:py-[80px] px-[40px] sm:pl-[4rem]'>
-
-          <h1 className="text-[#ffe9b8] font-semibold text-[35px] sm:text-[40px]" style={{ fontFamily: "Edensor" }}>Explore the Glimere Experience</h1>
-          <div className="w-[90%] sm:w-[60%] mt-[20px] text-left">
-            <p className="text-white">As a user-focused platform, Glimere is designed to make your fashion journey easy and enjoyable.</p>
-          </div>
-        </div>
-        <div className="flex-[1] flex flex-col px-[80px] sm:px-[35%] absolute  h-full  justify-end">
-          <img src={platform} alt="" className='w-full ' />
-
-        </div>
-
-        <div className="flex-[1] z-10 flex flex-col text-left sm:text-right items-start sm:items-end justify-start sm:justify-end py-[0px] sm:py-[80px] px-[40px] sm:pr-[4rem]">
-          <h1 className="text-[#ffe9b8] font-semibold text-[35px] sm:text-[40px]" style={{ fontFamily: "Edensor" }}>Get the fashion feel</h1>
-          <div className="w-[90%] sm:w-[60%] mt-[20px] text-left sm:text-right">
-            <p className="text-white">Our design philosophy at Glimere is to create a user-friendly platform with a touch of fashionable flair and a modern concept.</p>
-          </div>
-        </div>
-      </div>
-
-      <div ref={playref} className="container bg-[#ffe9b8] max-w-full flex justify-center items-center">
+      <div ref={playref} className="container bg-black-100 max-w-full flex justify-center items-center">
         {/* Other content */}
         <div className="hidden sm:block my-[70px]">
           <YoutubeVideo onReady={onReady} />
@@ -269,9 +176,9 @@ export default function Landing() {
       <div ref={elementRef} className="h-[100vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col-reverse sm:flex-row">
         <div className="flex-[1] flex items-center">
           <div className="">
-            <h1 className="font-medium text-[40px] sm:text-[70px] mb-[30px]" style={{ fontFamily: "Edensor" }}>Ready to slay the fashion game?</h1>
+            <h1 className="font-medium text-[40px] text-white sm:text-[70px] mb-[30px]" style={{ fontFamily: "Edensor" }}>Ready to slay the fashion game?</h1>
             <div className="w-[90%] sm:w-[70%]">
-              <p className='text-[15px] sm:text-[19px] mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
+              <p className='text-[15px] sm:text-[19px] text-white mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
             </div>
 
             <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-[10px] cursor-pointer'

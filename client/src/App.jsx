@@ -23,6 +23,7 @@ const Market = lazy(() => import('./pages/Market'));
 const Landing = lazy(() => import('./pages/Landing'));
 const Creators = lazy(() => import('./pages/Creators'));
 const  Register = lazy(() => import('./pages/Register'));
+import Loader from './components/Loader';
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from './auth/Auth';
 
@@ -43,7 +44,7 @@ function App() {
   return (
     <>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <AuthProvider>
           {showNavbar && <Navbar />}
         
