@@ -8,7 +8,6 @@ const Profile = lazy(() => import('./pages/Profile'));
 const Cart = lazy(() => import('./pages/Cart'));
 const Navbar = lazy(() => import('./global-components/Navbar'));
 const Login = lazy(() => import('./auth/Login'));
-const Register = lazy(() => import('./auth/Register'));
 const Home = lazy(() => import('./pages/Home'));
 const ForgotPassword = lazy(() => import('./auth/ForgotPassword'));
 const ViewProduct = lazy(() => import('./pages/ViewProduct'));
@@ -23,6 +22,7 @@ const ViewAll = lazy(() => import('./components/ViewAll'));
 const Market = lazy(() => import('./pages/Market'));
 const Landing = lazy(() => import('./pages/Landing'));
 const Creators = lazy(() => import('./pages/Creators'));
+const  Register = lazy(() => import('./pages/Register'));
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from './auth/Auth';
 
@@ -59,6 +59,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Landing />} />
             <Route path="/creators" element={<Creators />} />
+            <Route path="/register" element={<Register />} />
 
             {/* Protected routes */}
             <Route path="/admin" element={<AdminDashboard />} />

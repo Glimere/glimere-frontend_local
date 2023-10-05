@@ -117,7 +117,7 @@ export default function SearchList(props) {
                                 onClick={() => props.handleFilterChange(filter.type, filter.value)}
                             >
                                 <p className='text-[11px] mr-[5px]'>{filter.type}</p>
-                                <div className="h-[15px] w-[15px] flex justify-center items-center bg-[#ED7534] rounded-full">
+                                <div className="h-[15px] w-[15px] flex justify-center items-center bg-primary-100 rounded-full">
                                     <RxCross2 className='text-[11px] text-white' />
                                 </div>
                             </button>
@@ -164,7 +164,7 @@ export default function SearchList(props) {
                                             </svg>
                                         </a>
                                         {/* <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" --> */}
-                                        <a href="#" aria-current="page" className="relative z-10 inline-flex items-center bg-[#ED7534] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
+                                        <a href="#" aria-current="page" className="relative z-10 inline-flex items-center bg-primary-100 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
                                         <a href="#" className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
                                         <a href="#" className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
                                         <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>

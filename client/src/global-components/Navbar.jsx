@@ -358,7 +358,7 @@ export default function Navbar() {
                     >
                       <FiShoppingCart className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
 
-                      {cart.length != 0 ? <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-[#ed7534] flex justify-center items-center">
+                      {cart.length != 0 ? <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-primary-100 flex justify-center items-center">
                         <p className='text-[8px] text-white'>{cart.length}</p>
                       </div> : null}
                     </div>

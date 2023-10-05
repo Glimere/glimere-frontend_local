@@ -77,6 +77,10 @@ body {
   padding: 0;
 }
 
+.hero-text {
+  -webkit-text-stroke: 1px white;
+}
+
 .swiper {
   width: 100%;
   height: 100%;

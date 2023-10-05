@@ -136,7 +136,7 @@ export default function Categories(props) {
                     </Link>
 
                     <div className="group-hover:flex hidden justify-between items-center z-40 mt-[10px] px-[10px]">
-                      <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-[#ED7534] cursor-pointer"
+                      <div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[100px] bg-primary-100 cursor-pointer"
                         onClick={() => {
                           dispatch(addToCart({
                             quantity: 1,
@@ -174,7 +174,7 @@ export default function Categories(props) {
 
 
 
-                    {apparel.attributes.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-[#ED7534] flex justify-center items-center z-[10]">
+                    {apparel.attributes.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-primary-100 flex justify-center items-center z-[10]">
                       <p className='text-white font-bold text-[10px]'>New</p>
                     </div> : ""}
                   </div>
@@ -257,7 +257,7 @@ export default function Categories(props) {
         <div className="w-full">
           {headerType === "timeline" ?
 
-            <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] rounded-[5px]">
+            <div className="flex justify-between items-center mb-[20px] bg-primary-100 px-[20px] py-[10px] rounded-[5px]">
               <div className="flex-[7] max-[727px]:flex-[7] max-[1050px]:flex-[8] flex flex-col sm:flex-row sm:justify-between ">
                 <div className="flex items-center">
                   <img src={gucci} alt="" className='w-[15px] sm:w-[30px] mr-[15px]' />

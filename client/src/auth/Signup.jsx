@@ -69,7 +69,7 @@ export default function Signup(props) {
 
                 </div>
                 <div className="w-full mt-6 flex flex-col items-center justify-center gap-x-6">
-                    <button type="submit" className="rounded-md w-full bg-[#ed7534] px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    <button type="submit" className="rounded-md w-full bg-primary-100 px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         onClick={props.signUp}
                     >Sign Up</button>
                     <div className="flex flex-row mt-[20px]">

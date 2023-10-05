@@ -9,7 +9,7 @@ export default function SessionHeader(props) {
         <>
             {props.type === "timeline" ?
 
-                <div className="flex justify-between items-center mb-[20px] bg-[#ED7534] px-[20px] py-[10px] rounded-[5px]">
+                <div className="flex justify-between items-center mb-[20px] bg-primary-100 px-[20px] py-[10px] rounded-[5px]">
                     <div className="flex-[7] max-[727px]:flex-[7] max-[1050px]:flex-[8] flex flex-col sm:flex-row sm:justify-between ">
                         <div className="flex items-center">
                             <img src={gucci} alt="" className='w-[15px] sm:w-[30px] mr-[15px]' />

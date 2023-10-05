@@ -144,7 +144,7 @@ export default function Login() {
   return (
     <>
       <div className="w-full h-[100vh]">
-        <div className={`absolute h-full z-10 w-[50%] bg-[#ed7534] duration-700 ease-in-out card ${isVisible ? 'ml-[50%]' : 'mr-[50%]'}`}></div>
+        <div className={`absolute h-full z-10 w-[50%] bg-primary-100 duration-700 ease-in-out card ${isVisible ? 'ml-[50%]' : 'mr-[50%]'}`}></div>
         <div className="w-full h-full flex">
           <div className="flex-[1] w-[50%] p-[50px] flex flex-col items-center">
             <Signup 
@@ -220,7 +220,7 @@ export default function Login() {
 
               </div>
               <div className="w-full mt-6 flex flex-col items-center justify-center gap-x-6">
-                <button type="submit" className="rounded-md w-full bg-[#ed7534] px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                <button type="submit" className="rounded-md w-full bg-primary-100 px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={handleLogin}
                 >Login</button>
                 <div className="flex flex-row mt-[20px]">

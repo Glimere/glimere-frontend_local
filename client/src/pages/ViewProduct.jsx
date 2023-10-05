@@ -142,7 +142,7 @@ export default function ViewProduct() {
                 <p className="text-[12px] mt-[10px]">{apparel.attributes.desc}</p>
               </div>
 
-              <hr className='bg-[#ED7534] border-none h-[1px]' />
+              <hr className='bg-primary-100 border-none h-[1px]' />
 
               <div className="w-full">
                 <div className="flex flex-wrap gap-[3px]">
@@ -176,7 +176,7 @@ export default function ViewProduct() {
                   {/* <p className='text-[12px] text-[#ED7534] mr-[3px]'>SIZE: </p> */}
                   {apparel.attributes.sizes.data.map((size, id) => {
                     return (
-                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-[#ED7534] text-white" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
+                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-primary-100 text-white" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
                         onClick={() => setApparelSize(size.attributes.short_name)}
                       >
                         <p className="text-[9px]">{size.attributes.short_name}</p>
@@ -188,7 +188,7 @@ export default function ViewProduct() {
 
               <div className="flex flex-row items-center justify-between">
                 {/* <p className='text-[11px] flex-[1]'>Enjoy a special discount when you add up to three items to your cart!</p> */}
-                <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-[#ED7534] cursor-pointer"
+                <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-primary-100 cursor-pointer"
                 onClick={() => {
                   dispatch(addToCart({
                     item: {

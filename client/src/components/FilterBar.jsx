@@ -33,7 +33,7 @@ export default function FilterBar(props) {
            
             <div className="w-full flex flex-wrap gap-[5px]">
               {apparels.map((apparel, id) => (
-                <button key={id} className={`px-[10px] py-[5px] mb-[5px] ${props.selectedCategory == apparel.attributes.category ? "bg-[#ED7534]" : ""} rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
+                <button key={id} className={`px-[10px] py-[5px] mb-[5px] ${props.selectedCategory == apparel.attributes.category ? "bg-primary-100" : ""} rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
                   onClick={() => { props.setSelectedCategory(apparel.attributes.category) }}
                 >
                   <p className={`text-[10px] mr-[5px] ${props.selectedCategory == apparel.attributes.category ? "text-white" : "text-[#ED7534]"} `}>{apparel.attributes.category}</p>
@@ -51,7 +51,7 @@ export default function FilterBar(props) {
             <h1 className='font-bold text-[12px] my-[10px]'>Brands</h1>
             <div className="flex flex-wrap gap-[10px]">
               {brands.map((brand) => (
-                <div key={brand.id} className={`flex  px-[7px] py-[4px] justify-center ${props.selectedBrands.includes(brand.id) ? "bg-[#ED7534]" : ""} items-center border-solid border-[#ED7534] border-[1px] rounded-[5px] cursor-pointer`}
+                <div key={brand.id} className={`flex  px-[7px] py-[4px] justify-center ${props.selectedBrands.includes(brand.id) ? "bg-primary-100" : ""} items-center border-solid border-[#ED7534] border-[1px] rounded-[5px] cursor-pointer`}
                   onClick={() => { props.handleBrandChange(brand.id) }}
                 >
                   <div className={`flex h-full w-full justify-center items-center bg-g rounded-full`}>

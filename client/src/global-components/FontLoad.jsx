@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Edensor from "../assets/fonts/Edensor-Free.otf"
-import GeosansLight from "../assets/fonts/GeosansLight.ttf"
-import GeosansLightOblique from "../assets/fonts/GeosansLight-Oblique.ttf"
-import ABeeZeeRegular from "../assets/fonts/ABeeZee-Regular.ttf"
-import ABeeZeeItalic from "../assets/fonts/ABeeZee-Italic.ttf"
 
 
 
 export default function FontLoad() {
 
 const fonts = [
-    {family:"Edensor", font: Edensor, style: "normal"}, 
-    {family:"ABeeZeeRegular", font: ABeeZeeRegular, style: "normal"},
-    {family:"ABeeZeeItalic", font: ABeeZeeItalic, style: "italic"}
+    {family:"Edensor", font: Edensor, style: "normal"}
 ]
 
     useEffect(() => {

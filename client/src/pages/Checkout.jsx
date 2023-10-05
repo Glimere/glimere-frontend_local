@@ -77,7 +77,7 @@ export default function Checkout() {
                 <div className={`w-full h-full flex-row ${checkoutTabSwitch === 1 ? "flex" : "hidden"} bg-white gap-[50px]`}>
                     <div className="flex-[7] bg-white">
                         {toggleEdit ? <div className="w-full h-full bg-white p-[40px]">
-                            <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-[#ED7534] cursor-pointer"
+                            <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-primary-100 cursor-pointer"
                             
                             onClick={()=>{setToggleEdit(false)}}>
                                 <div className="flex flex-row">

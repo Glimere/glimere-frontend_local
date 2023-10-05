@@ -109,7 +109,7 @@ export default function Cart(props) {
 </div>
 
 <div className="w-full flex px-[20px] flex-row justify-between items-center">
-<div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[160px] bg-[#ED7534] cursor-pointer">
+<div className="flex flex-row justify-center items-center p-[10px] h-[30px] w-[160px] bg-primary-100 cursor-pointer">
   <div className="flex flex-row gap-[4px]">
     <p className='text-white text-center text-[9px]'>PROCEED TO CHECKOUT</p>
     <AiOutlineArrowRight className="text-[12px] text-white" />

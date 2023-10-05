@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as GlimereSweet } from '../assets/images/glimere-sweet.svg'
+import { ReactComponent as GlimereLogo } from "../assets/images/glimerenew.svg"
 import facebook from '../assets/images/facebook.svg'
 import instagram from '../assets/images/instagram.svg'
 import linkedin from '../assets/images/linkedin.svg'
@@ -7,14 +7,11 @@ import twitter from '../assets/images/twitter.svg'
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto max-w-[1344px] bg-[#ed7534]">
+    <footer className="container mx-auto max-w-[1344px] bg-primary-100">
       <div className="px-5 py-10 flex flex-col sm:px-10 lg:grid grid-cols-3 lg:gap-y-32">
         <div className="lg:col-span-1">
-          <img
-            className="w-[125px] h-auto mb-10 lg:mb-0"
-            src="shopify-footer.png"
-            alt="shopify-footer"
-          />
+          <GlimereLogo style={{ color: "#ffffff" }} height="40" className={`w-[120px] hidden sm:block`} />
+
         </div>
         <div className="grid grid-cols-2 gap-9 font-body mb-[52px] md:grid-cols-4 lg:col-span-2 lg:mb-0">
           <div>
@@ -100,7 +97,7 @@ export default function Footer() {
         </div>
         <div className="text-center lg:col-span-3 md:flex justify-between items-center">
           <div className="flex items-center justify-center gap-4 mb-4 order-2">
-          <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
+            <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
               <a href="https://web.facebook.com/Glimere" target="_blank" rel="noreferrer">
                 <img src={facebook} alt="" className='w-[30px]' />
               </a>

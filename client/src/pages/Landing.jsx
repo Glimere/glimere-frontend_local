@@ -13,20 +13,22 @@ import career9 from "../assets/images/career9.jpg"
 import community from "../assets/images/community.png"
 import products from "../assets/images/products.png"
 import inclusive from "../assets/images/inclusive.jpg"
-import glimere1 from '../assets/images/glimere1.svg'
+import img6 from '../assets/images/img6.jpg'
 import platform from '../assets/images/platform.png'
-import facebook from '../assets/images/facebook.svg'
-import instagram from '../assets/images/instagram.svg'
-import linkedin from '../assets/images/linkedin.svg'
-import twitter from '../assets/images/twitter.svg'
+import img1 from '../assets/images/img1.jpg'
+import img2 from '../assets/images/img2.jpg'
+import img3 from '../assets/images/img3.jpg'
+import img4 from '../assets/images/img4.jpg'
 import success from '../assets/images/success.png'
 import tools from '../assets/images/tools.png'
-import youtube from '../assets/images/youtube.svg'
+import img5 from '../assets/images/img5.jpg'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import YoutubeVideo from '../components/YoutubeVideo';
 import YoutubeVideoSmall from '../components/YoutubeVideoSmall';
 import glimereBg from "../assets/images/glimereBg.jpg"
+import landingCover from "../assets/images/landing-cover.png"
+import Bubble from '../components/bubble';
 
 export default function Landing() {
 
@@ -71,35 +73,33 @@ export default function Landing() {
     <>
       <LandingNav />
 
-      <div className='h-[100vh] bg-[#ffe9b8] bg-cover bg-center bg-no-repeat w-full px-[40px] sm:px-[100px] pt-[80px] pb-[30px] relative flex flex-row items-center'
-        style={{ backgroundImage: `url(${glimereBg})` }}
+      <div className='h-[100vh] bg-black-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
+      // style={{ backgroundImage: `url(${glimereBg})` }}
       >
+        <div className="absolute h-full w-full flex justify-center items-end">
+            <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1}/>
+            <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[46%] sm:top-[40%] left-[7%]" img={img2}/>
+            <Bubble classes="h-[80px] sm:h-[100px] w-[80px]  sm:w-[100px] hover:h-[120px] hover:w-[120px] top-[19%] sm:top-[80%] left-[55%] sm:left-[10%]" img={img3}/>
+            <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[31%] sm:top-[25%] right-[10%]" img={img4}/>
+            <Bubble classes="h-[70px] sm:h-[90px]  w-[70px] sm:w-[90px] hover:h-[110px] hover:w-[110px] top-[46%] sm:top-[40%] right-[15%]" img={img5}/>
+            <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[80%] right-[53%] sm:right-[10%]" img={img6}/>
+          <img src={landingCover} alt="" className='w-[700px] sm:w-[500px] mb-[-30px] sm:mb-[-200px]' />
+        </div>
 
-        <div className="flex-[1] h-full flex flex-col justify-center">
-          <div className="w-[90%] mb-[15px]">
-            <h1 className="text-[28px] sm:text-[50px] text-left text-white mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop African-made fashion faster and better.</h1>
-          </div>
+        <div className="h-full w-full flex flex-col items-center justify-end px-[40px] sm:px-[100px] pt-[80px] pb-[30px]">
+  
+          <div className="w-[340px] sm:w-[800px] z-[4] relative mb-[15px]">
+        
+            <h1 className="text-[40px] hero-text sm:text-[60px] text-center text-white mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop Ex<span className='hero-text text-transparent'>clusive</span> Custom made<span className='hero-text text-transparent'> Fashion</span></h1>
 
-          <div className="w-[80%] ">
-            <h1 className="text-[15px] sm:text-[18px] text-left text-white font-normal"> Your one-stop shop for authentic African fashion, curated by the continent&rsquo;s top creators</h1>
-          </div>
-          <div className="">
-            <button className="text-white bg-[#ED7534] md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]">
-              Get Started
-            </button>
           </div>
 
         </div>
 
-
-
-        <div className="sm:min-h-[400px] h-[500px] w-[500px] bg-transparent overflow-hidden rounded-[100px] bg-landingImg sm:bg-none bg-cover flex flex-col justify-end flex-[0.5] sm:flex-[1]">
-          {/* <img src={landingImg} alt="" className='hidden sm:block px-[10px] pt-[10px] sm:px-[30px] sm:pt-[30px]' /> */}
-        </div>
 
       </div>
 
-      <div className="h-[100vh] bg-[#772f1a] w-full relative flex flex-col sm:flex-row">
+      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row">
         <div className="bg-[#DDB9A3] w-full h-full flex sm:block items-center absolute">
           <img src={style} alt="" className='w-full' />
         </div>
@@ -118,7 +118,7 @@ export default function Landing() {
           </div>
         </div>
       </div>
-      <div className="h-[100vh] bg-[#fff5ee] w-full relative flex flex-col-reverse sm:flex-row-reverse">
+      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col-reverse sm:flex-row-reverse">
         <div className="flex-[1] h-full px-[40px] sm:pl-[4rem] pb-[40px] sm:pb-[0px] flex flex-col justify-center">
           <div className="w-[100%] sm:w-[90%] mb-[15px]">
             <h1 className="text-[35px] sm:text-[50px] text-left text-[#9d5c0d] font-semibold" style={{ fontFamily: "Edensor" }}>Empower Yourself with Endless Opportunities</h1>
@@ -145,7 +145,7 @@ export default function Landing() {
             <div className="w-full h-full bg-white flex-[1]  rounded-bl-[150px]  rounded-br-[150px] overflow-hidden">
               <img src={career5} alt="" className="w-full" />
             </div>
-            <div className="w-full h-full bg-[#ed7534] flex-[1]  rounded-bl-[150px] overflow-hidden">
+            <div className="w-full h-full bg-primary-100 flex-[1]  rounded-bl-[150px] overflow-hidden">
               <img src={career9} alt="" className="w-full" />
             </div>
             <div className="w-full h-full bg-[#EEC170] flex-[1]  rounded-br-[150px] overflow-hidden">
@@ -155,7 +155,7 @@ export default function Landing() {
 
         </div>
       </div>
-      <div className="h-[100vh] bg-[#63AA87] w-full relative flex flex-col sm:flex-row">
+      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row">
         <div className="flex-[1]">
           <div className="flex-[1] h-full px-[40px] sm:px-[4rem] flex flex-col justify-center">
             <div className="w-[]sm:w-[90%] mb-[15px]">
@@ -172,7 +172,7 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[100vh] bg-[#ffe9b8] w-full relative flex flex-col sm:flex-row">
+      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row">
         <div className="flex-[1] h-[370px] sm:h-auto flex justify-center sm:items-end absolute sm:relative w-full sm:w-auto">
           <img src={products} alt="" className='h-full rotate-90 sm:rotate-0' />
         </div>
@@ -189,7 +189,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[100vh] bg-[#fcd990] w-full relative flex flex-col sm:flex-row-reverse">
+      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row-reverse">
         <div className="flex-[1] h-[370px] sm:h-auto flex justify-center sm:items-end sm:mr-[150px] absolute sm:relative w-full sm:w-auto">
           <img src={tools} alt="" className='h-full rotate-90 sm:rotate-0' />
         </div>
@@ -230,7 +230,7 @@ export default function Landing() {
       </div>
 
 
-      <div className="h-[100vh] bg-[#ed7534] w-full relative flex flex-col sm:flex-row pb-[190px] sm:pb-0 ">
+      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row pb-[190px] sm:pb-0 ">
         <div className='flex-[1] overflow-hidden z-10 flex flex-col items-start py-[0px] sm:py-[80px] px-[40px] sm:pl-[4rem]'>
 
           <h1 className="text-[#ffe9b8] font-semibold text-[35px] sm:text-[40px]" style={{ fontFamily: "Edensor" }}>Explore the Glimere Experience</h1>
@@ -263,7 +263,7 @@ export default function Landing() {
       </div>
 
 
-      <div ref={elementRef} className="h-[100vh] bg-[#fff5ee] w-full px-[40px] sm:px-[4rem] relative flex flex-col-reverse sm:flex-row">
+      <div ref={elementRef} className="h-[100vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col-reverse sm:flex-row">
         <div className="flex-[1] flex items-center">
           <div className="">
             <h1 className="font-medium text-[40px] sm:text-[70px] mb-[30px]" style={{ fontFamily: "Edensor" }}>Ready to slay the fashion game?</h1>
@@ -271,7 +271,7 @@ export default function Landing() {
               <p className='text-[15px] sm:text-[19px] mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
             </div>
 
-            <button className='px-[40px] py-[12px] bg-[#ed7534] duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-[10px] cursor-pointer'
+            <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-[10px] cursor-pointer'
               onClick={() => { setOpen(true) }}
             >
               Join Now!
@@ -462,7 +462,7 @@ export default function Landing() {
                             </div>
                           </div>
                           <div className="mt-6 flex items-center justify-center gap-x-6">
-                            <button type="submit" className="rounded-md bg-[#ed7534] px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I&rsquo;m in!</button>
+                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I&rsquo;m in!</button>
                           </div>
                         </form>}
 
