@@ -77,21 +77,25 @@ export default function Landing() {
       // style={{ backgroundImage: `url(${glimereBg})` }}
       >
         <div className="absolute h-full w-full flex justify-center items-end">
-            <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1}/>
-            <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[46%] sm:top-[40%] left-[7%]" img={img2}/>
-            <Bubble classes="h-[80px] sm:h-[100px] w-[80px]  sm:w-[100px] hover:h-[120px] hover:w-[120px] top-[19%] sm:top-[80%] left-[55%] sm:left-[10%]" img={img3}/>
-            <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[31%] sm:top-[25%] right-[10%]" img={img4}/>
-            <Bubble classes="h-[70px] sm:h-[90px]  w-[70px] sm:w-[90px] hover:h-[110px] hover:w-[110px] top-[46%] sm:top-[40%] right-[15%]" img={img5}/>
-            <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[80%] right-[53%] sm:right-[10%]" img={img6}/>
+          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1} />
+          <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[46%] sm:top-[40%] left-[7%]" img={img2} />
+          <Bubble classes="h-[80px] sm:h-[100px] w-[80px]  sm:w-[100px] hover:h-[120px] hover:w-[120px] top-[19%] sm:top-[80%] left-[55%] sm:left-[10%]" img={img3} />
+          <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[31%] sm:top-[25%] right-[10%]" img={img4} />
+          <Bubble classes="h-[70px] sm:h-[90px]  w-[70px] sm:w-[90px] hover:h-[110px] hover:w-[110px] top-[46%] sm:top-[40%] right-[15%]" img={img5} />
+          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[80%] right-[53%] sm:right-[10%]" img={img6} />
           <img src={landingCover} alt="" className='w-[700px] sm:w-[500px] mb-[-30px] sm:mb-[-200px]' />
         </div>
 
         <div className="h-full w-full flex flex-col items-center justify-end px-[40px] sm:px-[100px] pt-[80px] pb-[30px]">
-  
+
           <div className="w-[340px] sm:w-[800px] z-[4] relative mb-[15px]">
-        
+
             <h1 className="text-[40px] hero-text sm:text-[60px] text-center text-white mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop Ex<span className='hero-text text-transparent'>clusive</span> Custom made<span className='hero-text text-transparent'> Fashion</span></h1>
 
+          </div>
+
+          <div className='glass z-[4] relative py-[10px] px-[50px] rounded-full font-medium text-[15px] text-white'>
+            Featuring Top Fashion Creators
           </div>
 
         </div>
@@ -99,23 +103,22 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col sm:flex-row">
-        <div className="bg-[#DDB9A3] w-full h-full flex sm:block items-center absolute">
-          <img src={style} alt="" className='w-full' />
-        </div>
+      <div className="h-[100vh] bg-[#1b1b1b] w-full relative flex flex-col sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
-        <div className='flex-[1] overflow-hidden z-10 flex flex-col items-start py-[60px] sm:py-[80px] pl-[40px] sm:pl-[4rem]'>
 
-          <h1 className="text-white font-semibold text-[35px] sm:text-[40px]" style={{ fontFamily: "Edensor" }}>Unleash Your Style</h1>
-          <div className="w-[70%] sm:w-[40%] mt-[20px] text-left">
-            <p className="text-[#613e13]">Discover the fashion potential within you and let it shine</p>
+        <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
+          <div className="w-[90%] sm:w-[90%] text-left">
+            <h1 className="text-white font-semibold text-[30px] sm:text-[60px]" style={{ fontFamily: "Edensor" }}>The Future of African Fashion is Here</h1>
+
+          </div>
+          <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
+            <p className="text-white text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
           </div>
         </div>
-        <div className="flex-[1] z-10 flex flex-col items-end justify-end py-[60px] sm:py-[80px] pr-[40px] sm:pr-[4rem]">
-          <h1 className="text-white font-semibold text-[35px] sm:text-[40px]" style={{ fontFamily: "Edensor" }}>Express Yourself</h1>
-          <div className="w-[70%] sm:w-[40%] mt-[20px] text-right">
-            <p className="text-[#613e13]">Make a statement with your unique style</p>
-          </div>
+        <div className="flex-[1] bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
+          style={{ backgroundImage: `url(${img5})` }}
+
+        >
         </div>
       </div>
       <div className="h-[100vh] bg-black-100 w-full relative flex flex-col-reverse sm:flex-row-reverse">
