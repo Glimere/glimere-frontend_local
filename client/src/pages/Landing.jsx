@@ -28,7 +28,7 @@ import YoutubeVideo from '../components/YoutubeVideo';
 import YoutubeVideoSmall from '../components/YoutubeVideoSmall';
 import glimereBg from "../assets/images/glimereBg.jpg"
 import landingCover from "../assets/images/landing-cover.png"
-import Bubble from '../components/bubble';
+import Bubble from '../components/Bubble';
 
 export default function Landing() {
 
