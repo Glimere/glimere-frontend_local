@@ -7,7 +7,7 @@ import twitter from '../assets/images/twitter.svg'
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto max-w-[1344px] bg-primary-100">
+    <footer className="w-full bg-primary-100">
       <div className="px-5 py-10 flex flex-col sm:px-10 lg:grid grid-cols-3 lg:gap-y-32">
         <div className="lg:col-span-1">
           <GlimereLogo style={{ color: "#ffffff" }} height="40" className={`w-[120px] hidden sm:block`} />

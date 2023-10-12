@@ -22,6 +22,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 
 const fetchData = async () => {
+
   try {
     await Promise.all([
       store.dispatch(fetchApparels()),
