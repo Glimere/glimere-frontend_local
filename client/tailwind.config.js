@@ -10,17 +10,9 @@ export default {
         primary: {
           100: "#ED7534",
         },
-        black: { 
-          100: "#000000",
-          200: "#772f1a",
-         
-        },
         secondary: {
-          100: "#FFC588"
-        },
-        tertiary: {
-          100: "#ffe9b8",
-          200: "#fff5ee"
+          100: "#FEF8E9",
+          200: "#ffe9b8",
         }
       },
       fontFamily: {

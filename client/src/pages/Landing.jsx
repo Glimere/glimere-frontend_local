@@ -1,33 +1,20 @@
 import LandingNav from '../components/LandingNav'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
-import landingImg from '../assets/images/glimere-landing.png'
-// import * as THREE from 'three';=
-import glimere from '../assets/images/glimere.svg'
-import glimerenew from '../assets/images/glimerenew.svg'
-import style from "../assets/images/style.jpg"
-import career1 from "../assets/images/career1.jpg"
-import career4 from "../assets/images/career4.jpg"
-import career5 from "../assets/images/career5.jpg"
-import career9 from "../assets/images/career9.jpg"
-import community from "../assets/images/community.png"
-import products from "../assets/images/products.png"
-import inclusive from "../assets/images/inclusive.jpg"
-import img6 from '../assets/images/img6.jpg'
-import platform from '../assets/images/platform.png'
-import img1 from '../assets/images/img1.jpg'
-import img2 from '../assets/images/img2.jpg'
-import img3 from '../assets/images/img3.jpg'
-import img4 from '../assets/images/img4.jpg'
 import success from '../assets/images/success.png'
-import tools from '../assets/images/tools.png'
-import img5 from '../assets/images/img5.jpg'
+import models from "../assets/images/models.png"
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import YoutubeVideo from '../components/YoutubeVideo';
 import YoutubeVideoSmall from '../components/YoutubeVideoSmall';
-import glimereBg from "../assets/images/glimereBg.jpg"
-import landingCover from "../assets/images/landing-cover.png"
+import materialOne from "../assets/images/materialOne.png"
+import materialTwo from "../assets/images/materialTwo.png"
+import materialThree from "../assets/images/materialThree.png"
+import googles from '../assets/images/googles.png'
+import headset from '../assets/images/headset.png'
+import samples from '../assets/images/samples.png'
+import thread from '../assets/images/thread.png'
+import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
 
 export default function Landing() {
@@ -73,28 +60,28 @@ export default function Landing() {
     <>
       <LandingNav />
 
-      <div className='h-[88vh] sm:h-[100vh] bg-black-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
+      <div className='h-[60vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
       // style={{ backgroundImage: `url(${glimereBg})` }}
       >
         <div className="absolute h-full w-full flex justify-center items-end">
-          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1} />
+          {/* <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1} />
           <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[46%] sm:top-[40%] left-[7%]" img={img2} />
           <Bubble classes="h-[80px] sm:h-[100px] w-[80px]  sm:w-[100px] hover:h-[120px] hover:w-[120px] top-[19%] sm:top-[80%] left-[55%] sm:left-[10%]" img={img3} />
-          <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[31%] sm:top-[25%] right-[10%]" img={img4} />
-          <Bubble classes="h-[70px] sm:h-[90px]  w-[70px] sm:w-[90px] hover:h-[110px] hover:w-[110px] top-[46%] sm:top-[40%] right-[15%]" img={img5} />
-          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[80%] right-[53%] sm:right-[10%]" img={img6} />
-          <img src={landingCover} alt="" className='w-[700px] sm:w-[500px] mb-[-30px] sm:mb-[-200px]' />
+          <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[31%] sm:top-[25%] right-[10%] sm:right-[20%]" img={img4} />
+          <Bubble classes="h-[70px] sm:h-[90px]  w-[70px] sm:w-[90px] hover:h-[110px] hover:w-[110px] top-[46%] sm:top-[55%] right-[10%]" img={img5} />
+          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[75%] right-[53%] sm:right-[21%]" img={img6} /> */}
+          {/* <img src={landingCover} alt="" className='w-[700px] sm:w-[500px] mb-[-30px] sm:mb-[-200px]' /> */}
         </div>
 
         <div className="h-full w-full flex flex-col items-center justify-end px-[40px] sm:px-[100px] pt-[80px] pb-[30px]">
 
-          <div className="w-[340px] sm:w-[800px] z-[4] relative mb-[15px]">
+          <div className="w-[340px] sm:w-[750px] z-[4] relative mb-[15px]">
 
-            <h1 className="text-[40px] hero-text sm:text-[60px] text-center text-white mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop Ex<span className='hero-text text-transparent'>clusive</span> Custom made<span className='hero-text text-transparent'> Fashion</span></h1>
+            <h1 className="text-[40px] sm:text-[80px] text-center text-black mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop Exclusive Custom made Fashion</h1>
 
           </div>
 
-          <div className='glass z-[4] relative py-[10px] px-[50px] rounded-full font-medium text-[15px] text-white'>
+          <div className='z-[4] border-solid border-[1px] border-black relative py-[5px] sm:py-[10px] px-[25px] sm:px-[50px] rounded-full font-medium text-[15px] text-black'>
             Featuring Top Fashion Creators
           </div>
 
@@ -103,62 +90,45 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[100vh] bg-[#1b1b1b] w-full relative flex flex-col sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
+      <div className="h-[80vh] sm:h-[100vh] bg-secondary-200 w-full relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
 
         <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
           <div className="w-[90%] sm:w-[90%] text-left">
-            <h1 className="text-white font-semibold text-[30px] sm:text-[60px]" style={{ fontFamily: "Edensor" }}>The Future of African Fashion is Here</h1>
+            <h1 className="text-black text-[30px] sm:text-[60px]" style={{ fontFamily: "Edensor" }}>The Future of African Fashion is Here</h1>
 
           </div>
           <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
-            <p className="text-white text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
+            <p className="text-black text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
           </div>
         </div>
         <div className="flex-[1] bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
-          style={{ backgroundImage: `url(${img5})` }}
+          style={{ backgroundImage: `url(${models})` }}
 
         >
         </div>
       </div>
-      <div className="h-[100vh] bg-black-100 w-full relative flex flex-col-reverse sm:flex-row-reverse">
-        <div className="flex-[1] h-full px-[40px] sm:pl-[4rem] pb-[40px] sm:pb-[0px] flex flex-col justify-center">
-          <div className="w-[100%] sm:w-[90%] mb-[15px]">
-            <h1 className="text-[35px] sm:text-[50px] text-left text-[#ffffff] font-semibold" style={{ fontFamily: "Edensor" }}>Empower Yourself with Endless Opportunities</h1>
-          </div>
-          <div className="w-[90%] sm:w-[70%] ">
-            <h1 className="text-[15px] text-left text-[#ffffff] text-[#9d5c0d]">Unlock Limitless Career Opportunities with Glimere&rsquo;s job portal, featuring a wide range of positions in the fashion industry. From design to marketing, discover your dream job and take the next step in your career.</h1>
+
+      <div className="h-[100vh] w-full bg-secondary-100 bg-cover bg-center bg-no-repeat"
+      // style={{ backgroundImage: `url(${models})` }}
+      >
+        <div className="h-full w-full relative">
+          <img className=" absolute duration-150  w-[20px] sm:w-[40px]  hover:w-[60px] top-[30%] sm:top-[17%] left-[15%] sm:left-[15%]" src={thread} />
+          <img className=" absolute duration-150  w-[40px] sm:w-[60px] hover:w-[80px] rotate-12 top-[70%] sm:top-[40%] left-[7%]" src={samples} />
+          <img className=" absolute duration-150  w-[80px]  sm:w-[100px]  hover:w-[120px] top-[19%] sm:top-[75%] left-[55%] sm:left-[10%]" src={materialTwo} />
+          <img className=" absolute duration-150  w-[60px] sm:w-[80px] hover:w-[100px] top-[31%] sm:top-[14%] right-[10%] sm:right-[20%]" src={headset} />
+          <img className=" absolute duration-150  w-[70px] sm:w-[90px]  hover:w-[110px] rotate-12 top-[70%] sm:top-[40%] right-[10%]" src={materialThree} />
+          <img className=" absolute duration-150  w-[60px] sm:w-[80px]  hover:w-[100px] top-[19%] sm:top-[75%] right-[53%] sm:right-[21%]" src={toolsPack} />
+          <div className="h-full w-full flex justify-center items-center">
+            <div className="w-[340px] sm:w-[750px]">
+              <h1 className="text-[40px] mt-[100px] sm:mt-0 sm:text-[60px] text-center" style={{ fontFamily: "Edensor" }}>We focus on technology to build a more sustainable solution</h1>
+            </div>
           </div>
         </div>
 
-        <div className="flex-[1] h-[360px] sm:h-auto sm:flex-[1] flex flex-col p-[40px] sm:p-[4rem]">
-          <div className="flex-[1] h-[30%] w-full bg-white rounded-tl-[150px] rounded-tr-[150px] overflow-hidden">
-            <img src={career1} alt="" className="w-full" />
-          </div>
-          <div className="flex-[1] h-[30%] flex flex-row">
-            <div className="w-full h-full bg-[#585123] flex-[1]  rounded-tl-[150px] relative overflow-hidden">
-            </div>
-            <div className="w-full h-full bg-[#fdff92] flex-[1] rounded-tr-[150px] overflow-hidden">
-            </div>
-            <div className="w-full h-full bg-white flex-[1] rounded-bl-[150px]  rounded-br-[150px] rounded-tr-[150px] rounded-tl-[150px] overflow-hidden">
-              <img src={career4} alt="" className="w-full" />
-            </div>
-          </div>
-          <div className="flex-[1] h-[30%] flex flex-row">
-            <div className="w-full h-full bg-white flex-[1]  rounded-bl-[150px]  rounded-br-[150px] overflow-hidden">
-              <img src={career5} alt="" className="w-full" />
-            </div>
-            <div className="w-full h-full bg-primary-100 flex-[1]  rounded-bl-[150px] overflow-hidden">
-              <img src={career9} alt="" className="w-full" />
-            </div>
-            <div className="w-full h-full bg-[#EEC170] flex-[1]  rounded-br-[150px] overflow-hidden">
-            </div>
-          </div>
-
-
-        </div>
       </div>
 
+      <div className="h-[100vh] bg-secondary-200"></div>
 
 
       <div ref={playref} className="container bg-black-100 max-w-full flex justify-center items-center">
@@ -173,12 +143,12 @@ export default function Landing() {
       </div>
 
 
-      <div ref={elementRef} className="h-[100vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col-reverse sm:flex-row">
-        <div className="flex-[1] flex items-center">
+      <div ref={elementRef} className="h-[60vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
+        <div className="flex items-center">
           <div className="">
-            <h1 className="font-medium text-[40px] text-white sm:text-[70px] mb-[30px]" style={{ fontFamily: "Edensor" }}>Ready to slay the fashion game?</h1>
+            <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px]" style={{ fontFamily: "Edensor" }}>Ready to slay the fashion game?</h1>
             <div className="w-[90%] sm:w-[70%]">
-              <p className='text-[15px] sm:text-[19px] text-white mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
+              <p className='text-[15px] sm:text-[19px] text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
             </div>
 
             <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-[10px] cursor-pointer'
@@ -191,64 +161,6 @@ export default function Landing() {
         </div>
 
       </div>
-      {/* 
-      <div className="bg-[#4e2012] w-full h-[700px] sm:h-[400px] flex flex-col-reverse sm:flex-row pt-0">
-
-        <div className="flex-[1] flex flex-col-reverse justify-center items-start">
-
-          <div className="w-full flex-[1] bg-[#FFC588] flex flex-col items-center justify-center px-[40px]  py-[40px]">
-            <h1 className="text-[40px] sm:text-[50px] text-left text-[#772f1a]" style={{ fontFamily: "Edensor" }}>Fashion for all,</h1> <br /> <p className='text-[20px] sm:text-[24px]' style={{ fontFamily: "Edensor" }}>Personalised and professional</p>
-          </div>
-
-          <div className="w-full flex-[1] flex flex-col sm:flex-row justify-center items-center px-[40px]  py-[40px]">
-            <img src={glimerenew} alt="" className='w-[70px] sm:w-[40px]' />
-            <img src={glimere1} alt="" className='w-[70px] sm:w-[100px] mt-[10px] sm:ml-[20px]' />
-          </div>
-
-        </div>
-
-        <div className="flex-[1] bg-[#ffe9b8] flex flex-col p-[20px] items-center justify-center">
-
-          <div className="pb-[40px]">
-            <h3 className="text-[#945643] text-[45px] sm:text-[50px] font-semibold" style={{ fontFamily: "Edensor" }}>Let&rsquo;s Get social!</h3>
-
-          </div>
-
-
-          <div className="flex flex-row justify-between w-[80%] sm:w-[50%]">
-            <div className='flex justify-center items-center cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-              <a href="https://web.facebook.com/Glimere" target="_blank" rel="noreferrer">
-                <img src={facebook} alt="" className='w-[45px]' />
-              </a>
-            </div>
-            <div className='flex justify-center items-center cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-              <a href="https://twitter.com/glmere" target="_blank" rel="noreferrer">
-                <img src={twitter} alt="" className='w-[45px]' />
-              </a>
-            </div>
-            <div className='flex justify-center items-center cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-              <a href="https://www.instagram.com/glimereofficial/" target="_blank" rel="noreferrer">
-                <img src={instagram} alt="" className='w-[45px]' />
-              </a>
-            </div>
-            <div className='flex justify-center items-center cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-              <a href="https://www.linkedin.com/company/glimere/" target="_blank" rel="noreferrer">
-                <img src={linkedin} alt="" className='w-[45px]' />
-              </a>
-            </div>
-            <div className='flex justify-center items-center cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-              <a href="https://www.youtube.com/channel/UCeJZsLwqBttjiaPdtoNnh6g" target="_blank" rel="noreferrer">
-                <img src={youtube} alt="" className='w-[45px]' />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-[#772f1a] w-full h-[80px] border-t-[1px] border-[#ffe9b865] flex justify-center items-center">
-        <h1 className='text-[#ffe9b8] text-[12px]'>© 2023 Glimere. All Rights Reserved.</h1>
-      </div> */}
-
-
 
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -329,21 +241,21 @@ export default function Landing() {
                                 <legend className="text-sm leading-6 text-gray-600">What best describes your fashion role or interests?</legend>
                                 <select id="fashionClass" name="fashionClass" multiple className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-[#f7a477] focus:outline-none focus:ring-[#ed7534] focus:border-[#ed7534] sm:text-sm rounded-md">
                                   <option value="" disabled selected>Select your fashion class...</option>
-                                  <option value="Fashionista" className='checked:bg-[#ffb590] checked:text-white'>Fashionista</option>
-                                  <option value="Fashion Blogger/Influencer" className='checked:bg-[#ffb590] checked:text-white'>Fashion Blogger/Influencer</option>
-                                  <option value="Fashion Designer" className='checked:bg-[#ffb590] checked:text-white'>Fashion Designer</option>
-                                  <option value="Fashion Stylist" className='checked:bg-[#ffb590] checked:text-white'>Fashion Stylist</option>
-                                  <option value="Fashion Retailer" className='checked:bg-[#ffb590] checked:text-white'>Fashion Retailer</option>
-                                  <option value="Fashion Buyer" className='checked:bg-[#ffb590] checked:text-white'>Fashion Buyer</option>
-                                  <option value="Fashion Journalist" className='checked:bg-[#ffb590] checked:text-white'>Fashion Journalist</option>
-                                  <option value="Fashion Photographer" className='checked:bg-[#ffb590] checked:text-white'>Fashion Photographer</option>
-                                  <option value="Fashion Model" className='checked:bg-[#ffb590] checked:text-white'>Fashion Model</option>
-                                  <option value="Fashion Consultant" className='checked:bg-[#ffb590] checked:text-white'>Fashion Consultant</option>
-                                  <option value="Fashion Entrepreneur" className='checked:bg-[#ffb590] checked:text-white'>Fashion Entrepreneur</option>
-                                  <option value="Fashion Marketer" className='checked:bg-[#ffb590] checked:text-white'>Fashion Marketer</option>
-                                  <option value="Fashion Educator" className='checked:bg-[#ffb590] checked:text-white'>Fashion Educator</option>
-                                  <option value="Fashion Event Planner" className='checked:bg-[#ffb590] checked:text-white'>Fashion Event Planner</option>
-                                  <option value="Fashion PR/Publicist" className='checked:bg-[#ffb590] checked:text-white'>Fashion PR/Publicist</option>
+                                  <option value="Fashionista" className='checked:bg-[#ffb590] checked:text-black'>Fashionista</option>
+                                  <option value="Fashion Blogger/Influencer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Blogger/Influencer</option>
+                                  <option value="Fashion Designer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Designer</option>
+                                  <option value="Fashion Stylist" className='checked:bg-[#ffb590] checked:text-black'>Fashion Stylist</option>
+                                  <option value="Fashion Retailer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Retailer</option>
+                                  <option value="Fashion Buyer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Buyer</option>
+                                  <option value="Fashion Journalist" className='checked:bg-[#ffb590] checked:text-black'>Fashion Journalist</option>
+                                  <option value="Fashion Photographer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Photographer</option>
+                                  <option value="Fashion Model" className='checked:bg-[#ffb590] checked:text-black'>Fashion Model</option>
+                                  <option value="Fashion Consultant" className='checked:bg-[#ffb590] checked:text-black'>Fashion Consultant</option>
+                                  <option value="Fashion Entrepreneur" className='checked:bg-[#ffb590] checked:text-black'>Fashion Entrepreneur</option>
+                                  <option value="Fashion Marketer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Marketer</option>
+                                  <option value="Fashion Educator" className='checked:bg-[#ffb590] checked:text-black'>Fashion Educator</option>
+                                  <option value="Fashion Event Planner" className='checked:bg-[#ffb590] checked:text-black'>Fashion Event Planner</option>
+                                  <option value="Fashion PR/Publicist" className='checked:bg-[#ffb590] checked:text-black'>Fashion PR/Publicist</option>
                                 </select>
                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                   <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
@@ -372,7 +284,7 @@ export default function Landing() {
                             </div>
                           </div>
                           <div className="mt-6 flex items-center justify-center gap-x-6">
-                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I&rsquo;m in!</button>
+                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I&rsquo;m in!</button>
                           </div>
                         </form>}
 

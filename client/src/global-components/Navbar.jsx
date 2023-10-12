@@ -115,7 +115,8 @@ export default function Navbar() {
     }
   }, [user, dispatch, loggedinUser, cart]);
 
-  const pageLocation = location.pathname.split('/')[1]
+  const pageLocation = location.pathname.split('/')[1] !== "shop"
+  // console.log('pageLocation', pageLocation)
 
   const searchRef = useRef(null);
 
@@ -202,7 +203,7 @@ export default function Navbar() {
   return (
     <>
       <div className={`navbar w-full duration-300 ${isSticky ? 'sticky' : ''} z-50 relative`}>
-        <div className={`absolute w-full  ${menuVisible ? "min-h-[450px]" : "h-[0px]"} overflow-hidden ${menuVisible && pageLocation == "search" ? "bg-[#FFF7E9]" : "bg-white"}  duration-300`}
+        <div className={`absolute w-full  ${menuVisible ? "min-h-[450px] h-[450px]" : "h-[0px]"} overflow-hidden ${menuVisible && pageLocation == "search" ? "bg-[#FFF7E9]" : "bg-white"}  duration-300`}
           onMouseLeave={() => {
             setMenuVisible(false)
             setCard(0)
