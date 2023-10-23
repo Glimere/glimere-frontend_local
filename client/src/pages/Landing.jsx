@@ -77,7 +77,7 @@ export default function Landing() {
 
           <div className="w-[340px] sm:w-[750px] z-[4] relative mb-[15px]">
 
-            <h1 className="text-[40px] sm:text-[80px] text-center text-black mb-[20px]" style={{ fontFamily: "Edensor" }}>Shop Exclusive Custom made Fashion</h1>
+            <h1 className="text-[40px] sm:text-[80px] text-center text-black mb-[20px] font-head">Shop Exclusive Custom made Fashion</h1>
 
           </div>
 
@@ -95,7 +95,7 @@ export default function Landing() {
 
         <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
           <div className="w-[90%] sm:w-[90%] text-left">
-            <h1 className="text-black text-[30px] sm:text-[60px]" style={{ fontFamily: "Edensor" }}>The Future of African Fashion is Here</h1>
+            <h1 className="text-black text-[30px] sm:text-[60px] font-head">The Future of African Fashion is Here</h1>
 
           </div>
           <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
@@ -121,14 +121,25 @@ export default function Landing() {
           <img className=" absolute duration-150  w-[60px] sm:w-[80px]  hover:w-[100px] top-[19%] sm:top-[75%] right-[53%] sm:right-[21%]" src={toolsPack} />
           <div className="h-full w-full flex justify-center items-center">
             <div className="w-[340px] sm:w-[750px]">
-              <h1 className="text-[40px] mt-[100px] sm:mt-0 sm:text-[60px] text-center" style={{ fontFamily: "Edensor" }}>We focus on technology to build a more sustainable solution</h1>
+              <h1 className="text-[40px] mt-[100px] sm:mt-0 sm:text-[60px] text-center font-head">We focus on technology to build a more sustainable solution</h1>
             </div>
           </div>
         </div>
 
       </div>
 
-      <div className="h-[100vh] bg-secondary-200"></div>
+      <div className="h-[100vh] bg-secondary-200">
+        <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
+          <div className="w-[60%] flex justify-center items-center">
+            <h1 className='text-center text-[30px] font-head'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
+          </div>
+          <div className="w-[73%] h-[600px] bg-gray-100 rounded-[30px] mb-[-300px]">
+
+          </div>
+        </div>
+      </div>
+      
+      <div className="h-[100vh]"></div>
 
 
       <div ref={playref} className="container bg-black-100 max-w-full flex justify-center items-center">
@@ -146,7 +157,7 @@ export default function Landing() {
       <div ref={elementRef} className="h-[60vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
         <div className="flex items-center">
           <div className="">
-            <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px]" style={{ fontFamily: "Edensor" }}>Ready to slay the fashion game?</h1>
+            <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px] font-head">Ready to slay the fashion game?</h1>
             <div className="w-[90%] sm:w-[70%]">
               <p className='text-[15px] sm:text-[19px] text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
             </div>
@@ -193,7 +204,7 @@ export default function Landing() {
                       {submitted ?
                         <div className='h-full w-full flex justify-center items-center'>
                           <div className="flex flex-col items-center">
-                            <h1 className="text-[35px] text-center" style={{ fontFamily: "Edensor" }}>Thank you for your interest in Glimere</h1>
+                            <h1 className="text-[35px] text-center font-head">Thank you for your interest in Glimere</h1>
                             <img src={success} alt="" className='w-[250px] mt-[40px]' />
                           </div>
                         </div>
@@ -203,7 +214,7 @@ export default function Landing() {
                           <input type="hidden" name="form-name" value="contact" />
 
                           <div className="border-b border-gray-900/10 pb-4">
-                            <h2 className="text-[40px] font-semibold  text-[#9d5c0d]" style={{ fontFamily: "Edensor" }}>Get Early Access to Glimere&rsquo;s Exclusive App!</h2>
+                            <h2 className="text-[40px] font-semibold  text-[#9d5c0d] font-head">Get Early Access to Glimere&rsquo;s Exclusive App!</h2>
                             <p className="mt-8 text-sm leading-6 text-gray-600">Thank you for your interest in Glimere! Your details will be used to inform you of our epic launch.</p>
 
                             <div className="mt-[20px] ">

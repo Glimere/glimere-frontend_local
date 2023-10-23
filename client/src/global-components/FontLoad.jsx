@@ -8,7 +8,7 @@ export default function FontLoad() {
 
     useEffect(() => {
         const fonts = [
-            { family: "Edensor", font: Edensor, style: "normal" }
+            { family: "Edensor free", font: Edensor, style: "normal" }
         ]
 
         fonts.forEach((font) => {
