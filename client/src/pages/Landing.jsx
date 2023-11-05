@@ -16,7 +16,7 @@ import samples from '../assets/images/samples.png'
 import thread from '../assets/images/thread.png'
 import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
-import InfiniteSlider from './infiniteSlider';
+import InfiniteSlider from './InfiniteSlider';
 
 export default function Landing() {
 
