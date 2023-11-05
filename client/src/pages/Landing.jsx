@@ -16,13 +16,36 @@ import samples from '../assets/images/samples.png'
 import thread from '../assets/images/thread.png'
 import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
+import InfiniteSlider from './infiniteSlider';
 
 export default function Landing() {
+
+  const slideImages = [
+    { image: "https://i.ibb.co/D5vBGsC/Vlisco-Explores-Contrasts-in-Print-for-its-Tell-Collection-See-the-Lookbook.png" },
+    { image: "https://i.ibb.co/74f4cSn/Tops.png" },
+    { image: "https://i.ibb.co/yFRSF6W/That-African-Flavour-Kamsi-TCharles-presents-its-Czar-The-Rabbi-S-S-2016-Collection-Lookbook.png" },
+    { image: "https://i.ibb.co/nfcWJJS/Samol-2-Piece-Men-s-Single-Breasted-African-Suit-Jackets-and-Pants-Set-Slim-Fit-Formal-African-men-s.png" },
+    { image: "https://i.ibb.co/PhMr2KX/Passionate-about-African-Inspired-Fashion-Use-Code-GIVME25-To-Get-25-Off.png" },
+    { image: "https://i.ibb.co/zr1Nncj/Matching-Sets-Recovered.png" },
+    { image: "https://i.ibb.co/kJ5gnwR/Lola-Top-Green-S.png" },
+    { image: "https://i.ibb.co/GVwwyhR/Loc-Glove-To-Clean-Maintain-And-Dry-Locs-What-Naturals-Love-com.png" },
+    { image: "https://i.ibb.co/hyMG7Bx/FURO-African-Print-Shirt-Midi-Dress.png" },
+    { image: "https://i.ibb.co/rwBV9J0/DIY-Duster-and-Half-Circle-Skirt-Montoya-Mayo-Recovered.png" },
+    { image: "https://i.ibb.co/b2QjrXk/Bottoms.png" },
+    { image: "https://i.ibb.co/Gn1vKvN/Ankara-Trouser-Suit.png" },
+    { image: "https://i.ibb.co/98bLH6Z/african-print-jumpsuit.png" },
+    { image: "https://i.ibb.co/K2R5GKS/African-Men-Shirts-Dashiki-Tops-Ankara.png" },
+    { image: "https://i.ibb.co/sQwRvRb/Africa-Dispatches-Vlisco-a-material-part-of-Africa.png" },
+    { image: "https://i.ibb.co/7R4FrrF/African-Customized-Men-s-Clothing-Three-piece-Suit-Shirt-Jacket-Pants-Men-Print-African-men-fashion.png" },
+
+  ]
+
 
   const [open, setOpen] = useState(false)
   const [formState, setFormState] = useState({ name: "", email: "" });
   const [submitted, setSubmitted] = useState(false)
   const [play, setPlay] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   const cancelButtonRef = useRef(null)
 
@@ -53,7 +76,13 @@ export default function Landing() {
     setSubmitted(true)
   };
 
+  
+  const DURATION = 30000;
+  const ROWS = 1;
+  const TAGS_PER_ROW = 16;
 
+  const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+  const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
 
 
   return (
@@ -128,17 +157,55 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[100vh] bg-secondary-200">
+      <div className="h-[110vh] bg-secondary-200">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
-          <div className="w-[60%] flex justify-center items-center">
-            <h1 className='text-center text-[30px] font-head'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
+          <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
+            <h1 className='text-left sm:text-center text-[30px] font-head'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
           </div>
-          <div className="w-[73%] h-[600px] bg-gray-100 rounded-[30px] mb-[-300px]">
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] "
+          //  onMouseEnter={() => setIsHovered(true)}
+          //  onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* <div className={`landing-section-two-contain h-full flex flex-row items-center gap-[50px]`} style={
+              {width: `${73 * slideImages.length}%`,
+              animation: "scroll 10s linear infinite",}
+            }>
+              {slideImages?.map((images, id) => (
+                <div key={id} className="landing-section-two-line h-[350px] w-[150px] bg-cover bg-center bg-no-repeat"
+                >
+                  <img className='landing-section-two-img' src={images.image} alt="" />
+
+                </div>
+              ))}
+            </div> */}
+
+
+
+{[...new Array(ROWS)].map((_, i) => (
+  <InfiniteSlider
+    key={i}
+    duration={random(DURATION - 5000, DURATION + 5000)}
+    reverse={i % 2}
+    isHovered={isHovered} // Pass the isHovered state
+  >
+    {shuffle(slideImages).slice(0, TAGS_PER_ROW).map((images, id) => (
+      <div
+        key={id}
+        className=" h-full w-[150px] bg-cover bg-center bg-no-repeat flex flex-col justify-between items-center pt-[10px] sm:pt-[20px]"
+      >
+        <img className='peer hover:scale-125 duration-300' src={images.image} height="300" alt="" />
+        <div className="w-[5px] peer-hover:w-full h-[5px] peer-hover:h-[50px] bg-black peer-hover:bg-[#0000002a] peer-hover:blur-sm duration-500 rounded-[50%]"></div>
+      </div>
+    ))}
+  </InfiniteSlider>
+))}
+
+       
 
           </div>
         </div>
       </div>
-      
+
       <div className="h-[100vh]"></div>
 
 
