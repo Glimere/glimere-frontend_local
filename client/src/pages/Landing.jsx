@@ -17,6 +17,7 @@ import thread from '../assets/images/thread.png'
 import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
 import InfiniteSlider from './InfiniteSlider';
+import { Canvas } from '@react-three/fiber';
 
 export default function Landing() {
 
@@ -76,7 +77,7 @@ export default function Landing() {
     setSubmitted(true)
   };
 
-  
+
   const DURATION = 30000;
   const ROWS = 1;
   const TAGS_PER_ROW = 16;
@@ -157,56 +158,48 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[110vh] bg-secondary-200">
+      <div className="h-[100vh] sm:h-[110vh] bg-secondary-200">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[30px] font-head'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] "
-          //  onMouseEnter={() => setIsHovered(true)}
-          //  onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* <div className={`landing-section-two-contain h-full flex flex-row items-center gap-[50px]`} style={
-              {width: `${73 * slideImages.length}%`,
-              animation: "scroll 10s linear infinite",}
-            }>
-              {slideImages?.map((images, id) => (
-                <div key={id} className="landing-section-two-line h-[350px] w-[150px] bg-cover bg-center bg-no-repeat"
-                >
-                  <img className='landing-section-two-img' src={images.image} alt="" />
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
 
-                </div>
-              ))}
-            </div> */}
+            {[...new Array(ROWS)].map((_, i) => (
+              <InfiniteSlider
+                key={i}
+                duration={random(DURATION - 5000, DURATION + 5000)}
+                reverse={i % 2}
+                isHovered={isHovered} // Pass the isHovered state
+              >
+                {shuffle(slideImages).slice(0, TAGS_PER_ROW).map((images, id) => (
+                  <div
+                    key={id}
+                    className=" h-full w-[150px] bg-cover bg-center bg-no-repeat flex flex-col justify-between items-center pt-[10px] sm:pt-[20px]"
+                  >
+                    <img className='peer hover:scale-125 duration-300' src={images.image} height="300" alt="" />
+                    <div className="w-[5px] peer-hover:w-full h-[5px] peer-hover:h-[50px] bg-black peer-hover:bg-[#0000002a] peer-hover:blur-sm duration-500 rounded-[50%]"></div>
+                  </div>
+                ))}
+              </InfiniteSlider>
+            ))}
 
 
-
-{[...new Array(ROWS)].map((_, i) => (
-  <InfiniteSlider
-    key={i}
-    duration={random(DURATION - 5000, DURATION + 5000)}
-    reverse={i % 2}
-    isHovered={isHovered} // Pass the isHovered state
-  >
-    {shuffle(slideImages).slice(0, TAGS_PER_ROW).map((images, id) => (
-      <div
-        key={id}
-        className=" h-full w-[150px] bg-cover bg-center bg-no-repeat flex flex-col justify-between items-center pt-[10px] sm:pt-[20px]"
-      >
-        <img className='peer hover:scale-125 duration-300' src={images.image} height="300" alt="" />
-        <div className="w-[5px] peer-hover:w-full h-[5px] peer-hover:h-[50px] bg-black peer-hover:bg-[#0000002a] peer-hover:blur-sm duration-500 rounded-[50%]"></div>
-      </div>
-    ))}
-  </InfiniteSlider>
-))}
-
-       
 
           </div>
         </div>
       </div>
 
-      <div className="h-[100vh]"></div>
+      <div className="h-[100vh] sm:h-[110vh] bg-secondary-100">
+        <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
+          <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
+            <h1 className='text-left sm:text-center text-[40px] font-head'>With an interactive and immersive 3D Experience</h1>
+          </div>
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
+            <Canvas>{/* Here we will render out model */}</Canvas>
+          </div>
+        </div>
+      </div>
 
 
       <div ref={playref} className="container bg-black-100 max-w-full flex justify-center items-center">

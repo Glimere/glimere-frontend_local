@@ -42,7 +42,7 @@ const fetchData = async () => {
 };
 
 fetchData();
-
+FontLoad();
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

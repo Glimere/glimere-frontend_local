@@ -26,14 +26,14 @@ const  Register = lazy(() => import('./pages/Register'));
 import Loader from './components/Loader';
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from './auth/Auth';
-import FontLoad from './global-components/FontLoad';
+// import FontLoad from './global-components/FontLoad';
 
 
 function App() {
 
   const location = useLocation();
 
-  FontLoad()
+  // FontLoad()
 
   const hideNavbarRoutes = ['/login', "/creators", '/'];
   const showNavbar = !hideNavbarRoutes.includes(location.pathname);
