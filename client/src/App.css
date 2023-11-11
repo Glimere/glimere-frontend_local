@@ -9,6 +9,10 @@
   /* Add additional styles for the sticky navbar */
 }
 
+.head-font {
+  font-family: 'Edensor free';
+}
+
 .carousel {
   height: 380px;
   /* Set the desired height */
