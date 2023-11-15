@@ -6,7 +6,7 @@ import svgr from '@svgr/rollup';
 export default defineConfig({
   plugins: [react(), svgr()],
   optimizeDeps: {
-    exclude: ['swiper/react', 'swiper/modules', 'react-three-renderer', 'react-three-renderer-objects']
+    exclude: ['swiper/react', 'swiper/modules']
   },
   build: {
     rollupOptions: {
