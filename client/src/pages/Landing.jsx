@@ -18,8 +18,19 @@ import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
 import InfiniteSlider from './InfiniteSlider';
 import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Circle } from '@react-three/drei'
+import Model from '../components/Model';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useLoader } from '@react-three/fiber';
+import royalDressglf from "../assets/3D/Royal_Clothes_Model-v2.glb"
+
+
 
 export default function Landing() {
+
+  // const ambientLight = new AmbientLight(0x404040);
+
+
 
   const slideImages = [
     { image: "https://i.ibb.co/D5vBGsC/Vlisco-Explores-Contrasts-in-Print-for-its-Tell-Collection-See-the-Lookbook.png" },
@@ -47,7 +58,10 @@ export default function Landing() {
   const [submitted, setSubmitted] = useState(false)
   const [play, setPlay] = useState(false)
   const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+
+  const canvasRef = useRef(null)
   const cancelButtonRef = useRef(null)
 
   const playref = useRef(null)
@@ -85,6 +99,12 @@ export default function Landing() {
   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
   const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
 
+  const gltf = useLoader(
+    GLTFLoader,
+    royalDressglf
+)
+
+console.log('isLoading', isLoading)
 
   return (
     <>
@@ -195,8 +215,32 @@ export default function Landing() {
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
-            <Canvas>{/* Here we will render out model */}</Canvas>
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[720px] p-[20px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
+
+            <div className="loading-indicator">
+              {isLoading ? <p>Loading model...</p> : null}
+            </div>
+
+            <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows>
+
+                <>
+                  <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} />
+                  <directionalLight position={[3.3, 1.0, 4.4]} castShadow intensity={5} />
+                  {/* Point Light */}
+                  <pointLight position={[-3, 1, 4]} intensity={2} color="white" />
+
+                  {/* Ambient Light */}
+                  <ambientLight intensity={0.8} />
+                  <Circle args={[2]} position={[0, -2.4, 0]} rotation-x={-Math.PI / 2} receiveShadow>
+                    <meshStandardMaterial />
+                  </Circle>
+                  <OrbitControls target={[0, 1, 0]} />
+                  <axesHelper args={[5]} />
+                  {/* <Stats /> */}
+                </>
+         
+            </Canvas>
+
           </div>
         </div>
       </div>

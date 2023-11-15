@@ -6,6 +6,17 @@ import svgr from '@svgr/rollup';
 export default defineConfig({
   plugins: [react(), svgr()],
   optimizeDeps: {
-    exclude: ['swiper/react', 'swiper/modules']
-  }
+    exclude: ['swiper/react', 'swiper/modules', 'react-three-renderer', 'react-three-renderer-objects']
+  },
+  build: {
+    rollupOptions: {
+      // Include .fbx files as assets
+      // output: {
+      //   assetFileNames: '[name][ext]',
+      // },
+    },
+  },
+
+  // Add a specific assetInclude option for .fbx files
+  assetsInclude: ['**/*.glb']
 })
