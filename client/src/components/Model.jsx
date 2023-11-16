@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from "three"
+import { OrbitControls, Circle } from '@react-three/drei'
+import { useTexture } from '@react-three/drei';
+import Backdrop from "../assets/images/3d-product-backdrop-silver.jpg"
 
 
-
-
-
-
-const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting}) => {
+const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) => {
 
     const [isDesktop, setIsDesktop] = useState(true);
 
@@ -32,8 +31,6 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting}) =>
     const meshPosition = isDesktop ? [0, -2.5, 0] : [0, -2, 0]; // Adjust mesh position based on screen size
 
 
-    console.log('boundingBoxConfig', boundingBoxConfig)
-
     const min = boundingBoxConfig.min
     const max = boundingBoxConfig.max
     const boundingBox = new THREE.Box3(min, max);
@@ -49,7 +46,7 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting}) =>
     useFrame(() => {
         if (!gltf) return;
 
-      
+
         const rotationSpeed = isInteracting ? 0 : 0.02;
         // Update the rotation of the model
         gltf.scene.rotation.y += rotationSpeed;
@@ -66,12 +63,36 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting}) =>
         setModelScale(scale)
     })
 
-
+    const backgroundTexture = useTexture(Backdrop); // Replace with the path to your texture
 
     return (
-        <mesh position={meshPosition}>
-            <primitive object={gltf.scene} children-0-castShadow scale={[modelScale, modelScale, modelScale]} />
-        </mesh>
+        <>
+            <mesh position={meshPosition}>
+                <primitive object={gltf.scene} children-0-castShadow scale={[modelScale, modelScale, modelScale]} />
+            </mesh>
+            <directionalLight position={[3.3, 1.0, 4.4]} castShadow intensity={5} />
+            {/* Point Light */}
+            <pointLight position={[-3, 1, 4]} intensity={2} color="white" />
+
+            {/* Ambient Light */}
+            <ambientLight intensity={1.8} />
+            <Circle args={[2]} position={[0, -2.4, 0]} rotation-x={-Math.PI / 2} receiveShadow>
+                <meshStandardMaterial color="#4a4a4a"  />
+            </Circle>
+
+            <OrbitControls
+                target={[0, 1, 0]}
+                enableZoom={false}
+                enablePan={false}
+                enableRotate={true}
+                enableDamping={true}
+                dampingFactor={0.25}
+                rotateSpeed={0.4}
+                maxPolarAngle={Math.PI / 2}
+                minPolarAngle={Math.PI / 2}
+            />
+        </>
+
     )
 }
 

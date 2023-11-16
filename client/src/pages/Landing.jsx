@@ -18,12 +18,10 @@ import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
 import InfiniteSlider from './InfiniteSlider';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Circle } from '@react-three/drei'
 import Model from '../components/Model';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from '@react-three/fiber';
 import royalDressglf from "../assets/3D/Royal_Clothes_Model-v2.glb"
-
 
 
 export default function Landing() {
@@ -102,17 +100,16 @@ export default function Landing() {
   const gltf = useLoader(
     GLTFLoader,
     royalDressglf
-)
+  )
 
-const handleInteractionStart = () => {
-  setIsInteracting(true);
-};
+  const handleInteractionStart = () => {
+    setIsInteracting(true);
+  };
 
-const handleInteractionEnd = () => {
-  setIsInteracting(false);
-};
+  const handleInteractionEnd = () => {
+    setIsInteracting(false);
+  };
 
-console.log('isLoading', isLoading)
 
   return (
     <>
@@ -223,44 +220,19 @@ console.log('isLoading', isLoading)
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[1020px] p-[20px] overflow-hidden bg-[#fff6d6] rounded-[30px] ">
+          <div className="w-[60%] sm:w-[73%] h-[400px] sm:h-[1020px] p-[20px] overflow-hidden bg-[#ffe9b8] rounded-[30px] ">
 
             <div className="loading-indicator">
               {isLoading ? <p>Loading model...</p> : null}
             </div>
 
             <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows
-            onMouseDown={handleInteractionStart}
-            onTouchStart={handleInteractionStart}
-            onMouseUp={handleInteractionEnd}
-            onTouchEnd={handleInteractionEnd}
+              onMouseDown={handleInteractionStart}
+              onTouchStart={handleInteractionStart}
+              onMouseUp={handleInteractionEnd}
+              onTouchEnd={handleInteractionEnd}
             >
-
-                <>
-                  <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} isInteracting= {isInteracting}/>
-                  <directionalLight position={[3.3, 1.0, 4.4]} castShadow intensity={5} />
-                  {/* Point Light */}
-                  <pointLight position={[-3, 1, 4]} intensity={2} color="white" />
-
-                  {/* Ambient Light */}
-                  <ambientLight intensity={1.8} />
-                  <Circle args={[2]} position={[0, -2.4, 0]} rotation-x={-Math.PI / 2} receiveShadow>
-                    <meshStandardMaterial />
-                  </Circle>
-                  <OrbitControls 
-                   target={[0, 1, 0]}
-                   enableZoom={false}
-                   enablePan={false}
-                   enableRotate={true}
-                   enableDamping={true}
-                   dampingFactor={0.25}
-                   rotateSpeed={0.4}
-                   maxPolarAngle={Math.PI / 2}
-                   minPolarAngle={Math.PI / 2}
-                  />
-                
-                </>
-         
+                <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} isInteracting={isInteracting} />
             </Canvas>
 
           </div>
