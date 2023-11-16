@@ -59,7 +59,7 @@ export default function Landing() {
   const [play, setPlay] = useState(false)
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [isInteracting, setIsInteracting] = useState(false);
 
   const canvasRef = useRef(null)
   const cancelButtonRef = useRef(null)
@@ -103,6 +103,14 @@ export default function Landing() {
     GLTFLoader,
     royalDressglf
 )
+
+const handleInteractionStart = () => {
+  setIsInteracting(true);
+};
+
+const handleInteractionEnd = () => {
+  setIsInteracting(false);
+};
 
 console.log('isLoading', isLoading)
 
@@ -178,7 +186,7 @@ console.log('isLoading', isLoading)
 
       </div>
 
-      <div className="h-[100vh] sm:h-[110vh] bg-secondary-200">
+      <div className="h-[100vh] sm:h-[140vh] bg-secondary-200 py-[50px]">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[30px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
@@ -210,33 +218,47 @@ console.log('isLoading', isLoading)
         </div>
       </div>
 
-      <div className="h-[100vh] sm:h-[110vh] bg-secondary-100">
+      <div className="h-[100vh] sm:h-[150vh] bg-secondary-100 py-[50px]">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[720px] p-[20px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[1020px] p-[20px] overflow-hidden bg-[#fff6d6] rounded-[30px] ">
 
             <div className="loading-indicator">
               {isLoading ? <p>Loading model...</p> : null}
             </div>
 
-            <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows>
+            <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows
+            onMouseDown={handleInteractionStart}
+            onTouchStart={handleInteractionStart}
+            onMouseUp={handleInteractionEnd}
+            onTouchEnd={handleInteractionEnd}
+            >
 
                 <>
-                  <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} />
+                  <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} isInteracting= {isInteracting}/>
                   <directionalLight position={[3.3, 1.0, 4.4]} castShadow intensity={5} />
                   {/* Point Light */}
                   <pointLight position={[-3, 1, 4]} intensity={2} color="white" />
 
                   {/* Ambient Light */}
-                  <ambientLight intensity={0.8} />
+                  <ambientLight intensity={1.8} />
                   <Circle args={[2]} position={[0, -2.4, 0]} rotation-x={-Math.PI / 2} receiveShadow>
                     <meshStandardMaterial />
                   </Circle>
-                  <OrbitControls target={[0, 1, 0]} />
-                  <axesHelper args={[5]} />
-                  {/* <Stats /> */}
+                  <OrbitControls 
+                   target={[0, 1, 0]}
+                   enableZoom={false}
+                   enablePan={false}
+                   enableRotate={true}
+                   enableDamping={true}
+                   dampingFactor={0.25}
+                   rotateSpeed={0.4}
+                   maxPolarAngle={Math.PI / 2}
+                   minPolarAngle={Math.PI / 2}
+                  />
+                
                 </>
          
             </Canvas>
