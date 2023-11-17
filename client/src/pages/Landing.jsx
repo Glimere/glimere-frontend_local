@@ -133,7 +133,7 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[80vh] sm:h-[100vh] bg-secondary-200 w-full relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
+      <div className="h-[90vh] sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
 
         <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
@@ -256,10 +256,8 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[80vh] sm:h-[100vh] bg-secondary-200 w-full relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]"
+      <div className="h-[90vh] sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]"
       >
-
-
         <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
           <div className="w-[90%] sm:w-[90%] text-left">
             <h1 className="text-black text-[30px] sm:text-[60px] head-font">Experience Custom-Made Freedom</h1>
@@ -287,26 +285,26 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[100vh] bg-black flex flex-col gap-[50px] items-center py-[50px]">
-        <div className="w-full flex flex-col gap-[40px]">
+      <div className="h-[78vh] sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[50px]">
+        <div className="w-full flex flex-col gap-[20px] sm:gap-[40px]">
             {[...new Array(REVIEW_ROWS)].map((_, i) => (
               <InfiniteSlider
               key={1}
               duration={random(REVIEW_DURATION - 5000, REVIEW_DURATION + 5000)}
               reverse={i % 2}
               isHovered={isHovered} // Pass the isHovered state
-              className="gap-[40px] h-full"
+              className="gap-[20px] sm:gap-[40px] h-full"
               >
                {shuffle(reviewsData).slice(0, REVIEW_TAGS_PER_ROW).map((data, id) => (
                   <div
                     key={id}
-                    className="flex flex-col h-[200px] w-[350px] bg-[#313131] rounded-[20px] duration-300"
+                    className="flex flex-col h-[150px] w-[250px] sm:h-[200px] sm:w-[350px] bg-[#313131] rounded-[15px] sm:rounded-[20px] duration-300"
                   >
                     <div className="flex-[1] flex flex-row gap-[20px] items-center pt-[20px] px-[25px]">
                       <div className="bg-gray-200 h-[40px] w-[40px] rounded-full"></div>
                       <div className="text-white text-[]">{data.user.name}</div>
                     </div>
-                    <div className="flex-[3] text-white px-[25px] py-[20px]">{data.comment}</div>
+                    <div className="flex-[3] text-[12px] sm:text-[15px] text-white px-[25px] py-[20px]">{data.comment}</div>
 
                   </div>
                 ))}
@@ -314,7 +312,7 @@ export default function Landing() {
             ))}
         </div>
 
-        <p className="text-[30px] font-semibold text-white">Hear What People Are Saying About Us</p>
+        <p className="text-[18px] px-[50px] sm:text-[30px] font-semibold text-white text-center">Hear What People Are Saying About Us</p>
       </div>
 
 
