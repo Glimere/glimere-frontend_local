@@ -18,7 +18,7 @@ export default function Creators() {
 
         <div className="flex-[1] h-full flex flex-col justify-center">
           <div className="w-[90%] mb-[15px]">
-            <h1 className="text-[28px] sm:text-[60px] text-left text-[#5f4420] mb-[20px]" style={{ fontFamily: "Edensor" }}>We believe in your talent</h1>
+            <h1 className="text-[35px] sm:text-[70px] text-left text-[#5f4420] mb-[20px] head-font" >We believe in your talent</h1>
           </div>
 
           <div className="w-[70%] ">

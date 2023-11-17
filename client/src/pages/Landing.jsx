@@ -22,33 +22,15 @@ import Model from '../components/Model';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from '@react-three/fiber';
 import royalDressglf from "../assets/3D/Royal_Clothes_Model-v2.glb"
-
+import Backdrop from "../assets/images/assortment-abstract-design-elements.jpg"
+import { slideImages } from '../components/slideImages';
+import { reviewsData } from '../components/reviewsData';
 
 export default function Landing() {
 
   // const ambientLight = new AmbientLight(0x404040);
 
 
-
-  const slideImages = [
-    { image: "https://i.ibb.co/D5vBGsC/Vlisco-Explores-Contrasts-in-Print-for-its-Tell-Collection-See-the-Lookbook.png" },
-    { image: "https://i.ibb.co/74f4cSn/Tops.png" },
-    { image: "https://i.ibb.co/yFRSF6W/That-African-Flavour-Kamsi-TCharles-presents-its-Czar-The-Rabbi-S-S-2016-Collection-Lookbook.png" },
-    { image: "https://i.ibb.co/nfcWJJS/Samol-2-Piece-Men-s-Single-Breasted-African-Suit-Jackets-and-Pants-Set-Slim-Fit-Formal-African-men-s.png" },
-    { image: "https://i.ibb.co/PhMr2KX/Passionate-about-African-Inspired-Fashion-Use-Code-GIVME25-To-Get-25-Off.png" },
-    { image: "https://i.ibb.co/zr1Nncj/Matching-Sets-Recovered.png" },
-    { image: "https://i.ibb.co/kJ5gnwR/Lola-Top-Green-S.png" },
-    { image: "https://i.ibb.co/GVwwyhR/Loc-Glove-To-Clean-Maintain-And-Dry-Locs-What-Naturals-Love-com.png" },
-    { image: "https://i.ibb.co/hyMG7Bx/FURO-African-Print-Shirt-Midi-Dress.png" },
-    { image: "https://i.ibb.co/rwBV9J0/DIY-Duster-and-Half-Circle-Skirt-Montoya-Mayo-Recovered.png" },
-    { image: "https://i.ibb.co/b2QjrXk/Bottoms.png" },
-    { image: "https://i.ibb.co/Gn1vKvN/Ankara-Trouser-Suit.png" },
-    { image: "https://i.ibb.co/98bLH6Z/african-print-jumpsuit.png" },
-    { image: "https://i.ibb.co/K2R5GKS/African-Men-Shirts-Dashiki-Tops-Ankara.png" },
-    { image: "https://i.ibb.co/sQwRvRb/Africa-Dispatches-Vlisco-a-material-part-of-Africa.png" },
-    { image: "https://i.ibb.co/7R4FrrF/African-Customized-Men-s-Clothing-Three-piece-Suit-Shirt-Jacket-Pants-Men-Print-African-men-fashion.png" },
-
-  ]
 
 
   const [open, setOpen] = useState(false)
@@ -94,8 +76,14 @@ export default function Landing() {
   const ROWS = 1;
   const TAGS_PER_ROW = 16;
 
+  const REVIEW_DURATION = 50000;
+  const REVIEW_ROWS = 2;
+  const REVIEW_TAGS_PER_ROW = 10;
+
   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
   const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
+
+  
 
   const gltf = useLoader(
     GLTFLoader,
@@ -196,6 +184,7 @@ export default function Landing() {
                 duration={random(DURATION - 5000, DURATION + 5000)}
                 reverse={i % 2}
                 isHovered={isHovered} // Pass the isHovered state
+                className="gap-[100px] h-full"
               >
                 {shuffle(slideImages).slice(0, TAGS_PER_ROW).map((images, id) => (
                   <div
@@ -215,28 +204,117 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[100vh] sm:h-[150vh] bg-secondary-100 py-[50px]">
-        <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
-          <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
-            <h1 className='text-left sm:text-center text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
+      <div className="h-[160vh] sm:h-[150vh] bg-secondary-100 py-[50px]">
+        <div className="h-full w-full flex flex-col gap-[30px] justify-center items-center">
+          <div className="w-full sm:w-[60%] flex px-[40px] justify-start sm:justify-center items-center">
+            <h1 className='text-left sm:text-center text-[35px] sm:text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
           </div>
-          <div className="w-[60%] sm:w-[73%] h-[400px] sm:h-[1020px] p-[20px] overflow-hidden bg-[#ffe9b8] rounded-[30px] ">
+          <div className="w-[100%] sm:w-[73%] h-[1000px] p-[20px] flex justify-center items-center relative">
 
-            <div className="loading-indicator">
+            <div className="loading-indicator absolute">
               {isLoading ? <p>Loading model...</p> : null}
             </div>
 
-            <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows
-              onMouseDown={handleInteractionStart}
-              onTouchStart={handleInteractionStart}
-              onMouseUp={handleInteractionEnd}
-              onTouchEnd={handleInteractionEnd}
+            <div className="w-[90%] sm:w-[80%] h-full rounded-[30px] overflow-hidden bg-[#ffe9b8] relative pt-[30px] bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${Backdrop})` }}
+
             >
+
+              <div className="absolute h-[70%] w-full flex justify-between items-center p-[20px] sm:p-[50px]">
+                <div className="h-full flex flex-col p-[10px] rounded-[10px] gap-[20px]">
+
+                </div>
+                <div className="flex flex-col gap-[30px] z-[10]">
+                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ed7534] rounded-full">
+                    <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[#fef8e9]"></div>
+                  </div>
+                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ffc588] rounded-full">
+                    <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[black]"></div>
+                  </div>
+                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#772f1a] rounded-full">
+                    <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[white]"></div>
+                  </div>
+                </div>
+              </div>
+
+              <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows
+                onMouseDown={handleInteractionStart}
+                onTouchStart={handleInteractionStart}
+                onMouseUp={handleInteractionEnd}
+                onTouchEnd={handleInteractionEnd}
+              >
                 <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} isInteracting={isInteracting} />
-            </Canvas>
+              </Canvas>
+            </div>
+
 
           </div>
+
+          <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
+            <p className="text-[18px] text-center">Preview items in realistic 3D environment, visualize texture, size and real time-look.</p>
+          </div>
         </div>
+      </div>
+
+      <div className="h-[80vh] sm:h-[100vh] bg-secondary-200 w-full relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]"
+      >
+
+
+        <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
+          <div className="w-[90%] sm:w-[90%] text-left">
+            <h1 className="text-black text-[30px] sm:text-[60px] head-font">Experience Custom-Made Freedom</h1>
+
+          </div>
+          <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
+            <p className="text-black text-[18px]">Make custom requests from skilled fashion creators in seconds and have them made and delivered to you in few days </p>
+          </div>
+        </div>
+        <div className="flex-[1] bg-black-100 rounded-[20px]"
+                style={{ backgroundImage: `url(${models})` }}
+
+        >
+        </div>
+      </div>
+
+      <div className="h-[80vh] sm:h-[100vh] bg-secondary-100 w-full relative flex justify-center items-center">
+        <div className="flex flex-col-reverse gap-[20px] sm:flex-row w-[65%]">
+          <div className="h-[300px] w-[450px] flex-[1.8] bg-white rounded-[10px]"></div>
+          <div className="flex-1 flex flex-col gap-[20px] h-[300px]">
+            <div className="w-full h-[100px] bg-white rounded-[10px]"></div>
+            <div className="w-full h-[100px] bg-white rounded-[10px]"></div>
+            <div className="w-full h-[100px] bg-white rounded-[10px]"></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="h-[100vh] bg-black flex flex-col gap-[50px] items-center py-[50px]">
+        <div className="w-full flex flex-col gap-[40px]">
+            {[...new Array(REVIEW_ROWS)].map((_, i) => (
+              <InfiniteSlider
+              key={1}
+              duration={random(REVIEW_DURATION - 5000, REVIEW_DURATION + 5000)}
+              reverse={i % 2}
+              isHovered={isHovered} // Pass the isHovered state
+              className="gap-[40px] h-full"
+              >
+               {shuffle(reviewsData).slice(0, REVIEW_TAGS_PER_ROW).map((data, id) => (
+                  <div
+                    key={id}
+                    className="flex flex-col h-[200px] w-[350px] bg-[#313131] rounded-[20px] duration-300"
+                  >
+                    <div className="flex-[1] flex flex-row gap-[20px] items-center pt-[20px] px-[25px]">
+                      <div className="bg-gray-200 h-[40px] w-[40px] rounded-full"></div>
+                      <div className="text-white text-[]">{data.user.name}</div>
+                    </div>
+                    <div className="flex-[3] text-white px-[25px] py-[20px]">{data.comment}</div>
+
+                  </div>
+                ))}
+              </InfiniteSlider>
+            ))}
+        </div>
+
+        <p className="text-[30px] font-semibold text-white">Hear What People Are Saying About Us</p>
       </div>
 
 

@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from "three"
 import { OrbitControls, Circle } from '@react-three/drei'
 import { useTexture } from '@react-three/drei';
-import Backdrop from "../assets/images/3d-product-backdrop-silver.jpg"
+
 
 
 const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) => {
@@ -63,8 +63,6 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) =
         setModelScale(scale)
     })
 
-    const backgroundTexture = useTexture(Backdrop); // Replace with the path to your texture
-
     return (
         <>
             <mesh position={meshPosition}>
@@ -76,7 +74,7 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) =
 
             {/* Ambient Light */}
             <ambientLight intensity={1.8} />
-            <Circle args={[2]} position={[0, -2.4, 0]} rotation-x={-Math.PI / 2} receiveShadow>
+            <Circle args={[1.4]} position={meshPosition} rotation-x={-Math.PI / 1.7} receiveShadow>
                 <meshStandardMaterial color="#4a4a4a"  />
             </Circle>
 
