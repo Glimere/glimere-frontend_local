@@ -27,7 +27,7 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) =
 
     const boundingBoxConfig = isDesktop ?
         { max: new THREE.Vector3(20000, 1000, -3000), min: new THREE.Vector3(-1000, -1000, -1000) } :
-        { max: new THREE.Vector3(7400, 1000, -3000), min: new THREE.Vector3(-1000, -1000, -1000) }; // Adjust bounding box based on screen size
+        { max: new THREE.Vector3(9000, 1000, -3000), min: new THREE.Vector3(-1000, -1000, -1000) }; // Adjust bounding box based on screen size
     const meshPosition = isDesktop ? [0, -2.5, 0] : [0, -2, 0]; // Adjust mesh position based on screen size
 
 
