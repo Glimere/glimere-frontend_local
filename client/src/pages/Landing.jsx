@@ -210,7 +210,7 @@ export default function Landing() {
           <div className="w-full sm:w-[60%] flex px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[35px] sm:text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[800px] sm:h-[1000px] overflow-hidden p-0 sm:p-[20px] flex justify-center items-center relative">
+          <div className="w-[80%] sm:w-[73%] h-[900px] sm:h-[1000px] overflow-hidden p-0 sm:p-[20px] flex justify-center items-center relative">
 
             <div className="loading-indicator absolute">
               {isLoading ? <p>Loading model...</p> : null}
