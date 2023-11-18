@@ -25,7 +25,7 @@ export default function CaseStudySlide() {
                     //     <div key={id} className="w-full h-full bg-cover bg-center bg-no-repeat absolute bg-black"
                     //         style={{ backgroundImage: `url(${data.fashionItems.image})` }}
                     //     ></div>
-                    // ))}
+                    // ))} 
                 ></div>
                 <div className="flex-1 flex flex-row sm:flex-col gap-[20px] h-auto sm:h-[300px]">
                     {caseStudyData?.map((data, id) => (
