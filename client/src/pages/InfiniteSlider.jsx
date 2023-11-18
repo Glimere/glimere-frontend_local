@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-export default function InfiniteSlider({ children, duration, reverse = false, isHovered, className }) {
+export default function InfiniteSlider({ children, duration, reverse = false, isHovered, className, loopClass }) {
 
   return (
     <div
-      className='loop-slider'
+      className={`loop-slider ${loopClass}`}
       style={{
         '--duration': `${duration}ms`,
         '--direction': reverse ? 'reverse' : 'normal',

@@ -185,6 +185,7 @@ export default function Landing() {
                 reverse={i % 2}
                 isHovered={isHovered} // Pass the isHovered state
                 className="gap-[100px] h-full"
+                loopClass="h-full"
               >
                 {shuffle(slideImages).slice(0, TAGS_PER_ROW).map((images, id) => (
                   <div
@@ -209,13 +210,13 @@ export default function Landing() {
           <div className="w-full sm:w-[60%] flex px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[35px] sm:text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
           </div>
-          <div className="w-[100%] sm:w-[73%] h-[1000px] p-[20px] flex justify-center items-center relative">
+          <div className="w-[80%] sm:w-[73%] h-[800px] sm:h-[1000px] p-0 sm:p-[20px] flex justify-center items-center relative">
 
             <div className="loading-indicator absolute">
               {isLoading ? <p>Loading model...</p> : null}
             </div>
 
-            <div className="w-[90%] sm:w-[80%] h-full rounded-[30px] overflow-hidden bg-[#ffe9b8] relative pt-[30px] bg-cover bg-center bg-no-repeat"
+            <div className="w-[100%] sm:w-[80%] h-full rounded-[30px] overflow-hidden bg-[#ffe9b8] relative pt-[30px] bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${Backdrop})` }}
 
             >
@@ -231,7 +232,7 @@ export default function Landing() {
                   <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ffc588] rounded-full">
                     <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[black]"></div>
                   </div>
-                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#772f1a] rounded-full">
+                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ffe9ac] rounded-full">
                     <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[white]"></div>
                   </div>
                 </div>
