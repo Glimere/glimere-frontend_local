@@ -25,6 +25,7 @@ import royalDressglf from "../assets/3D/Royal_Clothes_Model-v2.glb"
 import Backdrop from "../assets/images/assortment-abstract-design-elements.jpg"
 import { slideImages } from '../components/slideImages';
 import { reviewsData } from '../components/reviewsData';
+import CaseStudySlide from '../components/caseStudySlide';
 
 export default function Landing() {
 
@@ -174,7 +175,7 @@ export default function Landing() {
       <div className="h-[100vh] sm:h-[140vh] bg-secondary-200 py-[50px]">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
-            <h1 className='text-left sm:text-center text-[30px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
+            <h1 className='text-left sm:text-center text-[40px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
           </div>
           <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
 
@@ -275,22 +276,19 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[80vh] sm:h-[100vh] bg-secondary-100 w-full relative flex justify-center items-center">
-        <div className="flex flex-col-reverse gap-[20px] sm:flex-row w-[65%]">
-          <div className="h-[300px] w-[450px] flex-[1.8] bg-white rounded-[10px]"></div>
-          <div className="flex-1 flex flex-col gap-[20px] h-[300px]">
-            <div className="w-full h-[100px] bg-white rounded-[10px]"></div>
-            <div className="w-full h-[100px] bg-white rounded-[10px]"></div>
-            <div className="w-full h-[100px] bg-white rounded-[10px]"></div>
-          </div>
+      <div className="h-[100vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col-reverse sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
+        <div className="flex flex-[1] flex-col gap-[20px]">
+          <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matter to you.</h1>
+          <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
         </div>
+        <CaseStudySlide/>
       </div>
 
       <div className="h-[78vh] sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[50px]">
         <div className="w-full flex flex-col gap-[20px] sm:gap-[40px]">
             {[...new Array(REVIEW_ROWS)].map((_, i) => (
               <InfiniteSlider
-              key={1}
+              key={i}
               duration={random(REVIEW_DURATION - 5000, REVIEW_DURATION + 5000)}
               reverse={i % 2}
               isHovered={isHovered} // Pass the isHovered state
