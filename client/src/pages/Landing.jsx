@@ -21,7 +21,7 @@ import { Canvas } from '@react-three/fiber';
 import Model from '../components/Model';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from '@react-three/fiber';
-import royalDressglf from "../assets/3D/Royal_Clothes_Model-v2.glb"
+import threeDModel from "../assets/3D/Royal_Clothes_Model-v2.glb"
 import Backdrop from "../assets/images/assortment-abstract-design-elements.jpg"
 import { slideImages } from '../components/slideImages';
 import { reviewsData } from '../components/reviewsData';
@@ -84,11 +84,11 @@ export default function Landing() {
   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
   const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
 
-  
+
 
   const gltf = useLoader(
     GLTFLoader,
-    royalDressglf
+    threeDModel
   )
 
   const handleInteractionStart = () => {
@@ -239,13 +239,21 @@ export default function Landing() {
                 </div>
               </div>
 
-              <Canvas ref={canvasRef} camera={{ position: [0, 1, 5] }} shadows
+              <Canvas
+                ref={canvasRef}
+                shadows
                 onMouseDown={handleInteractionStart}
                 onTouchStart={handleInteractionStart}
                 onMouseUp={handleInteractionEnd}
                 onTouchEnd={handleInteractionEnd}
               >
-                <Model gltf={gltf} initialScale={1} canvasRef={canvasRef} setIsLoading={setIsLoading} isInteracting={isInteracting} />
+                <Model
+                  gltf={gltf}
+                  initialScale={1}
+                  canvasRef={canvasRef}
+                  setIsLoading={setIsLoading}
+                  isInteracting={isInteracting}
+                />
               </Canvas>
             </div>
 
@@ -270,7 +278,7 @@ export default function Landing() {
           </div>
         </div>
         <div className="flex-[1] bg-black-100 rounded-[20px]"
-                style={{ backgroundImage: `url(${models})` }}
+          style={{ backgroundImage: `url(${models})` }}
 
         >
         </div>
@@ -281,34 +289,34 @@ export default function Landing() {
           <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matter to you.</h1>
           <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
         </div>
-        <CaseStudySlide/>
+        <CaseStudySlide />
       </div>
 
       <div className="h-[78vh] sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[50px]">
         <div className="w-full flex flex-col gap-[20px] sm:gap-[40px]">
-            {[...new Array(REVIEW_ROWS)].map((_, i) => (
-              <InfiniteSlider
+          {[...new Array(REVIEW_ROWS)].map((_, i) => (
+            <InfiniteSlider
               key={i}
               duration={random(REVIEW_DURATION - 5000, REVIEW_DURATION + 5000)}
               reverse={i % 2}
               isHovered={isHovered} // Pass the isHovered state
               className="gap-[20px] sm:gap-[40px] h-full"
-              >
-               {shuffle(reviewsData).slice(0, REVIEW_TAGS_PER_ROW).map((data, id) => (
-                  <div
-                    key={id}
-                    className="flex flex-col h-[150px] w-[250px] sm:h-[200px] sm:w-[350px] bg-[#313131] rounded-[15px] sm:rounded-[20px] duration-300"
-                  >
-                    <div className="flex-[1] flex flex-row gap-[20px] items-center pt-[20px] px-[25px]">
-                      <div className="bg-gray-200 h-[40px] w-[40px] rounded-full"></div>
-                      <div className="text-white text-[]">{data.user.name}</div>
-                    </div>
-                    <div className="flex-[3] text-[12px] sm:text-[15px] text-white px-[25px] py-[20px]">{data.comment}</div>
-
+            >
+              {shuffle(reviewsData).slice(0, REVIEW_TAGS_PER_ROW).map((data, id) => (
+                <div
+                  key={id}
+                  className="flex flex-col h-[150px] w-[250px] sm:h-[200px] sm:w-[350px] bg-[#313131] rounded-[15px] sm:rounded-[20px] duration-300"
+                >
+                  <div className="flex-[1] flex flex-row gap-[20px] items-center pt-[20px] px-[25px]">
+                    <div className="bg-gray-200 h-[40px] w-[40px] rounded-full"></div>
+                    <div className="text-white text-[]">{data.user.name}</div>
                   </div>
-                ))}
-              </InfiniteSlider>
-            ))}
+                  <div className="flex-[3] text-[12px] sm:text-[15px] text-white px-[25px] py-[20px]">{data.comment}</div>
+
+                </div>
+              ))}
+            </InfiniteSlider>
+          ))}
         </div>
 
         <p className="text-[18px] px-[50px] sm:text-[30px] font-semibold text-white text-center">Hear What People Are Saying About Us</p>
