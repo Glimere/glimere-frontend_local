@@ -25,7 +25,7 @@ import threeDModel from "../assets/3D/Royal_Clothes_Model-v2.glb"
 import Backdrop from "../assets/images/assortment-abstract-design-elements.jpg"
 import { slideImages } from '../components/slideImages';
 import { reviewsData } from '../components/reviewsData';
-import CaseStudySlide from '../components/caseStudySlide.jsx';
+import CaseStudySlide from '../components/CaseStudySlide';
 
 export default function Landing() {
 
