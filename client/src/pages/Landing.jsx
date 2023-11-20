@@ -169,9 +169,9 @@ export default function Landing() {
       <div className="h-[100vh] sm:h-[140vh] bg-secondary-200 py-[50px]">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
-            <h1 className='text-left sm:text-center text-[40px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
+            <h1 className='text-left sm:text-center text-[35px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#c56c8e] rounded-[30px] ">
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff6d5] rounded-[30px] ">
 
             {[...new Array(ROWS)].map((_, i) => (
               <InfiniteSlider
