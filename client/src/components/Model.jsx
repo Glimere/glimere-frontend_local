@@ -90,15 +90,15 @@ const Model = ({ onSwitchModel, initialScale, canvasRef, setIsLoading, isInterac
 
     useEffect(() => {
 
-        if (!isInteracting) {
+ 
             const interval = setInterval(() => {
-                setCurrentIndex((prevIndex) => (prevIndex + 1) % models.length);
+                if (!isInteracting) {
+                    setCurrentIndex((prevIndex) => (prevIndex + 1) % models.length);
+                  }
             }, 5000);
 
             return () => clearInterval(interval);
-        }
-
-
+       
     }, [isInteracting]);
 
     return gltf && gltf.scene ? (
