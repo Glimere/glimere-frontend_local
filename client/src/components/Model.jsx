@@ -3,12 +3,36 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from "three"
 import { OrbitControls, Circle, PerspectiveCamera } from '@react-three/drei'
 import { useTexture } from '@react-three/drei';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { useLoader } from '@react-three/fiber';
+import { models } from './models';
 
 
 
-const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) => {
+const Model = ({ onSwitchModel, initialScale, canvasRef, setIsLoading, isInteracting, boxDesktop, boxMobile, modelPositionDesktop, modelPositionMobile, cameraPositionDesktop, cameraPositionMobile }) => {
 
     const [isDesktop, setIsDesktop] = useState(true);
+    const [model, setModel] = useState();
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+
+    const [gltf, setGltf] = useState(null);
+
+    useEffect(() => {
+        const loadModel = async () => {
+            const loadedGltf = await new Promise((resolve) => {
+                new GLTFLoader().load(models[currentIndex].path, resolve, undefined, (error) =>
+                    console.error(error)
+                );
+            });
+
+            setGltf(loadedGltf);
+            setModel(models[currentIndex]);
+            setIsLoading(false);
+        };
+
+        loadModel();
+    }, [currentIndex, setIsLoading]);
 
     useEffect(() => {
         const updateScreenMode = () => {
@@ -26,12 +50,10 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) =
     }, []); // Run effect only once
 
     const boundingBoxConfig = isDesktop ?
-        { max: new THREE.Vector3(15000), min: new THREE.Vector3(-1000, -1000, -1000) } :
-        { max: new THREE.Vector3(8000), min: new THREE.Vector3(-1000, -1000, -1000) }; // Adjust bounding box based on screen size
-    const meshPosition = isDesktop ? [0, -2.5, 0] : [0, -2, 0]; // Adjust mesh position based on screen size
-    const circleSize = isDesktop ? [1.4] : [1]
-    const rotation = isDesktop ? -Math.PI / 1.7 : -Math.PI / 1.7
-    const cameraPosition = isDesktop ? [0, 0, 9.5] : [0, 0, 11]
+        { max: new THREE.Vector3(model?.boxSize?.desktop?.max), min: new THREE.Vector3(model?.boxSize?.desktop?.min) } :
+        { max: new THREE.Vector3(model?.boxSize?.mobile?.max), min: new THREE.Vector3(model?.boxSize?.mobile?.min) }; // Adjust bounding box based on screen size
+    const meshPosition = isDesktop ? model?.modelPosition?.desktop : model?.modelPosition?.mobile; // Adjust mesh position based on screen size
+    const cameraPosition = isDesktop ? model?.cameraPosition?.desktop : model?.cameraPosition?.mobile
 
 
     const min = boundingBoxConfig.min
@@ -66,7 +88,20 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) =
         setModelScale(scale)
     })
 
-    return (
+    useEffect(() => {
+
+        if (!isInteracting) {
+            const interval = setInterval(() => {
+                setCurrentIndex((prevIndex) => (prevIndex + 1) % models.length);
+            }, 5000);
+
+            return () => clearInterval(interval);
+        }
+
+
+    }, [isInteracting]);
+
+    return gltf && gltf.scene ? (
         <>
             <PerspectiveCamera makeDefault position={cameraPosition} />
             <OrbitControls
@@ -99,7 +134,7 @@ const Model = ({ gltf, initialScale, canvasRef, setIsLoading, isInteracting }) =
 
         </>
 
-    )
+    ) : null;
 }
 
 export default Model

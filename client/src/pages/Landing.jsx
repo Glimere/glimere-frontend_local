@@ -19,8 +19,6 @@ import Bubble from '../components/Bubble';
 import InfiniteSlider from './InfiniteSlider';
 import { Canvas } from '@react-three/fiber';
 import Model from '../components/Model';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { useLoader } from '@react-three/fiber';
 import threeDModel from "../assets/3D/Royal_Clothes_Model-v2.glb"
 import Backdrop from "../assets/images/assortment-abstract-design-elements.jpg"
 import { slideImages } from '../components/slideImages';
@@ -28,11 +26,6 @@ import { reviewsData } from '../components/reviewsData';
 import CaseStudySlide from '../components/CaseStudySlide';
 
 export default function Landing() {
-
-  // const ambientLight = new AmbientLight(0x404040);
-
-
-
 
   const [open, setOpen] = useState(false)
   const [formState, setFormState] = useState({ name: "", email: "" });
@@ -84,19 +77,17 @@ export default function Landing() {
   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
   const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
 
-
-
-  const gltf = useLoader(
-    GLTFLoader,
-    threeDModel
-  )
-
   const handleInteractionStart = () => {
     setIsInteracting(true);
   };
 
   const handleInteractionEnd = () => {
     setIsInteracting(false);
+  };
+
+  const handleSwitchModel = () => {
+    const nextIndex = (currentIndex + 1) % models.length;
+    setCurrentIndex(nextIndex);
   };
 
 
@@ -248,7 +239,7 @@ export default function Landing() {
                 onTouchEnd={handleInteractionEnd}
               >
                 <Model
-                  gltf={gltf}
+                  onSwitchModel={handleSwitchModel}
                   initialScale={1}
                   canvasRef={canvasRef}
                   setIsLoading={setIsLoading}
