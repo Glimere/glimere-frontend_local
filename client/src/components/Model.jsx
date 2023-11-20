@@ -5,15 +5,14 @@ import { OrbitControls, Circle, PerspectiveCamera } from '@react-three/drei'
 import { useTexture } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { useLoader } from '@react-three/fiber';
-import { models } from './models';
 
 
 
-const Model = ({ onSwitchModel, initialScale, canvasRef, setIsLoading, isInteracting, boxDesktop, boxMobile, modelPositionDesktop, modelPositionMobile, cameraPositionDesktop, cameraPositionMobile }) => {
+
+const Model = ({ models, onSwitchModel, initialScale, canvasRef, setIsLoading, isInteracting, currentIndex, setCurrentIndex }) => {
 
     const [isDesktop, setIsDesktop] = useState(true);
     const [model, setModel] = useState();
-    const [currentIndex, setCurrentIndex] = useState(0);
 
 
     const [gltf, setGltf] = useState(null);

@@ -24,6 +24,7 @@ import Backdrop from "../assets/images/assortment-abstract-design-elements.jpg"
 import { slideImages } from '../components/slideImages';
 import { reviewsData } from '../components/reviewsData';
 import CaseStudySlide from '../components/CaseStudySlide';
+import { modelData } from '../components/modelData'
 
 export default function Landing() {
 
@@ -34,6 +35,8 @@ export default function Landing() {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isInteracting, setIsInteracting] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
 
   const canvasRef = useRef(null)
   const cancelButtonRef = useRef(null)
@@ -86,7 +89,7 @@ export default function Landing() {
   };
 
   const handleSwitchModel = () => {
-    const nextIndex = (currentIndex + 1) % models.length;
+    const nextIndex = (currentIndex + 1) % modelData.length;
     setCurrentIndex(nextIndex);
   };
 
@@ -168,7 +171,7 @@ export default function Landing() {
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[40px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff7db] rounded-[30px] ">
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#c56c8e] rounded-[30px] ">
 
             {[...new Array(ROWS)].map((_, i) => (
               <InfiniteSlider
@@ -213,20 +216,23 @@ export default function Landing() {
 
             >
 
-              <div className="absolute h-[70%] w-full flex justify-between items-center p-[20px] sm:p-[50px]">
+              <div className="absolute h-full w-full flex justify-between items-center p-[20px] sm:p-[50px]">
                 <div className="h-full flex flex-col p-[10px] rounded-[10px] gap-[20px]">
 
                 </div>
                 <div className="flex flex-col gap-[30px] z-[10]">
-                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ed7534] rounded-full">
-                    <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[#fef8e9]"></div>
+                 {modelData.map((model, id)=> (
+                  <div key={id} className="h-[40px] w-[40px] flex justify-center items-center duration-300 cursor-pointer rounded-full"
+                  style={{backgroundColor: model.mannequinColor || "#ffc588"}}
+                  onClick={()=> setCurrentIndex(id)}
+                  >
+                    <div className={` ${id == currentIndex ? "h-[30px] w-[30px]" : "h-[15px] w-[15px]"} hover:h-[30px] hover:w-[30px] duration-300 rounded-full`}
+                    style={{backgroundColor: model.dressColor}}
+                    ></div>
                   </div>
-                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ffc588] rounded-full">
-                    <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[black]"></div>
-                  </div>
-                  <div className="h-[40px] w-[40px] flex justify-center items-center cursor-pointer bg-[#ffe9ac] rounded-full">
-                    <div className="h-[20px] w-[20px] hover:h-[30px] hover:w-[30px] duration-150 rounded-full bg-[white]"></div>
-                  </div>
+                 ))}
+                  
+               
                 </div>
               </div>
 
@@ -239,11 +245,14 @@ export default function Landing() {
                 onTouchEnd={handleInteractionEnd}
               >
                 <Model
+                models={modelData}
                   onSwitchModel={handleSwitchModel}
                   initialScale={1}
                   canvasRef={canvasRef}
                   setIsLoading={setIsLoading}
                   isInteracting={isInteracting}
+                  currentIndex={currentIndex}
+                  setCurrentIndex={setCurrentIndex}
                 />
               </Canvas>
             </div>

@@ -7,9 +7,11 @@ import pinkdresstwo from "../assets/3D/Stylishpink_dress-v3.glb"
 import womengown from "../assets/3D/WCheongsam-v4.glb"
 import womendress from "../assets/3D/WomensDress-v5.glb"
 
-export const models = [
+export const modelData = [
     {
       path: RoyalDress,
+      dressColor: "#ffffff",
+      mannequinColor: "#f0c67e",
       boxSize: {
         desktop: { min: -1000, max: 15000 },
         mobile: { min: -1000, max: 8000 }
@@ -25,6 +27,8 @@ export const models = [
     },
     {
       path: gown,
+      dressColor: "#c5946c",
+      mannequinColor: "",
       boxSize: {
         desktop: { min: -1000, max: 11800 },
         mobile: { min: -1000, max: 8200 }
@@ -55,6 +59,8 @@ export const models = [
     // },
     {
       path: sleeveless,
+      dressColor: "#fffae0",
+      mannequinColor: "#f0c67e",
       boxSize: {
         desktop: { min: -1000, max: 13500 },
         mobile: { min: -1000, max: 9850 }
@@ -70,6 +76,8 @@ export const models = [
     },
     {
       path: pinkdress,
+      dressColor: "#ff1c67",
+      mannequinColor: "",
       boxSize: {
         desktop: { min: -1000, max: 15000 },
         mobile: { min: -1000, max: 8000 }
@@ -85,6 +93,8 @@ export const models = [
     },
     {
       path: pinkdresstwo,
+      dressColor: "#ff5294",
+      mannequinColor: "",
       boxSize: {
         desktop: { min: -1000, max: 15000 },
         mobile: { min: -1000, max: 8000 }
@@ -100,6 +110,8 @@ export const models = [
     },
     {
       path: womengown,
+      dressColor: "#ffffff",
+      mannequinColor: "#f0c67e",
       boxSize: {
         desktop: { min: -1000, max: 13500 },
         mobile: { min: -1000, max: 9850 }
@@ -115,6 +127,8 @@ export const models = [
     },
     {
       path: womendress,
+      dressColor: "#ffffff",
+      mannequinColor: "#000000",
       boxSize: {
         desktop: { min: -1000, max: 13500 },
         mobile: { min: -1000, max: 9850 }
