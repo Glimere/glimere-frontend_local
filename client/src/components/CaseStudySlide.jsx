@@ -20,18 +20,32 @@ export default function CaseStudySlide() {
     return (
         <>
             <div className="flex flex-[4] sm:flex-[2] flex-col sm:flex-row gap-[20px] w-full sm:w-[65%]">
-                <div className="h-[300px] w-full sm:w-[450px] flex-[6] sm:flex-[1.8] bg-white rounded-[10px]"
-                    // {...caseStudyData?.map((data, id) => (
-                    //     <div key={id} className="w-full h-full bg-cover bg-center bg-no-repeat absolute bg-black"
-                    //         style={{ backgroundImage: `url(${data.fashionItems.image})` }}
-                    //     ></div>
-                    // ))} 
-                ></div>
+                <div className="h-[300px] w-full sm:w-[450px] flex-[6] sm:flex-[1.8] rounded-[10px] overflow-hidden"
+                >
+                    <div className="h-full flex flex-row duration-300"
+                        style={{
+                            width: `${caseStudyData.length * 450}px`,
+                            transform: `translateX(-${currentSlide * 450}px)`,                         
+                        }}
+                    >
+                        {caseStudyData.map((data, id) => (
+                            <div
+                                key={id}
+                                className="w-[450px] h-[300px] bg-cover bg-center bg-no-repeat bg-black"
+                                style={{ backgroundImage: `url(${data.fashionItems.image})` }}
+                            ></div>
+                        ))}
+                    </div>
+
+                </div>
                 <div className="flex-1 flex flex-row sm:flex-col gap-[20px] h-auto sm:h-[300px]">
                     {caseStudyData?.map((data, id) => (
-                        <div key={id} className={`w-full h-[50px] sm:h-[100px] rounded-[10px] ${id === currentSlide ? "bg-white" : ""}`}></div>
+                        <div
+                            key={id}
+                            className={`w-full h-[50px] sm:h-[100px] rounded-[10px] ${id === currentSlide ? "bg-white" : ""
+                                }`}
+                        ></div>
                     ))}
-
                 </div>
             </div>
         </>

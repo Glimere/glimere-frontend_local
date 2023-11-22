@@ -1,15 +1,6 @@
-import RoyalDress from "../assets/3D/Royal_Clothes_Model-v2.glb"
-import gown from "../assets/3D/Gown3D-v6.glb"
-import assymetric from "../assets/3D/asymmetric dress.glb"
-import sleeveless from "../assets/3D/sleevelessdress-v1.glb"
-import pinkdress from "../assets/3D/Stylishpink_dress_2-v2.glb"
-import pinkdresstwo from "../assets/3D/Stylishpink_dress-v3.glb"
-import womengown from "../assets/3D/WCheongsam-v4.glb"
-import womendress from "../assets/3D/WomensDress-v5.glb"
-
 export const modelData = [
     {
-      path: RoyalDress,
+      path: "/src/assets/3D/Royal_Clothes_Model-v2.glb",
       dressColor: "#ffffff",
       mannequinColor: "#f0c67e",
       boxSize: {
@@ -26,7 +17,7 @@ export const modelData = [
       }
     },
     {
-      path: gown,
+      path: "/src/assets/3D/Gown3D-v6.glb",
       dressColor: "#c5946c",
       mannequinColor: "",
       boxSize: {
@@ -58,7 +49,7 @@ export const modelData = [
     //   }
     // },
     {
-      path: sleeveless,
+      path: "/src/assets/3D/sleevelessdress-v1.glb",
       dressColor: "#fffae0",
       mannequinColor: "#f0c67e",
       boxSize: {
@@ -75,7 +66,7 @@ export const modelData = [
       }
     },
     {
-      path: pinkdress,
+      path: "/src/assets/3D/Stylishpink_dress_2-v2.glb",
       dressColor: "#ff1c67",
       mannequinColor: "",
       boxSize: {
@@ -92,7 +83,7 @@ export const modelData = [
       }
     },
     {
-      path: pinkdresstwo,
+      path: "/src/assets/3D/Stylishpink_dress-v3.glb",
       dressColor: "#ff5294",
       mannequinColor: "",
       boxSize: {
@@ -109,7 +100,7 @@ export const modelData = [
       }
     },
     {
-      path: womengown,
+      path: "/src/assets/3D/WCheongsam-v4.glb",
       dressColor: "#ffffff",
       mannequinColor: "#f0c67e",
       boxSize: {
@@ -126,7 +117,7 @@ export const modelData = [
       }
     },
     {
-      path: womendress,
+      path: "/src/assets/3D/WomensDress-v5.glb",
       dressColor: "#ffffff",
       mannequinColor: "#000000",
       boxSize: {

@@ -94,7 +94,7 @@ const Model = ({ models, onSwitchModel, initialScale, canvasRef, setIsLoading, i
                 if (!isInteracting) {
                     setCurrentIndex((prevIndex) => (prevIndex + 1) % models.length);
                   }
-            }, 5000);
+            }, 15000);
 
             return () => clearInterval(interval);
        
