@@ -284,7 +284,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[100vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col-reverse sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
+      <div className="h-[120vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
         <div className="flex flex-[1] flex-col gap-[20px]">
           <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matter to you.</h1>
           <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
