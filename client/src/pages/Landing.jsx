@@ -221,18 +221,18 @@ export default function Landing() {
 
                 </div>
                 <div className="flex flex-col gap-[30px] z-[10]">
-                 {modelData.map((model, id)=> (
-                  <div key={id} className="h-[40px] w-[40px] flex justify-center items-center duration-300 cursor-pointer rounded-full"
-                  style={{backgroundColor: model.mannequinColor || "#ffc588"}}
-                  onClick={()=> setCurrentIndex(id)}
-                  >
-                    <div className={` ${id == currentIndex ? "h-[30px] w-[30px]" : "h-[15px] w-[15px]"} hover:h-[30px] hover:w-[30px] duration-300 rounded-full`}
-                    style={{backgroundColor: model.dressColor}}
-                    ></div>
-                  </div>
-                 ))}
-                  
-               
+                  {modelData.map((model, id) => (
+                    <div key={id} className="h-[40px] w-[40px] flex justify-center items-center duration-300 cursor-pointer rounded-full"
+                      style={{ backgroundColor: model.mannequinColor || "#ffc588" }}
+                      onClick={() => setCurrentIndex(id)}
+                    >
+                      <div className={` ${id == currentIndex ? "h-[30px] w-[30px]" : "h-[15px] w-[15px]"} hover:h-[30px] hover:w-[30px] duration-300 rounded-full`}
+                        style={{ backgroundColor: model.dressColor }}
+                      ></div>
+                    </div>
+                  ))}
+
+
                 </div>
               </div>
 
@@ -245,7 +245,7 @@ export default function Landing() {
                 onTouchEnd={handleInteractionEnd}
               >
                 <Model
-                models={modelData}
+                  models={modelData}
                   onSwitchModel={handleSwitchModel}
                   initialScale={1}
                   canvasRef={canvasRef}
@@ -266,8 +266,13 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[90vh] sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]"
+      <div className="h-[90vh] sm:h-[100vh] bg-secondary-200 w-full gap-[40px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]"
       >
+        <div className="flex-[1.2] bg-black-100 rounded-[20px]"
+          style={{ backgroundImage: `url(${models})` }}
+
+        >
+        </div>
         <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
           <div className="w-[90%] sm:w-[90%] text-left">
             <h1 className="text-black text-[30px] sm:text-[60px] head-font">Experience Custom-Made Freedom</h1>
@@ -277,16 +282,12 @@ export default function Landing() {
             <p className="text-black text-[18px]">Make custom requests from skilled fashion creators in seconds and have them made and delivered to you in few days </p>
           </div>
         </div>
-        <div className="flex-[1] bg-black-100 rounded-[20px]"
-          style={{ backgroundImage: `url(${models})` }}
 
-        >
-        </div>
       </div>
 
       <div className="h-[120vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
         <div className="flex flex-[1] flex-col gap-[20px]">
-          <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matter to you.</h1>
+          <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matters to you.</h1>
           <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
         </div>
         <CaseStudySlide />
