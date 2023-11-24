@@ -8,11 +8,11 @@ export const modelData = [
         mobile: { min: -1000, max: 8000 }
       },
       modelPosition: {
-        desktop: [0, -2.5, 0],
+        desktop: [0, -4, 0],
         mobile: [0, -2, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 9.5],
+        desktop: [0, 0, 12.5],
         mobile: [0, 0, 11]
       }
     },
@@ -25,29 +25,14 @@ export const modelData = [
         mobile: { min: -1000, max: 8200 }
       },
       modelPosition: {
-        desktop: [0, -40, 0],
+        desktop: [0, -55, 0],
         mobile: [0, -25, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 100],
+        desktop: [0, 0, 140],
         mobile: [0, 0, 90]
       }
     },
-    // {
-    //   path: assymetric,
-    //   boxSize: {
-    //     desktop: { min: -1000, max: 15000 },
-    //     mobile: { min: -1000, max: 8000 }
-    //   },
-    //   modelPosition: {
-    //     desktop: [0, -2.5, 0],
-    //     mobile: [0, -2, 0]
-    //   },
-    //   cameraPosition: {
-    //     desktop: [0, 0, 9.5],
-    //     mobile: [0, 0, 11]
-    //   }
-    // },
     {
       path: "/src/assets/3D/sleevelessdress-v1.glb",
       dressColor: "#fffae0",
@@ -57,11 +42,11 @@ export const modelData = [
         mobile: { min: -1000, max: 9850 }
       },
       modelPosition: {
-        desktop: [0, -35, 0],
-        mobile: [0, -22, 0]
+        desktop: [0, -52, 0],
+        mobile: [0, -25, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 100],
+        desktop: [0, 0, 130],
         mobile: [0, 0, 90]
       }
     },
@@ -74,11 +59,11 @@ export const modelData = [
         mobile: { min: -1000, max: 8000 }
       },
       modelPosition: {
-        desktop: [0, -37, 0],
+        desktop: [0, -55.5, 0],
         mobile: [0, -35, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 75],
+        desktop: [0, 0, 100],
         mobile: [0, 0, 90]
       }
     },
@@ -91,11 +76,11 @@ export const modelData = [
         mobile: { min: -1000, max: 8000 }
       },
       modelPosition: {
-        desktop: [0, -37, 0],
+        desktop: [0, -55.5, 0],
         mobile: [0, -35, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 75],
+        desktop: [0, 0, 100],
         mobile: [0, 0, 90]
       }
     },
@@ -108,11 +93,11 @@ export const modelData = [
         mobile: { min: -1000, max: 9850 }
       },
       modelPosition: {
-        desktop: [0, -35, 0],
-        mobile: [0, -22, 0]
+        desktop: [0, -52, 0],
+        mobile: [0, -25, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 100],
+        desktop: [0, 0, 130],
         mobile: [0, 0, 90]
       }
     },
@@ -125,11 +110,11 @@ export const modelData = [
         mobile: { min: -1000, max: 9850 }
       },
       modelPosition: {
-        desktop: [0, -38, 0],
-        mobile: [0, -23, 0]
+        desktop: [0, -55, 0],
+        mobile: [0, -25, 0]
       },
       cameraPosition: {
-        desktop: [0, 0, 100],
+        desktop: [0, 0, 140],
         mobile: [0, 0, 90]
       }
     }

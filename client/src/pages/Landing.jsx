@@ -25,6 +25,7 @@ import { slideImages } from '../components/slideImages';
 import { reviewsData } from '../components/reviewsData';
 import CaseStudySlide from '../components/CaseStudySlide';
 import { modelData } from '../components/modelData'
+import Processslide from '../components/Processslide';
 
 export default function Landing() {
 
@@ -266,23 +267,9 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[90vh] sm:h-[100vh] bg-secondary-200 w-full gap-[40px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]"
+      <div className="h-[100vh] bg-secondary-200"
       >
-        <div className="flex-[1.2] bg-black-100 rounded-[20px]"
-          style={{ backgroundImage: `url(${models})` }}
-
-        >
-        </div>
-        <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
-          <div className="w-[90%] sm:w-[90%] text-left">
-            <h1 className="text-black text-[30px] sm:text-[60px] head-font">Experience Custom-Made Freedom</h1>
-
-          </div>
-          <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
-            <p className="text-black text-[18px]">Make custom requests from skilled fashion creators in seconds and have them made and delivered to you in few days </p>
-          </div>
-        </div>
-
+       <Processslide/>   
       </div>
 
       <div className="h-[120vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
