@@ -129,10 +129,10 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[90vh] sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
+      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
 
-        <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
+        <div className='sm:flex-[1] flex flex-col h-full w-full items-start justify-center '>
           <div className="w-[90%] sm:w-[90%] text-left">
             <h1 className="text-black text-[30px] sm:text-[60px] head-font">The Future of African Fashion is Here</h1>
 
@@ -141,23 +141,23 @@ export default function Landing() {
             <p className="text-black text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
           </div>
         </div>
-        <div className="flex-[1] bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
+        <div className="sm:flex-[1] h-[300px] bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
           style={{ backgroundImage: `url(${models})` }}
 
         >
         </div>
       </div>
 
-      <div className="h-[100vh] w-full bg-secondary-100 bg-cover bg-center bg-no-repeat"
+      <div className="pt-[100px] pb-[150px] sm:pb-0 sm:pt-0 sm:h-[100vh] w-full bg-secondary-100 bg-cover bg-center bg-no-repeat"
       // style={{ backgroundImage: `url(${models})` }}
       >
         <div className="h-full w-full relative">
-          <img className=" absolute duration-150  w-[20px] sm:w-[40px]  hover:w-[60px] top-[30%] sm:top-[17%] left-[15%] sm:left-[15%]" src={thread} />
-          <img className=" absolute duration-150  w-[40px] sm:w-[60px] hover:w-[80px] rotate-12 top-[70%] sm:top-[40%] left-[7%]" src={samples} />
-          <img className=" absolute duration-150  w-[80px]  sm:w-[100px]  hover:w-[120px] top-[19%] sm:top-[75%] left-[55%] sm:left-[10%]" src={materialTwo} />
-          <img className=" absolute duration-150  w-[60px] sm:w-[80px] hover:w-[100px] top-[31%] sm:top-[14%] right-[10%] sm:right-[20%]" src={headset} />
-          <img className=" absolute duration-150  w-[70px] sm:w-[90px]  hover:w-[110px] rotate-12 top-[70%] sm:top-[40%] right-[10%]" src={materialThree} />
-          <img className=" absolute duration-150  w-[60px] sm:w-[80px]  hover:w-[100px] top-[19%] sm:top-[75%] right-[53%] sm:right-[21%]" src={toolsPack} />
+          <img className=" absolute duration-150  w-[20px] sm:w-[40px]  hover:w-[60px] top-[30%] sm:top-[17%] left-[10%] sm:left-[15%]" src={thread} />
+          <img className=" absolute duration-150  w-[40px] sm:w-[60px] hover:w-[80px] rotate-12 top-[100%] sm:top-[40%] left-[7%]" src={samples} />
+          <img className=" absolute duration-150  w-[80px]  sm:w-[100px]  hover:w-[120px] top-[12%] sm:top-[75%] left-[60%] sm:left-[10%]" src={materialTwo} />
+          <img className=" absolute duration-150  w-[60px] sm:w-[80px] hover:w-[100px] top-[31%] sm:top-[14%] right-[3%] sm:right-[20%]" src={headset} />
+          <img className=" absolute duration-150  w-[70px] sm:w-[90px]  hover:w-[110px] rotate-45 top-[95%] sm:top-[40%] right-[10%]" src={materialThree} />
+          <img className=" absolute duration-150  w-[60px] sm:w-[80px]  hover:w-[100px] top-[1%] sm:top-[75%] right-[53%] sm:right-[21%]" src={toolsPack} />
           <div className="h-full w-full flex justify-center items-center">
             <div className="w-[340px] sm:w-[750px]">
               <h1 className="text-[40px] mt-[100px] sm:mt-0 sm:text-[60px] text-center head-font">We focus on technology to build a more sustainable solution</h1>
@@ -167,12 +167,12 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-[100vh] sm:h-[140vh] bg-secondary-200 py-[50px]">
+      <div className="h-auto sm:h-[140vh] bg-secondary-200 py-[50px]">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
-            <h1 className='text-left sm:text-center text-[35px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
+            <h1 className='text-left sm:text-center text-[25px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
           </div>
-          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] overflow-hidden bg-[#fff6d5] rounded-[30px] ">
+          <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] border border-black border-solid  overflow-hidden bg-[#fff6d5] rounded-[30px] ">
 
             {[...new Array(ROWS)].map((_, i) => (
               <InfiniteSlider
@@ -201,7 +201,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[160vh] sm:h-[150vh] bg-secondary-100 py-[50px]">
+      <div className="h-auto sm:h-[150vh] bg-secondary-100 py-[50px]">
         <div className="h-full w-full flex flex-col gap-[30px] justify-center items-center overflow-hidden">
           <div className="w-full sm:w-[60%] flex px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[35px] sm:text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
@@ -267,12 +267,12 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-[100vh] bg-secondary-200"
+      <div className="h-auto sm:h-[100vh] bg-secondary-200"
       >
         <Processslide />
       </div>
 
-      <div className="h-[130vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
+      <div className="h-auto sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
         <div className="flex flex-[1] flex-col gap-[20px]">
           <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matters to you.</h1>
           <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
@@ -280,7 +280,7 @@ export default function Landing() {
         <CaseStudySlide />
       </div>
 
-      <div className="h-[78vh] sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[50px]">
+      <div className="h-auto sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[50px]">
         <div className="w-full flex flex-col gap-[20px] sm:gap-[40px]">
           {[...new Array(REVIEW_ROWS)].map((_, i) => (
             <InfiniteSlider
@@ -323,7 +323,7 @@ export default function Landing() {
       </div> */}
 
 
-      <div ref={elementRef} className="h-[60vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
+      <div ref={elementRef} className="h-auto sm:h-[60vh] p-[100px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
         <div className="flex items-center justify-center">
           <div className="">
             <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px] head-font">Ready to slay the fashion game?</h1>

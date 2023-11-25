@@ -67,11 +67,11 @@ export default function CaseStudySlide() {
 
                     </div>
                 </div>
-                <div className="flex-1 flex flex-row sm:flex-col gap-[20px] h-auto sm:h-[300px]">
+                <div className="flex-1 flex flex-row sm:flex-col h-auto sm:h-[300px]">
                     {caseStudyData?.map((data, id) => (
                         <div
                             key={id}
-                            className={`w-full h-[50px] flex justify-center items-center sm:h-auto rounded-[10px] p-[15px] duration-300 ${id === currentSlide ? 'bg-[#ffe9b8]' : 'bg-transparent'}`}
+                            className={`w-full h-[70px] flex justify-center items-center sm:h-auto rounded-[10px] p-[15px] duration-300 ${id === currentSlide ? 'bg-[#ffe9b8]' : 'bg-transparent'}`}
                         >
                             <p className={`text-[17px] font-bold duration-300 ${id === currentSlide ? ' text-[#772f1a]' : 'text-transparent'}`}>{data.title}</p>
                         </div>
