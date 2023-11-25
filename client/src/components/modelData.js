@@ -1,6 +1,13 @@
+import Royal_Clothes from "../assets/3D/Royal_Clothes_Model-v2.glb"
+import Gown3D from "../assets/3D/Gown3D-v6.glb"
+import sleevelessdress from "../assets/3D/sleevelessdress-v1.glb"
+import Stylishpink from "../assets/3D/Stylishpink_dress_2-v2.glb"
+import WCheongsam from "../assets/3D/Stylishpink_dress-v3.glb"
+import WomensDress from "../assets/3D/WCheongsam-v4.glb"
+
 export const modelData = [
   {
-    path: "/src/assets/3D/Royal_Clothes_Model-v2.glb",
+    path: Royal_Clothes,
     dressColor: "#ffffff",
     mannequinColor: "#f0c67e",
     boxSize: {
@@ -17,7 +24,7 @@ export const modelData = [
     }
   },
   {
-    path: "/src/assets/3D/Gown3D-v6.glb",
+    path: Gown3D,
     dressColor: "#c5946c",
     mannequinColor: "",
     boxSize: {
@@ -49,7 +56,7 @@ export const modelData = [
   //   }
   // },
   {
-    path: "/src/assets/3D/sleevelessdress-v1.glb",
+    path: sleevelessdress,
     dressColor: "#fffae0",
     mannequinColor: "#f0c67e",
     boxSize: {
@@ -66,7 +73,7 @@ export const modelData = [
     }
   },
   {
-    path: "/src/assets/3D/Stylishpink_dress_2-v2.glb",
+    path: Stylishpink,
     dressColor: "#ff1c67",
     mannequinColor: "",
     boxSize: {
@@ -83,7 +90,7 @@ export const modelData = [
     }
   },
   {
-    path: "/src/assets/3D/Stylishpink_dress-v3.glb",
+    path: WCheongsam,
     dressColor: "#ff5294",
     mannequinColor: "",
     boxSize: {
@@ -100,7 +107,7 @@ export const modelData = [
     }
   },
   {
-    path: "/src/assets/3D/WCheongsam-v4.glb",
+    path: WomensDress,
     dressColor: "#ffffff",
     mannequinColor: "#f0c67e",
     boxSize: {

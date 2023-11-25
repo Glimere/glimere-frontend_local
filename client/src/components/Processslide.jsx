@@ -24,7 +24,7 @@ export default function Processslide() {
     return (
         <div className="w-full gap-[50px] relative flex flex-col sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
-            <div className="flex-[1] flex flex-col w-[300px] sm:w-[500px] h-[250px] sm:h-[520px] items-center relative">
+            <div className="flex-[1] flex flex-col w-full h-[250px] sm:h-[520px] items-center relative">
                 <div className="relative z-[2] h-[250px] sm:h-full w-full overflow-hidden rounded-[20px]  bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(https://i.ibb.co/2tFzy0d/9.webp)` }}
                 >

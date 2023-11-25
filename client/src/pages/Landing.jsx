@@ -324,7 +324,7 @@ export default function Landing() {
 
 
       <div ref={elementRef} className="h-[60vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <div className="">
             <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px] head-font">Ready to slay the fashion game?</h1>
             <div className="w-[90%] sm:w-[70%]">
