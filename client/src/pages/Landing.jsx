@@ -311,16 +311,16 @@ export default function Landing() {
       </div>
 
 
-      <div ref={playref} className="container bg-black-100 max-w-full flex justify-center items-center">
-        {/* Other content */}
+      {/* <div ref={playref} className="container bg-black-100 max-w-full flex justify-center items-center">
+
         <div className="hidden sm:block my-[70px]">
           <YoutubeVideo onReady={onReady} />
         </div>
         <div className="block sm:hidden my-[70px]">
           <YoutubeVideoSmall onReady={onReady} />
         </div>
-        {/* Other content */}
-      </div>
+
+      </div> */}
 
 
       <div ref={elementRef} className="h-[60vh] bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
