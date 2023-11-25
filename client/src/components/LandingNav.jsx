@@ -5,7 +5,7 @@ import { ReactComponent as GlimereLogo } from "../assets/images/glimerenew.svg"
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export default function LandingNav() {
+export default function LandingNav(props) {
 
     const location = useLocation()
 
@@ -13,7 +13,7 @@ export default function LandingNav() {
     const [scrollPos, setScrollPos] = useState(0);
 
     const creatorsPath = location.pathname == "/creators" ? true : false
-    const navLogoColor = location.pathname == "/" ? "#000000" : "#000000"
+    const navLogoColor = location.pathname == "/" && isOpen ? "#ffffff" : "#000000"
 
 
     const handleOpen = () => setIsOpen((prev) => !prev);
@@ -54,12 +54,12 @@ export default function LandingNav() {
                         <div className="flex flex-row gap-[20px] sm:gap-[50px]">
                             <div className={`hover:border-gray-400 duration-150 ${!creatorsPath ? "border-black" : "border-transparent"} border-solid border-b-[3px]`}>
                                 <Link to="/" className="">
-                                    <p className="text-black text-[14px] sm:text-[16px] cursor-pointer">Shoppers</p>
+                                    <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}>Shoppers</p>
                                 </Link>
                             </div>
                             <div className={`hover:border-gray-400 duration-150 ${creatorsPath ? "border-black" : "border-transparent"} border-solid border-b-[3px]`}>
                                 <Link to="/creators" className="">
-                                    <p className="text-black text-[14px] sm:text-[16px] cursor-pointer">Fashion Creators</p>
+                                    <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}>Fashion Creators</p>
                                 </Link>
                             </div>
                         </div>
@@ -73,9 +73,9 @@ export default function LandingNav() {
                         onClick={handleOpen}
                         className={`${isOpen ? "open" : ""} flex flex-col items-center w-fit gap-[7px] cursor-pointer md:hidden z-20`}
                     >
-                        <span className="transition-all duration-500 ease-in-out h-[2px] w-5 bg-black rounded-full"></span>
-                        <span className="transition-all duration-500 ease-in-out h-[2px] w-4 bg-black rounded-full"></span>
-                        <span className="transition-all duration-500 ease-in-out h-[2px] w-5 bg-black rounded-full"></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-white" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white" : "bg-black"} rounded-full`}></span>
                     </div>
 
                     {/* Button */}
@@ -97,7 +97,7 @@ export default function LandingNav() {
                 </div>
 
                 {/* Navbar Menu (Mobile) */}
-                <NavbarDropdown isOpen={isOpen} />
+                <NavbarDropdown isOpen={isOpen} modalToggle={props.setOpen} />
             </div>
         </nav>
     );

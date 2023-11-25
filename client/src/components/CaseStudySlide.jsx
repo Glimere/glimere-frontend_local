@@ -42,9 +42,9 @@ export default function CaseStudySlide() {
                         </div>
                     </div>
 
-                    <div className="w-full h-[90px] bg-white rounded-[10px] flex flex-row items-center pl-[15px]">
+                    <div className="w-full h-[120px] sm:h-[90px] bg-white rounded-[10px] flex flex-row items-center pl-[15px]">
                         <div className="h-full py-[10px]">
-                            <div className="h-full w-[10px] rounded-full bg-[#ed7534]"></div>
+                            <div className="h-full w-[7px] sm:w-[10px] rounded-full bg-[#ed7534]"></div>
                         </div>
 
                         <div className="overflow-hidden">
@@ -56,8 +56,8 @@ export default function CaseStudySlide() {
                             >
                                 {caseStudyData.map((data, id) => {
                                     return (
-                                        <div key={id} className="w-[450px] h-[120px] p-[20px] flex flex-row items-center" >
-                                            <p className="text-[17px] text-black">{data.description}</p>
+                                        <div key={id} className="w-[450px] h-[150px] sm:h-[120px] pl-[15px] pr-[50px] sm:p-[20px] flex flex-row items-center" >
+                                            <p className="text-[17px] w-[70%] text-black">{data.description}</p>
                                         </div>
                                     )
                                 })}
@@ -71,7 +71,7 @@ export default function CaseStudySlide() {
                     {caseStudyData?.map((data, id) => (
                         <div
                             key={id}
-                            className={`w-full h-[50px] flex justify-center items-center sm:h-[100px] rounded-[10px] p-[15px] duration-300 ${id === currentSlide ? 'bg-[#ffe9b8]' : 'bg-transparent'}`}
+                            className={`w-full h-[50px] flex justify-center items-center sm:h-auto rounded-[10px] p-[15px] duration-300 ${id === currentSlide ? 'bg-[#ffe9b8]' : 'bg-transparent'}`}
                         >
                             <p className={`text-[17px] font-bold duration-300 ${id === currentSlide ? ' text-[#772f1a]' : 'text-transparent'}`}>{data.title}</p>
                         </div>

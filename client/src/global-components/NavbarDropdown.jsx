@@ -1,4 +1,4 @@
-export default function NavbarDropdown({ isOpen }) {
+export default function NavbarDropdown({ isOpen, modalToggle }) {
     return (
       <div
         className={`${
@@ -30,8 +30,10 @@ export default function NavbarDropdown({ isOpen }) {
               </p>
             </a>
             <a href="#">
-              <button className="py-3.5 border border-primary-100 w-full text-white bg-primary-100 font-medium">
-                Start Free
+              <button className="py-3.5 border border-primary-100 w-full text-white bg-primary-100 font-medium"
+              onClick={()=> modalToggle(true)}
+              >
+                Join Our Waitlist
               </button>
             </a>
           </div>

@@ -97,7 +97,7 @@ export default function Landing() {
 
   return (
     <>
-      <LandingNav />
+      <LandingNav setOpen={setOpen} />
 
       <div className='h-[60vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
       // style={{ backgroundImage: `url(${glimereBg})` }}
@@ -269,10 +269,10 @@ export default function Landing() {
 
       <div className="h-[100vh] bg-secondary-200"
       >
-       <Processslide/>   
+        <Processslide />
       </div>
 
-      <div className="h-[120vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
+      <div className="h-[130vh] sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
         <div className="flex flex-[1] flex-col gap-[20px]">
           <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matters to you.</h1>
           <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
@@ -418,24 +418,11 @@ export default function Landing() {
 
 
                               <div className='relative mb-4'>
-                                <legend className="text-sm leading-6 text-gray-600">What best describes your fashion role or interests?</legend>
+                                <legend className="text-sm leading-6 text-gray-600">How will you like to use Glimere?</legend>
                                 <select id="fashionClass" name="fashionClass" multiple className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-[#f7a477] focus:outline-none focus:ring-[#ed7534] focus:border-[#ed7534] sm:text-sm rounded-md">
-                                  <option value="" disabled selected>Select your fashion class...</option>
-                                  <option value="Fashionista" className='checked:bg-[#ffb590] checked:text-black'>Fashionista</option>
-                                  <option value="Fashion Blogger/Influencer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Blogger/Influencer</option>
-                                  <option value="Fashion Designer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Designer</option>
-                                  <option value="Fashion Stylist" className='checked:bg-[#ffb590] checked:text-black'>Fashion Stylist</option>
-                                  <option value="Fashion Retailer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Retailer</option>
-                                  <option value="Fashion Buyer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Buyer</option>
-                                  <option value="Fashion Journalist" className='checked:bg-[#ffb590] checked:text-black'>Fashion Journalist</option>
-                                  <option value="Fashion Photographer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Photographer</option>
-                                  <option value="Fashion Model" className='checked:bg-[#ffb590] checked:text-black'>Fashion Model</option>
-                                  <option value="Fashion Consultant" className='checked:bg-[#ffb590] checked:text-black'>Fashion Consultant</option>
-                                  <option value="Fashion Entrepreneur" className='checked:bg-[#ffb590] checked:text-black'>Fashion Entrepreneur</option>
-                                  <option value="Fashion Marketer" className='checked:bg-[#ffb590] checked:text-black'>Fashion Marketer</option>
-                                  <option value="Fashion Educator" className='checked:bg-[#ffb590] checked:text-black'>Fashion Educator</option>
-                                  <option value="Fashion Event Planner" className='checked:bg-[#ffb590] checked:text-black'>Fashion Event Planner</option>
-                                  <option value="Fashion PR/Publicist" className='checked:bg-[#ffb590] checked:text-black'>Fashion PR/Publicist</option>
+                                  <option value="" disabled selected>Select your user class...</option>
+                                  <option value="Buying Fashion" className='checked:bg-[#ffb590] checked:text-black'>Buying Fashion</option>
+                                  <option value="Creating Fashion" className='checked:bg-[#ffb590] checked:text-black'>Creating Fashion</option>
                                 </select>
                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                   <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
@@ -464,7 +451,7 @@ export default function Landing() {
                             </div>
                           </div>
                           <div className="mt-6 flex items-center justify-center gap-x-6">
-                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">I&rsquo;m in!</button>
+                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-white">I&rsquo;m in!</button>
                           </div>
                         </form>}
 
