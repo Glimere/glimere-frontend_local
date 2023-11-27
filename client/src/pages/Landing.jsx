@@ -129,7 +129,7 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[30px] sm:py-[80px] px-[40px] sm:px-[4rem]">
+      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[50px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
 
         <div className='sm:flex-[1] flex flex-col h-full w-full items-start justify-center '>
