@@ -26,8 +26,8 @@ export const modelData = [
   },
   {
     path: assymetricDress,
-    dressColor: "#ffffff",
-    mannequinColor: "#000000",
+    dressColor: "#000000",
+    mannequinColor: "#ffffff",
     boxSize: {
       desktop: { min: -1000, max: 15000 },
       mobile: { min: -1000, max: 8000 }
