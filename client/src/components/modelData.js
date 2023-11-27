@@ -4,12 +4,30 @@ import sleevelessdress from "../assets/3D/sleevelessdress-v1.glb"
 import Stylishpink from "../assets/3D/Stylishpink_dress_2-v2.glb"
 import WCheongsam from "../assets/3D/Stylishpink_dress-v3.glb"
 import WomensDress from "../assets/3D/WCheongsam-v4.glb"
+import assymetricDress from "../assets/3D/asymmetricdress-v2.glb"
 
 export const modelData = [
   {
     path: Royal_Clothes,
     dressColor: "#ffffff",
     mannequinColor: "#f0c67e",
+    boxSize: {
+      desktop: { min: -1000, max: 15000 },
+      mobile: { min: -1000, max: 8000 }
+    },
+    modelPosition: {
+      desktop: [0, -2.5, 0],
+      mobile: [0, -2, 0]
+    },
+    cameraPosition: {
+      desktop: [0, 0, 9.5],
+      mobile: [0, 0, 11]
+    }
+  },
+  {
+    path: assymetricDress,
+    dressColor: "#ffffff",
+    mannequinColor: "#000000",
     boxSize: {
       desktop: { min: -1000, max: 15000 },
       mobile: { min: -1000, max: 8000 }
