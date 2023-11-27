@@ -116,7 +116,7 @@ export default function Landing() {
 
           <div className="w-[340px] sm:w-[750px] z-[4] relative mb-[15px]">
 
-            <h1 className="text-[40px] sm:text-[80px] text-center text-black mb-[20px] head-font">Shop Exclusive Custom made Fashion</h1>
+            <h1 className="text-[45px] sm:text-[80px] text-center text-black mb-[20px] head-font">Shop Exclusive Custom made Fashion</h1>
 
           </div>
 
@@ -129,7 +129,7 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[60px] sm:py-[80px] px-[40px] sm:px-[4rem]">
+      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[30px] sm:py-[80px] px-[40px] sm:px-[4rem]">
 
 
         <div className='sm:flex-[1] flex flex-col h-full w-full items-start justify-center '>
@@ -148,7 +148,7 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="pt-[100px] pb-[150px] sm:pb-0 sm:pt-0 sm:h-[100vh] w-full bg-secondary-100 bg-cover bg-center bg-no-repeat"
+      <div className="pt-[130px] pb-[180px] sm:pb-0 sm:pt-0 sm:h-[100vh] w-full bg-secondary-100 bg-cover bg-center bg-no-repeat"
       // style={{ backgroundImage: `url(${models})` }}
       >
         <div className="h-full w-full relative">
@@ -167,7 +167,7 @@ export default function Landing() {
 
       </div>
 
-      <div className="h-auto sm:h-[140vh] bg-secondary-200 py-[50px]">
+      <div className="h-auto sm:h-[140vh] bg-secondary-200 py-[80px] sm:py-[50px]">
         <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
           <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
             <h1 className='text-left sm:text-center text-[25px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
@@ -267,12 +267,12 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className="h-auto sm:h-[100vh] bg-secondary-200"
+      <div className="h-auto sm:h-[100vh] bg-secondary-200 "
       >
         <Processslide />
       </div>
 
-      <div className="h-auto sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[4rem] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
+      <div className="h-auto sm:h-[100vh] bg-secondary-100 w-full relative flex flex-col sm:flex-row px-[2rem] py-[80px] sm:px-[7rem] sm:py-[7rem] gap-[40px] sm:gap-[80px] justify-center items-center">
         <div className="flex flex-[1] flex-col gap-[20px]">
           <h1 className="text-[28px] sm:text-[40px] font-bold">We prioritize addressing the issues that matters to you.</h1>
           <p className="text-[15px] sm:text-[20px]">See real-life examples of how Glimere's MVP can change your fashion experience.</p>
@@ -280,7 +280,7 @@ export default function Landing() {
         <CaseStudySlide />
       </div>
 
-      <div className="h-auto sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[50px]">
+      <div className="h-auto sm:h-[100vh] overflow-hidden bg-black flex flex-col gap-[50px] items-center py-[80px] sm:py-[50px]">
         <div className="w-full flex flex-col gap-[20px] sm:gap-[40px]">
           {[...new Array(REVIEW_ROWS)].map((_, i) => (
             <InfiniteSlider
@@ -323,7 +323,7 @@ export default function Landing() {
       </div> */}
 
 
-      <div ref={elementRef} className="h-auto sm:h-[60vh] p-[100px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
+      <div ref={elementRef} className="h-auto sm:h-[60vh] py-[130px] sm:py-[100px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
         <div className="flex items-center justify-center">
           <div className="">
             <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px] head-font">Ready to slay the fashion game?</h1>
