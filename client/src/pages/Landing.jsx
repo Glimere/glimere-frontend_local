@@ -141,7 +141,7 @@ export default function Landing() {
             <p className="text-black text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
           </div>
         </div>
-        <div className="sm:flex-[1] h-[300px] bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
+        <div className="sm:flex-[1] h-[300px] sm:h-auto bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
           style={{ backgroundImage: `url(${models})` }}
 
         >
@@ -323,7 +323,7 @@ export default function Landing() {
       </div> */}
 
 
-      <div ref={elementRef} className="h-auto sm:h-[60vh] py-[130px] sm:py-[100px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
+      <div ref={elementRef} className="h-auto py-[130px] sm:py-[140px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
         <div className="flex items-center justify-center">
           <div className="">
             <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px] head-font">Ready to slay the fashion game?</h1>
