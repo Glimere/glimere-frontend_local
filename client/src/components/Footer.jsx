@@ -7,7 +7,7 @@ import twitter from '../assets/images/twitter.svg'
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-primary-100">
+    <footer className="w-full bg-black">
       <div className="px-5 py-10 flex flex-col sm:px-10 lg:grid grid-cols-3 lg:gap-y-32">
         <div className="lg:col-span-1">
           <GlimereLogo style={{ color: "#ffffff" }} height="40" className={`w-[120px] hidden sm:block`} />
@@ -119,15 +119,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="font-body text-white font-medium order-1">
-            © 2022 Glimere by{" "}
-            <a
-              className="italic underline"
-              href="https://www.glimere.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Joseph Akinwole
-            </a>
+            © 2023 Glimere
           </p>
         </div>
       </div>

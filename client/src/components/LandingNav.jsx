@@ -13,7 +13,7 @@ export default function LandingNav(props) {
     const [scrollPos, setScrollPos] = useState(0);
 
     const creatorsPath = location.pathname == "/creators" ? true : false
-    const navLogoColor = location.pathname == "/" && isOpen ? "#ffffff" : "#000000"
+    const navLogoColor = location.pathname == "/" && isOpen ? "#ffffff" : "/creators" && isOpen ? "#ffffff" : "#000000"
 
 
     const handleOpen = () => setIsOpen((prev) => !prev);
