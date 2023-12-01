@@ -46,7 +46,7 @@ export default function Creators({setOpen}) {
       </div>
 
 
-      <div className="h-auto sm:h-[100vh] bg-black-100 w-full relative flex flex-col-reverse sm:flex-row-reverse">
+      <div className="h-auto sm:h-[100vh] bg-black-100 w-full relative flex flex-col-reverse sm:flex-row-reverse py-[40px] sm:py-0">
         <div className="flex-[1] h-full px-[40px] sm:pl-[4rem] pb-[40px] sm:pb-[0px] flex flex-col justify-center">
           <div className="w-[100%] sm:w-[90%] mb-[15px]">
             <h1 className="text-[35px] sm:text-[50px] text-left text-black head-font" >Empower Your Fashion Dreams</h1>
@@ -94,7 +94,7 @@ export default function Creators({setOpen}) {
         </div>
       </div>
 
-      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[50px] sm:py-[80px] px-[40px] sm:px-[4rem]  bg-cover bg-center bg-no-repeat "
+      <div className="h-auto sm:h-[100vh] bg-secondary-200 w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[80px] sm:py-[80px] px-[40px] sm:px-[4rem]  bg-cover bg-center bg-no-repeat "
         style={{ backgroundImage: `url(${isDesktop ? creatorsBg : {}})` }}
 
       >
