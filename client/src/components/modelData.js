@@ -4,7 +4,7 @@ import sleevelessdress from "../assets/3D/sleevelessdress-v1.glb"
 import Stylishpink from "../assets/3D/Stylishpink_dress_2-v2.glb"
 import WCheongsam from "../assets/3D/Stylishpink_dress-v3.glb"
 import WomensDress from "../assets/3D/WCheongsam-v4.glb"
-import assymetricDress from "../assets/3D/asymmetricdress-v2.glb"
+import assymetricDress from "../assets/3D/asymmetricdress-v2-v1.glb"
 
 export const modelData = [
   {

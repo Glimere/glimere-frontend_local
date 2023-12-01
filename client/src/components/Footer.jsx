@@ -7,7 +7,7 @@ import twitter from '../assets/images/twitter.svg'
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black">
+    <footer className="w-full bg-[#171715]">
       <div className="px-5 py-10 flex flex-col sm:px-10 lg:grid grid-cols-3 lg:gap-y-32">
         <div className="lg:col-span-1">
           <GlimereLogo style={{ color: "#ffffff" }} height="40" className={`w-[120px] hidden sm:block`} />
@@ -16,7 +16,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-9 font-body mb-[52px] md:grid-cols-4 lg:col-span-2 lg:mb-0">
           <div>
             <h6 className="mb-5 font-medium text-lg text-white">Features</h6>
-            <div className="flex flex-col gap-4 text-white/70 text-sm">
+            <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm">
               <a className="footer-link" href="#">
                 Find a Patner
               </a>
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
           <div>
             <h6 className="mb-5 font-medium text-lg text-white">Company</h6>
-            <div className="flex flex-col gap-4 text-white/70 text-sm">
+            <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm duration-150">
               <a className="footer-link" href="#">
                 Leaders
               </a>
@@ -56,7 +56,7 @@ export default function Footer() {
           </div>
           <div>
             <h6 className="mb-5 font-medium text-lg text-white">Resources</h6>
-            <div className="flex flex-col gap-4 text-white/70 text-sm">
+            <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm duration-150">
               <a className="footer-link" href="#">
                 Overview
               </a>
@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
           <div>
             <h6 className="mb-5 font-medium text-lg text-white">Get Help</h6>
-            <div className="flex flex-col gap-4 text-white/70 text-sm">
+            <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm duration-150">
               <a className="footer-link" href="#">
                 Shopify Company
               </a>
