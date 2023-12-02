@@ -15,7 +15,6 @@ export default function Creators({ setOpen }) {
 
   return (
     <>
-      <LandingNav setOpen={setOpen} />
       <div className='h-[80vh] sm:h-[100vh] bg-[#FEE7D3] w-full px-[40px] sm:px-[100px] pt-[80px] pb-[30px] relative flex flex-row items-center'
       >
 

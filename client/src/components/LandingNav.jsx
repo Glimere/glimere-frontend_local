@@ -5,14 +5,14 @@ import { ReactComponent as GlimereLogo } from "../assets/images/glimerenew.svg"
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-export default function LandingNav(props) {
+export default function LandingNav({ setOpen, setPage, page }) {
 
     const location = useLocation()
 
     const [isOpen, setIsOpen] = useState(false);
     const [scrollPos, setScrollPos] = useState(0);
 
-    const creatorsPath = location.pathname == "/creators" ? true : false
+    const creatorsPath = page == "creators" ? true : false
     const navLogoColor = location.pathname == "/" && isOpen ? "#ffffff" : "#000000"
 
 
@@ -42,25 +42,32 @@ export default function LandingNav(props) {
                 <div className="h-16 md:h-20 md:py-6 flex items-center justify-between z-20 relative">
                     {/* Icon */}
                     <div className="flex flex-row items-center">
-                        <GlimereLogo style={{ color: navLogoColor }} height="35" className={`h-[40px] block`} />
-                        {/* <GlimereSweet style={{ color: "#ed7534" }} height="35" className={`w-[120px] hidden sm:block`} /> */}
+                        <Link to="/">
+                            <GlimereLogo style={{ color: navLogoColor }} height="35" className={`h-[40px] block`} />
+                            {/* <GlimereSweet style={{ color: "#ed7534" }} height="35" className={`w-[120px] hidden sm:block`} /> */}
+
+                        </Link>
                     </div>
 
 
-                    
+
 
                     {/* Menu */}
                     <div className="flex flex-row w-[230px] items-center justify-center">
                         <div className="flex flex-row gap-[20px] sm:gap-[50px]">
                             <div className={`hover:border-gray-400 duration-150 ${!creatorsPath ? "border-black" : "border-transparent"} border-solid border-b-[3px]`}>
-                                <Link to="/" className="">
-                                    <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}>Shoppers</p>
-                                </Link>
+                                {/* <Link to="/" className=""> */}
+                                <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}
+                                    onClick={() => setPage("shoppers")}
+                                >Shoppers</p>
+                                {/* </Link> */}
                             </div>
                             <div className={`hover:border-gray-400 duration-150 ${creatorsPath ? "border-black" : "border-transparent"} border-solid border-b-[3px]`}>
-                                <Link to="/creators" className="">
-                                    <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}>Fashion Creators</p>
-                                </Link>
+                                {/* <Link to="/creators" className=""> */}
+                                <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}
+                                    onClick={() => setPage("creators")}
+                                >Fashion Creators</p>
+                                {/* </Link> */}
                             </div>
                         </div>
 
@@ -97,7 +104,7 @@ export default function LandingNav(props) {
                 </div>
 
                 {/* Navbar Menu (Mobile) */}
-                <NavbarDropdown isOpen={isOpen} modalToggle={props.setOpen} />
+                <NavbarDropdown isOpen={isOpen} modalToggle={setOpen} />
             </div>
         </nav>
     );
