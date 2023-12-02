@@ -20,7 +20,7 @@ const Checkout = lazy(() => import('./pages/Checkout'));
 const ViewCollection = lazy(() => import('./pages/ViewCollection'));
 const ViewAll = lazy(() => import('./components/ViewAll'));
 const Market = lazy(() => import('./pages/Market'));
-const Landing = lazy(() => import('./pages/Landing'));
+const Shoppers = lazy(() => import('./pages/Shoppers'));
 const Creators = lazy(() => import('./pages/Creators'));
 const  Register = lazy(() => import('./pages/Register'));
 import Loader from './components/Loader';
@@ -61,7 +61,7 @@ function App() {
             {/* Public routes */}
             <Route path="/shop" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<Shoppers />} />
             <Route path="/creators" element={<Creators />} />
             <Route path="/register" element={<Register />} />
 

@@ -6,14 +6,16 @@ import career4 from "../assets/images/career4.jpg"
 import career5 from "../assets/images/career5.jpg"
 import career9 from "../assets/images/career9.jpg"
 import illustration from "../assets/images/illustration.png"
+import LandingNav from '../components/LandingNav'
 
 
-export default function Creators({setOpen}) {
+export default function Creators({ setOpen }) {
 
   const isDesktop = window.innerWidth >= 768 ? true : false
 
   return (
     <>
+      <LandingNav setOpen={setOpen} />
       <div className='h-[80vh] sm:h-[100vh] bg-[#FEE7D3] w-full px-[40px] sm:px-[100px] pt-[80px] pb-[30px] relative flex flex-row items-center'
       >
 
@@ -27,7 +29,7 @@ export default function Creators({setOpen}) {
           </div>
           <div className="">
             <button className="text-white bg-black md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]"
-            onClick={()=>{setOpen(true)}}
+              onClick={() => { setOpen(true) }}
             >
               Get Started
             </button>
@@ -38,7 +40,7 @@ export default function Creators({setOpen}) {
 
 
         <div className="sm:min-h-[400px] h-[500px] w-[500px] bg-transparent overflow-hidden rounded-[100px] bg-landingImg sm:bg-none flex flex-col justify-end flex-[0.5] sm:flex-[1]  bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${illustration})` }}
+          style={{ backgroundImage: `url(${illustration})` }}
         >
           {/* <img src={landingImg} alt="" className='hidden sm:block px-[10px] pt-[10px] sm:px-[30px] sm:pt-[30px]' /> */}
         </div>

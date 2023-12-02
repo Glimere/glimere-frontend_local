@@ -1,8 +1,9 @@
-import React, {useEffect, useRef, useState } from 'react'
+import LandingNav from '../components/LandingNav'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import success from '../assets/images/success.png'
 import models from "../assets/images/models.png"
-
+import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import YoutubeVideo from '../components/YoutubeVideo';
 import YoutubeVideoSmall from '../components/YoutubeVideoSmall';
@@ -26,84 +27,90 @@ import CaseStudySlide from '../components/CaseStudySlide';
 import { modelData } from '../components/modelData'
 import Processslide from '../components/Processslide';
 
-export default function Shoppers({setSubmitted, setOpen}) {
+export default function Shoppers() {
 
-    const [play, setPlay] = useState(false)
-    const [isHovered, setIsHovered] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isInteracting, setIsInteracting] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState(0);
-  
-  
-    const canvasRef = useRef(null)
-  
-    const playref = useRef(null)
-  
-    const onReady = (event) => {
-      playref.current = event.target;
-    }
-  
-    const elementRef = useRef(null);
-  
-    const handleButtonClick = () => {
-      elementRef.current.scrollIntoView({ behavior: "smooth" });
-    };
-  
-  
-    useEffect(() => {
-      setSubmitted(false)
-    }, [open])
-  
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setSubmitted(true)
-    };
-  
-  
+  const [open, setOpen] = useState(false)
+  const [formState, setFormState] = useState({ name: "", email: "" });
+  const [submitted, setSubmitted] = useState(false)
+  const [play, setPlay] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-    const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
-  
-  
-    const DURATION = 30000;
-    const ROWS = 1;
-    const TAGS_PER_ROW = 16;
-  
-    const REVIEW_DURATION = 50000;
-    const REVIEW_ROWS = 2;
-    const REVIEW_TAGS_PER_ROW = 10;
-  
-  
-  
-    const handleInteractionStart = () => {
-      setIsInteracting(true);
-    };
-  
-    const handleInteractionEnd = () => {
-      setIsInteracting(false);
-    };
-  
-    const handleSwitchModel = () => {
-      const nextIndex = (currentIndex + 1) % modelData.length;
-      setCurrentIndex(nextIndex);
-    };
-  
+
+  const canvasRef = useRef(null)
+  const cancelButtonRef = useRef(null)
+
+  const playref = useRef(null)
+
+
+  const onReady = (event) => {
+    playref.current = event.target;
+  }
+
+  const elementRef = useRef(null);
+
+  const handleButtonClick = () => {
+    elementRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+
+
+  useEffect(() => {
+    setSubmitted(false)
+  }, [open])
+
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true)
+  };
+
+
+  const DURATION = 30000;
+  const ROWS = 1;
+  const TAGS_PER_ROW = 16;
+
+  const REVIEW_DURATION = 50000;
+  const REVIEW_ROWS = 2;
+  const REVIEW_TAGS_PER_ROW = 10;
+
+  const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+  const shuffle = (arr) => [...arr].sort(() => .5 - Math.random());
+
+  const handleInteractionStart = () => {
+    setIsInteracting(true);
+  };
+
+  const handleInteractionEnd = () => {
+    setIsInteracting(false);
+  };
+
+  const handleSwitchModel = () => {
+    const nextIndex = (currentIndex + 1) % modelData.length;
+    setCurrentIndex(nextIndex);
+  };
+
 
   return (
     <>
-    <div className='h-[70vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
+      <LandingNav setOpen={setOpen} />
+
+      <div className='h-[60vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
       // style={{ backgroundImage: `url(${glimereBg})` }}
       >
-        {/* <div className="absolute h-full w-full flex justify-center items-end">
-          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1} />
+        <div className="absolute h-full w-full flex justify-center items-end">
+          {/* <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1} />
           <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[46%] sm:top-[40%] left-[7%]" img={img2} />
           <Bubble classes="h-[80px] sm:h-[100px] w-[80px]  sm:w-[100px] hover:h-[120px] hover:w-[120px] top-[19%] sm:top-[80%] left-[55%] sm:left-[10%]" img={img3} />
           <Bubble classes="h-[40px] sm:h-[60px]  w-[40px] sm:w-[60px] hover:h-[80px] hover:w-[80px] top-[31%] sm:top-[25%] right-[10%] sm:right-[20%]" img={img4} />
           <Bubble classes="h-[70px] sm:h-[90px]  w-[70px] sm:w-[90px] hover:h-[110px] hover:w-[110px] top-[46%] sm:top-[55%] right-[10%]" img={img5} />
-          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[75%] right-[53%] sm:right-[21%]" img={img6} />
-          <img src={landingCover} alt="" className='w-[700px] sm:w-[500px] mb-[-30px] sm:mb-[-200px]' />
-        </div> */}
+          <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[19%] sm:top-[75%] right-[53%] sm:right-[21%]" img={img6} /> */}
+          {/* <img src={landingCover} alt="" className='w-[700px] sm:w-[500px] mb-[-30px] sm:mb-[-200px]' /> */}
+        </div>
 
         <div className="h-full w-full flex flex-col items-center justify-end px-[40px] sm:px-[100px] pt-[80px] pb-[30px]">
 
@@ -113,21 +120,9 @@ export default function Shoppers({setSubmitted, setOpen}) {
 
           </div>
 
-          <button className={`bg-black text-white duration-150 hover:bg-[#772f1a] md:py-2.5 py-3.5 px-[25px] rounded-[10px] mb-[20px] cursor-pointer`}
-          onClick={()=> {setOpen(true)}}
-          >
-            Join Our Waitlist
-          </button>
-
-          {/* <div className='creators-contain z-[4] border-solid border-[1px] border-black relative py-[5px] sm:py-[10px] px-[25px] sm:px-[50px] rounded-full font-medium text-[12px] sm:text-[15px] text-black flex flex-row gap-[20px] items-center'>
+          <div className='z-[4] border-solid border-[1px] border-black relative py-[5px] sm:py-[10px] px-[25px] sm:px-[50px] rounded-full font-medium text-[15px] text-black'>
             Featuring Top Fashion Creators
-            <div className="flex flex-row pr-[18px] creators-group">
-                <div className="h-[35px] w-[35px] bg-gray-200 border-[2px] border-solid border-gray-400 rounded-full cursor-pointer mr-[-25px] duration-200"></div>
-                <div className="h-[35px] w-[35px] bg-gray-200 border-[2px] border-solid border-gray-400 rounded-full cursor-pointer mr-[-25px] duration-200"></div>
-                <div className="h-[35px] w-[35px] bg-gray-200 border-[2px] border-solid border-gray-400 rounded-full cursor-pointer mr-[-25px] duration-200"></div>
-                <div className="h-[35px] w-[35px] bg-gray-200 border-[2px] border-solid border-gray-400 rounded-full cursor-pointer mr-[-25px] duration-200"></div>
-              </div>
-          </div> */}
+          </div>
 
         </div>
 
@@ -346,6 +341,129 @@ export default function Shoppers({setSubmitted, setOpen}) {
         </div>
 
       </div>
+
+      <Transition.Root show={open} as={Fragment}>
+        <Dialog as="div" className="relative z-[20]" initialFocus={cancelButtonRef} onClose={setOpen}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative max-h-[700px] p-4 overflow-y-visible transform overflow-hidden rounded-lg bg-[#fff5ee] text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                  <div className="bg-[#fff5ee] px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div className="sm:flex sm:items-start">
+                      {submitted ?
+                        <div className='h-full w-full flex justify-center items-center'>
+                          <div className="flex flex-col items-center">
+                            <h1 className="text-[35px] text-center head-font">Thank you for your interest in Glimere</h1>
+                            <img src={success} alt="" className='w-[250px] mt-[40px]' />
+                          </div>
+                        </div>
+                        : <form
+
+                          name="contact" action='/contact' method="POST">
+                          <input type="hidden" name="form-name" value="contact" />
+
+                          <div className="border-b border-gray-900/10 pb-4">
+                            <h2 className="text-[40px] font-semibold  text-[#9d5c0d] head-font">Get Early Access to Glimere&rsquo;s Exclusive App!</h2>
+                            <p className="mt-8 text-sm leading-6 text-gray-600">Thank you for your interest in Glimere! Your details will be used to inform you of our epic launch.</p>
+
+                            <div className="mt-[20px] ">
+
+                              <div className="sm:col-span-3 mb-4">
+                                <div className="mt-2">
+                                  <input required type="text" name="name" placeholder='Name'
+
+                                    id="name" autoComplete="name" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+
+                                  ></input>
+                                </div>
+                              </div>
+
+                              <div className="sm:col-span-4 mb-4">
+                                <div className="mt-2">
+                                  <input required id="email" name="email" placeholder='Email'
+                                    // value={formState.email} 
+                                    type="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                                  ></input>
+                                </div>
+                              </div>
+
+                              <div className="sm:col-span-4 mb-4">
+                                <div className="mt-2">
+                                  <input required id="country" name="country" placeholder='Country'
+                                    type="text" autoComplete="country" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                                  ></input>
+                                </div>
+                              </div>
+
+
+
+                              <div className='relative mb-4'>
+                                <legend className="text-sm leading-6 text-gray-600">How will you like to use Glimere?</legend>
+                                <select id="fashionClass" name="fashionClass" multiple className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-[#f7a477] focus:outline-none focus:ring-[#ed7534] focus:border-[#ed7534] sm:text-sm rounded-md">
+                                  <option value="" disabled selected>Select your user class...</option>
+                                  <option value="Buying Fashion" className='checked:bg-[#ffb590] checked:text-black'>Buying Fashion</option>
+                                  <option value="Creating Fashion" className='checked:bg-[#ffb590] checked:text-black'>Creating Fashion</option>
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                  <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                                    <path d="M7 7l3-3 3 3m0 6l-3 3-3-3" />
+                                  </svg>
+                                </div>
+                              </div>
+
+
+
+
+                              <fieldset>
+                                <legend className='text-sm leading-6 text-gray-600'>Will you be interested in Glimeres beta testing</legend>
+                                <p>
+                                  <label>
+                                    <input type="radio" name="beta" id='beta' value="Yes" className='text-[#ed7534] checked:text-[#ed7534] focus:ring-2 focus:ring-transparent after:text-[#ed7534]' /> Yes
+                                  </label>
+                                </p>
+                                <p>
+                                  <label>
+                                    <input type="radio" name="beta" id='beta' value="No" className='text-[#ed7534] checked:text-[#ed7534] focus:ring-2 focus:ring-transparent after:text-[#ed7534]' /> No
+                                  </label>
+                                </p>
+                              </fieldset>
+
+                            </div>
+                          </div>
+                          <div className="mt-6 flex items-center justify-center gap-x-6">
+                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-white">I&rsquo;m in!</button>
+                          </div>
+                        </form>}
+
+                    </div>
+                  </div>
+
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition.Root>
     </>
   )
 }
