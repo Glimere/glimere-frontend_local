@@ -103,7 +103,7 @@ export default function Footer() {
               </a>
             </div>
             <div className='flex mr-[20px] justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full'>
-              <a href="https://twitter.com/glmere" target="_blank" rel="noreferrer">
+              <a href="https://twitter.com/glimereofficial" target="_blank" rel="noreferrer">
                 <img src={twitter} alt="" className='w-[30px]' />
               </a>
             </div>
