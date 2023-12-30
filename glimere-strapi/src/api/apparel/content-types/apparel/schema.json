@@ -4,140 +4,52 @@
   "info": {
     "singularName": "apparel",
     "pluralName": "apparels",
-    "displayName": "Product",
-    "description": ""
+    "displayName": "apparel"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "productid": {
+    "apparel_id": {
       "type": "integer"
     },
-    "name": {
+    "apparel_name": {
       "type": "string"
     },
-    "desc": {
+    "apparel_desc": {
       "type": "text"
     },
-    "price": {
-      "type": "integer"
+    "apparel_price": {
+      "type": "float"
     },
-    "gender": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
+    "apparel_imgs": {
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": true
     },
-    "quantity": {
+    "apparel_quantity": {
       "type": "integer"
     },
-    "rating": {
-      "type": "integer"
+    "discounted_price": {
+      "type": "float"
     },
-    "variant": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::variant.variant"
+    "discount_percentage": {
+      "type": "float"
     },
-    "discount": {
-      "type": "integer"
+    "discount_start_date": {
+      "type": "datetime"
     },
-    "isNew": {
+    "discount_end_date": {
+      "type": "datetime"
+    },
+    "is_discounted": {
       "type": "boolean"
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "apparels"
-    },
-    "subcategories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::subcategory.subcategory",
-      "inversedBy": "apparels"
-    },
-    "brands": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::brand.brand",
-      "mappedBy": "apparels"
-    },
-    "oldPrice": {
-      "type": "decimal"
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "normal",
-        "featured",
-        "trending",
-        "special"
-      ]
-    },
-    "sizes": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::size.size",
-      "mappedBy": "apparels"
-    },
-    "material": {
-      "type": "enumeration",
-      "enum": [
-        "Cotton",
-        "Polyester",
-        "Silk",
-        "Wool",
-        "Linen",
-        "Denim",
-        "Leather",
-        "Velvet",
-        "Satin",
-        "Rayon",
-        "Nylon",
-        "Spandex",
-        "Cashmere",
-        "Corduroy",
-        "Chiffon",
-        "Tulle",
-        "Fleece",
-        "Knit",
-        "Chambray",
-        "Suede",
-        "Organza",
-        "Brocade",
-        "Twill",
-        "Flannel",
-        "Lace"
-      ]
-    },
-    "colors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::color.color",
-      "mappedBy": "apparels"
-    },
-    "reviews": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::review.review",
-      "mappedBy": "products"
-    },
-    "carts": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::cart.cart",
-      "mappedBy": "products"
     }
   }
 }

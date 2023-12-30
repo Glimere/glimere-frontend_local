@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import facebook from '../assets/images/facebook.png'
 import glimerenew1 from '../assets/images/glimerenew1.svg'
 import google from '../assets/images/google.png'
+import loginImg from "../assets/images/login-img.jpg"
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import { constants } from '../global-components/constants'
 // import { getUserError, getUserStatus } from '../slice/users/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { addUser,loginSuccess } from '../slice/users/userSlice'
+import { addUser, loginSuccess } from '../slice/users/userSlice'
 import Signup from './Signup'
 import nookies from 'nookies'
 import { useLocation } from 'react-router-dom'
@@ -44,7 +45,7 @@ export default function Login() {
   const [error, setError] = useState("")
   const [role, setRole] = useState(2)
 
-  
+
 
   const handleChange = ({ target }) => {
     const { name, value } = target
@@ -111,8 +112,8 @@ export default function Login() {
     }
 
     const data = {
-      blocked:false,
-    confirmed:true,
+      blocked: false,
+      confirmed: true,
       username: registerUser.firstname + " " + registerUser.lastname,
       firstname: registerUser.firstname,
       lastname: registerUser.lastname,
@@ -144,27 +145,30 @@ export default function Login() {
   return (
     <>
       <div className="w-full h-[100vh]">
-        <div className={`absolute h-full z-10 w-[50%] bg-primary-100 duration-700 ease-in-out card ${isVisible ? 'ml-[50%]' : 'mr-[50%]'}`}></div>
+        <div className={`absolute h-full sm:flex hidden bg-cover bg-center bg-no-repeat z-10 w-[50%] bg-primary-100 duration-700 ease-in-out card ${isVisible ? 'ml-[50%]' : 'mr-[50%]'}`}
+          style={{ backgroundImage: `url(${loginImg})` }}
+        ></div>
         <div className="w-full h-full flex">
-          <div className="flex-[1] w-[50%] p-[50px] flex flex-col items-center">
-            <Signup 
-            isVisible ={isVisible}
-            registerUser ={registerUser}
-            handleUserChange={handleUserChange}
-            confirmPassword ={confirmPassword}
-            handleConfirmPassword={handleConfirmPassword}
-            signUp ={signUp}
-            setIsVisible={setIsVisible}
-            error={[error]}
-            authType={authType}
+
+          <div className={`sm:flex-[1] sm:w-[50%] sm:p-[50px] ${isVisible ? "w-full" : "overflow-hidden w-[0%] p-0 flex-[0]"} flex flex-col justify-center`}>
+            <Signup
+              isVisible={isVisible}
+              registerUser={registerUser}
+              handleUserChange={handleUserChange}
+              confirmPassword={confirmPassword}
+              handleConfirmPassword={handleConfirmPassword}
+              signUp={signUp}
+              setIsVisible={setIsVisible}
+              error={[error]}
+              authType={authType}
             />
           </div>
 
 
 
 
-          <div className="flex-[1] w-[50%] p-[50px] flex flex-col justify-center">
-            <div className={`w-full flex flex-col items-center px-[40px] duration-300 ${isVisible ? 'opacity-0' : 'opacity-100'}`}>
+          <div className={`sm:flex-[1] sm:w-[50%] sm:p-[50px] ${isVisible ? "w-[0%] p-0 flex-[0] overflow-hidden" : "w-full"} flex flex-col justify-center`}>
+            <div className={`w-full flex flex-col items-center sm:px-[40px] px-[30px] duration-300 ${isVisible ? 'opacity-0' : 'opacity-100'}`}>
               <div className="flex flex-col items-center ">
                 <img src={glimerenew1} alt="" className='w-[50px] mb-[20px]' />
                 <h1 className=' font-bold text-[22px] '>Welcome Back</h1>
@@ -172,15 +176,15 @@ export default function Login() {
               </div>
               <div className="flex  w-full justify-center mb-[15px]">
 
-                <div className="flex flex-row">
-                  <div className="flex items-center justify-center border-[1px] bg-white border-solid border-gray-300 rounded-[5px] w-[160px] py-[12px] mr-[10px]">
+                <div className="flex flex-row gap-[20px]">
+                  <div className="flex items-center justify-center border-[1px] bg-[#FFF7E9] border-solid border-black rounded-[5px] w-[120px] py-[10px] cursor-pointer">
                     <div className="flex flex-row items-center">
                       <img src={google} alt="" className='w-[20px] h-[20px] mr-[10px]' />
                       <h2 className='text-[14px]'>Google</h2>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center border-[1px] bg-white border-solid border-gray-300 rounded-[5px] w-[160px] py-[15px] ml-[10px]">
+                  <div className="flex items-center justify-center border-[1px] bg-[#FFF7E9] border-solid border-black rounded-[5px] w-[120px] py-[10px] cursor-pointer">
                     <div className="flex flex-row items-center">
                       <img src={facebook} alt="" className='w-[24px] mr-[5px]' />
                       <h2 className='text-[14px]'>Facebook</h2>
@@ -201,7 +205,7 @@ export default function Login() {
               <div className="w-full">
                 <div className="sm:col-span-3 mb-4">
                   <div className="mt-2">
-                    <input required type="email" name="identifier" placeholder='Email' value={user.identifier} id="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                    <input required type="email" name="identifier" placeholder='Email' value={user.identifier} id="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:border-primary-100 focus:ring-primary-100 sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                       onChange={handleChange}
                     ></input>
                   </div>
@@ -209,7 +213,7 @@ export default function Login() {
 
                 <div className="sm:col-span-4">
                   <div className="mt-2">
-                    <input required id="password" name="password" placeholder='Password' value={user.password} type="password" autoComplete="password" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                    <input required id="password" name="password" placeholder='Password' value={user.password} type="password" autoComplete="password" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:border-primary-100 focus:ring-primary-100 sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                       onChange={handleChange}
                     ></input>
                   </div>

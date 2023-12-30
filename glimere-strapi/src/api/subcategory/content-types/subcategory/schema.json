@@ -15,12 +15,6 @@
     "title": {
       "type": "string"
     },
-    "apparels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "mappedBy": "subcategories"
-    },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",

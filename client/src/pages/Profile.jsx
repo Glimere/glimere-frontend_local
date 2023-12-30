@@ -109,10 +109,10 @@ export default function Profile() {
 
         </div>
 
-        <div className="flex-[2.5] bg-[#fcfcfc] pt-[40px] sm:pt-[80px]">
+        <div className="flex-[2.5] bg-[#fcfcfc] pt-0 sm:pt-[80px]">
           <div className={`w-full h-full p-[50px] flex flex-col gap-[20px] ${tab == 0 ? "block" : "hidden"}`}>
 
-            <div className="flex flex-row gap-[20px]">
+            <div className="flex sm:flex-row flex-col gap-[20px]">
 
               <div className="h-[170px] w-full  rounded-[10px] p-[20px] border-[1px] border-gray-200 border-solid">
                 <h1 className='text-[20px] mb-[20px] text-gray-500'>{user.username}</h1>
@@ -259,7 +259,7 @@ export default function Profile() {
                   </div>
 
                 </div>
-                <div className="flex flex-row gap-[20px]">
+                <div className="flex sm:flex-row flex-col gap-[20px]">
                   {/* Email Subscriptions Card */}
                   <div className="flex flex-col w-full relative justify-between border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer duration-150">
                     <div className="w-[50px] h-[50px] cursor-pointer absolute right-[10px] top-[10px] flex justify-center items-center rounded-full hover:bg-[#fff8ee] duration-150"
@@ -301,7 +301,7 @@ export default function Profile() {
 
                 <hr className='my-[20px]' />
 
-                <div className="flex flex-row gap-[20px]">
+                <div className="flex sm:flex-row flex-col gap-[20px]">
                   {/* Returns and Refunds Card */}
                   <div className="flex flex-col justify-between w-full border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer hover:bg-[#fff8ee] duration-150">
                     <div className="flex flex-row justify-between items-center mb-[20px]">
@@ -329,7 +329,7 @@ export default function Profile() {
 
 
                 {/* Terms and Conditions Card */}
-                <div className="flex flex-row gap-[20px]">
+                <div className="flex sm:flex-row flex-col gap-[20px]">
 
                   <div className="flex flex-col justify-between w-full border-[1px] border-solid border-gray-200 rounded-[10px] p-[20px] cursor-pointer hover:bg-[#fff8ee] duration-150">
                     <div className="flex flex-row justify-between items-center mb-[20px]">

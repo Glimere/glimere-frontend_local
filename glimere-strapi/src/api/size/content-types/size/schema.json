@@ -16,12 +16,6 @@
     },
     "short_name": {
       "type": "string"
-    },
-    "apparels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "inversedBy": "sizes"
     }
   }
 }

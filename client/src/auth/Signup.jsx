@@ -21,7 +21,7 @@ export default function Signup(props) {
                     <div className="w-full flex flex-row">
                         <div className="sm:col-span-3 mb-4 mr-5 flex-[1]">
                             <div className="mt-2">
-                                <input required type="text" value={props.registerUser.firstname} name="firstname" placeholder='First Name' autoComplete="name" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                                <input required type="text" value={props.registerUser.firstname} name="firstname" placeholder='First Name' autoComplete="name" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                                     onChange={props.handleUserChange}
                                 ></input>
                             </div>
@@ -29,7 +29,7 @@ export default function Signup(props) {
 
                         <div className="sm:col-span-3 mb-4 flex-[1]">
                             <div className="mt-2">
-                                <input required type="text" value={props.registerUser.lastname} name="lastname" placeholder='Last Name' autoComplete="name" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                                <input required type="text" value={props.registerUser.lastname} name="lastname" placeholder='Last Name' autoComplete="name" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                                     onChange={props.handleUserChange}
                                 ></input>
                             </div>
@@ -38,7 +38,7 @@ export default function Signup(props) {
 
                     <div className="sm:col-span-4 mb-[22px]">
                         <div className="mt-2">
-                            <input required name="email" value={props.registerUser.email} placeholder='Email' type="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                            <input required name="email" value={props.registerUser.email} placeholder='Email' type="email" autoComplete="email" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                                 onChange={props.handleUserChange}
                             ></input>
                         </div>
@@ -46,7 +46,7 @@ export default function Signup(props) {
 
                     <div className="sm:col-span-4 mb-[22px]">
                         <div className="mt-2">
-                            <input required name="password" value={props.registerUser.password} placeholder='New Password' type="password" autoComplete="password" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                            <input required name="password" value={props.registerUser.password} placeholder='New Password' type="password" autoComplete="password" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                                 onChange={props.handleUserChange}
                             ></input>
                         </div>
@@ -56,7 +56,7 @@ export default function Signup(props) {
                         <div className="mt-2">
                             <input required name="confirmPassword"
                                 value={props.confirmPassword}
-                                placeholder='Confirm Password' type="password" autoComplete="confirm-password" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-gray-300 placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                                placeholder='Confirm Password' type="password" autoComplete="confirm-password" className="block w-full rounded-md border-0 py-1.5 px-4 text-gray-900 shadow-sm  ring-black placeholder:text-gray-400 ring-[1px] focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-[#FFF7E9]"
                                 onChange={props.handleConfirmPassword}
                             ></input>
                             <p className=' text-red-700 text-[12px] mt-[5px]'>{props.error}</p>

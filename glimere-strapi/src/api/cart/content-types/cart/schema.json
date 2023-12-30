@@ -21,12 +21,6 @@
     "quantity": {
       "type": "integer"
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "inversedBy": "carts"
-    },
     "image_url": {
       "type": "string"
     }

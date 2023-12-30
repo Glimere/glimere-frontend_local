@@ -8,12 +8,12 @@ import twitter from '../assets/images/twitter.svg'
 export default function Footer() {
   return (
     <footer className="w-full bg-[#171715]">
-      <div className="px-5 py-10 flex flex-col sm:px-10 lg:grid grid-cols-3 lg:gap-y-32">
+      <div className="px-5 py-10 flex flex-col sm:px-10 lg:grid grid-cols-3 sm:gap-[60px] lg:gap-y-32">
         <div className="lg:col-span-1">
-          <GlimereLogo style={{ color: "#ffffff" }} height="40" className={`w-[120px] hidden sm:block`} />
+          <GlimereLogo style={{ color: "#ffffff" }} className={`w-[50px] h-[50px] hidden sm:block`} />
 
         </div>
-        <div className="grid grid-cols-2 gap-9 font-body mb-[52px] md:grid-cols-4 lg:col-span-2 lg:mb-0">
+        <div className="grid grid-cols-2 gap-9 font-body md:grid-cols-4 lg:col-span-2 lg:mb-0">
           <div>
             <h6 className="mb-5 font-medium text-lg text-white">Features</h6>
             <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm">

@@ -27,12 +27,6 @@
       "type": "media",
       "multiple": false
     },
-    "apparels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "mappedBy": "categories"
-    },
     "subcategories": {
       "type": "relation",
       "relation": "manyToMany",

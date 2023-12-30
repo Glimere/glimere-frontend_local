@@ -34,12 +34,6 @@
     },
     "website": {
       "type": "text"
-    },
-    "apparels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "inversedBy": "brands"
     }
   }
 }

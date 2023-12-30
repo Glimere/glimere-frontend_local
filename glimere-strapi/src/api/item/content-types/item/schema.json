@@ -12,11 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::apparel.apparel"
-    },
     "quantity": {
       "type": "integer"
     }

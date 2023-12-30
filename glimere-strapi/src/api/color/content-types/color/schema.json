@@ -16,12 +16,6 @@
     },
     "code": {
       "type": "string"
-    },
-    "apparels": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "inversedBy": "colors"
     }
   }
 }

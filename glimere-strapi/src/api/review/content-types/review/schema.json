@@ -29,12 +29,6 @@
       "relation": "manyToMany",
       "target": "api::store.store",
       "mappedBy": "reviews"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::apparel.apparel",
-      "inversedBy": "reviews"
     }
   }
 }
