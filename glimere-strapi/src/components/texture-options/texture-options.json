@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_texture_options_texture_options",
+  "info": {
+    "displayName": "TextureOptions"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

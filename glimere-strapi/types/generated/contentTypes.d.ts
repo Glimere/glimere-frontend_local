@@ -772,6 +772,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToMany',
       'api::card.card'
     >;
+    ratings: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToMany',
+      'api::rating.rating'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -831,23 +836,53 @@ export interface ApiApparelApparel extends Schema.CollectionType {
   info: {
     singularName: 'apparel';
     pluralName: 'apparels';
-    displayName: 'apparel';
+    displayName: 'Apparel';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    apparel_id: Attribute.Integer;
     apparel_name: Attribute.String;
     apparel_desc: Attribute.Text;
     apparel_price: Attribute.Float;
     apparel_imgs: Attribute.Media;
-    apparel_quantity: Attribute.Integer;
     discounted_price: Attribute.Float;
     discount_percentage: Attribute.Float;
     discount_start_date: Attribute.DateTime;
     discount_end_date: Attribute.DateTime;
     is_discounted: Attribute.Boolean;
+    main_categories: Attribute.Relation<
+      'api::apparel.apparel',
+      'oneToMany',
+      'api::main-category.main-category'
+    >;
+    sub_categories: Attribute.Relation<
+      'api::apparel.apparel',
+      'oneToMany',
+      'api::sub-category.sub-category'
+    >;
+    sub_subcategories: Attribute.Relation<
+      'api::apparel.apparel',
+      'oneToMany',
+      'api::sub-subcategory.sub-subcategory'
+    >;
+    customizable_attributes: Attribute.Component<'apparel-customization-details.customizable-attributes'>;
+    apparel_types: Attribute.Relation<
+      'api::apparel.apparel',
+      'manyToMany',
+      'api::apparel-type.apparel-type'
+    >;
+    ratings: Attribute.Relation<
+      'api::apparel.apparel',
+      'manyToMany',
+      'api::rating.rating'
+    >;
+    brands: Attribute.Relation<
+      'api::apparel.apparel',
+      'manyToMany',
+      'api::brand.brand'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -859,6 +894,41 @@ export interface ApiApparelApparel extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::apparel.apparel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiApparelTypeApparelType extends Schema.CollectionType {
+  collectionName: 'apparel_types';
+  info: {
+    singularName: 'apparel-type';
+    pluralName: 'apparel-types';
+    displayName: 'Apparel_type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    apparels: Attribute.Relation<
+      'api::apparel-type.apparel-type',
+      'manyToMany',
+      'api::apparel.apparel'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::apparel-type.apparel-type',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::apparel-type.apparel-type',
       'oneToOne',
       'admin::user'
     > &
@@ -878,11 +948,19 @@ export interface ApiBrandBrand extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    brandId: Attribute.Integer;
     name: Attribute.String;
     desc: Attribute.Text;
     logo: Attribute.Media;
     website: Attribute.Text;
+    apparels: Attribute.Relation<
+      'api::brand.brand',
+      'manyToMany',
+      'api::apparel.apparel'
+    >;
+    country: Attribute.String;
+    state: Attribute.String;
+    founded_year: Attribute.Integer;
+    short_name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -999,43 +1077,6 @@ export interface ApiCartCart extends Schema.CollectionType {
   };
 }
 
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'category';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    desc: Attribute.Text;
-    img: Attribute.Media;
-    subcategories: Attribute.Relation<
-      'api::category.category',
-      'manyToMany',
-      'api::subcategory.subcategory'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiColorColor extends Schema.CollectionType {
   collectionName: 'colors';
   info: {
@@ -1123,6 +1164,130 @@ export interface ApiItemItem extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMainCategoryMainCategory extends Schema.CollectionType {
+  collectionName: 'main_categories';
+  info: {
+    singularName: 'main-category';
+    pluralName: 'main-categories';
+    displayName: 'main_category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    sub_category: Attribute.Relation<
+      'api::main-category.main-category',
+      'manyToOne',
+      'api::sub-category.sub-category'
+    >;
+    apparel: Attribute.Relation<
+      'api::main-category.main-category',
+      'manyToOne',
+      'api::apparel.apparel'
+    >;
+    plural_name: Attribute.String;
+    cover: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-category.main-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::main-category.main-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMaterialMaterial extends Schema.CollectionType {
+  collectionName: 'materials';
+  info: {
+    singularName: 'material';
+    pluralName: 'materials';
+    displayName: 'material';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    material_name: Attribute.String;
+    material_img: Attribute.Media;
+    natural: Attribute.Boolean;
+    properties: Attribute.Component<'material-properties.properties'>;
+    environmental_impact: Attribute.Component<'environmental-impact.environmental-impact'>;
+    cost: Attribute.String;
+    history_and_origin: Attribute.String;
+    sustainability_practices: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRatingRating extends Schema.CollectionType {
+  collectionName: 'ratings';
+  info: {
+    singularName: 'rating';
+    pluralName: 'ratings';
+    displayName: 'Rating';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    users_permissions_users: Attribute.Relation<
+      'api::rating.rating',
+      'manyToMany',
+      'plugin::users-permissions.user'
+    >;
+    comment: Attribute.Text;
+    rating: Attribute.Integer;
+    rating_time: Attribute.DateTime;
+    apparels: Attribute.Relation<
+      'api::rating.rating',
+      'manyToMany',
+      'api::apparel.apparel'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::rating.rating',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::rating.rating',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1279,6 +1444,93 @@ export interface ApiStoreStore extends Schema.CollectionType {
   };
 }
 
+export interface ApiSubCategorySubCategory extends Schema.CollectionType {
+  collectionName: 'sub_categories';
+  info: {
+    singularName: 'sub-category';
+    pluralName: 'sub-categories';
+    displayName: 'Sub_category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    main_categories: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'oneToMany',
+      'api::main-category.main-category'
+    >;
+    sub_subcategory: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'manyToOne',
+      'api::sub-subcategory.sub-subcategory'
+    >;
+    apparel: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'manyToOne',
+      'api::apparel.apparel'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sub-category.sub-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSubSubcategorySubSubcategory extends Schema.CollectionType {
+  collectionName: 'sub_subcategories';
+  info: {
+    singularName: 'sub-subcategory';
+    pluralName: 'sub-subcategories';
+    displayName: 'Sub_subcategory';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    sub_categories: Attribute.Relation<
+      'api::sub-subcategory.sub-subcategory',
+      'oneToMany',
+      'api::sub-category.sub-category'
+    >;
+    apparel: Attribute.Relation<
+      'api::sub-subcategory.sub-subcategory',
+      'manyToOne',
+      'api::apparel.apparel'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sub-subcategory.sub-subcategory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sub-subcategory.sub-subcategory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubcategorySubcategory extends Schema.CollectionType {
   collectionName: 'subcategories';
   info: {
@@ -1292,11 +1544,6 @@ export interface ApiSubcategorySubcategory extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String;
-    categories: Attribute.Relation<
-      'api::subcategory.subcategory',
-      'manyToMany',
-      'api::category.category'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1343,6 +1590,47 @@ export interface ApiVariantVariant extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::variant.variant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiVariationVariation extends Schema.CollectionType {
+  collectionName: 'variations';
+  info: {
+    singularName: 'variation';
+    pluralName: 'variations';
+    displayName: 'Variation';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    model: Attribute.Media;
+    CustomizationDetails: Attribute.DynamicZone<
+      [
+        'texture-options.texture-options',
+        'size-and-fit-options.size-and-fit-options',
+        'accessories-options.accessories-options',
+        'layering-and-combination-options.layering-and-combination-options',
+        'seasonal-themes-options.seasonal-themes-options'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::variation.variation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::variation.variation',
       'oneToOne',
       'admin::user'
     > &
@@ -1444,20 +1732,26 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::ads-card.ads-card': ApiAdsCardAdsCard;
       'api::apparel.apparel': ApiApparelApparel;
+      'api::apparel-type.apparel-type': ApiApparelTypeApparelType;
       'api::brand.brand': ApiBrandBrand;
       'api::card.card': ApiCardCard;
       'api::carousel.carousel': ApiCarouselCarousel;
       'api::cart.cart': ApiCartCart;
-      'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::follow.follow': ApiFollowFollow;
       'api::item.item': ApiItemItem;
+      'api::main-category.main-category': ApiMainCategoryMainCategory;
+      'api::material.material': ApiMaterialMaterial;
+      'api::rating.rating': ApiRatingRating;
       'api::review.review': ApiReviewReview;
       'api::shipping-address.shipping-address': ApiShippingAddressShippingAddress;
       'api::size.size': ApiSizeSize;
       'api::store.store': ApiStoreStore;
+      'api::sub-category.sub-category': ApiSubCategorySubCategory;
+      'api::sub-subcategory.sub-subcategory': ApiSubSubcategorySubSubcategory;
       'api::subcategory.subcategory': ApiSubcategorySubcategory;
       'api::variant.variant': ApiVariantVariant;
+      'api::variation.variation': ApiVariationVariation;
       'api::wishlist.wishlist': ApiWishlistWishlist;
       'api::wishlist-item.wishlist-item': ApiWishlistItemWishlistItem;
     }

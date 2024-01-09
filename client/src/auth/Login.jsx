@@ -7,12 +7,21 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 import { constants } from '../global-components/constants'
-// import { getUserError, getUserStatus } from '../slice/users/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { addUser, loginSuccess } from '../slice/users/userSlice'
+import { addUser, loginSuccess, fetchUsers } from '../slice/users/userSlice'
 import Signup from './Signup'
 import nookies from 'nookies'
 import { useLocation } from 'react-router-dom'
+import { fetchApparels } from './slice/apparels/apparelSlice.js'
+import { fetchAds } from './slice/ads/adSlice.js'
+import { fetchCarousels } from './slice/carousel/carouselSlice.js'
+import { fetchBrands } from './slice/brand/brandSlice.js'
+import { fetchCategory } from './slice/main-category/mainCategorySlice.js'
+import { fetchSubcategory } from './slice/sub-category/subCategorySlice.js'
+import { fetchSize } from './slice/size/sizeSlice.js'
+import { fetchColor } from './slice/colors/colorSlice.js'
+import { fetchApparelType } from './slice/apparel-type/apparelTypeSlice.js'
+
 
 // import dotenv from 'dotenv';
 
@@ -67,6 +76,17 @@ export default function Login() {
         console.log('res.user.confirmed', res.data.user.confirmed)
         if (res.data.user.confirmed == true) {
           dispatch(loginSuccess(res.data))
+          dispatch(fetchUsers(res.data.jwt))
+          dispatch(fetchApparels())
+          dispatch(fetchAds())
+          dispatch(fetchCarousels())
+          dispatch(fetchBrands())
+          dispatch(fetchCategory())
+          dispatch(fetchSubcategory())
+          dispatch(fetchSize())
+          dispatch(fetchColor())
+          dispatch(fetchApparelType())
+
           localStorage.setItem("hasFetchedCartData", "false");
           navigate('/shop'); // Replace '/' with the actual route of your homepage
         }
@@ -224,7 +244,7 @@ export default function Login() {
 
               </div>
               <div className="w-full mt-6 flex flex-col items-center justify-center gap-x-6">
-                <button type="submit" className="rounded-md w-full bg-primary-100 px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                <button type="submit" className="rounded-md w-full bg-primary-100 px-24 py-2 text-sm font-semibold text-white-100 shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={handleLogin}
                 >Login</button>
                 <div className="flex flex-row mt-[20px]">

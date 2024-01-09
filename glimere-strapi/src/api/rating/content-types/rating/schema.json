@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ratings",
+  "info": {
+    "singularName": "rating",
+    "pluralName": "ratings",
+    "displayName": "Rating",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "ratings"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "rating_time": {
+      "type": "datetime"
+    },
+    "apparels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::apparel.apparel",
+      "inversedBy": "ratings"
+    }
+  }
+}

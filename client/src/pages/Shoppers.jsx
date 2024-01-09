@@ -125,7 +125,7 @@ export default function Shoppers() {
 
             </div>
 
-            <button className={`bg-black text-white duration-150 hover:bg-[#772f1a] md:py-2.5 py-3.5 px-[25px] rounded-[10px] mb-[20px] cursor-pointer`}
+            <button className={`bg-black text-white-100 duration-150 hover:bg-[#772f1a] md:py-2.5 py-3.5 px-[25px] rounded-[10px] mb-[20px] cursor-pointer`}
               onClick={() => { setOpen(true) }}
             >
               Join Our Waitlist
@@ -314,9 +314,9 @@ export default function Shoppers() {
                   >
                     <div className="flex-[1] flex flex-row gap-[20px] items-center pt-[20px] px-[25px]">
                       <div className="bg-gray-200 h-[40px] w-[40px] rounded-full"></div>
-                      <div className="text-white text-[]">{data.user.name}</div>
+                      <div className="text-white-100 text-[]">{data.user.name}</div>
                     </div>
-                    <div className="flex-[3] text-[12px] sm:text-[15px] text-white px-[25px] py-[20px]">{data.comment}</div>
+                    <div className="flex-[3] text-[12px] sm:text-[15px] text-white-100 px-[25px] py-[20px]">{data.comment}</div>
 
                   </div>
                 ))}
@@ -324,7 +324,7 @@ export default function Shoppers() {
             ))}
           </div>
 
-          <p className="text-[18px] px-[50px] sm:text-[30px] font-semibold text-white text-center">Hear What People Are Saying About Us</p>
+          <p className="text-[18px] px-[50px] sm:text-[30px] font-semibold text-white-100 text-center">Hear What People Are Saying About Us</p>
         </div>
 
 
@@ -348,7 +348,7 @@ export default function Shoppers() {
                 <p className='text-[15px] sm:text-[19px] text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
               </div>
 
-              <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white text-[15px] rounded-[10px] cursor-pointer'
+              <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white-100 text-[15px] rounded-[10px] cursor-pointer'
                 onClick={() => { setOpen(true) }}
               >
                 Join Now!
@@ -469,7 +469,7 @@ export default function Shoppers() {
                             </div>
                           </div>
                           <div className="mt-6 flex items-center justify-center gap-x-6">
-                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-white">I&rsquo;m in!</button>
+                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-white-100">I&rsquo;m in!</button>
                           </div>
                         </form>}
 

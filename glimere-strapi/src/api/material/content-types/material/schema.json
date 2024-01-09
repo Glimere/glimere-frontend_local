@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "materials",
+  "info": {
+    "singularName": "material",
+    "pluralName": "materials",
+    "displayName": "material",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "material_name": {
+      "type": "string"
+    },
+    "material_img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "natural": {
+      "type": "boolean"
+    },
+    "properties": {
+      "displayName": "properties",
+      "type": "component",
+      "repeatable": false,
+      "component": "material-properties.properties"
+    },
+    "environmental_impact": {
+      "displayName": "environmental_impact",
+      "type": "component",
+      "repeatable": false,
+      "component": "environmental-impact.environmental-impact"
+    },
+    "cost": {
+      "type": "string"
+    },
+    "history_and_origin": {
+      "type": "string"
+    },
+    "sustainability_practices": {
+      "type": "string"
+    }
+  }
+}

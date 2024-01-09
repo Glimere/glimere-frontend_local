@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
         <div className="grid grid-cols-2 gap-9 font-body md:grid-cols-4 lg:col-span-2 lg:mb-0">
           <div>
-            <h6 className="mb-5 font-medium text-lg text-white">Features</h6>
+            <h6 className="mb-5 font-medium text-lg text-white-100">Features</h6>
             <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm">
               <a className="footer-link" href="#">
                 Find a Patner
@@ -35,7 +35,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h6 className="mb-5 font-medium text-lg text-white">Company</h6>
+            <h6 className="mb-5 font-medium text-lg text-white-100">Company</h6>
             <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm duration-150">
               <a className="footer-link" href="#">
                 Leaders
@@ -55,7 +55,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h6 className="mb-5 font-medium text-lg text-white">Resources</h6>
+            <h6 className="mb-5 font-medium text-lg text-white-100">Resources</h6>
             <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm duration-150">
               <a className="footer-link" href="#">
                 Overview
@@ -75,7 +75,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h6 className="mb-5 font-medium text-lg text-white">Get Help</h6>
+            <h6 className="mb-5 font-medium text-lg text-white-100">Get Help</h6>
             <div className="flex flex-col gap-4 text-[#a0775a] hover:text-[#e7ab80] text-sm duration-150">
               <a className="footer-link" href="#">
                 Shopify Company
@@ -118,7 +118,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <p className="font-body text-white font-medium order-1">
+          <p className="font-body text-white-100 font-medium order-1">
             © 2023 Glimere
           </p>
         </div>

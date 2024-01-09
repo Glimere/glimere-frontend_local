@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export const fetchApparels = createAsyncThunk("apparels/fetchApparels", async () => {
     try {
         
-        const response = await axios.get(`${constants.url}/api/apparels?populate=*`);
+        const response = await axios.get(`${constants.url}/api/apparels?populate=apparel_imgs&populate=brands.logo&populate=ratings`);
         console.log('response.data', response.data)
         return response.data.data || []
     } catch (error) {

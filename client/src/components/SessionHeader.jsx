@@ -13,12 +13,12 @@ export default function SessionHeader(props) {
                     <div className="flex-[7] max-[727px]:flex-[7] max-[1050px]:flex-[8] flex flex-col sm:flex-row sm:justify-between ">
                         <div className="flex items-center">
                             <img src={gucci} alt="" className='w-[15px] sm:w-[30px] mr-[15px]' />
-                            <h1 className='text-[14px] sm:text-[18px] text-white font-semibold'>{props.title}</h1>
+                            <h1 className='text-[14px] sm:text-[18px] text-white-100 font-semibold'>{props.title}</h1>
                         </div>
                         <CountdownTimer headerType={props.type} />
                     </div>
                     <div className="flex-[2] sm:flex-[3] flex justify-end">
-                        <button className="bg-transparent rounded-md text-[12px] sm:text-[14px] text-white">View All</button>
+                        <button className="bg-transparent rounded-md text-[12px] sm:text-[14px] text-white-100">View All</button>
                     </div>
                 </div>
 

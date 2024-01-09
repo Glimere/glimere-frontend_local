@@ -55,9 +55,9 @@ export default function CarouselCatergories(props) {
                       >
                         <div className="bg-[#00000060] h-full w-full flex justify-start p-[40px] sm:p-[80px] items-center">
                           <div className="">
-                            <p className='text-[9px] sm:text-[15px] text-white mb-[10px]'>Deals and promotions</p>
-                            <h1 className='text-[23px] sm:text-[40px] text-white font-bold'>{carousel.attributes.name}</h1>
-                            <p className='text-white text-[12px] sm:text-[20px]'>From $<span>{img.id}.99</span></p>
+                            <p className='text-[9px] sm:text-[15px] text-white-100 mb-[10px]'>Deals and promotions</p>
+                            <h1 className='text-[23px] sm:text-[40px] text-white-100 font-bold'>{carousel.attributes.name}</h1>
+                            <p className='text-white-100 text-[12px] sm:text-[20px]'>From $<span>{img.id}.99</span></p>
                             <button className='h-[40px] w-[100px] bg-white rounded-full mt-[20px]'>Shop Now</button>
                           </div>
                         </div>

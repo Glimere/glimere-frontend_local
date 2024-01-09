@@ -4,16 +4,14 @@
   "info": {
     "singularName": "apparel",
     "pluralName": "apparels",
-    "displayName": "apparel"
+    "displayName": "Apparel",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "apparel_id": {
-      "type": "integer"
-    },
     "apparel_name": {
       "type": "string"
     },
@@ -24,17 +22,15 @@
       "type": "float"
     },
     "apparel_imgs": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
-    },
-    "apparel_quantity": {
-      "type": "integer"
+      ]
     },
     "discounted_price": {
       "type": "float"
@@ -50,6 +46,48 @@
     },
     "is_discounted": {
       "type": "boolean"
+    },
+    "main_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::main-category.main-category",
+      "mappedBy": "apparel"
+    },
+    "sub_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sub-category.sub-category",
+      "mappedBy": "apparel"
+    },
+    "sub_subcategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sub-subcategory.sub-subcategory",
+      "mappedBy": "apparel"
+    },
+    "customizable_attributes": {
+      "displayName": "customizable_attributes",
+      "type": "component",
+      "repeatable": false,
+      "component": "apparel-customization-details.customizable-attributes"
+    },
+    "apparel_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::apparel-type.apparel-type",
+      "inversedBy": "apparels"
+    },
+    "ratings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::rating.rating",
+      "mappedBy": "apparels"
+    },
+    "brands": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::brand.brand",
+      "mappedBy": "apparels"
     }
   }
 }

@@ -27,7 +27,7 @@ export default function Creators({ setOpen }) {
             <h1 className="text-[15px] sm:text-[18px] text-left text-black font-normal">Join us as we build a brighter future for african fashion, one creator at a time</h1>
           </div>
           <div className="">
-            <button className="text-white bg-black md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]"
+            <button className="text-white-100 bg-black md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]"
               onClick={() => { setOpen(true) }}
             >
               Get Started

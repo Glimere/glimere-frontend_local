@@ -46,24 +46,24 @@ const CountdownTimer = (props) => {
 
   return (
     <div className="flex items-center pt-[3px] sm:pt-0 pr-0 sm:pr-[40px]">
-                <h1 className='text-[14px] sm:text-[18px] font-medium text-white mr-[10px]'>Time Left:</h1>
+                <h1 className='text-[14px] sm:text-[18px] font-medium text-white-100 mr-[10px]'>Time Left:</h1>
                 <div className="flex gap-3 items-center text-center auto-cols-max">
 
-                  <span className="countdown flex-[1] text-white font-mono text-[14px] sm:text-[18px] relative">
+                  <span className="countdown flex-[1] text-white-100 font-mono text-[14px] sm:text-[18px] relative">
                     <span id="days" style={{ "--value": 15 }}></span>
                     <span>d</span>
                   </span>
-                  <span className="countdown flex-[1] text-white font-mono text-[14px] sm:text-[18px] relative">
+                  <span className="countdown flex-[1] text-white-100 font-mono text-[14px] sm:text-[18px] relative">
                     <span id="hours" style={{ "--value": 10 }}></span>
                     <span>h</span>
                   </span>
 
-                  <span className="countdown flex-[1] text-white font-mono text-[14px] sm:text-[18px] relative">
+                  <span className="countdown flex-[1] text-white-100 font-mono text-[14px] sm:text-[18px] relative">
                     <span id="mins" style={{ "--value": 24 }}></span>
                     <span>m</span>
                   </span>
 
-                  <span className="countdown flex-[1] text-white font-mono text-[14px] sm:text-[18px] relative">
+                  <span className="countdown flex-[1] text-white-100 font-mono text-[14px] sm:text-[18px] relative">
                     <span id="secs" style={{ "--value": 22 }}></span>
                     <span>s</span>
                   </span>

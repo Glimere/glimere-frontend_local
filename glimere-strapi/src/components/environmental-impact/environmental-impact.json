@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_environmental_impact_environmental_impacts",
+  "info": {
+    "displayName": "environmental_impact",
+    "icon": "write"
+  },
+  "options": {},
+  "attributes": {
+    "water_footprint": {
+      "type": "string"
+    },
+    "energy_consumption": {
+      "type": "string"
+    },
+    "recyclability": {
+      "type": "string"
+    }
+  }
+}

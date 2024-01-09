@@ -13,6 +13,13 @@ export default {
         secondary: {
           100: "#FEF8E9",
           200: "#ffe9b8",
+        },
+        white: {
+          100: "#FFFDF8"
+        },
+        dark: {
+          100: "#171715",
+          200: "#772f1a"
         }
       },
       fontFamily: {

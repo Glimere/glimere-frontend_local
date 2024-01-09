@@ -32,7 +32,7 @@ export default function Market() {
               </div>
 
               <div className="flex flex-wrap">
-                <div className="px-[8px] py-[3px] text-[10px] bg-primary-100 text-white text-center rounded-full">Shoes</div>
+                <div className="px-[8px] py-[3px] text-[10px] bg-primary-100 text-white-100 text-center rounded-full">Shoes</div>
               </div>
             </div>
             <div className="flex flex-col justify-between items-end space-y-2">

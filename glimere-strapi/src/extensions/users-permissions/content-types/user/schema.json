@@ -94,6 +94,12 @@
       "relation": "manyToMany",
       "target": "api::card.card",
       "mappedBy": "users_permissions_users"
+    },
+    "ratings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::rating.rating",
+      "mappedBy": "users_permissions_users"
     }
   }
 }

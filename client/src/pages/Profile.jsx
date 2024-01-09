@@ -14,7 +14,7 @@ import { RiDeleteBin4Line } from 'react-icons/ri'
 import { IoIosAdd } from 'react-icons/io'
 import { ProductCard } from '../components/ProductCard';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAllUsers, getUserStatus, fetchUsers } from '../slice/users/userSlice';
+import { selectAllUsers, selectLoggedInUser, getUserStatus, fetchUsers } from '../slice/users/userSlice';
 import { BsFillStarFill } from 'react-icons/bs'
 import { HiDotsHorizontal } from 'react-icons/hi'
 import { selectWishlist } from '../slice/wishList/wishListSlice';
@@ -38,7 +38,7 @@ export default function Profile() {
   const location = useLocation()
 
   const [open, setOpen] = useState(false)
-
+  const loggedinUser = useSelector(selectLoggedInUser)
   const user = useSelector(selectAllUsers)
   const userStatus = useSelector(getUserStatus)
   const wishlist = useSelector(selectWishlist)

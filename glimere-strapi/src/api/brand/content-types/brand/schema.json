@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "brandId": {
-      "type": "integer"
-    },
     "name": {
       "type": "string"
     },
@@ -34,6 +31,24 @@
     },
     "website": {
       "type": "text"
+    },
+    "apparels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::apparel.apparel",
+      "inversedBy": "brands"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "founded_year": {
+      "type": "integer"
+    },
+    "short_name": {
+      "type": "string"
     }
   }
 }

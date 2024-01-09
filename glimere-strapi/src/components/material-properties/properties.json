@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_material_properties_properties",
+  "info": {
+    "displayName": "properties",
+    "icon": "layer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "softness": {
+      "type": "string"
+    },
+    "breathability": {
+      "type": "string"
+    },
+    "warmth": {
+      "type": "string"
+    },
+    "durability": {
+      "type": "string"
+    },
+    "wrinkle_resistance": {
+      "type": "string"
+    },
+    "sub_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sub-category.sub-category"
+    },
+    "moisture_wicking": {
+      "type": "string"
+    },
+    "quick_drying": {
+      "type": "string"
+    }
+  }
+}

@@ -36,7 +36,7 @@ export default function FilterBar(props) {
                 <button key={id} className={`px-[10px] py-[5px] mb-[5px] ${props.selectedCategory == apparel.attributes.category ? "bg-primary-100" : ""} rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
                   onClick={() => { props.setSelectedCategory(apparel.attributes.category) }}
                 >
-                  <p className={`text-[10px] mr-[5px] ${props.selectedCategory == apparel.attributes.category ? "text-white" : "text-[#ED7534]"} `}>{apparel.attributes.category}</p>
+                  <p className={`text-[10px] mr-[5px] ${props.selectedCategory == apparel.attributes.category ? "text-white-100" : "text-[#ED7534]"} `}>{apparel.attributes.category}</p>
 
                 </button>
               ))}
@@ -55,7 +55,7 @@ export default function FilterBar(props) {
                   onClick={() => { props.handleBrandChange(brand.id) }}
                 >
                   <div className={`flex h-full w-full justify-center items-center bg-g rounded-full`}>
-                    <p className={`text-[10px] ${props.selectedBrands.includes(brand.id) ? "text-white" : "text-black"} `}>{brand.attributes.name}</p>
+                    <p className={`text-[10px] ${props.selectedBrands.includes(brand.id) ? "text-white-100" : "text-black"} `}>{brand.attributes.name}</p>
                   </div>
                 </div>
               ))}
@@ -238,7 +238,7 @@ export default function FilterBar(props) {
 
         </div>
 
-        {/* <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+        {/* <button className="bg-blue-500 hover:bg-blue-600 text-white-100 px-4 py-2 rounded">
     Apply Filters
   </button> */}
       </div>

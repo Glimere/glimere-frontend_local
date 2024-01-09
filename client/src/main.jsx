@@ -12,13 +12,13 @@ import { Provider } from 'react-redux';
 import { fetchApparels } from './slice/apparels/apparelSlice.js'
 import { fetchAds } from './slice/ads/adSlice.js'
 import { fetchCarousels } from './slice/carousel/carouselSlice.js'
-import { fetchUsers } from './slice/users/userSlice.js'
 import { fetchBrands } from './slice/brand/brandSlice.js'
-import { fetchCategory } from './slice/category/categorySlice.js'
-import { fetchSubcategory } from './slice/subCategory/subCategorySlice.js'
+import { fetchCategory } from './slice/main-category/mainCategorySlice.js'
+import { fetchSubcategory } from './slice/sub-category/subCategorySlice.js'
 import { fetchSize } from './slice/size/sizeSlice.js'
 import { fetchColor } from './slice/colors/colorSlice.js'
 import { PersistGate } from 'redux-persist/integration/react';
+import { fetchApparelType } from './slice/apparel-type/apparelTypeSlice.js'
 
 
 const fetchData = async () => {
@@ -33,6 +33,7 @@ const fetchData = async () => {
       store.dispatch(fetchSubcategory()),
       store.dispatch(fetchSize()),
       store.dispatch(fetchColor()),
+      store.dispatch(fetchApparelType())
     ]);
 
   } catch (error) {

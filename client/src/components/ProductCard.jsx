@@ -5,7 +5,7 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
 import { selectAllUsers } from '../slice/users/userSlice';
 import { useEffect, useState } from "react";
-import { StarRating } from "./StarRating";
+import { ApparelRating } from "./ApparelRating";
 import { addWish } from "../slice/wishList/wishListSlice";
 import { selectWishlist } from "../slice/wishList/wishListSlice";
 
@@ -46,7 +46,7 @@ export const ProductCard = (props) => {
                     <span className={`text-gray-600 line-through text-[0.8rem] sm:text-[12px] text-sm mb-[5px] ${props.loading ? "invisible" : "visible"} duration-150`}>${apparel.attributes.price}</span>
                     </div>
                     
-                    <StarRating rating={apparel.attributes.rating} loading={props.loading} />
+                    <ApparelRating rating={apparel.attributes.rating} loading={props.loading} />
                   </div>
                   <div className="h-full flex items-center">
 

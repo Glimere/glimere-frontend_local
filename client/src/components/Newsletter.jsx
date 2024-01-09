@@ -11,7 +11,7 @@ export default function Newsletter() {
           <p className="mt-[20px] text-[13px]">Don't miss out on the opportunity to elevate your fashion game and stay connected with Glimere. Subscribe now and embrace the world of style and luxury!</p>
           <form className="flex mt-[30px]">
             <input type="email" placeholder="Enter your email" className="bg-[#FFF7E9] w-[300px] placeholder:text-[#e2912e] placeholder:text-[13px] px-4 py-2 rounded-l focus:outline-none" />
-            <button type="submit" className="bg-[#e2912e] text-white px-4 py-2 rounded-r hover:bg-[#f7aa4c] focus:outline-none ml-[20px]">Subscribe</button>
+            <button type="submit" className="bg-[#e2912e] text-white-100 px-4 py-2 rounded-r hover:bg-[#f7aa4c] focus:outline-none ml-[20px]">Subscribe</button>
           </form>
         </div>
 

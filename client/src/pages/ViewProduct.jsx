@@ -13,7 +13,7 @@ import { SlArrowLeft } from 'react-icons/sl'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import VerticalCarousel from '../components/VerticalCarousel';
-import { StarRating } from '../components/StarRating';
+import { ApparelRating } from '../components/ApparelRating';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAllApparels } from '../slice/apparels/apparelSlice';
@@ -25,7 +25,7 @@ import Footer from '../components/Footer';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../slice/cart/cartSlice';
 import { addToCart } from '../slice/cart/cartSlice';
-import ProductSession from '../components/ProductSession';
+import ProductSession from '../components/ProductSection';
 import { selectAllUsers, selectLoggedInUser } from '../slice/users/userSlice';
 
 
@@ -122,7 +122,7 @@ export default function ViewProduct() {
               <div className="">
                 <h1 className="text-[30px]">{apparel.attributes.name}</h1>
                 <div className="flex flex-row items-center mt-[10px]">
-                  <StarRating rating={apparel.attributes.rating} />
+                  <ApparelRating rating={apparel.attributes.rating} />
                   <div className="border-b border-gray-400 border-dotted ml-[30px]">
                     <p className='text-[11px] text-gray-400'>Delivery Info</p>
                   </div>
@@ -161,7 +161,7 @@ export default function ViewProduct() {
           <button
             id="burronNativeColor"
             type="button"
-            className="inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">
+            className="inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white-100 shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">
             Button
           </button>
         </div> */}
@@ -176,7 +176,7 @@ export default function ViewProduct() {
                   {/* <p className='text-[12px] text-[#ED7534] mr-[3px]'>SIZE: </p> */}
                   {apparel.attributes.sizes.data.map((size, id) => {
                     return (
-                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-primary-100 text-white" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
+                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-primary-100 text-white-100" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
                         onClick={() => setApparelSize(size.attributes.short_name)}
                       >
                         <p className="text-[9px]">{size.attributes.short_name}</p>
@@ -214,8 +214,8 @@ export default function ViewProduct() {
                 }}
                 >
                   <div className="flex flex-row">
-                    <p className='text-white text-[13px] mr-[3px]'>ADD TO CART</p>
-                    <IoIosAdd className="w-[20px] h-[20px] text-white" />
+                    <p className='text-white-100 text-[13px] mr-[3px]'>ADD TO CART</p>
+                    <IoIosAdd className="w-[20px] h-[20px] text-white-100" />
                   </div>
                 </div>
                 <div className="cursor-pointer"
@@ -282,7 +282,7 @@ export default function ViewProduct() {
                             <div className='h-[40px] w-[40px] mr-[10px] rounded-full bg-gray-200 '></div>
                             <div className="flex flex-col">
                               <h1 className='text-[12px] font-medium mb-[5px]'>Verra lessley</h1>
-                              <StarRating rating={apparel.attributes.rating} />
+                              <ApparelRating rating={apparel.attributes.rating} />
                             </div>
 
                           </div>
@@ -294,7 +294,7 @@ export default function ViewProduct() {
                             <div className='h-[40px] w-[40px] mr-[10px] rounded-full bg-gray-200 '></div>
                             <div className="flex flex-col">
                               <h1 className='text-[12px] font-medium mb-[5px]'>Verra lessley</h1>
-                              <StarRating rating={apparel.attributes.rating} />
+                              <ApparelRating rating={apparel.attributes.rating} />
                             </div>
 
                           </div>

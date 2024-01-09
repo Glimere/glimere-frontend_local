@@ -1,5 +1,6 @@
 import { ReactComponent as GlimereSweet } from '../assets/images/glimereLogo.svg'
 import { ReactComponent as GlimereLogo } from '../assets/images/glimereLogo.svg'
+import { ReactComponent as FashionQueue } from '../assets/images/fashionQueue.svg'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { BiSearch } from "react-icons/bi"
 import { AiOutlineHeart } from 'react-icons/ai'
@@ -15,8 +16,9 @@ import { selectAllUsers, getUserError, getUserStatus, selectLoggedInUser, update
 import { selectAllApparels, getApparelsStatus, getApparelsError } from '../slice/apparels/apparelSlice'
 import { useLocation } from 'react-router-dom'
 import { BiStore } from 'react-icons/bi'
-import { selectAllCategory } from '../slice/category/categorySlice'
-import { selectAllSubcategory } from '../slice/subCategory/subCategorySlice'
+import { selectAllCategory } from '../slice/main-category/mainCategorySlice'
+import { selectAllSubcategory } from '../slice/sub-category/subCategorySlice'
+import { selectAllApparelType } from '../slice/apparel-type/apparelTypeSlice'
 import { constants } from './constants'
 import { selectCart } from '../slice/cart/cartSlice'
 import axios from 'axios'
@@ -42,6 +44,7 @@ export default function Navbar() {
   const [searchInput, setSearchInput] = useState("");
   const [logoColor, setLogoColor] = useState("");
   const [suggestions, setSuggestions] = useState();
+  const [currentApparelType, setCurrentApparelType] = useState("Men")
   // const [loggedIn, setLoggedIn] = useState(false);
 
 
@@ -55,7 +58,9 @@ export default function Navbar() {
   const category = useSelector(selectAllCategory)
   const subCategory = useSelector(selectAllSubcategory)
   const cart = useSelector(selectCart)
+  const apparelType = useSelector(selectAllApparelType)
   const loggedinUser = useSelector(selectLoggedInUser)
+
 
   const navMenu = [
     { name: 'My Account' },
@@ -190,20 +195,20 @@ export default function Navbar() {
 
 
   useEffect(() => {
-    if (menuVisible || isSticky) {
+    if (isSticky) {
       setLogoColor("#ed7534")
     } else if (pageLocation !== "") {
-      setLogoColor("#c07820")
+      setLogoColor("#ed7534")
     } else {
       setLogoColor("#ffffff")
     }
-  }, [menuVisible, isSticky, pageLocation])
+  }, [isSticky, pageLocation])
 
 
   return (
     <>
       <div className={`navbar w-full duration-300 ${isSticky ? 'sticky' : ''} z-50 relative`}>
-        <div className={`absolute w-full  ${menuVisible ? "min-h-[450px] h-[450px]" : "h-[0px]"} overflow-hidden ${menuVisible && pageLocation == "search" ? "bg-[#FFF7E9]" : "bg-white"}  duration-300`}
+        {/* <div className={`absolute w-full  ${menuVisible ? "min-h-[450px] h-[450px]" : "h-[0px]"} overflow-hidden ${menuVisible && pageLocation == "search" ? "bg-[#FFF7E9]" : "bg-white"}  duration-300`}
           onMouseLeave={() => {
             setMenuVisible(false)
             setCard(0)
@@ -212,16 +217,7 @@ export default function Navbar() {
         >
           <div className="flex flex-col">
             <div className="flex sm:hidden flex-row flex-[1] pt-[90px] px-[20px]">
-              {category.map((category) => (
-                <div key={category.id} className={`peer h-[33px] px-[15px] flex justify-center items-center mr-[8px] rounded-full ${card == category.id ? "bg-[#5e5e5ec2] text-white" : "bg-[#f1f1f1c2] text-black"} duration-300 cursor-pointer`}
-                  onMouseEnter={() => {
-                    setMenuVisible(true)
-                    setCard(category.id)
-                  }}
-                >
-                  <p className={`text-[12px]`}>{category.attributes.title}</p>
-                </div>
-              ))}
+           
             </div>
             <div className="flex-[3]">
               {category?.map((category) => (
@@ -257,10 +253,10 @@ export default function Navbar() {
 
 
 
-        </div>
+        </div> */}
 
 
-        <div className={`w-full h-[80px] px-[25px] sm:px-[60px] duration-300 flex flex-row ${isSticky ? 'bg-white shadow-sm' : 'bg-transparent'} absolute z-10`}>
+        <div className={`w-full h-[80px] px-[25px] sm:px-[60px] duration-300 flex flex-row ${isSticky ? ' bg-white-100 shadow-sm' : 'bg-transparent'} absolute z-10`}>
 
           <div className="flex-[1] sm:flex-[2.18] py-[12px] hidden sm:flex flex-row items-center justify-between">
             <div className="flex flex-row items-center">
@@ -285,26 +281,26 @@ export default function Navbar() {
 
                   <div className={`h-[35px] sm:hidden flex cursor-pointer justify-start items-center mr-[20px] rounded-full`}
                     onClick={() => {
-                      setMenuVisible(!menuVisible)
+                      // setMenuVisible(!menuVisible)
                       setCard(1)
                     }}
                   >
-                    <AiOutlineMenu className={`w-[20px] h-[20px]  ${menuVisible || isSticky || pageLocation ? " text-black" : "text-white "} group-hover:relative`} />
+                    <AiOutlineMenu className={`w-[20px] h-[20px]  ${menuVisible || isSticky || pageLocation ? " text-black" : "text-white-100 "} group-hover:relative`} />
                   </div>
 
-                  {category.map((category) => (
-                    <div key={category.id} className={`peer  ${searchSelected ? "h-[15px] w-[15px]" : "h-[40px] px-[15px]"} hidden sm:flex justify-center items-center mr-[8px] rounded-full ${card == category.id ? "bg-[#5e5e5ec2] text-white" : "bg-[#f1f1f1c2] text-black"} duration-300 cursor-pointer`}
-                      onMouseEnter={() => {
-                        setMenuVisible(true)
-                        setCard(category.id)
+                  {apparelType.map((type) => (
+                    <div key={type.id} className={`peer  ${searchSelected && currentApparelType !== type.attributes.name ? "h-[15px] w-[15px]" : "h-[40px] px-[15px]"} hidden sm:flex flex-col gap-[1px] justify-center items-center mr-[8px] rounded-full ${card == type.id ? " text-black" : " text-dark-100"} duration-300 cursor-pointer`}
+                      onClick={() => {
+                        setCurrentApparelType(type.attributes.name)
                       }}
                     >
-                      <p className={`text-[12px] ${searchSelected ? "hidden" : "block"}`}>{category.attributes.title}</p>
+                      <p className={`text-[12px] ${searchSelected && currentApparelType !== type.attributes.name ? "hidden" : "block"}`}>{type.attributes.name}</p>
+                      <div className={`w-full h-[2px]  ${currentApparelType === type.attributes.name ? "bg-dark-200" : ""}`}></div>
                     </div>
                   ))}
 
 
-                  <div ref={searchRef} className={`group h-[40px] ${searchSelected ? "w-full bg-white" : "w-[60px] "} ${searchInput !== '' ? "w-full bg-white" : "hover:w-full "} peer-hover:w-full  ${menuVisible ? "bg-[#f3f3f3be]" : "bg-[#f1f1f1c2]"} duration-200 sm:duration-500 ease-linear rounded-full mr-0 sm:mr-[20px] relative flex flex-row justify-center  px-[20px]`}>
+                  <div ref={searchRef} className={`group h-[40px] border-[1px] border-solid border-dark-100 ${searchSelected ? "w-full bg-white" : "w-[60px] "} ${searchInput !== '' ? "w-full bg-white" : "hover:w-full "} peer-hover:w-full  ${menuVisible ? "bg-[#f3f3f3be]" : ""} duration-200 sm:duration-500 ease-linear rounded-full mr-0 sm:mr-[20px] relative flex flex-row justify-center  px-[20px]`}>
                     <div className={`w-full max-h-[400px] absolute rounded-[20px] z-[-1] ${searchSelected || searchInput !== '' ? " bg-white shadow-md" : "bg-transparent "} pt-[40px] overflow-hidden`}>
                       {searchInput !== '' && suggestions?.slice(0, 6)?.map((item) => (<div className="hover:bg-[#0000001a] w-full px-[30px] " key={item.id}>
                         <Link to={`/search`} state={item.attributes.name}
@@ -345,25 +341,34 @@ export default function Navbar() {
           >
             <div className="flex flex-row justify-end w-full sm:mr-0">
               <div className="flex flex-row w-full justify-end">
-                <div className="h-[50px] w-[100px] sm:w-[150px] flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]">
-                  <Link to="/market">
-                    <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}>
-                      <BiStore className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
-                      <p className={`text-[12px] ml-[5px] hidden sm:block ${menuVisible || isSticky || pageLocation || menuToggle ? "text-[#684419]" : "text-[#ffffff]"}`}>Market</p>
-                    </div>
-                  </Link>
+                <div className={`h-[50px] w-[100px] ${user.role.type === "seller" ? "sm:w-[150px]" : "sm:w-[180px]"} flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]`}>
 
-                  <Link to="/cart">
-                    <div className={`py-[9px] px-[5px] pr-[10px] duration-150 relative flex flex-row justify-center items-center ${menuVisible || isSticky || pageLocation || menuToggle ? "border-black" : "border-[#ffffff]"} border-solid hover:border-b cursor-pointer`}
+                  {user.role.type === "seller"
+                    ?
+                    <Link to="/market">
+                      <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center border-dark-100 border-solid hover:border-b cursor-pointer`}>
+                        <BiStore className={`text-[18px] sm:text-[16px] text-dark-100 `} />
+                        <p className={`text-[12px] ml-[5px] hidden sm:block text-dark-100`}>My Store</p>
+                      </div>
+                    </Link>
+                    :
+                    <Link to="/cart">
+                      <div className={`py-[9px] px-[5px] pr-[10px] duration-150 relative flex flex-row justify-center items-center border-dark-100 border-solid hover:border-b cursor-pointer`}
 
-                    >
-                      <FiShoppingCart className={`text-[18px] sm:text-[16px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} `} />
+                      >
+                        {cart.length != 0 ? <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-primary-100 flex justify-center items-center">
+                          <p className='text-[8px] text-white'>{cart.length}</p>
+                        </div> : null}
+                        <FashionQueue style={{ color: "#171715" }} height="20" className={`text-[18px] sm:text-[16px] text-dark-100 `} />
 
-                      {cart.length != 0 ? <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-primary-100 flex justify-center items-center">
-                        <p className='text-[8px] text-white'>{cart.length}</p>
-                      </div> : null}
-                    </div>
-                  </Link>
+                        <p className={`text-[12px] ml-[7px] hidden sm:block text-dark-100`}>My Fashion Queue</p>
+
+                      </div>
+                    </Link>
+                  }
+
+
+
 
 
 
@@ -371,7 +376,7 @@ export default function Navbar() {
                     onClick={() => setMenuToggle(!menuToggle)}
 
                   >
-                    <CgProfile className={`text-[20px] sm:m-[0px] sm:text-[24px] ${menuVisible || isSticky || pageLocation || menuToggle ? "text-black" : "text-[#ffffff]"} duration-200 `} />
+                    <CgProfile className={`text-[20px] sm:m-[0px] sm:text-[24px] text-dark-100 duration-200 `} />
                   </div>
 
 
@@ -385,7 +390,7 @@ export default function Navbar() {
 
         <div className={`absolute right-0 overflow-hidden ${menuToggle ? "min-h-[280px] sm:min-h-[300px] " : "max-h-[0px]"} w-[60%] m:w-[45%] min-[1127px]:w-[350px] sm:w-[300px] duration-300 bg-[#ffe9b8]`}
         >
-          <div className="w-full h-full flex flex-col pt-[90px] pb-[20px]">
+          <div className="w-full h-full flex flex-col pt-[90px] ">
 
             <div className="flex justify-center items-center h-[50px]">
               <p className='text-black font-bold text-[13px]'>support - <span className="text-[12px] font-bold ">0-220993-32093</span> </p>
@@ -394,7 +399,7 @@ export default function Navbar() {
             {Object.keys(user).length === 0 ?
 
               <Link to="/login">
-                <div>
+                <div className="flex justify-center items-center h-[60px] bg-[#fff7e7]">
                   Login
                 </div>
               </Link>

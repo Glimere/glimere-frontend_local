@@ -81,8 +81,8 @@ export default function Checkout() {
                             
                             onClick={()=>{setToggleEdit(false)}}>
                                 <div className="flex flex-row">
-                                    <p className='text-white text-[13px] mr-[3px]'>ADD TO CART</p>
-                                    <IoIosAdd className="w-[20px] h-[20px] text-white" />
+                                    <p className='text-white-100 text-[13px] mr-[3px]'>ADD TO CART</p>
+                                    <IoIosAdd className="w-[20px] h-[20px] text-white-100" />
                                 </div>
 
                             </div>

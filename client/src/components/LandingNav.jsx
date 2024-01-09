@@ -88,7 +88,7 @@ export default function LandingNav({ setOpen, setPage, page }) {
                     {/* Button */}
                     <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-body font-medium">
                         <Link to="/login" className={`${!creatorsPath ? "visible" : "hidden"}`}>
-                            <button className={`text-black ${"border-black"} hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
+                            <button className={`text-black ${"border-black"} hover:bg-black duration-150 hover:text-white-100 border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
                                 Get Started
                             </button>
                         </Link>
@@ -96,7 +96,7 @@ export default function LandingNav({ setOpen, setPage, page }) {
 
 
                         <Link to="/register" className={`${creatorsPath ? "visible" : "hidden"}`}>
-                            <button className={`text-black ${"border-black"} hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
+                            <button className={`text-black ${"border-black"} hover:bg-black duration-150 hover:text-white-100 border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
                                 Sell on Glimere
                             </button>
                         </Link>

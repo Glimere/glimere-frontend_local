@@ -6,17 +6,17 @@ import { selectAllApparels } from "../slice/apparels/apparelSlice";
 import { selectAllUsers } from "../slice/users/userSlice";
 import { selectAllCarousels } from "../slice/carousel/carouselSlice";
 import { selectAllBrands } from "../slice/brand/brandSlice";
-import { selectAllSubcategory } from "../slice/subCategory/subCategorySlice";
+import { selectAllSubcategory } from "../slice/sub-category/subCategorySlice";
 import { fetchUsers, getUserStatus } from "../slice/users/userSlice";
 import { selectCart } from "../slice/cart/cartSlice";
-import Carousel from "../components/Carousel";
+import ShowcaseSection from "../components/ShowcaseSection";
 import ProductDisplay from "../components/ProductDisplay";
 import Categories from "../components/Categories";
-import ProductSession from "../components/ProductSession";
-import BrandSession from "../components/BrandSession";
-import FeaturedSession from "../components/FeaturedSession";
-import CarouselSession from "../components/CarouselSession";
-import CollectionSession from "../components/CollectionSession";
+import ProductSession from "../components/ProductSection";
+import BrandSession from "../components/BrandSection";
+import FeaturedSession from "../components/FeaturedSection";
+import CarouselSession from "../components/CarouselSection";
+import CollectionSession from "../components/CollectionSection";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addItem } from "../slice/cart/cartSlice";
@@ -45,6 +45,7 @@ export default function Home() {
 console.log('userStatus', userStatus)
   console.log('users', users)
   console.log('cart', cart)
+  console.log("apparels", apparels)
 
   // if (users !== {} && users !== undefined && users !== null) {
   //   localStorage.removeItem('user')
@@ -78,19 +79,19 @@ console.log('userStatus', userStatus)
   return (
     <>
       <div className="w-full h-[45vh] sm:h-[100vh] flex flex-row overflow-hidden">
-        <Carousel carousels={carousels} />
+        <ShowcaseSection apparels={apparels} />
       </div>
       <div className="">
 
         {/* <ProductDisplay adsUrl={adsUrl} /> */}
 
-        <ProductSession headerType="view" headerTitle="Latest Trends" type="normal" />
+        {/* <ProductSession headerType="view" headerTitle="Latest Trends" type="normal" />
         <ProductSession headerTitle="Latest Trend" headerType="view" type="trending" />
         <CarouselSession headerTitle="" headerType="" />
         <ProductSession headerTitle="Flash Sales" type="special" headerType="timeline" />
         <FeaturedSession headerTitle="" type="featured" headerType="" />
         <BrandSession headerTitle="Top Brands" headerType="view" />
-        <CollectionSession headerTitle="Featured Collections" headerType="view" />
+        <CollectionSession headerTitle="Featured Collections" headerType="view" /> */}
 
 
 
