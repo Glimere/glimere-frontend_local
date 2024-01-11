@@ -9,7 +9,7 @@ import useFetch from '../global-components/useFetch';
 
 export default function ShowcaseSection({ apparels }) {
 
-  const [currentSelection, setCurrentSelection] = useState(0)
+  const [currentSelection, setCurrentSelection] = useState(3)
   const [isHovered, setIsHovered] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
 
@@ -29,7 +29,7 @@ export default function ShowcaseSection({ apparels }) {
   }, [isHovered, apparels.length]);
 
   function calculateTranslateX(currentSelection, arrayLength) {
-    const translatePercentage = ((((15 * (currentSelection - 0.2)) + currentSelection - 0.48) % 100 + 100) % 100); // Ensure a positive modulo result
+    const translatePercentage = ((15 * (currentSelection - 0.2)) + apparels.map(() => - currentSelection - 0.48) ); // Ensure a positive modulo result
     return `translateX(-${translatePercentage}%)`;
   }
 
@@ -95,6 +95,8 @@ export default function ShowcaseSection({ apparels }) {
   };
 
 
+
+
   return (
     <div className='pt-[80px] w-full h-full'>
       <div className="h-[100%] w-full overflow-hidden">
@@ -147,6 +149,7 @@ export default function ShowcaseSection({ apparels }) {
               ></div>
               {apparel?.attributes?.apparel_imgs?.data?.map(img => (
                 <img key={img.id} src={`${constants.url}${img.attributes.url}`} className={`${currentSelection === id ? "w-[210px] duration-[600ms] ease-in" : "w-[150px] duration-[600ms] ease-in"}`}
+                onClick={()=> setCurrentSelection(id)}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => {
                     setIsHovered(false);
