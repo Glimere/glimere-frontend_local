@@ -29,7 +29,8 @@ export default function ShowcaseSection({ apparels }) {
   }, [isHovered, apparels.length]);
 
   function calculateTranslateX(currentSelection, arrayLength) {
-    const translatePercentage = ((15 * (currentSelection - 0.2)) + apparels.map(() => - currentSelection - 0.48) ); // Ensure a positive modulo result
+    // const translatePercentage = ((15 * (currentSelection - 0.2)) - currentSelection - 0.48 )
+    const translatePercentage = (12.5 + 15) / (arrayLength * 0.283) * currentSelection
     return `translateX(-${translatePercentage}%)`;
   }
 
@@ -126,7 +127,7 @@ export default function ShowcaseSection({ apparels }) {
           </div>
         </div>
 
-        <div className="flex flex-row h-[95%] items-center ml-[30%]"
+        <div className="flex flex-row h-[95%] items-center ml-[35.5%]"
 
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
