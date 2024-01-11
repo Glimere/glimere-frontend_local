@@ -9,7 +9,7 @@ import useFetch from '../global-components/useFetch';
 
 export default function ShowcaseSection({ apparels }) {
 
-  const [currentSelection, setCurrentSelection] = useState(3)
+  const [currentSelection, setCurrentSelection] = useState(0)
   const [isHovered, setIsHovered] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
 
@@ -28,11 +28,7 @@ export default function ShowcaseSection({ apparels }) {
     return () => clearInterval(intervalId);
   }, [isHovered, apparels.length]);
 
-  function calculateTranslateX(currentSelection, arrayLength) {
-    // const translatePercentage = ((15 * (currentSelection - 0.2)) - currentSelection - 0.48 )
-    const translatePercentage = (12.5 + 15) / (arrayLength * 0.283) * currentSelection
-    return `translateX(-${translatePercentage}%)`;
-  }
+
 
   function getRatingsFromJson(jsonData) {
     if (!jsonData || !Array.isArray(jsonData)) {
@@ -57,12 +53,12 @@ export default function ShowcaseSection({ apparels }) {
 
     if (deltaX > touchThreshold) {
       setCurrentSelection((prevSelection) =>
-        prevSelection === apparels.length - 1 ? 0 : prevSelection + 1
+        prevSelection === VirtualApparel.length - 1 ? 0 : prevSelection + 1
       );
       setTouchStart(currentX);
     } else if (deltaX < -touchThreshold) {
       setCurrentSelection((prevSelection) =>
-        prevSelection === 0 ? apparels.length - 1 : prevSelection - 1
+        prevSelection === 0 ? VirtualApparel.length - 1 : prevSelection - 1
       );
       setTouchStart(currentX);
     }
@@ -77,7 +73,7 @@ export default function ShowcaseSection({ apparels }) {
     if (!isHovered) {
       intervalId = setInterval(() => {
         setCurrentSelection((prevSelection) =>
-          prevSelection === apparels.length - 1 ? 0 : prevSelection + 1
+          prevSelection === VirtualApparel.length - 1 ? 0 : prevSelection + 1
         );
       }, intervalDuration);
     }
@@ -86,17 +82,26 @@ export default function ShowcaseSection({ apparels }) {
   const handleMouseSwipe = (direction) => {
     if (direction === 'left') {
       setCurrentSelection((prevSelection) =>
-        prevSelection === 0 ? apparels.length - 1 : prevSelection - 1
+        prevSelection === 0 ? VirtualApparel.length - 1 : prevSelection - 1
       );
     } else {
       setCurrentSelection((prevSelection) =>
-        prevSelection === apparels.length - 1 ? 0 : prevSelection + 1
+        prevSelection === VirtualApparel.length - 1 ? 0 : prevSelection + 1
       );
     }
   };
 
+  function calculateTranslateX(currentSelection, arrayLength) {
+    const translatePercentage = ((27.5) / (arrayLength * 0.42)) * currentSelection //3
+    // const translatePercentage = ((27.5) / (arrayLength * 0.283)) * currentSelection //6
+    // const translatePercentage = ((27.5) / (arrayLength * 0.278)) * currentSelection //18
+    return `translateX(-${translatePercentage}%)`;
+  }
 
 
+  const VirtualApparel = [
+    ...apparels.slice(0, -3)
+  ];
 
   return (
     <div className='pt-[80px] w-full h-full'>
@@ -134,14 +139,14 @@ export default function ShowcaseSection({ apparels }) {
           onTouchEnd={handleTouchEnd}
           ref={touchRef}
           style={{
-            width: `${apparels.length * 25}%`,
+            width: `${VirtualApparel.length * 25}%`,
             // transform: `translateX(-${(17 * currentSelection) - (currentSelection)}%)`,
-            transform: calculateTranslateX(currentSelection, apparels.length),
+            transform: calculateTranslateX(currentSelection, VirtualApparel.length),
             transition: "ease-in",
             transitionDuration: "600ms"
           }}
         >
-          {apparels.map((apparel, id) => (
+          {VirtualApparel.map((apparel, id) => (
             <div key={apparel.id} className={`${currentSelection === id ? "w-[30%]" : "w-[25%]"} flex flex-col justify-center items-center gap-[8px]`}>
 
               <div className={` ${currentSelection === id ? "h-[50px] w-[50px] bg-white-100 border-solid border-[1px] border-primary-100 duration-[600ms] bg-cover bg-center bg-no-repeat shadow-md" : "bg-transparent h-[20px] w-[20px]"}  rounded-full `}

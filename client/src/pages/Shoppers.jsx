@@ -16,6 +16,8 @@ import samples from '../assets/images/samples.png'
 import thread from '../assets/images/thread.png'
 import toolsPack from '../assets/images/toolsPack.png'
 import Bubble from '../components/Bubble';
+import landingImg from "../assets/images/landingImg.png"
+import creatorsPromptImg from "../assets/images/creatorsPromptImg.png"
 import InfiniteSlider from './InfiniteSlider';
 import { Canvas } from '@react-three/fiber';
 import Model from '../components/Model';
@@ -104,8 +106,9 @@ export default function Shoppers() {
 
 
       {page === "shoppers" ? <>
-        <div className='h-[60vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
-        // style={{ backgroundImage: `url(${glimereBg})` }}
+        <div className='h-[80vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
+                style={{ backgroundImage: `url(${landingImg})` }}
+
         >
           {/* <div className="absolute h-full w-full flex justify-center items-end">
           <Bubble classes="h-[60px] sm:h-[80px]  w-[60px] sm:w-[80px] hover:h-[100px] hover:w-[100px] top-[26%] sm:top-[20%] left-[10%] sm:left-[15%]" img={img1} />
@@ -121,7 +124,7 @@ export default function Shoppers() {
 
             <div className="w-[340px] sm:w-[750px] z-[4] relative mb-[15px]">
 
-              <h1 className="text-[45px] sm:text-[80px] text-center text-black mb-[20px] head-font">Shop Exclusive Custom made Fashion</h1>
+              <h1 className="text-[45px] sm:text-[80px] text-center text-black mb-[20px] font-bold sm:font-semibold">Shop Exclusive Custom made Fashion</h1>
 
             </div>
 
@@ -151,7 +154,7 @@ export default function Shoppers() {
 
           <div className='sm:flex-[1] flex flex-col h-full w-full items-start justify-center '>
             <div className="w-[90%] sm:w-[90%] text-left">
-              <h1 className="text-black text-[30px] sm:text-[60px] head-font">The Future of African Fashion is Here</h1>
+              <h1 className="text-black text-[30px] sm:text-[60px] font-semibold">The Future of African Fashion is Here</h1>
 
             </div>
             <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
@@ -177,17 +180,20 @@ export default function Shoppers() {
             <img className=" absolute duration-150  w-[60px] sm:w-[80px]  hover:w-[100px] top-[1%] sm:top-[75%] right-[53%] sm:right-[21%]" src={toolsPack} />
             <div className="h-full w-full flex justify-center items-center">
               <div className="w-[340px] sm:w-[750px]">
-                <h1 className="text-[40px] mt-[100px] sm:mt-0 sm:text-[60px] text-center head-font">We focus on technology to build a more sustainable solution</h1>
+                <h1 className="text-[40px] mt-[100px] sm:mt-0 sm:text-[60px] text-center font-semibold">We focus on technology to build a more sustainable solution</h1>
               </div>
             </div>
           </div>
 
         </div>
 
-        <div className="h-auto sm:h-[140vh] bg-secondary-200 py-[80px] sm:py-[50px]">
+        <div className="h-auto sm:h-[140vh] bg-secondary-200 py-[80px] sm:py-[50px] "
+                        style={{ backgroundImage: `url(${landingImg})` }}
+
+        >
           <div className="h-full w-full flex flex-col gap-[50px] justify-center items-center">
             <div className="w-full sm:w-[60%] flex  px-[40px] justify-start sm:justify-center items-center">
-              <h1 className='text-left sm:text-center text-[25px] head-font'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
+              <h1 className='text-left sm:text-center text-[27px] font-medium'>Our User Friendly Platform allows you to explore unique styles from top Fashion Creators</h1>
             </div>
             <div className="w-[80%] sm:w-[73%] h-[400px] sm:h-[420px] p-[40px] border border-black border-solid  overflow-hidden bg-[#fff6d5] rounded-[30px] ">
 
@@ -221,7 +227,7 @@ export default function Shoppers() {
         <div className="h-auto sm:h-[150vh] bg-secondary-100 py-[50px]">
           <div className="h-full w-full flex flex-col gap-[30px] justify-center items-center overflow-hidden">
             <div className="w-full sm:w-[60%] flex px-[40px] justify-start sm:justify-center items-center">
-              <h1 className='text-left sm:text-center text-[35px] sm:text-[40px] head-font'>With an interactive and immersive 3D Experience</h1>
+              <h1 className='text-left sm:text-center text-[35px] sm:text-[40px] font-medium '>With an interactive and immersive 3D Experience</h1>
             </div>
             <div className="w-[80%] sm:w-[73%] h-[800px] sm:h-[1000px] overflow-hidden p-0 sm:p-[20px] flex justify-center items-center relative">
 
@@ -340,12 +346,15 @@ export default function Shoppers() {
       </div> */}
 
 
-        <div ref={elementRef} className="h-auto py-[130px] sm:py-[140px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex flex-col sm:flex-row">
+        <div ref={elementRef} className="h-auto py-[130px] sm:py-[140px] sm:p-0 bg-black-100 w-full px-[40px] sm:px-[4rem] relative flex items-center justify-center bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url(${creatorsPromptImg})` }}
+
+        >
           <div className="flex items-center justify-center">
-            <div className="">
-              <h1 className=" text-[40px] text-black sm:text-[70px] mb-[30px] head-font">Ready to slay the fashion game?</h1>
-              <div className="w-[90%] sm:w-[70%]">
-                <p className='text-[15px] sm:text-[19px] text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
+            <div className="flex flex-col items-center justify-center">
+              <h1 className=" text-[40px] text-black sm:text-[65px] mb-[30px] font-semibold text-center">Ready to slay the fashion game?</h1>
+              <div className="w-[90%] sm:w-[60%] flex items-center justify-center">
+                <p className='text-[15px] sm:text-[23px] text-center text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
               </div>
 
               <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white-100 text-[15px] rounded-[10px] cursor-pointer'
@@ -391,7 +400,7 @@ export default function Shoppers() {
                       {submitted ?
                         <div className='h-full w-full flex justify-center items-center'>
                           <div className="flex flex-col items-center">
-                            <h1 className="text-[35px] text-center head-font">Thank you for your interest in Glimere</h1>
+                            <h1 className="text-[35px] text-center ">Thank you for your interest in Glimere</h1>
                             <img src={success} alt="" className='w-[250px] mt-[40px]' />
                           </div>
                         </div>
@@ -401,7 +410,7 @@ export default function Shoppers() {
                           <input type="hidden" name="form-name" value="contact" />
 
                           <div className="border-b border-gray-900/10 pb-4">
-                            <h2 className="text-[40px] font-semibold  text-[#9d5c0d] head-font">Get Early Access to Glimere&rsquo;s Exclusive App!</h2>
+                            <h2 className="text-[40px] font-semibold  text-[#9d5c0d] ">Get Early Access to Glimere&rsquo;s Exclusive App!</h2>
                             <p className="mt-8 text-sm leading-6 text-gray-600">Thank you for your interest in Glimere! Your details will be used to inform you of our epic launch.</p>
 
                             <div className="mt-[20px] ">
