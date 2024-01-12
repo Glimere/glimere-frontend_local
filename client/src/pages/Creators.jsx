@@ -124,7 +124,7 @@ export default function Creators({ setOpen }) {
 
           <div className="w-[80%]">
             <h1 className="text-[35px] text-black sm:text-[60px] mb-[30px] font-bold sm:font-semibold text-center">
-            Start Creating and Custom-made Apparels
+            Start Creating Custom-made Apparels
           </h1>
           </div>
           
