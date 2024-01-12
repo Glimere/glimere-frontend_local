@@ -80,9 +80,9 @@ export default function LandingNav({ setOpen, setPage, page }) {
                         onClick={handleOpen}
                         className={`${isOpen ? "open" : ""} flex flex-col items-center w-fit gap-[7px] cursor-pointer md:hidden z-20`}
                     >
-                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white" : "bg-black"} rounded-full`}></span>
-                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-white" : "bg-black"} rounded-full`}></span>
-                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-white-100" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"} rounded-full`}></span>
                     </div>
 
                     {/* Button */}
