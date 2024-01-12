@@ -154,7 +154,7 @@ export default function Shoppers() {
 
           <div className='sm:flex-[1] flex flex-col h-full w-full items-start justify-center '>
             <div className="w-[90%] sm:w-[90%] text-left">
-              <h1 className="text-black text-[30px] sm:text-[60px] font-semibold">The Future of African Fashion is Here</h1>
+              <h1 className="text-black text-[30px] sm:text-[60px] font-bold sm:font-semibold">The Future of African Fashion is Here</h1>
 
             </div>
             <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
