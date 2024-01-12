@@ -352,7 +352,7 @@ export default function Shoppers() {
         >
           <div className="flex items-center justify-center">
             <div className="flex flex-col items-center justify-center">
-              <h1 className=" text-[40px] text-black sm:text-[65px] mb-[30px] font-semibold text-center">Ready to slay the fashion game?</h1>
+              <h1 className=" text-[40px] text-black sm:text-[65px] mb-[30px] font-bold sm:font-semibold text-center">Ready to slay the fashion game?</h1>
               <div className="w-[90%] sm:w-[60%] flex items-center justify-center">
                 <p className='text-[15px] sm:text-[23px] text-center text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
               </div>
