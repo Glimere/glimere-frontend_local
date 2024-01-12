@@ -16,14 +16,14 @@ export default function Creators({ setOpen }) {
 
   return (
     <>
-      <div className='h-[80vh] sm:h-[100vh] bg-[#FEE7D3] w-full px-[40px] sm:px-[100px] pt-[80px] pb-[30px] relative flex flex-row items-center bg-cover bg-center bg-no-repeat'
+      <div className='h-[70vh] sm:h-[100vh] bg-[#FEE7D3] w-full px-[40px] sm:px-[100px] pt-[80px] pb-[30px] relative flex flex-row items-center bg-cover bg-center bg-no-repeat'
                       style={{ backgroundImage: `url(${landingImg})` }}
 
       >
 
         <div className=" h-full flex flex-col justify-end items-center">
-          <div className="w-[90%] mb-[15px]">
-            <h1 className="text-[35px] sm:text-[80px] text-center text-black font-bold sm:font-semibold" >Create Authentic Custom Fashion</h1>
+          <div className="sm:w-[90%] mb-[15px]">
+            <h1 className="text-[45px] sm:text-[80px] text-center text-black font-bold sm:font-semibold" >Create Authentic Custom Fashion</h1>
           </div>
 
           <div className="w-[70%] flex items-center justify-center">

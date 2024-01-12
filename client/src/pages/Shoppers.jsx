@@ -106,7 +106,7 @@ export default function Shoppers() {
 
 
       {page === "shoppers" ? <>
-        <div className='h-[80vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
+        <div className='h-[70vh] sm:h-[100vh] bg-secondary-100 bg-cover bg-center bg-no-repeat w-full relative flex flex-row items-center'
                 style={{ backgroundImage: `url(${landingImg})` }}
 
         >
@@ -122,7 +122,7 @@ export default function Shoppers() {
 
           <div className="h-full w-full flex flex-col items-center justify-end px-[40px] sm:px-[100px] pt-[80px] pb-[30px]">
 
-            <div className="w-[340px] sm:w-[750px] z-[4] relative mb-[15px]">
+            <div className=" sm:w-[750px] z-[4] relative mb-[15px]">
 
               <h1 className="text-[45px] sm:text-[80px] text-center text-black mb-[20px] font-bold sm:font-semibold">Shop Exclusive Custom made Fashion</h1>
 
