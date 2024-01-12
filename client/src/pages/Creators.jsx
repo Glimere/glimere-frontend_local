@@ -23,14 +23,14 @@ export default function Creators({ setOpen }) {
 
         <div className=" h-full flex flex-col justify-end items-center">
           <div className="sm:w-[90%] mb-[15px]">
-            <h1 className="text-[45px] sm:text-[80px] text-center text-black font-bold sm:font-semibold" >Create Authentic Custom Fashion</h1>
+            <h1 className="text-[45px] sm:text-[80px] text-center text-black font-bold sm:font-semibold" >Create Authentic Custom Made Fashion</h1>
           </div>
 
           <div className="w-[70%] flex items-center justify-center">
             <h1 className="text-[15px] sm:text-[25px] text-center text-black font-normal">Join us as we build a brighter future for african fashion, one creator at a time</h1>
           </div>
           <div className="flex items-center justify-centermt mt-[20px]">
-            <button className="text-white-100 bg-black md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]"
+            <button className="text-white-100 bg-black duration-150 hover:bg-[#772f1a] md:py-2.5 py-3.5 px-[25px] rounded-[10px] font-bold mt-[20px]"
               onClick={() => { setOpen(true) }}
             >
               Get Started
