@@ -92,15 +92,14 @@ export default function ShowcaseSection({ apparels }) {
   };
 
   function calculateTranslateX(currentSelection, arrayLength) {
-    const translatePercentage = ((27.5) / (arrayLength * 0.42)) * currentSelection //3
-    // const translatePercentage = ((27.5) / (arrayLength * 0.283)) * currentSelection //6
-    // const translatePercentage = ((27.5) / (arrayLength * 0.278)) * currentSelection //18
-    return `translateX(-${translatePercentage}%)`;
+    const translatePercentage = ((27.5) / (arrayLength * (0.283 - ((arrayLength - 6) * 0.000417)))) * currentSelection //6
+    return `translateX(-${translatePercentage}%)`; //0.00417
   }
 
 
   const VirtualApparel = [
-    ...apparels.slice(0, -3)
+    ...apparels,
+
   ];
 
   return (
