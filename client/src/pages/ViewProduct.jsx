@@ -25,10 +25,11 @@ import Footer from '../components/Footer';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../slice/cart/cartSlice';
 import { addToCart } from '../slice/cart/cartSlice';
-import ProcuctSection from '../components/ProductSection';
+import ProductSection from '../components/ProductSection';
 import { selectAllUsers, selectLoggedInUser } from '../slice/users/userSlice';
 import { AverageRating } from '../components/AverageRating';
 import { globalPrice } from '../global-components/globalPrice';
+import ApparelList from '../components/ApparelList';
 
 
 export default function ViewProduct() {
@@ -114,7 +115,7 @@ export default function ViewProduct() {
         <div className='h-full sm:h-[100vh] flex flex-col sm:flex-row pt-[80px] w-full z-[5]'>
 
           <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
-            <div className="h-[50px] w-[50px] flex justify-center items-center rounded-full bg-[#FFF7E9] cursor-pointer"
+            <div className="h-[50px] w-[50px] flex justify-center items-center rounded-full bg-[#FFF7E9] cursor-pointer z-20 relative"
               onClick={() => navigate(-1)}
             >
               <SlArrowLeft className="text-[#ED7534] text-[20px]" />
@@ -346,8 +347,10 @@ export default function ViewProduct() {
       <div ref={ref} className="">
         <div className='w-full] py-[5vh] bg-[#ffefd1]'>
           <h2 className="text-lg font-semibold pl-[30px] mb-4">Similar Apparels</h2>
-          <ProcuctSection type="trending"/>
+          <ProductSection  apparels={apparels} />
         </div>
+        <ApparelList headerType="single" headerTitle="More Styles" apparels={apparels} />
+
         <Newsletter />
         <Footer />
       </div>

@@ -82,7 +82,7 @@ export default function ShowcaseSection({ apparels }) {
     if (!isHovered) {
       intervalId = setInterval(() => {
         setCurrentSelection((prevSelection) =>
-        prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
+          prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
         );
       }, intervalDuration);
     }
@@ -91,11 +91,11 @@ export default function ShowcaseSection({ apparels }) {
   const handleMouseSwipe = (direction) => {
     if (direction === 'left') {
       setCurrentSelection((prevSelection) =>
-      prevSelection === 2 ? VirtualApparel.length - 3 : prevSelection - 1
+        prevSelection === 2 ? VirtualApparel.length - 3 : prevSelection - 1
       );
     } else {
       setCurrentSelection((prevSelection) =>
-      prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
+        prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
       );
     }
   };
@@ -147,8 +147,8 @@ export default function ShowcaseSection({ apparels }) {
             width: `${VirtualApparel.length * (isDesktop ? 25 : 40)}%`,
             // transform: `translateX(-${(17 * currentSelection) - (currentSelection)}%)`,
             transform: calculateTranslateX(currentSelection, VirtualApparel.length),
-            transition: currentSelection == 2 || currentSelection === VirtualApparel.length - 3 ? "" :"ease-in",
-            transitionDuration: currentSelection == 2 || currentSelection === VirtualApparel.length - 3 ? "" :"600ms"
+            transition: currentSelection == 2 || currentSelection === VirtualApparel.length - 3 ? "" : "ease-in",
+            transitionDuration: currentSelection == 2 || currentSelection === VirtualApparel.length - 3 ? "" : "600ms"
           }}
         >
           {VirtualApparel.map((apparel, id) => (
@@ -170,8 +170,11 @@ export default function ShowcaseSection({ apparels }) {
               ))}
 
               <div className="flex flex-col justify-center items-center">
-                <p className={`${currentSelection === id ? "text-[14px]" : "text-[10px]"} text-center`}>{apparel.attributes.apparel_name}</p>
-                <AverageRating ratings={getRatingsFromJson(apparel.attributes.ratings.data)} loading={false} />
+                <p className={`${currentSelection === id ? "text-[14px] opacity-100" : "text-[10px] opacity-0"} duration-500 text-center`}>{apparel.attributes.apparel_name}</p>
+                <div className={`${currentSelection === id ? " opacity-100" : "opacity-0"} duration-500`}>
+                  <AverageRating ratings={getRatingsFromJson(apparel.attributes.ratings.data)} loading={false} />
+
+                </div>
               </div>
 
             </div>

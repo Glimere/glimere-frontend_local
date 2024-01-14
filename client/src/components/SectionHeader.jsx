@@ -23,7 +23,7 @@ export default function SectionHeader(props) {
                 </div>
 
                 : props.type === "single" ?
-                    <div className="flex justify-center items-center mb-[20px]">
+                    <div className="flex justify-start items-center mb-[20px]">
                         <h1 className='text-[14px] sm:text-[20px] font-bold'>{props.title}</h1>
                     </div>
 

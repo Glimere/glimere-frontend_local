@@ -11,7 +11,7 @@ import { fetchUsers, getUserStatus } from "../slice/users/userSlice";
 import { selectCart } from "../slice/cart/cartSlice";
 import ShowcaseSection from "../components/ShowcaseSection";
 import ProductDisplay from "../components/ProductDisplay";
-import ProcuctSection from "../components/ProductSection";
+import ProductSection from "../components/ProductSection";
 import BrandSection from "../components/BrandSection";
 import FeaturedSession from "../components/FeaturedSection";
 import CarouselSession from "../components/CarouselSection";
@@ -65,12 +65,12 @@ export default function Home() {
 
         {/* <ProductDisplay adsUrl={adsUrl} /> */}
         <BrandSection headerTitle="Top Brands" headerType="view" />
-        <ProcuctSection headerType="view" headerTitle="Latest Trends" apparels={apparels} />
-        <ProcuctSection headerTitle="Trending Styles" headerType="view" apparels={apparels} />
+        <ProductSection headerType="view" headerTitle="Latest Trends" apparels={apparels} />
+        <ProductSection headerTitle="Trending Styles" headerType="view" apparels={apparels} />
 
-        <ApparelList headerType="view" headerTitle="Featured Styles" apparels={apparels} />
+        <ApparelList headerType="single" headerTitle="Featured Styles" apparels={apparels} />
         {/* <CarouselSession headerTitle="" headerType="" /> */}
-        {/* <ProcuctSection headerTitle="Flash Sales" type="special" headerType="timeline" /> */}
+        {/* <ProductSection headerTitle="Flash Sales" type="special" headerType="timeline" /> */}
         {/* <FeaturedSession headerTitle="" type="featured" headerType="" /> */}
         {/* <CollectionSession headerTitle="Featured Collections" headerType="view" /> */}
 

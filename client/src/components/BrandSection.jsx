@@ -68,7 +68,7 @@ export default function BrandSection(props) {
                                                     // style={{ backgroundImage: `url(${constants.url}${brand.attributes.imageUrl.data[0].attributes.url})` }}
                                                     alt={brand.attributes.name}
                                                 >
-                                                    <img src={constants.url + brand.attributes.logo.data.attributes.url} alt="" className="w-[100px] hover:w-[120px] duration-75 ease-out" />
+                                                    <img src={constants.url + brand.attributes.logo.data.attributes.url} alt="" className="w-[70px] sm:w-[100px] sm:hover:w-[120px] duration-75 ease-out" />
 
                                                 </div>
 
