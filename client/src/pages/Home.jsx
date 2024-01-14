@@ -11,9 +11,8 @@ import { fetchUsers, getUserStatus } from "../slice/users/userSlice";
 import { selectCart } from "../slice/cart/cartSlice";
 import ShowcaseSection from "../components/ShowcaseSection";
 import ProductDisplay from "../components/ProductDisplay";
-import Categories from "../components/Categories";
-import ProductSession from "../components/ProductSection";
-import BrandSession from "../components/BrandSection";
+import ProcuctSection from "../components/ProductSection";
+import BrandSection from "../components/BrandSection";
 import FeaturedSession from "../components/FeaturedSection";
 import CarouselSession from "../components/CarouselSection";
 import CollectionSession from "../components/CollectionSection";
@@ -21,6 +20,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addItem } from "../slice/cart/cartSlice";
 import { addMultipleItems } from "../slice/cart/cartSlice";
+import ApparelList from "../components/ApparelList";
 
 
 
@@ -42,7 +42,7 @@ export default function Home() {
 
   const [adsUrl, setAdsUrl] = useState({})
 
-console.log('userStatus', userStatus)
+  console.log('userStatus', userStatus)
   console.log('users', users)
   console.log('cart', cart)
   console.log("apparels", apparels)
@@ -53,45 +53,26 @@ console.log('userStatus', userStatus)
   // }
 
 
-  useEffect(() => {
-    setAdsUrl({
-      adsUrl1: constants.url + ads[0]?.attributes.adsimg.data.attributes.url,
-      adsHeading1: ads[0]?.attributes.heading,
-      adsTrigger1: ads[0]?.attributes.trigger,
-      adsNumber1: ads[0]?.attributes.carouselid,
-      adsUrl2: constants.url + ads[1]?.attributes.adsimg.data.attributes.url,
-      adsHeading2: ads[1]?.attributes.heading,
-      adsTrigger2: ads[1]?.attributes.trigger,
-      adsNumber2: ads[1]?.attributes.carouselid,
-      adsUrl3: constants.url + ads[2]?.attributes.adsimg.data.attributes.url,
-      adsHeading3: ads[2]?.attributes.heading,
-      adsTrigger3: ads[2]?.attributes.trigger,
-      adsNumber3: ads[2]?.attributes.carouselid,
-      adsUrl4: constants.url + ads[0]?.attributes.adsimg.data.attributes.url,
-      adsHeading4: ads[0]?.attributes.heading,
-      adsTrigger4: ads[0]?.attributes.trigger,
-      adsNumber4: ads[0]?.attributes.carouselid,
-    })
-  }, [ads]);
 
   // console.log('adsUrl.adsHeading', adsUrl.adsHeading)
 
   return (
     <>
-      <div className="w-full h-[45vh] sm:h-[100vh] flex flex-row overflow-hidden">
+      <div className="w-full h-[80vh] sm:h-[100vh] flex flex-row overflow-hidden">
         <ShowcaseSection apparels={apparels} />
       </div>
       <div className="">
 
         {/* <ProductDisplay adsUrl={adsUrl} /> */}
+        <BrandSection headerTitle="Top Brands" headerType="view" />
+        <ProcuctSection headerType="view" headerTitle="Latest Trends" apparels={apparels} />
+        <ProcuctSection headerTitle="Trending Styles" headerType="view" apparels={apparels} />
 
-        {/* <ProductSession headerType="view" headerTitle="Latest Trends" type="normal" />
-        <ProductSession headerTitle="Latest Trend" headerType="view" type="trending" />
-        <CarouselSession headerTitle="" headerType="" />
-        <ProductSession headerTitle="Flash Sales" type="special" headerType="timeline" />
-        <FeaturedSession headerTitle="" type="featured" headerType="" />
-        <BrandSession headerTitle="Top Brands" headerType="view" />
-        <CollectionSession headerTitle="Featured Collections" headerType="view" /> */}
+        <ApparelList headerType="view" headerTitle="Featured Styles" apparels={apparels} />
+        {/* <CarouselSession headerTitle="" headerType="" /> */}
+        {/* <ProcuctSection headerTitle="Flash Sales" type="special" headerType="timeline" /> */}
+        {/* <FeaturedSession headerTitle="" type="featured" headerType="" /> */}
+        {/* <CollectionSession headerTitle="Featured Collections" headerType="view" /> */}
 
 
 

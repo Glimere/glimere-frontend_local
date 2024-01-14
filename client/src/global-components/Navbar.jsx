@@ -154,7 +154,7 @@ export default function Navbar() {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    setSuggestions(apparels.filter((item) => item.attributes.name.toLowerCase().includes(searchInput.toLowerCase())))
+    setSuggestions(apparels.filter((item) => item.attributes.apparel_name.toLowerCase().includes(searchInput.toLowerCase())))
   }
 
   const handleOutsideClick = (event) => {
@@ -208,7 +208,7 @@ export default function Navbar() {
   return (
     <>
       <div className={`navbar w-full duration-300 ${isSticky ? 'sticky' : ''} z-50 relative`}>
-        {/* <div className={`absolute w-full  ${menuVisible ? "min-h-[450px] h-[450px]" : "h-[0px]"} overflow-hidden ${menuVisible && pageLocation == "search" ? "bg-[#FFF7E9]" : "bg-white"}  duration-300`}
+        {/* <div className={`absolute w-full  ${menuVisible ? "min-h-[450px] h-[450px]" : "h-[0px]"} overflow-hidden ${menuVisible && pageLocation == "search" ? "bg-[#FFF7E9]" : "bg-white-100"}  duration-300`}
           onMouseLeave={() => {
             setMenuVisible(false)
             setCard(0)
@@ -227,7 +227,7 @@ export default function Navbar() {
                       <Link key={subcategory.id} to={`/view-collection/${subcategory.id}`} state={subcategory}>
                         <p
 
-                          className="py-[1px] px-[3px] text-[12px] text-left font-medium text-gray-500 rounded hover:text-black cursor-pointer"
+                          className="py-[1px] px-[3px] text-[12px] text-left font-medium text-gray-500 rounded hover:text-dark-100 cursor-pointer"
                           onClick={() => {
                             setMenuVisible(false)
                           }}
@@ -285,11 +285,11 @@ export default function Navbar() {
                       setCard(1)
                     }}
                   >
-                    <AiOutlineMenu className={`w-[20px] h-[20px]  ${menuVisible || isSticky || pageLocation ? " text-black" : "text-white-100 "} group-hover:relative`} />
+                    <AiOutlineMenu className={`w-[20px] h-[20px]  text-dark-100"  group-hover:relative`} />
                   </div>
 
                   {apparelType.map((type) => (
-                    <div key={type.id} className={`peer  ${searchSelected && currentApparelType !== type.attributes.name ? "h-[15px] w-[15px]" : "h-[40px] px-[15px]"} hidden sm:flex flex-col gap-[1px] justify-center items-center mr-[8px] rounded-full ${card == type.id ? " text-black" : " text-dark-100"} duration-300 cursor-pointer`}
+                    <div key={type.id} className={`peer  ${searchSelected && currentApparelType !== type.attributes.name ? "h-[15px] w-[15px]" : "h-[40px] px-[15px]"} hidden sm:flex flex-col gap-[1px] justify-center items-center mr-[8px] rounded-full ${card == type.id ? " text-dark-100" : " text-dark-100"} duration-300 cursor-pointer`}
                       onClick={() => {
                         setCurrentApparelType(type.attributes.name)
                       }}
@@ -300,18 +300,18 @@ export default function Navbar() {
                   ))}
 
 
-                  <div ref={searchRef} className={`group h-[40px] border-[1px] border-solid border-dark-100 ${searchSelected ? "w-full bg-white" : "w-[60px] "} ${searchInput !== '' ? "w-full bg-white" : "hover:w-full "} peer-hover:w-full  ${menuVisible ? "bg-[#f3f3f3be]" : ""} duration-200 sm:duration-500 ease-linear rounded-full mr-0 sm:mr-[20px] relative flex flex-row justify-center  px-[20px]`}>
-                    <div className={`w-full max-h-[400px] absolute rounded-[20px] z-[-1] ${searchSelected || searchInput !== '' ? " bg-white shadow-md" : "bg-transparent "} pt-[40px] overflow-hidden`}>
+                  <div ref={searchRef} className={`group h-[40px] border-[1px] border-solid border-dark-100 ${searchSelected ? "w-full bg-white-100" : "w-[120px] "} ${searchInput !== '' ? "w-full bg-white-100" : "hover:w-full "} peer-hover:w-full  ${menuVisible ? "bg-[#f3f3f3be]" : ""} duration-200 sm:duration-500 ease-linear rounded-full mr-0 sm:mr-[20px] relative flex flex-row justify-center  px-[20px]`}>
+                    <div className={`w-full max-h-[400px] absolute rounded-[20px] z-[-1] ${searchSelected || searchInput !== '' ? " bg-white-100 shadow-md" : "bg-transparent "} pt-[40px] overflow-hidden`}>
                       {searchInput !== '' && suggestions?.slice(0, 6)?.map((item) => (<div className="hover:bg-[#0000001a] w-full px-[30px] " key={item.id}>
-                        <Link to={`/search`} state={item.attributes.name}
+                        <Link to={`/search`} state={item.attributes.apparel_name}
                           onClick={() => {
                             resetSearch()
-                            setSearchInput(item.attributes.name)
+                            setSearchInput(item.attributes.apparel_name)
                           }}
                         >
                           <div className="w-full h-[40px] flex justify-start items-center"
                           >
-                            <p className="text-[12px] text-black">{item.attributes.name}</p>
+                            <p className="text-[12px] text-dark-100">{item.attributes.apparel_name}</p>
                           </div>
                         </Link>
                       </div>))}
@@ -336,12 +336,12 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-          <div className="flex-[2.18] flex flex-row items-center justify-end"
+          <div className="flex-[1.7] sm:flex-[2.18] flex flex-row items-center justify-end"
           // onMouseLeave={() => { setMenuToggle(false) }}
           >
             <div className="flex flex-row justify-end w-full sm:mr-0">
               <div className="flex flex-row w-full justify-end">
-                <div className={`h-[50px] w-[100px] ${user.role.type === "seller" ? "sm:w-[150px]" : "sm:w-[180px]"} flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]`}>
+                <div className={`h-[50px] w-[70px] ${user.role.type === "seller" ? "sm:w-[150px]" : "sm:w-[180px]"} flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]`}>
 
                   {user.role.type === "seller"
                     ?
@@ -357,7 +357,7 @@ export default function Navbar() {
 
                       >
                         {cart.length != 0 ? <div className="h-[15px] w-[15px] rounded-full absolute top-0 right-[0px] bg-primary-100 flex justify-center items-center">
-                          <p className='text-[8px] text-white'>{cart.length}</p>
+                          <p className='text-[8px] text-white-100'>{cart.length}</p>
                         </div> : null}
                         <FashionQueue style={{ color: "#171715" }} height="20" className={`text-[18px] sm:text-[16px] text-dark-100 `} />
 
@@ -393,7 +393,7 @@ export default function Navbar() {
           <div className="w-full h-full flex flex-col pt-[90px] ">
 
             <div className="flex justify-center items-center h-[50px]">
-              <p className='text-black font-bold text-[13px]'>support - <span className="text-[12px] font-bold ">0-220993-32093</span> </p>
+              <p className='text-dark-100 font-bold text-[13px]'>support - <span className="text-[12px] font-bold ">0-220993-32093</span> </p>
             </div>
 
             {Object.keys(user).length === 0 ?

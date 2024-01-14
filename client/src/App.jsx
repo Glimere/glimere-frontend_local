@@ -11,6 +11,7 @@ const Login = lazy(() => import('./auth/Login'));
 const Home = lazy(() => import('./pages/Home'));
 const ForgotPassword = lazy(() => import('./auth/ForgotPassword'));
 const ViewProduct = lazy(() => import('./pages/ViewProduct'));
+const ViewBrand = lazy(() => import('./pages/ViewBrand'));
 const Orders = lazy(() => import('./pages/Orders'));
 const Wishlist = lazy(() => import('./pages/Wishlist'));
 const Search = lazy(() => import('./pages/Search'));
@@ -72,6 +73,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/view-product/:id" element={<ViewProduct />} />
+            <Route path="/view-Brand/:id" element={<ViewBrand />} />
             <Route path="/view-collection/:id" element={<ViewCollection />} />
             <Route path="/view-all/:id" element={<ViewAll />} />
             <Route path="/search" element={<Search />} />

@@ -110,26 +110,27 @@ body {
   background-size: cover;
 }
 
-.swiper-slide img {
+/* .swiper-slide img {
   display: block;
   width: 100%;
-}
+} */
 
 .swiper-button-next,
 .swiper-button-prev,
 .swiper-button-disabled {
-  padding: 25px;
+  padding: 18px;
   border-radius: 60px;
-  background-color: rgb(0, 0, 0);
-  opacity: 0 !important;
-  transition: opacity 0.2s;
+  background-color: rgba(0, 0, 0, 0.486);
+  transition: 500ms ease;
+  height: 10px !important;
+  width: 10px !important;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover,
 .swiper-button-disabled:hover {
-  opacity: 1 !important;
-  transition: opacity 0.2s;
+  background-color: rgb(0, 0, 0);
+  transition: 500ms ease;
 }
 
 .swiper-button-next::after,
@@ -147,6 +148,7 @@ body {
   /* opacity: 1;
   transition: opacity 0.2s; */
 }
+
 
 .swiper-pagination-bullet-active {
   background-color: white !important;

@@ -84,11 +84,11 @@ export default function Profile() {
   return (
     <>
       <div className='w-full flex flex-col sm:flex-row'>
-        <div className="flex-[1] bg-white pt-[80px] pb-[60px] pl-[20px] px-[40px] flex flex-col items-start">
+        <div className="flex-[1] bg-white-100 pt-[80px] pb-[60px] pl-[20px] px-[40px] flex flex-col items-start">
           <div className="w-full pl-[20px] py-[20px]">
             <div className="flex flex-row items-center mb-[5px]">
               <h1 className="text-[18px] font-bold text-[#be7f2d] mr-[10px]">5.0</h1>
-              <BsFillStarFill className={`text-[18px] text-black`} />
+              <BsFillStarFill className={`text-[18px] text-dark-100`} />
             </div>
             <hr />
             <p className='text-[13px] mt-[5px]'>Rated by <span className='font-bold'>2M+ Users</span></p>
@@ -184,7 +184,7 @@ export default function Profile() {
                     <p className="text-gray-600 text-[12px]">Status: completed</p>
                   </div>
 
-                  <button className="block  text-black border-[1px] border-solid border-black w-[150px] h-[40px] py-2 px-4 rounded hover:bg-[#fff8ee] focus:outline-none focus:ring-2 focus:ring-[#ED7534]">
+                  <button className="block  text-dark-100 border-[1px] border-solid border-black w-[150px] h-[40px] py-2 px-4 rounded hover:bg-[#fff8ee] focus:outline-none focus:ring-2 focus:ring-[#ED7534]">
                     View Details
                   </button>
                 </div>
@@ -208,9 +208,9 @@ export default function Profile() {
 
                       <div className="flex flex-col">
                         {apparel.attributes.brands.data.map((brand, id) => (
-                          <p key={id} className={`font-bold text-[10px] text-black duration-150`}>{brand.attributes.name}</p>
+                          <p key={id} className={`font-bold text-[10px] text-dark-100 duration-150`}>{brand.attributes.name}</p>
                         ))}
-                        <p className={`text-[12px] mb-[5px] text-black  duration-150`}>{apparel.attributes.name}</p>
+                        <p className={`text-[12px] mb-[5px] text-dark-100  duration-150`}>{apparel.attributes.name}</p>
 
                       </div>
 
@@ -222,7 +222,7 @@ export default function Profile() {
                     </div>
 
                     <div className="flex flex-col justify-between items-end">
-                      <button className="block  text-black border-[1px] border-solid border-black w-[150px] h-[40px] py-2 px-4 rounded hover:bg-[#fff8ee] focus:outline-none focus:ring-2 focus:ring-[#ED7534]">
+                      <button className="block  text-dark-100 border-[1px] border-solid border-black w-[150px] h-[40px] py-2 px-4 rounded hover:bg-[#fff8ee] focus:outline-none focus:ring-2 focus:ring-[#ED7534]">
                         Buy Now
                       </button>
 

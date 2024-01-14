@@ -1,17 +1,9 @@
 import React from 'react'
 // import Slider from 'react-slick';
-import { Swiper } from 'swiper/react';
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
-// import './styles.css';
 
-import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
+export default function SwiperSliderCustom({ Children,  breakpoints, spaceBetween, slidesPerView, centeredSlides, slidesPerGroupSkip, grabCursor} ) {
 
-export default function SwiperSlider({ Children }, settings) {
   // const settings = {
   //   dots: false,
   //   infinite: true,
@@ -27,17 +19,19 @@ export default function SwiperSlider({ Children }, settings) {
     <>
 
       <Swiper
-        spaceBetween={30}
-        autoplay={{
-          delay: 7000,
-          disableOnInteraction: false,
+        spaceBetween={spaceBetween}
+        slidesPerView={slidesPerView}
+        centeredSlides={centeredSlides}
+        slidesPerGroupSkip={slidesPerGroupSkip}
+        grabCursor={grabCursor}
+        keyboard={{
+            enabled: true,
         }}
-        effect={'fade'}
+        breakpoints={breakpoints}
+        scrollbar={false}
         navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Autoplay, EffectFade, Navigation, Pagination]}
+        pagination={false}
+        modules={[Keyboard, Scrollbar, Navigation, Pagination]}
         className="mySwiper"
       >
 

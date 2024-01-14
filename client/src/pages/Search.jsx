@@ -12,7 +12,7 @@ export default function Search() {
   const [apparelSearch, setApparelSearch] = useState(location.state)
   const [searchResults, setSearchResults] = useState([])
   const [selectedBrands, setSelectedBrands] = useState([]);
-  const [selectedDiscount, setSelectedDiscount] = useState('');
+  const [selectedDiscount, setSelectedDiscount] = useState(0);
   const [value, setValue] = useState([0, 100000]);
   const [minPrice, setMinPrice] = useState(value[0]);
   const [maxPrice, setMaxPrice] = useState(value[1]);
@@ -31,8 +31,9 @@ export default function Search() {
 
   }, [location.state, apparelSearch]);
 
-const {data, loading, error} = useFetch(`/api/apparels?populate=*&filters[name][$contains]=${apparelSearch}${selectedBrands.map((brand) => `&[filters][brands][id][$eq]=${brand}`)}&[filters][price][$lte]=${maxPrice}&[filters][price][$gte]=${minPrice}${selectedSizes.map((size) => `&[filters][sizes][id][$eq]=${size}`)}&filters[discount][$gte]=${selectedDiscount}&sort=price:${sort}`);
+const {data, loading, error} = useFetch(`/api/apparels?populate=*&filters[apparel_name][$contains]=${apparelSearch}${selectedBrands.map((brand) => `&[filters][brands][id][$eq]=${brand}`)}&[filters][apparel_price][$lte]=${maxPrice}&[filters][apparel_price][$gte]=${minPrice}&sort=apparel_price:${sort}`);
 
+// ${selectedSizes.map((size) => `&[filters][sizes][id][$eq]=${size}`)}
 
 console.log('sort', sort)
   
@@ -74,7 +75,7 @@ console.log('sort', sort)
         } else if (type === "sizes") {
           setSelectedSizes([]);
         } else if (type === "discount") {
-          setSelectedDiscount("");
+          setSelectedDiscount(0);
         } else if (type === "minPrice") {
           setMinPrice(0);
         } else if (type === "maxPrice") {
@@ -85,14 +86,14 @@ console.log('sort', sort)
       const handleClearAllFilters = () => {
         setSelectedBrands([]);
         setSelectedSizes([]);
-        setSelectedDiscount("");
+        setSelectedDiscount(0);
       }
     
       const isFilterApplied = () => {
         return (
           selectedBrands.length > 0 ||
           selectedSizes.length > 0 ||
-          selectedDiscount
+          selectedDiscount > 0
         ) ? true : false;
       };
     
@@ -105,7 +106,7 @@ console.log('sort', sort)
       ]
 
   return (
-    <div className="w-full h-full bg-white">
+    <div className="w-full h-full bg-white-100">
       <div className="w-full flex gap-[20px] px-[15px] sm:px-[60px] pb-[40px] pt-[80px]">
 
         <div className="w-full flex gap-0 sm:gap-[20px] mt-[20px]">
@@ -137,6 +138,7 @@ console.log('sort', sort)
           isFilterApplied={isFilterApplied}
           handleClearAllFilters={handleClearAllFilters}
           setSort={setSort}
+          sort={sort}
           />
 
         </div>

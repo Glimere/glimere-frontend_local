@@ -2,13 +2,11 @@ import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { IoIosAdd } from "react-icons/io";
 import { Link } from 'react-router-dom'
+import { globalPrice } from '../global-components/globalPrice';
 
 export default function CheckoutSummary(props) {
 
-  let NGNaira = new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
-  });
+
 
 
 
@@ -51,7 +49,7 @@ export default function CheckoutSummary(props) {
             <div className="flex flex-row justify-between">
               <h1 className='text-[12px]'>Total</h1>
               <div className="">
-                <h1 className='text-[14px] font-bold text-right'>{NGNaira.format(props.totalPrice)}</h1>
+                <h1 className='text-[14px] font-bold text-right'>{globalPrice(props.totalPrice)}</h1>
                 {/* <p className='text-[12px] text-right'></p>
                       <p className='text-[12px] text-right'>Import duties included</p> */}
               </div>

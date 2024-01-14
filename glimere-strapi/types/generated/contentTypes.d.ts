@@ -1274,6 +1274,7 @@ export interface ApiRatingRating extends Schema.CollectionType {
       'manyToMany',
       'api::apparel.apparel'
     >;
+    user_name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

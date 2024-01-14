@@ -42,7 +42,7 @@ export default function CaseStudySlide() {
                         </div>
                     </div>
 
-                    <div className="w-full h-[120px] sm:h-[90px] bg-white rounded-[10px] flex flex-row items-center pl-[15px]">
+                    <div className="w-full h-[120px] sm:h-[90px] bg-white-100 rounded-[10px] flex flex-row items-center pl-[15px]">
                         <div className="h-full py-[10px]">
                             <div className="h-full w-[7px] sm:w-[10px] rounded-full bg-[#ed7534]"></div>
                         </div>
@@ -57,7 +57,7 @@ export default function CaseStudySlide() {
                                 {caseStudyData.map((data, id) => {
                                     return (
                                         <div key={id} className="w-[450px] h-[150px] sm:h-[120px] pl-[15px] pr-[50px] sm:p-[20px] flex flex-row items-center" >
-                                            <p className="text-[17px] w-[70%] text-black">{data.description}</p>
+                                            <p className="text-[17px] w-[70%] text-dark-100">{data.description}</p>
                                         </div>
                                     )
                                 })}

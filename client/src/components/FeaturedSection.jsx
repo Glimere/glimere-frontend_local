@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { constants } from '../global-components/constants';
-import SessionHeader from './SessionHeader';
+import SectionHeader from './SectionHeader';
 
 
 export default function FeaturedSession(props) {
@@ -37,7 +37,7 @@ export default function FeaturedSession(props) {
 
             <div className={`my-[30px] px-[18px] sm:px-[60px] pt-0 w-full`}>
                 <div className="w-full">
-                <SessionHeader type={props.headerType} title={props.headerTitle} />
+                <SectionHeader type={props.headerType} title={props.headerTitle} />
 
 
                     <Swiper

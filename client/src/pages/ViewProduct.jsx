@@ -25,9 +25,10 @@ import Footer from '../components/Footer';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../slice/cart/cartSlice';
 import { addToCart } from '../slice/cart/cartSlice';
-import ProductSession from '../components/ProductSection';
+import ProcuctSection from '../components/ProductSection';
 import { selectAllUsers, selectLoggedInUser } from '../slice/users/userSlice';
-
+import { AverageRating } from '../components/AverageRating';
+import { globalPrice } from '../global-components/globalPrice';
 
 
 export default function ViewProduct() {
@@ -49,18 +50,31 @@ export default function ViewProduct() {
   const [apparelSize, setApparelSize] = useState('M')
   const [apparel, setApparel] = useState(location.state)
   const [IsSticky, setIsSticky] = useState(true)
-  const [selectedColors, setSelectedColors] = useState([apparel.attributes.colors.data[0].attributes.name])
+  const [selectedColors, setSelectedColors] = useState([apparel?.attributes?.colors?.data[0]?.attributes?.name])
   
 
   const wishlist = useSelector(selectWishlist)
   const user = useSelector(selectAllUsers)
   const loggedinUser = useSelector(selectLoggedInUser)
 
+  function getRatingsFromJson(jsonData) {
+    if (!jsonData || !Array.isArray(jsonData)) {
+      return []; // Return an empty array if the input is invalid
+    }
+
+    // Extract ratings from each item in the JSON data
+    const ratings = jsonData.map((rating) => rating.attributes.rating);
+
+    // Flatten the array of ratings
+    return ratings.flat();
+  }
+
   const isWishlistChecked = (id) => {
     return wishlist.some((item) => item.id === id)
   }
   
   console.log('apparel', apparel)
+  console.log('user', user)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -96,7 +110,7 @@ export default function ViewProduct() {
 
   return (
     <>
-      <div className="w-full  bg-white relative ">
+      <div className="w-full  bg-white-100 relative ">
         <div className='h-full sm:h-[100vh] flex flex-col sm:flex-row pt-[80px] w-full z-[5]'>
 
           <div className="mt-[80px] ml-[30px] absolute top-0 left-0">
@@ -110,7 +124,7 @@ export default function ViewProduct() {
 
           <div className="flex-[5.5] flex">
             <div className="h-[93vh] sm:h-full pt-[35px] sm:pt-0 pb-[1px] sm:pb-0 w-full overflow-hidden items-center">
-              <VerticalCarousel images={apparel.attributes.imageUrl.data} />
+              <VerticalCarousel images={apparel.attributes.apparel_imgs.data} />
             </div>
           </div>
 
@@ -120,9 +134,9 @@ export default function ViewProduct() {
           <div className="w-full h-full pt-[40px] sm:pt-[80px] bg-[#FFF7E9] ">
             <div className="w-full h-full px-[40px] sm:px-[50px] pb-[50px] pt-[20px] flex flex-col  justify-between">
               <div className="">
-                <h1 className="text-[30px]">{apparel.attributes.name}</h1>
+                <h1 className="text-[30px]">{apparel.attributes.apparel_name}</h1>
                 <div className="flex flex-row items-center mt-[10px]">
-                  <ApparelRating rating={apparel.attributes.rating} />
+                <AverageRating ratings={getRatingsFromJson(apparel.attributes.ratings.data)} loading={false} />
                   <div className="border-b border-gray-400 border-dotted ml-[30px]">
                     <p className='text-[11px] text-gray-400'>Delivery Info</p>
                   </div>
@@ -131,14 +145,14 @@ export default function ViewProduct() {
 
               <div className="">
                 <div className="flex flex-row mt-[10px] h-[40px] items-center">
-                  <h1 className="text-[20px] text-[#ED7534]">${apparel.attributes.price}</h1>
+                  <h1 className="text-[20px] text-[#ED7534]">{globalPrice(apparel.attributes.apparel_price)}</h1>
                   <div className="border-b border-gray-400 border-dotted ml-[30px]">
                     <p className='text-[11px] text-gray-400'>Delivery Info</p>
                   </div>
                 </div>
               </div>
               <div className="">
-                <p className="text-[14px] font-bold text-black">{apparel.attributes.brand}</p>
+                <p className="text-[14px] font-bold text-dark-100">{apparel.attributes.brands.data[0].attributes.name}</p>
                 <p className="text-[12px] mt-[10px]">{apparel.attributes.desc}</p>
               </div>
 
@@ -146,12 +160,12 @@ export default function ViewProduct() {
 
               <div className="w-full">
                 <div className="flex flex-wrap gap-[3px]">
-                  {apparel.attributes.colors.data.map((color, id) => (
+                  {apparel?.attributes?.colors?.data?.map((color, id) => (
                     <div key={color.id} className={`flex h-[40px] w-[40px] p-[3px] hover:p-[4px] justify-center items-center ${selectedColors.includes(color.id) ? "bg-[#ffcaad]" : ""} border-[1px] border-[#ED7534] hover:border-[1px] rounded-full cursor-pointer duration-100`}
                       onClick={() => { handleColorChange(color.id) }}
                     >
                       <div className={`flex h-full w-full justify-center items-center ${`bg-[${color.attributes.code}]`} rounded-full`}>
-                        {/* <p className='text-[10px] text-white'>{apparel.attributes.color[0]}</p> */}
+                        {/* <p className='text-[10px] text-white-100'>{apparel.attributes.color[0]}</p> */}
                       </div>
                     </div>
                   ))}
@@ -174,12 +188,12 @@ export default function ViewProduct() {
 
                 <div className="flex flex-row items-center">
                   {/* <p className='text-[12px] text-[#ED7534] mr-[3px]'>SIZE: </p> */}
-                  {apparel.attributes.sizes.data.map((size, id) => {
+                  {apparel?.attributes?.sizes?.data?.map((size, id) => {
                     return (
-                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-primary-100 text-white-100" : "bg-[#ffffff] text-black"}  cursor-pointer mr-[8px]`}
-                        onClick={() => setApparelSize(size.attributes.short_name)}
+                      <div key={id} className={`px-[12px] py-[8px] rounded-full flex flex-row justify-center items-center ${apparelSize == size.attributes.short_name ? "bg-primary-100 text-white-100" : "bg-[#ffffff] text-dark-100"}  cursor-pointer mr-[8px]`}
+                        onClick={() => setApparelSize(size?.attributes?.short_name)}
                       >
-                        <p className="text-[9px]">{size.attributes.short_name}</p>
+                        <p className="text-[9px]">{size?.attributes?.short_name}</p>
                       </div>
                     )
                   })}
@@ -193,7 +207,7 @@ export default function ViewProduct() {
                   dispatch(addToCart({
                     item: {
                         quantity: 1,
-                        image_url: apparel.attributes.imageUrl.data[0].attributes.url,
+                        image_url: apparel.attributes.apparel_imgs.data[0].attributes.url,
                         products: apparel.id,
                         users_permissions_users: user.id
                     }, jwt: loggedinUser.jwt
@@ -228,7 +242,7 @@ export default function ViewProduct() {
               </div>
             </div>
           </div>
-          {/* <div className="relative pt-[80px] h-full bg-white">
+          {/* <div className="relative pt-[80px] h-full bg-white-100">
             <CheckoutSummary />
           </div> */}
 
@@ -277,33 +291,26 @@ export default function ViewProduct() {
                         <hr />
                       </div>
                       <div className='flex flex-col '>
-                        <div className="flex flex-col mb-[20px]">
+                        {apparel.attributes.ratings.data.map(rating => (
+
+                          <div className="flex flex-col mb-[20px]">
                           <div className="flex flex-row items-center mb-[15px]">
                             <div className='h-[40px] w-[40px] mr-[10px] rounded-full bg-gray-200 '></div>
                             <div className="flex flex-col">
-                              <h1 className='text-[12px] font-medium mb-[5px]'>Verra lessley</h1>
-                              <ApparelRating rating={apparel.attributes.rating} />
+                              <h1 className='text-[12px] font-medium mb-[5px]'>{rating.attributes.user_name}</h1>
+                              <ApparelRating rating={rating.attributes.rating} />
                             </div>
 
                           </div>
 
-                          <p className="text-gray-700">This product is amazing!</p>
+                          <p className="text-gray-700">{rating.attributes.comment}</p>
                         </div>
-                        <div className="flex flex-col mb-[20px]">
-                          <div className="flex flex-row items-center mb-[15px]">
-                            <div className='h-[40px] w-[40px] mr-[10px] rounded-full bg-gray-200 '></div>
-                            <div className="flex flex-col">
-                              <h1 className='text-[12px] font-medium mb-[5px]'>Verra lessley</h1>
-                              <ApparelRating rating={apparel.attributes.rating} />
-                            </div>
-
-                          </div>
-
-                          <p className="text-gray-700">Highly recommended. Great quality!</p>
-                        </div>
+                        ))}
+                        
+                        
                       </div>
                     </div>
-                    <div className="p-4 bg-white shadow rounded-lg flex-col">
+                    <div className="p-4 bg-white-100 shadow rounded-lg flex-col">
                       <h2 className="text-[20px] font-semibold mb-[20px]">Seller</h2>
                       <div className="flex items-center">
                         <div className="h-[45px] w-[45px] rounded-full bg-gray-200 mr-[20px]"></div>
@@ -339,7 +346,7 @@ export default function ViewProduct() {
       <div ref={ref} className="">
         <div className='w-full] py-[5vh] bg-[#ffefd1]'>
           <h2 className="text-lg font-semibold pl-[30px] mb-4">Similar Apparels</h2>
-          <ProductSession type="trending"/>
+          <ProcuctSection type="trending"/>
         </div>
         <Newsletter />
         <Footer />

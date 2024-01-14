@@ -28,16 +28,13 @@ export default function Cart(props) {
     cart.map((items) => items.data.attributes.products.data.forEach((item) => total += item.attributes.price * items.data.attributes.quantity))
     return total.toFixed(2);
   }
-  let NGNaira = new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
-  });
+
 
   console.log('cart', cart)
 
   return (
     <div className="flex flex-row">
-      <div className={`w-full flex-[8] duration-300 bg-white px-[15px] sm:px-[60px] pb-[40px] pt-[80px]`}
+      <div className={`w-full flex-[8] duration-300 bg-white-100 px-[15px] sm:px-[60px] pb-[40px] pt-[80px]`}
       >
         <div className="w-full h-full flex flex-col pb-[20px]">
 
@@ -119,6 +116,6 @@ export default function Cart(props) {
 <div className="flex justify-center items-center p-[10px] h-[30px] cursor-pointer"
 onClick={() => dispatch(resetCart())}
 >
-  <p className='text-black text-center text-[12px]'>Clear Cart</p>
+  <p className='text-dark-100 text-center text-[12px]'>Clear Cart</p>
 </div>
 </div> */}

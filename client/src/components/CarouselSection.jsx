@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { constants } from '../global-components/constants'
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
-import SessionHeader from './SessionHeader';
+import SectionHeader from './SectionHeader';
 import { selectAllCarousels } from '../slice/carousel/carouselSlice';
 import { useSelector } from 'react-redux';
 
@@ -20,7 +20,7 @@ export default function CarouselSession(props) {
         <>
             <div className={`px-[18px] sm:px-[60px] pt-0 w-full`}>
                 <div className="w-full">
-                    <SessionHeader type={props.headerType} title={props.headerTitle} />
+                    <SectionHeader type={props.headerType} title={props.headerTitle} />
 
                     <div className="relative">
                         <div className="rounded-[10px] overflow-hidden  mt-[30px] mb-[30px]">
@@ -53,7 +53,7 @@ export default function CarouselSession(props) {
                                                                         <p className='text-[9px] sm:text-[15px] text-white-100 mb-[10px]'>Deals and promotions</p>
                                                                         <h1 className='text-[23px] sm:text-[40px] text-white-100 font-bold'>{carousel.attributes.name}</h1>
                                                                         <p className='text-white-100 text-[12px] sm:text-[20px]'>From $<span>{img.id}.99</span></p>
-                                                                        <button className='h-[40px] w-[100px] bg-white rounded-full mt-[20px]'>Shop Now</button>
+                                                                        <button className='h-[40px] w-[100px] bg-white-100 rounded-full mt-[20px]'>Shop Now</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

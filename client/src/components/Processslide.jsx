@@ -36,11 +36,11 @@ export default function Processslide() {
 
             <div className='flex-[1] flex flex-col h-full w-full items-start justify-center '>
                 <div className="w-[90%] sm:w-[90%] text-left">
-                    <h1 className="text-black text-[30px] sm:text-[60px] font-bold sm:font-semibold">Experience Custom-Made Freedom With African style</h1>
+                    <h1 className="text-dark-100 text-[30px] sm:text-[60px] font-bold sm:font-semibold">Experience Custom-Made Freedom With African style</h1>
 
                 </div>
                 <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
-                    <p className="text-black text-[18px]">Make custom requests from skilled fashion creators in seconds and have them made and delivered to you in few days </p>
+                    <p className="text-dark-100 text-[18px]">Make custom requests from skilled fashion creators in seconds and have them made and delivered to you in few days </p>
                 </div>
             </div>
         </div >

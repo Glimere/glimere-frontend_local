@@ -95,9 +95,9 @@ export default function ViewCollection() {
 
   return (
     <>
-      <div className="w-full bg-white pt-[100px] px-[15px] sm:px-[55px]">
+      <div className="w-full bg-white-100 pt-[100px] px-[15px] sm:px-[55px]">
         <div className="w-full flex-row">
-          <h1 className='text-[30px] text-black font-bold'>{collection.attributes.title}</h1>
+          <h1 className='text-[30px] text-dark-100 font-bold'>{collection.attributes.title}</h1>
         </div>
 
         <div className="w-full flex gap-0 sm:gap-[20px] mt-[20px]">

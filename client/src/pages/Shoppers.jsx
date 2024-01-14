@@ -124,7 +124,7 @@ export default function Shoppers() {
 
             <div className=" sm:w-[750px] z-[4] relative mb-[15px]">
 
-              <h1 className="text-[45px] sm:text-[80px] text-center text-black mb-[20px] font-bold sm:font-semibold">Shop Exclusive Custom made Fashion</h1>
+              <h1 className="text-[45px] sm:text-[80px] text-center text-dark-100 mb-[20px] font-bold sm:font-semibold">Shop Exclusive Custom made Fashion</h1>
 
             </div>
 
@@ -134,7 +134,7 @@ export default function Shoppers() {
               Join Our Waitlist
             </button>
 
-            {/* <div className='creators-contain z-[4] border-solid border-[1px] border-black relative py-[5px] sm:py-[10px] px-[25px] sm:px-[50px] rounded-full font-medium text-[12px] sm:text-[15px] text-black flex flex-row gap-[20px] items-center'>
+            {/* <div className='creators-contain z-[4] border-solid border-[1px] border-black relative py-[5px] sm:py-[10px] px-[25px] sm:px-[50px] rounded-full font-medium text-[12px] sm:text-[15px] text-dark-100 flex flex-row gap-[20px] items-center'>
             Featuring Top Fashion Creators
             <div className="flex flex-row pr-[18px] creators-group">
                 <div className="h-[35px] w-[35px] bg-gray-200 border-[2px] border-solid border-gray-400 rounded-full cursor-pointer mr-[-25px] duration-200"></div>
@@ -154,11 +154,11 @@ export default function Shoppers() {
 
           <div className='sm:flex-[1] flex flex-col h-full w-full items-start justify-center '>
             <div className="w-[90%] sm:w-[90%] text-left">
-              <h1 className="text-black text-[30px] sm:text-[60px] font-bold sm:font-semibold">The Future of African Fashion is Here</h1>
+              <h1 className="text-dark-100 text-[30px] sm:text-[60px] font-bold sm:font-semibold">The Future of African Fashion is Here</h1>
 
             </div>
             <div className="w-[100%] sm:w-[60%] mt-[20px] text-left">
-              <p className="text-black text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
+              <p className="text-dark-100 text-[18px]">We’re shaping the future by connecting buyers and consumers with the best that African fashion has to offer.</p>
             </div>
           </div>
           <div className="sm:flex-[1] h-[300px] sm:h-auto bg-black-100 rounded-[20px] bg-cover bg-center bg-no-repeat "
@@ -352,9 +352,9 @@ export default function Shoppers() {
         >
           <div className="flex items-center justify-center">
             <div className="flex flex-col items-center justify-center">
-              <h1 className=" text-[40px] text-black sm:text-[65px] mb-[30px] font-bold sm:font-semibold text-center">Ready to slay the fashion game?</h1>
+              <h1 className=" text-[40px] text-dark-100 sm:text-[65px] mb-[30px] font-bold sm:font-semibold text-center">Ready to slay the fashion game?</h1>
               <div className="w-[90%] sm:w-[60%] flex items-center justify-center">
-                <p className='text-[15px] sm:text-[23px] text-center text-black mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
+                <p className='text-[15px] sm:text-[23px] text-center text-dark-100 mb-[30px]'>Get in line with Glimere&rsquo;s waitlist and join the fashion revolution!</p>
               </div>
 
               <button className='px-[40px] py-[12px] bg-primary-100 duration-150 hover:bg-[#9d5c0d] flex justify-center items-center text-white-100 text-[15px] rounded-[10px] cursor-pointer'
@@ -448,8 +448,8 @@ export default function Shoppers() {
                                 <legend className="text-sm leading-6 text-gray-600">How will you like to use Glimere?</legend>
                                 <select id="fashionClass" name="fashionClass" multiple className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-[#f7a477] focus:outline-none focus:ring-[#ed7534] focus:border-[#ed7534] sm:text-sm rounded-md">
                                   <option value="" disabled defaultValue>Select your user class...</option>
-                                  <option value="Buying Fashion" className='checked:bg-[#ffb590] checked:text-black'>Buying Fashion</option>
-                                  <option value="Creating Fashion" className='checked:bg-[#ffb590] checked:text-black'>Creating Fashion</option>
+                                  <option value="Buying Fashion" className='checked:bg-[#ffb590] checked:text-dark-100'>Buying Fashion</option>
+                                  <option value="Creating Fashion" className='checked:bg-[#ffb590] checked:text-dark-100'>Creating Fashion</option>
                                 </select>
                                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                   <svg className="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor">
@@ -478,7 +478,7 @@ export default function Shoppers() {
                             </div>
                           </div>
                           <div className="mt-6 flex items-center justify-center gap-x-6">
-                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-black shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-white-100">I&rsquo;m in!</button>
+                            <button type="submit" className="rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-dark-100 shadow-sm duration-150 hover:bg-[#9d5c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 text-white-100">I&rsquo;m in!</button>
                           </div>
                         </form>}
 

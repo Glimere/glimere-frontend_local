@@ -27,7 +27,7 @@ export default function Checkout() {
     console.log('checkoutTabSwitch', checkoutTabSwitch)
 
     return (
-        <div className="pt-[80px] bg-white">
+        <div className="pt-[80px] bg-white-100">
 
             <div className="w-full h-[70px] flex justify-center items-center bg-[#fff3e2]">
                 <div className="w-[50%] flex flex-row justify-between">
@@ -74,9 +74,9 @@ export default function Checkout() {
 
             <div className="w-full h-[80vh] px-[60px] ">
 
-                <div className={`w-full h-full flex-row ${checkoutTabSwitch === 1 ? "flex" : "hidden"} bg-white gap-[50px]`}>
-                    <div className="flex-[7] bg-white">
-                        {toggleEdit ? <div className="w-full h-full bg-white p-[40px]">
+                <div className={`w-full h-full flex-row ${checkoutTabSwitch === 1 ? "flex" : "hidden"} bg-white-100 gap-[50px]`}>
+                    <div className="flex-[7] bg-white-100">
+                        {toggleEdit ? <div className="w-full h-full bg-white-100 p-[40px]">
                             <div className="flex flex-row justify-center items-center p-[10px] h-[50px] w-[150px] bg-primary-100 cursor-pointer"
                             
                             onClick={()=>{setToggleEdit(false)}}>
@@ -86,7 +86,7 @@ export default function Checkout() {
                                 </div>
 
                             </div>
-                        </div> : <div className="w-full h-full bg-white pb-[40px]">
+                        </div> : <div className="w-full h-full bg-white-100 pb-[40px]">
                             <h1 className='text-[20px] font-bold my-[20px]'>Choose Shipping Address</h1>
                             <div className="h-[80%] w-full grid grid-cols-2 grid-rows-2 gap-[20px]">
 
@@ -130,9 +130,9 @@ export default function Checkout() {
 
 
 
-                <div className={`w-full h-full ${checkoutTabSwitch === 2 ? "flex" : "hidden"} flex-row bg-white gap-[50px]`}>
-                    <div className="flex-[7] bg-white">
-                        <div className="w-full h-full bg-white pb-[40px]">
+                <div className={`w-full h-full ${checkoutTabSwitch === 2 ? "flex" : "hidden"} flex-row bg-white-100 gap-[50px]`}>
+                    <div className="flex-[7] bg-white-100">
+                        <div className="w-full h-full bg-white-100 pb-[40px]">
                             <h1 className='text-[20px] font-bold my-[20px]'>Payment</h1>
                             {/* <div className="h-[80%] w-full grid grid-cols-2 grid-rows-2 gap-[20px]">
 
@@ -173,9 +173,9 @@ export default function Checkout() {
 
 
 
-                <div className={`w-full h-full ${checkoutTabSwitch === 3 ? "flex " : "hidden"} flex-row bg-white gap-[50px]`}>
-                    <div className="flex-[7] bg-white">
-                        <div className="w-full h-full bg-white pb-[40px]">
+                <div className={`w-full h-full ${checkoutTabSwitch === 3 ? "flex " : "hidden"} flex-row bg-white-100 gap-[50px]`}>
+                    <div className="flex-[7] bg-white-100">
+                        <div className="w-full h-full bg-white-100 pb-[40px]">
                             <h1 className='text-[20px] font-bold my-[20px]'>Confirm</h1>
                             {/* <div className="h-[80%] w-full grid grid-cols-2 grid-rows-2 gap-[20px]">
 

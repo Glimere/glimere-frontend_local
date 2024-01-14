@@ -16,10 +16,11 @@ import { selectWishlist } from '../slice/wishList/wishListSlice';
 import { IoIosAdd } from "react-icons/io";
 import { AiOutlineHeart } from 'react-icons/ai'
 import { AiFillHeart } from 'react-icons/ai'
-import SessionHeader from './SessionHeader';
+import SectionHeader from './SectionHeader';
+import useFetch from '../global-components/useFetch';
 
 
-export default function ProductSession(props) {
+export default function ProductSection(props) {
 
     const dispatch = useDispatch()
 
@@ -27,20 +28,21 @@ export default function ProductSession(props) {
 
     const wishlist = useSelector(selectWishlist)
     const user = useSelector(selectAllUsers)
-    const jwt = useSelector(selectLoggedInUser).jwt
+    // const jwt = useSelector(selectLoggedInUser).jwt
 
-    useEffect(() => {
-        const fetchApparels = async () => {
-            try {
-                const response = await axios.get(`${constants.url}/api/apparels?populate=*&[filters][type][$eq]=${props.type}`);
-                // console.log('response.data', response.data)
-                setApparel(response.data.data)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchApparels()
-    }, [props.type])
+
+
+    // useEffect(() => {
+    //     const fetchApparels = async () => {
+    //         try {
+    //             const response = await axios.get(`${constants.url}/api/apparels?populate=*&[filters][type][$eq]=${props.type}`);
+    //             setApparel(response.data.data)
+    //         } catch (error) {
+    //             console.log(error);
+    //         }
+    //     }
+    //     fetchApparels()
+    // }, [props.type])
 
 
     const isWishlistChecked = (id) => {
@@ -50,9 +52,9 @@ export default function ProductSession(props) {
     return (
         <>
 
-            <div className={`bg-white px-[18px] sm:px-[55px] py-[30px]  w-full`}>
+            <div className={`bg-white-100 px-[18px] sm:px-[55px] py-[30px]  w-full`}>
                 <div className="w-full">
-                    <SessionHeader type={props.headerType} title={props.headerTitle} />
+                    <SectionHeader type={props.headerType} title={props.headerTitle} />
 
                     <Swiper
                         spaceBetween={5}
@@ -90,31 +92,31 @@ export default function ProductSession(props) {
 
 
 
-                        {apparel?.map((apparel, id) => (
-                            <SwiperSlide key={id}>
+                        {props.apparels?.map((apparel, id) => (
+                            <SwiperSlide key={apparel.id}>
                                 <div className="relative rounded-[10px] p-[15px] duration-200  border-gray-200 border-solid border-[1px]">
                                     <div className="rounded h-[38vh] sm:h-[57vh]">
                                         <div className="group overflow-hidden relative">
-                                            <Link to={`/view-product/${apparel.attributes.productid}`} state={apparel}>
+                                            <Link to={`/view-product/${apparel.id}`} state={apparel}>
 
                                                 <div className="h-[25vh] sm:h-[40vh] rounded-[5px] overflow-hidden duration-200 w-full relative">
                                                     <div
                                                         className="h-full w-full  absolute bg-cover bg-center bg-no-repeat z-[2] group-hover:z-[3]"
-                                                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[1]?.attributes.url})` }}
+                                                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.apparel_imgs?.data[1]?.attributes.url})` }}
                                                         alt={apparel.attributes.name}
                                                     ></div>
                                                     <div
                                                         className="h-full w-full absolute bg-cover bg-center bg-no-repeat z-[2]"
-                                                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.imageUrl?.data[0]?.attributes.url})` }}
+                                                        style={{ backgroundImage: `url(${constants?.url}${apparel?.attributes?.apparel_imgs?.data[0]?.attributes.url})` }}
                                                         alt={apparel.attributes.name}
                                                     ></div>
                                                 </div>
 
-                                                <div className="h-[7vh] sm:h-[10vh] flex flex-col p-[10px] pb-[10px] bg-white z-[2] relative">
-                                                    <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.name}</div>
+                                                <div className="h-[7vh] sm:h-[10vh] flex flex-col p-[10px] pb-[10px] bg-white-100 z-[2] relative">
+                                                    <div className="font-bold text-[10px] sm:text-[13px] sm:mb-2">{apparel.attributes.apparel_name}</div>
                                                     <div className="flex flex-row gap-[10px]">
-                                                        <span className="text-gray-300 line-through text-[0.8rem] sm:text-[12px]">${apparel.attributes.oldPrice}</span>
-                                                        <span className="text-gray-600 text-[0.8rem] sm:text-[12px]">${apparel.attributes.price}</span>
+                                                        <span className={` ${apparel.attributes.is_discounted == true ? "text-gray-300 line-through" : ""}  text-[0.8rem] sm:text-[12px]`}>${apparel?.attributes?.apparel_price}</span>
+                                                        <span className={`text-gray-600 text-[0.8rem] sm:text-[12px] ${apparel.attributes.is_discounted === false ? "hidden" : ""}`}>${apparel.attributes.discounted_price}</span>
                                                     </div>
                                                 </div>
                                             </Link>
@@ -150,7 +152,7 @@ export default function ProductSession(props) {
 
 
 
-                                            {apparel.attributes.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-primary-100 flex justify-center items-center z-[10]">
+                                            {apparel?.attributes?.isNew == true ? <div className="h-[20px] w-[50px] rounded-[3px] absolute top-[10px] left-[10px] bg-primary-100 flex justify-center items-center z-[10]">
                                                 <p className='text-white-100 font-bold text-[10px]'>New</p>
                                             </div> : ""}
                                         </div>

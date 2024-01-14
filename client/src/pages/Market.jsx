@@ -13,10 +13,10 @@ export default function Market() {
   const carousels = useSelector(selectAllCarousels)
 
   return (
-    <div className='w-full bg-white flex flex-col gap-[20px] pb-[40px] pt-[80px]'>
+    <div className='w-full bg-white-100 flex flex-col gap-[20px] pb-[40px] pt-[80px]'>
       <Categories carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9" />
 
-      <div className="w-full bg-white flex flex-col gap-20 sm:flex-row sm:flex-wrap sm:gap-6 px-[i5px] sm:px-[60px]">
+      <div className="w-full bg-white-100 flex flex-col gap-20 sm:flex-row sm:flex-wrap sm:gap-6 px-[i5px] sm:px-[60px]">
         {/* First item */}
         <div className="flex flex-col flex-shrink-0 w-full sm:w-[calc(50%-12px)] border-[1px] border-solid border-gray-200 rounded-[10px] cursor-pointer transition duration-150">
           <div className="flex items-center justify-between mb-4 bg-gray-400 p-4 rounded-t-[10px]">

@@ -30,7 +30,7 @@ export default function ProductDisplay(props) {
               <p className='text-[10px] sm:text-[12px] text-white-100 mb-[5px]'>{adsUrl.adsHeading2}</p>
               <h1 className='text-[12px] sm:text-[18px] text-white-100 font-bold'>{adsUrl.adsTrigger2}</h1>
               <p className='text-white-100 text-[12px] sm:text-[15px]'>From $<span>{adsUrl.adsNumber2}.99</span></p>
-              <button className='px-[20px] py-[7px] bg-white rounded-full mt-[10px]'>Shop Now</button>
+              <button className='px-[20px] py-[7px] bg-white-100 rounded-full mt-[10px]'>Shop Now</button>
             </div>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function ProductDisplay(props) {
               <p className='text-[10px] sm:text-[12px] text-white-100 mb-[5px]'>{adsUrl.adsHeading3}</p>
               <h1 className='text-[15px] sm:text-[18px] text-white-100 font-bold'>{adsUrl.adsTrigger3}</h1>
               <p className='text-white-100 text-[15px]'>From $<span>{adsUrl.adsNumber3}.99</span></p>
-              <button className='px-[20px] py-[7px] bg-white rounded-full mt-[10px]'>Shop Now</button>
+              <button className='px-[20px] py-[7px] bg-white-100 rounded-full mt-[10px]'>Shop Now</button>
             </div>
           </div>
         </div>

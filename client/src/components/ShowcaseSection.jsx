@@ -5,11 +5,12 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import { HiArrowLongLeft } from "react-icons/hi2";
 import { useSelector } from 'react-redux';
 import { selectAllBrands } from '../slice/brand/brandSlice';
+import { isDesktop } from '../global-components/isDesktop';
 import useFetch from '../global-components/useFetch';
 
 export default function ShowcaseSection({ apparels }) {
 
-  const [currentSelection, setCurrentSelection] = useState(0)
+  const [currentSelection, setCurrentSelection] = useState(2)
   const [isHovered, setIsHovered] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
 
@@ -20,7 +21,15 @@ export default function ShowcaseSection({ apparels }) {
 
   const brands = useSelector(selectAllBrands);
 
-  const intervalDuration = 4000;
+  const VirtualApparel = [
+    ...apparels.slice(-2),
+    ...apparels,
+    ...apparels,
+    ...apparels,
+    ...apparels.slice(0, 3),
+  ];
+
+  const intervalDuration = currentSelection !== 2 || currentSelection != VirtualApparel.length - 3 ? 4000 : 1;
 
   useEffect(() => {
     startAutoScroll();
@@ -53,12 +62,12 @@ export default function ShowcaseSection({ apparels }) {
 
     if (deltaX > touchThreshold) {
       setCurrentSelection((prevSelection) =>
-        prevSelection === VirtualApparel.length - 1 ? 0 : prevSelection + 1
+        prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
       );
       setTouchStart(currentX);
     } else if (deltaX < -touchThreshold) {
       setCurrentSelection((prevSelection) =>
-        prevSelection === 0 ? VirtualApparel.length - 1 : prevSelection - 1
+        prevSelection === 2 ? VirtualApparel.length - 3 : prevSelection - 1
       );
       setTouchStart(currentX);
     }
@@ -73,7 +82,7 @@ export default function ShowcaseSection({ apparels }) {
     if (!isHovered) {
       intervalId = setInterval(() => {
         setCurrentSelection((prevSelection) =>
-          prevSelection === VirtualApparel.length - 1 ? 0 : prevSelection + 1
+        prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
         );
       }, intervalDuration);
     }
@@ -82,32 +91,29 @@ export default function ShowcaseSection({ apparels }) {
   const handleMouseSwipe = (direction) => {
     if (direction === 'left') {
       setCurrentSelection((prevSelection) =>
-        prevSelection === 0 ? VirtualApparel.length - 1 : prevSelection - 1
+      prevSelection === 2 ? VirtualApparel.length - 3 : prevSelection - 1
       );
     } else {
       setCurrentSelection((prevSelection) =>
-        prevSelection === VirtualApparel.length - 1 ? 0 : prevSelection + 1
+      prevSelection === VirtualApparel.length - 3 ? 2 : prevSelection + 1
       );
     }
   };
 
   function calculateTranslateX(currentSelection, arrayLength) {
     const translatePercentage = ((27.5) / (arrayLength * (0.283 - ((arrayLength - 6) * 0.000417)))) * currentSelection //6
-    return `translateX(-${translatePercentage}%)`; //0.00417
+    return `translateX(-${translatePercentage}%)`;
   }
 
 
-  const VirtualApparel = [
-    ...apparels,
 
-  ];
 
   return (
     <div className='pt-[80px] w-full h-full'>
       <div className="h-[100%] w-full overflow-hidden">
 
-        <div className="absolute top-0 h-full w-full flex justify-center items-center ">
-          <div className="flex flex-row justify-between items-center h-[75%] w-[22%] mt-[20px] rounded-full bg-white-100">
+        <div className="absolute top-0 h-[80vh] sm:h-full w-full flex justify-center items-center ">
+          <div className="flex flex-row justify-between items-center h-[70%] sm:h-[75%] w-[50%] sm:w-[22%] mt-[20px] rounded-full bg-white-100">
             <div className="h-[50px] w-[50px] cursor-pointer z-[20] flex justify-center items-center"
               onClick={() => handleMouseSwipe('left')}
               onMouseEnter={() => setIsHovered(true)}
@@ -131,30 +137,30 @@ export default function ShowcaseSection({ apparels }) {
           </div>
         </div>
 
-        <div className="flex flex-row h-[95%] items-center ml-[35.5%]"
+        <div className="flex flex-row h-[95%] items-center ml-[27.5%] sm:ml-[35.5%]"
 
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           ref={touchRef}
           style={{
-            width: `${VirtualApparel.length * 25}%`,
+            width: `${VirtualApparel.length * (isDesktop ? 25 : 40)}%`,
             // transform: `translateX(-${(17 * currentSelection) - (currentSelection)}%)`,
             transform: calculateTranslateX(currentSelection, VirtualApparel.length),
-            transition: "ease-in",
-            transitionDuration: "600ms"
+            transition: currentSelection == 2 || currentSelection === VirtualApparel.length - 3 ? "" :"ease-in",
+            transitionDuration: currentSelection == 2 || currentSelection === VirtualApparel.length - 3 ? "" :"600ms"
           }}
         >
           {VirtualApparel.map((apparel, id) => (
-            <div key={apparel.id} className={`${currentSelection === id ? "w-[30%]" : "w-[25%]"} flex flex-col justify-center items-center gap-[8px]`}>
+            <div key={id} className={`${currentSelection === id ? "w-[50%] sm:w-[30%]" : "w-[40%] sm:w-[25%]"} flex flex-col justify-center items-center gap-[8px]`}>
 
-              <div className={` ${currentSelection === id ? "h-[50px] w-[50px] bg-white-100 border-solid border-[1px] border-primary-100 duration-[600ms] bg-cover bg-center bg-no-repeat shadow-md" : "bg-transparent h-[20px] w-[20px]"}  rounded-full `}
+              <div className={` ${currentSelection === id ? "h-[30px] sm:h-[50px] w-[30px] sm:w-[50px] bg-white-100 border-solid border-[1px] border-primary-100 duration-[600ms] bg-cover bg-center bg-no-repeat shadow-md" : "bg-transparent h-[10px] sm:h-[20px] w-[10px] sm:w-[20px]"}  rounded-full `}
                 style={{ backgroundImage: `url(${constants.url}${apparel.attributes.brands.data[0].attributes.logo.data.attributes.url})` }}
 
               ></div>
               {apparel?.attributes?.apparel_imgs?.data?.map(img => (
-                <img key={img.id} src={`${constants.url}${img.attributes.url}`} className={`${currentSelection === id ? "w-[210px] duration-[600ms] ease-in" : "w-[150px] duration-[600ms] ease-in"}`}
-                onClick={()=> setCurrentSelection(id)}
+                <img key={img.id} src={`${constants.url}${img.attributes.url}`} className={`${currentSelection === id ? "w-[210px] sm:w-[210px] duration-[600ms] ease-in" : "w-[120px] sm:w-[150px] duration-[600ms] ease-in"} cursor-pointer ${currentSelection !== 2 || currentSelection != VirtualApparel.length - 3 ? "" : "duration-0"}`}
+                  onClick={() => setCurrentSelection(id)}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => {
                     setIsHovered(false);
@@ -164,7 +170,7 @@ export default function ShowcaseSection({ apparels }) {
               ))}
 
               <div className="flex flex-col justify-center items-center">
-                <p className={`${currentSelection === id ? "text-[14px]" : "text-[10px]"}`}>{apparel.attributes.apparel_name}</p>
+                <p className={`${currentSelection === id ? "text-[14px]" : "text-[10px]"} text-center`}>{apparel.attributes.apparel_name}</p>
                 <AverageRating ratings={getRatingsFromJson(apparel.attributes.ratings.data)} loading={false} />
               </div>
 

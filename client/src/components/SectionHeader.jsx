@@ -4,7 +4,7 @@ import CountdownTimer from './CountdownTimer';
 
 
 
-export default function SessionHeader(props) {
+export default function SectionHeader(props) {
     return (
         <>
             {props.type === "timeline" ?

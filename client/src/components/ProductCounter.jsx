@@ -34,7 +34,7 @@ const user = useSelector(selectAllUsers)
           </div>
 
           <div className="">
-            <div className="flex-[1] px-[12px] py-[7px] text-[12px] rounded-full flex justify-center items-center bg-white">{props.item.data.attributes.quantity}</div>
+            <div className="flex-[1] px-[12px] py-[7px] text-[12px] rounded-full flex justify-center items-center bg-white-100">{props.item.data.attributes.quantity}</div>
           </div>
 
           <div className="flex-[1] h-[25px] w-[25px] rounded-full flex justify-center items-center bg-[#FFF7E9]"

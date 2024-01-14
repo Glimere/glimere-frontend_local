@@ -55,7 +55,7 @@ export default function FilterBar(props) {
                   onClick={() => { props.handleBrandChange(brand.id) }}
                 >
                   <div className={`flex h-full w-full justify-center items-center bg-g rounded-full`}>
-                    <p className={`text-[10px] ${props.selectedBrands.includes(brand.id) ? "text-white-100" : "text-black"} `}>{brand.attributes.name}</p>
+                    <p className={`text-[10px] ${props.selectedBrands.includes(brand.id) ? "text-white-100" : "text-dark-100"} `}>{brand.attributes.name}</p>
                   </div>
                 </div>
               ))}
@@ -174,8 +174,8 @@ export default function FilterBar(props) {
                   type="radio"
                   name="discount"
                   value="0-10"
-                  checked={props.selectedDiscount === '50'}
-                  onChange={() => props.handleDiscountChange('50')}
+                  checked={props.selectedDiscount === 50}
+                  onChange={() => props.handleDiscountChange(50)}
                 />
                 <div>50% or more</div>
               </div>
@@ -186,8 +186,8 @@ export default function FilterBar(props) {
                   type="radio"
                   name="discount"
                   value="0-10"
-                  checked={props.selectedDiscount === '40'}
-                  onChange={() => props.handleDiscountChange('40')}
+                  checked={props.selectedDiscount === 40}
+                  onChange={() => props.handleDiscountChange(40)}
                 />
                 <div>40% or more</div>
               </div>
@@ -198,8 +198,8 @@ export default function FilterBar(props) {
                   type="radio"
                   name="discount"
                   value="0-10"
-                  checked={props.selectedDiscount === '30'}
-                  onChange={() => props.handleDiscountChange('30')}
+                  checked={props.selectedDiscount === 30}
+                  onChange={() => props.handleDiscountChange(30)}
                 />
                 <div>30% or more</div>
               </div>
@@ -212,8 +212,8 @@ export default function FilterBar(props) {
                   type="radio"
                   name="discount"
                   value="10-25"
-                  checked={props.selectedDiscount === '20'}
-                  onChange={() => props.handleDiscountChange('20')}
+                  checked={props.selectedDiscount === 20}
+                  onChange={() => props.handleDiscountChange(20)}
                 />
                 <div>20% or more</div>
               </div>
@@ -224,8 +224,8 @@ export default function FilterBar(props) {
                   type="radio"
                   name="discount"
                   value="25-50"
-                  checked={props.selectedDiscount === '10'}
-                  onChange={() => props.handleDiscountChange('10')}
+                  checked={props.selectedDiscount === 10}
+                  onChange={() => props.handleDiscountChange(10)}
                 />
                 <div>10% or more</div>
               </div>

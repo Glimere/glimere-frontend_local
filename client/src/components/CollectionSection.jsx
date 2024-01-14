@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowRight } from "react-icons/fi";
-import SessionHeader from './SessionHeader';
+import SectionHeader from './SectionHeader';
 import { useSelector } from 'react-redux';
 import { selectAllSubcategory } from '../slice/sub-category/subCategorySlice';
 
@@ -14,9 +14,9 @@ export default function CollectionSession(props) {
     return (
         <>
 
-            <div className={`bg-white px-[18px] sm:px-[55px] py-[30px] w-full`}>
+            <div className={`bg-white-100 px-[18px] sm:px-[55px] py-[30px] w-full`}>
                 <div className="w-full">
-                <SessionHeader type={props.headerType} title={props.headerTitle} />
+                <SectionHeader type={props.headerType} title={props.headerTitle} />
 
                     <div className="w-full flex gap-[10px] sm:gap-[25px] flex-wrap">
                         {collections.slice(0, 6).map((collection, id) => (
@@ -30,7 +30,7 @@ export default function CollectionSession(props) {
                                                 // style={{ backgroundImage: `url(${constants.url}${collection.attributes.imageUrl.data[0].attributes.url})` }}
                                                 alt={collection.attributes.title}
                                             >
-                                                <div className="w-full h-[25%] py-[10px] p-0 sm:px-[15px] flex flex-row justify-between items-center bg-white rounded-[8px] z-[2] relative">
+                                                <div className="w-full h-[25%] py-[10px] p-0 sm:px-[15px] flex flex-row justify-between items-center bg-white-100 rounded-[8px] z-[2] relative">
                                                     <h1 className='text-[11px] sm:text-[15px] font-bold'>{collection.attributes.title}</h1>
                                                     <FiArrowRight className="text-[11px] sm:text-[15px] ml-[5px]" />
                                                 </div>

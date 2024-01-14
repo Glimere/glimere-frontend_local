@@ -57,14 +57,14 @@ export default function LandingNav({ setOpen, setPage, page }) {
                         <div className="flex flex-row gap-[20px] sm:gap-[50px]">
                             <div className={`hover:border-gray-400 duration-150 ${!creatorsPath ? "border-black" : "border-transparent"} border-solid border-b-[3px]`}>
                                 {/* <Link to="/" className=""> */}
-                                <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}
+                                <p className={`text-dark-100 text-[14px] sm:text-[16px] cursor-pointer`}
                                     onClick={() => setPage("shoppers")}
                                 >Shoppers</p>
                                 {/* </Link> */}
                             </div>
                             <div className={`hover:border-gray-400 duration-150 ${creatorsPath ? "border-black" : "border-transparent"} border-solid border-b-[3px]`}>
                                 {/* <Link to="/creators" className=""> */}
-                                <p className={`text-black text-[14px] sm:text-[16px] cursor-pointer`}
+                                <p className={`text-dark-100 text-[14px] sm:text-[16px] cursor-pointer`}
                                     onClick={() => setPage("creators")}
                                 >Fashion Creators</p>
                                 {/* </Link> */}
@@ -88,7 +88,7 @@ export default function LandingNav({ setOpen, setPage, page }) {
                     {/* Button */}
                     <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-body font-medium">
                         <Link to="/login" className={`${!creatorsPath ? "visible" : "hidden"}`}>
-                            <button className={`text-black ${"border-black"} hover:bg-black duration-150 hover:text-white-100 border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
+                            <button className={`text-dark-100 ${"border-black"} hover:bg-black duration-150 hover:text-white-100 border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
                                 Get Started
                             </button>
                         </Link>
@@ -96,7 +96,7 @@ export default function LandingNav({ setOpen, setPage, page }) {
 
 
                         <Link to="/register" className={`${creatorsPath ? "visible" : "hidden"}`}>
-                            <button className={`text-black ${"border-black"} hover:bg-black duration-150 hover:text-white-100 border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
+                            <button className={`text-dark-100 ${"border-black"} hover:bg-black duration-150 hover:text-white-100 border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}>
                                 Sell on Glimere
                             </button>
                         </Link>

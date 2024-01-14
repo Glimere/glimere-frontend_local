@@ -22,7 +22,7 @@ export default function SearchList(props) {
 
     return (
         <>
-            {/* <div className="w-[270px] bg-white shadow-md flex flex-col rounded-[10px] p-[30px]"></div> */}
+            {/* <div className="w-[270px] bg-white-100 shadow-md flex flex-col rounded-[10px] p-[30px]"></div> */}
 
 
             <div className="flex-[65] w-[65%]">
@@ -31,18 +31,18 @@ export default function SearchList(props) {
 
                        <div className="w-full flex flex-row items-center justify-end">
                         <p className='text-[12px] mr-[7px]'>Sort by:</p>
-                        <div className="relative w-[200px] bg-white mr-[7px] rounded-[5px] border-solid border-black border-[1px]">
+                        <div className="relative w-[200px] bg-white-100 mr-[7px] rounded-[5px] border-solid border-black border-[1px]">
                             <div className="flex flex-row items-center justify-between py-[5px] px-[15px] cursor-pointer"
                                 onClick={() => {
                                     setSortDropdown(!sortDropdown)
                                 }}
                             >
                                 <p className='text-[11px] mr-[5px]'>{sortValue}</p>
-                                <IoIosArrowDown className='text-[11px] text-black' />
+                                <IoIosArrowDown className='text-[11px] text-dark-100' />
                             </div>
 
                             <div className={`absolute w-full top-0 mt-[27px] ${sortDropdown ? "" : "hidden"} rounded-[5px] border-solid border-black border-x-[1px] border-b-[1px] bg-white`}>
-                                <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center text-center hover:bg-[#ffebd1] cursor-pointer"
+                                <div className={`w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center text-center ${props.sort === "asc" ? " bg-primary-100 text-white-100" : ""} hover:bg-[#ffebd1] cursor-pointer`}
                                     onClick={() => {
                                         setSortValue("Price (Low to High)")
                                         props.setSort('asc')
@@ -50,13 +50,13 @@ export default function SearchList(props) {
                                     }}
                                 >
                                     <div className="flex flex-row mr-[8px]">
-                                        <BsTag className='text-[17px] text-black' />
-                                        <HiArrowLongUp className='text-[17px] text-black' />
+                                        <BsTag className='text-[17px] text-dark-100' />
+                                        <HiArrowLongUp className='text-[17px] text-dark-100' />
                                     </div>
 
                                     <span className='text-[11px]'>Price (Lowest First)</span>
                                 </div>
-                                <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
+                                <div className={`w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center ${props.sort === "desc" ? " bg-primary-100 text-white-100" : ""} hover:bg-[#ffebd1] cursor-pointer`}
                                     onClick={() => {
                                         setSortValue("Price (High to Low)")
                                         props.setSort('desc')
@@ -64,8 +64,8 @@ export default function SearchList(props) {
                                     }}
                                 >
                                     <div className="flex flex-row mr-[8px]">
-                                        <BsTag className='text-[17px] text-black' />
-                                        <HiOutlineArrowLongDown className='text-[17px] text-black' />
+                                        <BsTag className='text-[17px] text-dark-100' />
+                                        <HiOutlineArrowLongDown className='text-[17px] text-dark-100' />
                                     </div>
 
                                     <span className='text-[11px]'>Price (Highest First)</span>
@@ -78,7 +78,7 @@ export default function SearchList(props) {
                                         setSortDropdown(false)
                                     }}
                                 >
-                                    <AiOutlineStar className='text-[17px] text-black mr-[8px]' />
+                                    <AiOutlineStar className='text-[17px] text-dark-100 mr-[8px]' />
                                     <span className='text-[11px]'>Rating (Highest to Lowest)</span>
                                 </div> */}
                                 {/* <div className="w-full h-[35px] py-[5px] px-[15px] flex flex-row justify-start items-center  text-center hover:bg-[#ffebd1] cursor-pointer"
@@ -88,17 +88,17 @@ export default function SearchList(props) {
                                         setSortDropdown(false)
                                     }}
                                 >
-                                    <MdOutlineWorkspacePremium className='text-[17px] text-black mr-[8px]' />
+                                    <MdOutlineWorkspacePremium className='text-[17px] text-dark-100 mr-[8px]' />
                                     <span className='text-[11px]'>Newest Arrivals</span>
                                 </div> */}
                             </div>
                         </div>
-                        <div className={`h-[30px] w-[30px] bg-white  border-solid border-black border-[1px] rounded-[5px] flex flex-row items-center justify-center cursor-pointer`}
+                        <div className={`h-[30px] w-[30px] bg-white-100  border-solid border-black border-[1px] rounded-[5px] flex flex-row items-center justify-center cursor-pointer`}
                             onClick={() => { setViewToggle(!viewToggle) }}
                         >
                             {viewToggle ?
-                                <CiGrid41 className='text-[22px] text-black' />
-                                : <TiThListOutline className='text-[22px] text-black' />
+                                <CiGrid41 className='text-[22px] text-dark-100' />
+                                : <TiThListOutline className='text-[22px] text-dark-100' />
                             }
 
                         </div>
@@ -113,12 +113,12 @@ export default function SearchList(props) {
                     <div className="flex items-center min-h-[20px] sm:min-h-[40px] gap-[4px]">
                         {props.filters.map((filter, id) => (
 
-                            <button key={id} className={`px-[10px] py-[5px] mr-[10px] ${filter.value === "" || filter.value.length <= 0 || filter.value === 0 ? "hidden" : ""} bg-white rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
+                            <button key={id} className={`px-[10px] py-[5px] mr-[10px] ${filter.value === "" || filter.value.length <= 0 || filter.value === 0 ? "hidden" : ""} bg-white-100 rounded-full border-solid border-[#ED7534] border-[1px] flex flex-row items-center justify-center`}
                                 onClick={() => props.handleFilterChange(filter.type, filter.value)}
                             >
                                 <p className='text-[11px] mr-[5px]'>{filter.type}</p>
                                 <div className="h-[15px] w-[15px] flex justify-center items-center bg-primary-100 rounded-full">
-                                    <RxCross2 className='text-[11px] text-white' />
+                                    <RxCross2 className='text-[11px] text-white-100' />
                                 </div>
                             </button>
                         ))}
@@ -137,11 +137,11 @@ export default function SearchList(props) {
                     <ProductCard apparel={props.searchResults} viewToggle={viewToggle} loading={props.loading}/>
                 </div>
 
-                <div className="w-full flex justify-center items-center bg-white rounded-[10px] mt-[20px]">
-                        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+                <div className="w-full flex justify-center items-center bg-white-100 rounded-[10px] mt-[20px]">
+                        <div className="flex items-center justify-between border-t border-gray-200 bg-white-100 px-4 py-3 sm:px-6">
                             <div className="flex flex-1 justify-between sm:hidden">
-                                <a href="#" className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-                                <a href="#" className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+                                <a href="#" className="relative inline-flex items-center rounded-md border border-gray-300 bg-white-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+                                <a href="#" className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
                             </div>
                             <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                                 {/* <div>
