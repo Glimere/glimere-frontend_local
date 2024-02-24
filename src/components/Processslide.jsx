@@ -26,7 +26,7 @@ export default function Processslide() {
 
             <div className="flex-[1] flex flex-col w-full h-[250px] sm:h-[520px] items-center relative">
                 <div className="relative z-[2] h-[250px] sm:h-full w-full overflow-hidden rounded-[20px]  bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: `url(https://i.ibb.co/2tFzy0d/9.webp)` }}
+                    style={{ backgroundImage: `url(https://i.ibb.co/479qR4G/20240219-025958-0000.png)` }}
                 >
 
                 </div>
