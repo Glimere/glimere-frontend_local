@@ -1,6 +1,6 @@
 import React from 'react'
 import { selectAllCarousels } from '../slice/carousel/carouselSlice'
-import Categories from '../components/Categories'
+// import Categories from '../components/Categories'
 import { useSelector } from 'react-redux'
 import { AiFillStar } from 'react-icons/ai'
 import { HiLocationMarker } from 'react-icons/hi'
@@ -14,7 +14,7 @@ export default function Market() {
 
   return (
     <div className='w-full bg-white-100 flex flex-col gap-[20px] pb-[40px] pt-[80px]'>
-      <Categories carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9" />
+      {/* <Categories carousels={carousels} headerTitle="" contentType="carousel" headerType="" color="#FFF7E9" /> */}
 
       <div className="w-full bg-white-100 flex flex-col gap-20 sm:flex-row sm:flex-wrap sm:gap-6 px-[i5px] sm:px-[60px]">
         {/* First item */}
