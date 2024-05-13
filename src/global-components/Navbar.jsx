@@ -23,7 +23,7 @@ import { constants } from './constants'
 import { selectCart } from '../slice/cart/cartSlice'
 import axios from 'axios'
 import { addMultipleItems } from '../slice/cart/cartSlice'
-
+import { auth } from '../config/firebase'
 
 
 
@@ -35,6 +35,8 @@ import { addMultipleItems } from '../slice/cart/cartSlice'
 export default function Navbar() {
 
   const location = useLocation()
+  const isAuthenticated = auth.currentUser != null
+console.log('auth.currentUser', auth.currentUser)
 
   const [menuVisible, setMenuVisible] = useState(false)
   const [card, setCard] = useState(0)
@@ -69,56 +71,56 @@ export default function Navbar() {
     { name: 'Settings' },
   ]
 
-  useEffect(() => {
-    // Check if the cart data has already been fetched
-    const hasFetchedCartData = JSON.parse(localStorage.getItem("hasFetchedCartData"))
+  // useEffect(() => {
+  //   // Check if the cart data has already been fetched
+  //   const hasFetchedCartData = JSON.parse(localStorage.getItem("hasFetchedCartData"))
 
-    if (loggedinUser.user.confirmed === true && userStatus === "idle" && hasFetchedCartData !== true) {
-      dispatch(fetchUsers(loggedinUser.jwt));
-    }
-  }, [userStatus, dispatch, loggedinUser]);
+  //   if (loggedinUser?.user?.confirmed === true && userStatus === "idle" && hasFetchedCartData !== true) {
+  //     dispatch(fetchUsers(loggedinUser.jwt));
+  //   }
+  // }, [userStatus, dispatch, loggedinUser]);
 
-  useEffect(() => {
-    const hasFetchedCartData = JSON.parse(localStorage.getItem("hasFetchedCartData"))
-    if (user && user.carts && user.carts.length > 0 && hasFetchedCartData !== true && cart.length === 0) {
-      const fetchCartData = async () => {
-        try {
-          const cartItemIds = user.carts.map((item) => item.id);
-          const cartData = [];
-          const uniqueItemIds = new Set();
+  // useEffect(() => {
+  //   const hasFetchedCartData = JSON.parse(localStorage.getItem("hasFetchedCartData"))
+  //   if (user && user.carts && user.carts.length > 0 && hasFetchedCartData !== true && cart.length === 0) {
+  //     const fetchCartData = async () => {
+  //       try {
+  //         const cartItemIds = user.carts.map((item) => item.id);
+  //         const cartData = [];
+  //         const uniqueItemIds = new Set();
 
-          for (const itemId of cartItemIds) {
-            const response = await axios.get(
-              `${constants.url}/api/carts/${itemId}?populate=products`,
-              {
-                headers: {
-                  Authorization: `Bearer ${loggedinUser.jwt}`,
-                },
-              }
-            );
+  //         for (const itemId of cartItemIds) {
+  //           const response = await axios.get(
+  //             `${constants.url}/api/carts/${itemId}?populate=products`,
+  //             {
+  //               headers: {
+  //                 Authorization: `Bearer ${loggedinUser.jwt}`,
+  //               },
+  //             }
+  //           );
 
-            const itemData = response.data;
+  //           const itemData = response.data;
 
-            // Check if the item ID is not already in the Set
-            if (!uniqueItemIds.has(itemData.data.id)) {
-              cartData.push(itemData);
-              uniqueItemIds.add(itemData.data.id); // Add the item ID to the Set
-            }
-          }
+  //           // Check if the item ID is not already in the Set
+  //           if (!uniqueItemIds.has(itemData.data.id)) {
+  //             cartData.push(itemData);
+  //             uniqueItemIds.add(itemData.data.id); // Add the item ID to the Set
+  //           }
+  //         }
 
-          dispatch(addMultipleItems(cartData));
-          console.log('cart items added');
+  //         dispatch(addMultipleItems(cartData));
+  //         console.log('cart items added');
 
-          // Set the flag to indicate that cart data has been fetched
-          localStorage.setItem("hasFetchedCartData", "true");
-        } catch (error) {
-          console.log(error);
-        }
-      };
+  //         // Set the flag to indicate that cart data has been fetched
+  //         localStorage.setItem("hasFetchedCartData", "true");
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     };
 
-      fetchCartData();
-    }
-  }, [user, dispatch, loggedinUser, cart]);
+  //     fetchCartData();
+  //   }
+  // }, [user, dispatch, loggedinUser, cart]);
 
   const pageLocation = location.pathname.split('/')[1] !== "shop"
   // console.log('pageLocation', pageLocation)
@@ -143,8 +145,8 @@ export default function Navbar() {
 
   }, []);
 
-  const handleLogout = async () => {
-    await logout();
+  const handleLogout = () => {
+    logout();
     navigate('/login');
   };
 
@@ -288,7 +290,7 @@ export default function Navbar() {
                     <AiOutlineMenu className={`w-[20px] h-[20px]  text-dark-100"  group-hover:relative`} />
                   </div>
 
-                  {apparelType.map((type) => (
+                  {apparelType?.map((type) => (
                     <div key={type.id} className={`peer  ${searchSelected && currentApparelType !== type.attributes.name ? "h-[15px] w-[15px]" : "h-[40px] px-[15px]"} hidden sm:flex flex-col gap-[1px] justify-center items-center mr-[8px] rounded-full ${card == type.id ? " text-dark-100" : " text-dark-100"} duration-300 cursor-pointer`}
                       onClick={() => {
                         setCurrentApparelType(type.attributes.name)
@@ -341,9 +343,9 @@ export default function Navbar() {
           >
             <div className="flex flex-row justify-end w-full sm:mr-0">
               <div className="flex flex-row w-full justify-end">
-                <div className={`h-[50px] w-[70px] ${user.role.type === "seller" ? "sm:w-[150px]" : "sm:w-[180px]"} flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]`}>
+                <div className={`h-[50px] w-[70px] ${user?.role?.type === "seller" ? "sm:w-[150px]" : "sm:w-[180px]"} flex flex-row gap-[5px] justify-between items-center rounded-bl-[20px]`}>
 
-                  {user.role.type === "seller"
+                  {user?.role?.type === "seller"
                     ?
                     <Link to="/market">
                       <div className={`py-[9px] px-[5px] duration-150 flex flex-row justify-center items-center border-dark-100 border-solid hover:border-b cursor-pointer`}>
@@ -396,15 +398,8 @@ export default function Navbar() {
               <p className='text-dark-100 font-bold text-[13px]'>support - <span className="text-[12px] font-bold ">0-220993-32093</span> </p>
             </div>
 
-            {Object.keys(user).length === 0 ?
-
-              <Link to="/login">
-                <div className="flex justify-center items-center h-[60px] bg-[#fff7e7]">
-                  Login
-                </div>
-              </Link>
-
-              : <div className="">
+            {isAuthenticated ?
+              <div className="">
                 {navMenu.map((item, id) => (
                   <Link key={id} to="/profile" state={id}>
                     <div className="flex justify-center items-center h-[60px] hover:bg-[#fff7e7]"
@@ -419,7 +414,14 @@ export default function Navbar() {
                     <p className='text-[#772F1A]'>Logout</p>
                   </div>
                 </Link>
-              </div>
+              </div> :
+              <Link to="/login">
+                <div className="flex justify-center items-center h-[60px] bg-[#fff7e7]">
+                  Login
+                </div>
+              </Link>
+
+
 
             }
 

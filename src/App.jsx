@@ -47,7 +47,6 @@ function App() {
 
   return (
     <>
-
       <Suspense fallback={<Loader/>}>
         <AuthProvider>
           {showNavbar && <Navbar />}

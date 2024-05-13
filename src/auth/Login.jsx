@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { auth } from '../config/firebase.js'
+import { googleProvider } from '../config/firebase.js'
 import facebook from '../assets/images/facebook.png'
 import glimerenew1 from '../assets/images/glimerenew1.svg'
 import google from '../assets/images/google.png'
@@ -21,9 +23,8 @@ import { fetchSubcategory } from '../slice/sub-category/subCategorySlice.js'
 import { fetchSize } from '../slice/size/sizeSlice.js'
 import { fetchColor } from '../slice/colors/colorSlice.js'
 import { fetchApparelType } from '../slice/apparel-type/apparelTypeSlice.js'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 
-
-// import dotenv from 'dotenv';
 
 
 export default function Login() {
@@ -32,7 +33,6 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
-  // dotenv.config()
   const initialUser = {
     identifier: '',
     password: ''
@@ -67,25 +67,26 @@ export default function Login() {
 
 
   const handleLogin = async () => {
+
+
     const url = `${constants.url}/api/auth/local`
     try {
       if (user.identifier && user.password) {
-        const res = await axios.post(url, user)
+        await signInWithEmailAndPassword(auth, user.identifier, user.password)
 
-
-        console.log('res.user.confirmed', res.data.user.confirmed)
-        if (res.data.user.confirmed == true) {
-          dispatch(loginSuccess(res.data))
-          dispatch(fetchUsers(res.data.jwt))
-          dispatch(fetchApparels())
-          dispatch(fetchAds())
-          dispatch(fetchCarousels())
-          dispatch(fetchBrands())
-          dispatch(fetchCategory())
-          dispatch(fetchSubcategory())
-          dispatch(fetchSize())
-          dispatch(fetchColor())
-          dispatch(fetchApparelType())
+        // console.log('res.user.confirmed', res.data.user.confirmed)
+        if (auth.currentUser != null) {
+          // dispatch(loginSuccess(res.data))
+          // dispatch(fetchUsers(res.data.jwt))
+          // dispatch(fetchApparels())
+          // dispatch(fetchAds())
+          // dispatch(fetchCarousels())
+          // dispatch(fetchBrands())
+          // dispatch(fetchCategory())
+          // dispatch(fetchSubcategory())
+          // dispatch(fetchSize())
+          // dispatch(fetchColor())
+          // dispatch(fetchApparelType())
 
           localStorage.setItem("hasFetchedCartData", "false");
           navigate('/shop'); // Replace '/' with the actual route of your homepage
@@ -94,7 +95,6 @@ export default function Login() {
       }
     } catch (error) {
       console.log('error', error)
-      // res.status(400).send(e.response.data.message[0].messages[0]);
       toast.error(error.message, {
         hideProgressBar: true
       })
@@ -124,42 +124,75 @@ export default function Login() {
   };
 
 
-  const signUp = () => {
+  const signUp = async () => {
 
-    if (registerUser.password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
+    try {
+      if (registerUser.password !== confirmPassword) {
+        setError("Passwords do not match");
+        return;
+      }
+
+      const data = {
+        blocked: false,
+        confirmed: true,
+        username: registerUser.firstname + " " + registerUser.lastname,
+        firstname: registerUser.firstname,
+        lastname: registerUser.lastname,
+        email: registerUser.email.toLowerCase(),
+        password: registerUser.password,
+        role: role
+      }
+
+      // const url = `${constants.url}/api/auth/local/register`
+      // console.log("url", url)
+
+      if (registerUser.firstname && registerUser.lastname && registerUser.email && registerUser.password) {
+        await createUserWithEmailAndPassword(auth, data.email, data.password)
+      }
+
+
+      setRegisterUser({
+        username: '',
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: ''
+      })
+
+      setConfirmPassword('')
+
+      setIsVisible(false)
+    } catch (error) {
+      setError(error)
+      console.error(error)
     }
 
-    const data = {
-      blocked: false,
-      confirmed: true,
-      username: registerUser.firstname + " " + registerUser.lastname,
-      firstname: registerUser.firstname,
-      lastname: registerUser.lastname,
-      email: registerUser.email.toLowerCase(),
-      password: registerUser.password,
-      role: role
+
+  }
+
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider)
+      if (auth.currentUser != null) {
+        // dispatch(loginSuccess(res.data))
+        // dispatch(fetchUsers(res.data.jwt))
+        // dispatch(fetchApparels())
+        // dispatch(fetchAds())
+        // dispatch(fetchCarousels())
+        // dispatch(fetchBrands())
+        // dispatch(fetchCategory())
+        // dispatch(fetchSubcategory())
+        // dispatch(fetchSize())
+        // dispatch(fetchColor())
+        // dispatch(fetchApparelType())
+
+        localStorage.setItem("hasFetchedCartData", "false");
+        navigate('/shop'); // Replace '/' with the actual route of your homepage
+      }
+    } catch (error) {
+      setError(error)
+      console.error(error)
     }
-
-    const url = `${constants.url}/api/auth/local/register`
-    console.log("url", url)
-
-    if (registerUser.firstname && registerUser.lastname && registerUser.email && registerUser.password) {
-      dispatch(addUser(data))
-    }
-
-    setRegisterUser({
-      username: '',
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: ''
-    })
-
-    setConfirmPassword('')
-
-    setIsVisible(false)
   }
 
   return (
@@ -197,7 +230,10 @@ export default function Login() {
               <div className="flex  w-full justify-center mb-[15px]">
 
                 <div className="flex flex-row gap-[20px]">
-                  <div className="flex items-center justify-center border-[1px] bg-[#FFF7E9] border-solid border-black rounded-[5px] w-[120px] py-[10px] cursor-pointer">
+
+                  <div className="flex items-center justify-center border-[1px] bg-[#FFF7E9] border-solid border-black rounded-[5px] w-[120px] py-[10px] cursor-pointer"
+                    onClick={signInWithGoogle}
+                  >
                     <div className="flex flex-row items-center">
                       <img src={google} alt="" className='w-[20px] h-[20px] mr-[10px]' />
                       <h2 className='text-[14px]'>Google</h2>
@@ -267,34 +303,34 @@ export default function Login() {
   )
 }
 
-export const getServerSideProps = async (ctx) => {
-  const cookies = nookies.get(ctx)
-  let user = null;
+// export const getServerSideProps = async (ctx) => {
+//   const cookies = nookies.get(ctx)
+//   let user = null;
 
-  if (cookies?.jwt) {
-    try {
-      const { data } = await axios.get('http://localhost:1337/users/me', {
-        headers: {
-          Authorization:
-            `Bearer ${cookies.jwt}`,
-        },
-      });
-      user = data;
-    } catch (e) {
-      console.log(e);
-    }
-  }
+//   if (cookies?.jwt) {
+//     try {
+//       const { data } = await axios.get('http://localhost:1337/users/me', {
+//         headers: {
+//           Authorization:
+//             `Bearer ${cookies.jwt}`,
+//         },
+//       });
+//       user = data;
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   }
 
-  if (user) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/profile'
-      }
-    }
-  }
+//   if (user) {
+//     return {
+//       redirect: {
+//         permanent: false,
+//         destination: '/profile'
+//       }
+//     }
+//   }
 
-  return {
-    props: {}
-  }
-}
+//   return {
+//     props: {}
+//   }
+// }

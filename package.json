@@ -21,6 +21,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@svgr/rollup": "^8.1.0",
     "axios": "^1.4.0",
+    "firebase": "^10.11.1",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
     "react-awesome-slider": "^4.1.0",

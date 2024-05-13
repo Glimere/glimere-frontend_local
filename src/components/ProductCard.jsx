@@ -37,7 +37,7 @@ export const ProductCard = (props) => {
 
   return (
     <>
-      {props.apparel.map((apparel) => (
+      {props?.apparel?.map((apparel) => (
         <div className={` ${props.viewToggle ? "w-full h-[180px]" : "w-full h-[295px]"}  relative duration-150 ${props.loading ? "bg-gray-100 animate-pulse" : ""}   rounded-[10px] overflow-hidden`} key={apparel.id}>
           <Link to={`/view-product/${apparel.id}`} state={apparel}>
             <div className={`h-full w-full p-[15px] border-[1px] border-solid border-gray-200 rounded-[10px] flex ${props.viewToggle ? "flex-row gap-[18px]" : "flex-col"}  items-center justify-center`}>

@@ -1,7 +1,14 @@
+import { auth } from "../config/firebase";
+import { signOut } from "firebase/auth";
 
 export const logout = async () => {
-
-  localStorage.setItem("hasFetchedCartData", "")
+  try {
+    await signOut(auth)
+  } catch (error) {
+    setError(error)
+    console.error(error)
+  }
+  // localStorage.setItem("hasFetchedCartData", "")
   console.log('logging out')
 };
 

@@ -59,7 +59,7 @@ export default function BrandSection(props) {
 
                         <div className="w-full flex flex-wrap gap-[12px]">
                             {
-                                brands.slice(0, 8).map((brand, id) => (
+                                brands?.slice(0, 8).map((brand, id) => (
                                     <SwiperSlide key={brand.id}>
                                         <div className="h-[80px] sm:h-[130px] w-[105px] sm:w-[150px] relative" key={id}>
                                             <Link to={`/view-brand/${brand.id}`} state={brand}>
