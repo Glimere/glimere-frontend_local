@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function NavbarDropdown({ isOpen, modalToggle }) {
     return (
       <div
@@ -24,11 +26,11 @@ export default function NavbarDropdown({ isOpen, modalToggle }) {
             </a>
           </div>
           <div className="flex flex-col gap-8">
-            <a href="#">
+            <Link to="/login">
               <p className="underline text-white-100 py-3.5 border border-black">
                 Login
               </p>
-            </a>
+            </Link>
             <a href="#">
               <button className="py-3.5 border border-primary-100 w-full text-white-100 bg-primary-100 font-medium"
               onClick={()=> modalToggle(true)}

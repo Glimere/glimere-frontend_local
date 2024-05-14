@@ -18,7 +18,7 @@ const useFetch = (url) => {
         const response = await axios.get(`${constants.url}${url}`,
         {
           headers: {
-            Authorization: `Bearer ${loggedinUser.jwt}`,
+            Authorization: `Bearer ${loggedinUser?.jwt}`,
           },
         }
         );

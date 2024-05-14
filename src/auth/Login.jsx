@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { auth } from '../config/firebase.js'
+import { auth, db } from '../config/firebase.js'
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { googleProvider } from '../config/firebase.js'
 import facebook from '../assets/images/facebook.png'
 import glimerenew1 from '../assets/images/glimerenew1.svg'
@@ -52,7 +53,7 @@ export default function Login() {
   const [registerUser, setRegisterUser] = useState(initialRegisterUser)
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState("")
-  const [role, setRole] = useState(2)
+  const [role, setRole] = useState("seller")
 
 
 
@@ -73,24 +74,23 @@ export default function Login() {
     try {
       if (user.identifier && user.password) {
         await signInWithEmailAndPassword(auth, user.identifier, user.password)
-
-        // console.log('res.user.confirmed', res.data.user.confirmed)
-        if (auth.currentUser != null) {
-          // dispatch(loginSuccess(res.data))
-          // dispatch(fetchUsers(res.data.jwt))
-          // dispatch(fetchApparels())
-          // dispatch(fetchAds())
-          // dispatch(fetchCarousels())
-          // dispatch(fetchBrands())
-          // dispatch(fetchCategory())
-          // dispatch(fetchSubcategory())
-          // dispatch(fetchSize())
-          // dispatch(fetchColor())
-          // dispatch(fetchApparelType())
-
-          localStorage.setItem("hasFetchedCartData", "false");
-          navigate('/shop'); // Replace '/' with the actual route of your homepage
-        }
+        
+        .then((creds) => {
+                getDoc(doc(db, "users", creds.user.uid)).then((docSnap) => {
+                    if (docSnap.exists()) {
+                        switch (docSnap.data().role) {
+                            case "seller":
+                              console.log("seller");
+                                navigate("/market");
+                                break;
+                            case "user":
+                             console.log("user");
+                                navigate("/shop");
+                                break;
+                        }
+                    }
+                });
+            })
 
       }
     } catch (error) {
@@ -148,6 +148,10 @@ export default function Login() {
 
       if (registerUser.firstname && registerUser.lastname && registerUser.email && registerUser.password) {
         await createUserWithEmailAndPassword(auth, data.email, data.password)
+        .then((creds) =>
+                setDoc(doc(db, "users", creds.user.uid), { role: role }),
+            )
+            .then(() => navigate("/shop"))
       }
 
 
@@ -163,8 +167,8 @@ export default function Login() {
 
       setIsVisible(false)
     } catch (error) {
-      setError(error)
-      console.error(error)
+      setError(error.message)
+      console.log(error.message)
     }
 
 

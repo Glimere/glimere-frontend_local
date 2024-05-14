@@ -24,7 +24,7 @@ export default function Search() {
     setApparelSearch(location.state || ''); // Set initial apparelSearch from location.state
 
     // Update apparelSearch when location.state changes
-    if (location.state !== apparelSearch) {
+    if (location?.state !== apparelSearch) {
       setApparelSearch(location.state || '');
     }
 

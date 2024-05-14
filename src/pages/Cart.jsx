@@ -18,7 +18,7 @@ export default function Cart(props) {
 
   const dispatch = useDispatch();
   const cart = useSelector(selectCart)
-  const jwt = useSelector(selectLoggedInUser).jwt
+  const jwt = useSelector(selectLoggedInUser)?.jwt
 
   console.log('cart', cart)
 
