@@ -33,6 +33,8 @@ const Model = ({ models, onSwitchModel, initialScale, canvasRef, setIsLoading, i
         loadModel();
     }, [currentIndex, setIsLoading]);
 
+    console.log('gltf', gltf)
+
     useEffect(() => {
         const updateScreenMode = () => {
             const screenWidth = window.innerWidth;
