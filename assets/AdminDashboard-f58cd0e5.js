@@ -1,0 +1,1 @@
+import{j as r}from"./index-c4cf25fc.js";import t from"./Navbar-a2fcdcde.js";import"./index.esm-6f07cc89.js";import"./iconBase-28a7140d.js";import"./index.esm-bff0daf4.js";import"./useDispatch-6b2f6195.js";function s(){return r.jsx(r.Fragment,{children:r.jsx(t,{})})}export{s as default};
