@@ -21,7 +21,6 @@ const user = useSelector(selectAllUsers)
           <div className="flex-[1] h-[25px] w-[25px] rounded-full flex justify-center items-center bg-[#FFF7E9]"
             onClick={() => {
               if (props.item.data.attributes.quantity > 1) {
-                console.log('reduce quantity')
                 dispatch(updateCart({
                   newQuantity: { quantity: props.item.data.attributes.quantity - 1 },
                   jwt: loggedinUser.jwt,
@@ -39,7 +38,6 @@ const user = useSelector(selectAllUsers)
 
           <div className="flex-[1] h-[25px] w-[25px] rounded-full flex justify-center items-center bg-[#FFF7E9]"
             onClick={() => {
-              console.log('increase quantity')
               dispatch(updateCart({
                 newQuantity: { quantity: props.item.data.attributes.quantity + 1 },
                 jwt: loggedinUser.jwt,

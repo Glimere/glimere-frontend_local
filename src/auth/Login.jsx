@@ -63,7 +63,6 @@ export default function Login() {
       ...currentUser,
       [name]: value
     }))
-    console.log('user', user)
   }
 
 
@@ -80,11 +79,9 @@ export default function Login() {
                     if (docSnap.exists()) {
                         switch (docSnap.data().role) {
                             case "seller":
-                              console.log("seller");
                                 navigate("/market");
                                 break;
                             case "user":
-                             console.log("user");
                                 navigate("/shop");
                                 break;
                         }
@@ -94,7 +91,6 @@ export default function Login() {
 
       }
     } catch (error) {
-      console.log('error', error)
       toast.error(error.message, {
         hideProgressBar: true
       })
@@ -108,7 +104,6 @@ export default function Login() {
       ...currentUser,
       [name]: value
     }))
-    console.log('user', registerUser)
   }
 
   const handleConfirmPassword = ({ target }) => {
@@ -120,7 +115,6 @@ export default function Login() {
     } else {
       setError("");
     }
-    console.log('confirmPassword', confirmPassword);
   };
 
 
@@ -168,7 +162,6 @@ export default function Login() {
       setIsVisible(false)
     } catch (error) {
       setError(error.message)
-      console.log(error.message)
     }
 
 

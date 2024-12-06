@@ -9,7 +9,6 @@ export const logout = async () => {
     console.error(error)
   }
   // localStorage.setItem("hasFetchedCartData", "")
-  console.log('logging out')
 };
 
 export default logout;

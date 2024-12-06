@@ -9,6 +9,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['swiper/react', 'swiper/modules']
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://api.glimere.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
   build: {
     rollupOptions: {
       // Include .fbx files as assets

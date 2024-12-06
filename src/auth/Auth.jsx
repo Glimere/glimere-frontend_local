@@ -35,8 +35,8 @@ const AuthProvider = ({ children }) => {
   }, [isAuthenticated]);
 
 
-console.log('isAuthenticated', isAuthenticated)
-console.log('auth.currentUser', auth.currentUser)
+// console.log('isAuthenticated', isAuthenticated)
+// console.log('auth.currentUser', auth.currentUser)
 
   return (
     <AuthContext.Provider value={{ isAuthenticated }}>
