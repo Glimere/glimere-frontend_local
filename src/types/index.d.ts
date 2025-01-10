@@ -1,0 +1,389 @@
+
+type User = {
+  name: string;
+  avatar: string;
+};
+
+export type Review = {
+  id: number;
+  user: User;
+  rating: number;
+  date: string;
+  comment: string;
+  tags: string[];
+};
+
+export type slide = {
+  Image: string
+}
+
+type SocialMediaLinks = {
+  facebook: string;
+  twitter: string;
+  instagram: string;
+  linkedin: string;
+};
+
+type ContactInfo = {
+  email: string;
+  phone: string;
+  address: string;
+};
+
+type Brand = {
+  _id: string;
+  name: string;
+  logo: File;
+  description: string;
+  website: string;
+  country: string;
+  established: number;
+  socialMediaLinks: SocialMediaLinks;
+  apparels: any[]; // Array of apparels
+  views: number;
+  contactInfo: ContactInfo;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+type Category = {
+  _id: string;
+  name: string;
+  apparels: string[]; // Array of apparel IDs
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+type SubCategory = {
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+type SubSubCategory = {
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export type Color = {
+  _id: string;
+  name: string;
+  variant: string;
+  hexCode: string;
+  rgb: string;
+  __v: number;
+};
+
+interface Texture {
+  _id: string;
+  name: string;
+  thumbnail: File;
+  description: string;
+  patternFile: File;
+}
+
+export type Material = {
+  _id: string;
+  type: string;
+  textures: ModelTexture;
+  colorVariants: Color[];
+  supplier: string;
+  availability: string;
+  pricePerUnit: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+
+type ModelAnimation = {
+  _id: string;
+  name: string;
+  url: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+type ModelPosition = {
+  x: number;
+  y: number;
+  z: number;
+  _id: string;
+};
+
+type ModelRotation = {
+  x: number;
+  y: number;
+  z: number;
+  _id: string;
+};
+
+type ModelScale = {
+  x: number;
+  y: number;
+  z: number;
+  _id: string;
+};
+
+type ModelFile = {
+  _id: string;
+  name: string;
+  url: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export type Model = {
+  _id: string;
+  name: string;
+  file: ModelFile;
+  animations: ModelAnimation[];
+  textures: ModelTexture[];
+  positions: ModelPosition;
+  rotation: ModelRotation;
+  scale: ModelScale;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+interface ModelTexture {
+  description: string;
+  name: string;
+  patternFile: File;
+  thumbnail: File;
+  _id: string;
+}
+
+
+type File = {
+  _id: string;
+  name: string;
+  url: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export type Apparel = {
+  _id: string;
+  apparel_name: string;
+  apparel_desc: string;
+  apparel_images: File[]; // Example structure for apparel images
+  apparel_price: number;
+  apparel_type: string; // e.g., 'top', 'bottom', etc.
+  reviews: Review[];
+  average_rating: number;
+  total_reviews: number;
+  brand: Brand;
+  createdAt: string;
+  discount_end_date: string;
+  discount_percentage: number;
+  discount_start_date: string;
+  discounted_price: number;
+  is_discounted: boolean;
+  is_featured: boolean;
+  main_category: Category;
+  materials: Material[];
+  models: Model[];
+  number_sold: number;
+  sizes: string[];
+  sizing_type: SizingType;
+  sub_categories: SubCategory[];
+  sub_subcategories: SubSubCategory[];
+  updatedAt: string;
+  views: number;
+  __v: number;
+};
+
+interface Measurement {
+  measurement_name: string;
+  average: number;
+  range: {
+    start: number;
+    end: number;
+  };
+}
+
+interface MaleSize {
+  name: string;
+  short_name: string;
+  unit: string;
+  unit_code: string;
+  Weight: {
+    measurement_name: string;
+    average: number;
+    range: {
+      start: number;
+      end: number;
+    };
+    unit: string;
+    unit_code: string;
+  };
+  measurements: {
+    Neck_Circumference: Measurement;
+    Shoulder_Width: Measurement;
+    Chest_Circumference: Measurement;
+    Waist_Circumference: Measurement;
+    Hip_Circumference: Measurement;
+    Thigh_Circumference: Measurement;
+    Inseam_Length: Measurement;
+    Arm_Length: Measurement;
+    Wrist_Circumference: Measurement;
+    Height: Measurement;
+    Bicep_Circumference: Measurement;
+    Forearm_Circumference: Measurement;
+    Torso_Length: Measurement;
+    Leg_Length: Measurement;
+    Foot_Length: Measurement;
+    Ankle_Circumference: Measurement;
+    Hand_Length: Measurement;
+    Head_Circumference: Measurement;
+  };
+  gender?: string;
+}
+
+
+interface MaleSize {
+  name: string;
+  short_name: string;
+  unit: string;
+  unit_code: string;
+  Weight: {
+    measurement_name: string;
+    average: number;
+    range: {
+      start: number;
+      end: number;
+    };
+    unit: string;
+    unit_code: string;
+  };
+  measurements: {
+    Neck_Circumference: Measurement;
+    Shoulder_Width: Measurement;
+    Bust_Circumference: Measurement;
+    Waist_Circumference: Measurement;
+    Hip_Circumference: Measurement;
+    Thigh_Circumference: Measurement;
+    Inseam_Length: Measurement;
+    Arm_Length: Measurement;
+    Wrist_Circumference: Measurement;
+    Height: Measurement;
+    Bicep_Circumference: Measurement;
+    Forearm_Circumference: Measurement;
+    Torso_Length: Measurement;
+    Leg_Length: Measurement;
+    Foot_Length: Measurement;
+    Ankle_Circumference: Measurement;
+    Hand_Length: Measurement;
+    Head_Circumference: Measurement;
+    Underbust_Circumference: Measurement;
+  };
+  gender?: string;
+}
+
+
+
+export interface Review {
+  _id: string;
+  rating: number;
+  comment: string;
+  user: string | null;
+  apparel: string;
+  __v: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+
+export interface Size {
+  sizing_type: 'mixed' | 'imperial' | 'metric';
+  male: MaleSize[];
+  female: FemaleSize[];
+}
+
+export interface CartItem {
+  apparel: Apparel;
+  selected_sizes: MaleSize[] | FemaleSize[];
+  selected_materials: Material[];
+  selected_colors: Color[];
+  quantity: number;
+  _id: string;
+}
+
+// Define the type for the Cart data
+export interface CartData {
+  _id: string;
+  user: string;
+  items: CartItem[];
+  total_price: number;
+  total_items: number;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+// Define the API Response structure
+export interface ApiResponse {
+  status: string;
+  message: string;
+  data: any;
+}
+
+export type UserData = {
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    postal_code: string;
+    country: string;
+    nearest_bus_stop: string;
+  };
+  _id: string;
+  user_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  profile_image: string | null;
+  wishlist: string[]; // Assuming wishlist items are stored as string IDs
+  preferred_payment_method: string;
+  order_history: Array<{
+    // Define the structure of an order if available, otherwise use `any`
+  }>;
+  cart: Array<{
+    // Define the structure of cart items if available, otherwise use `any`
+  }>;
+  ar_models: Array<{
+    // Define the structure of AR models if available, otherwise use `any`
+  }>;
+  created_at: string; // ISO date string
+  updated_at: string; // ISO date string
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  __v: number;
+};
+
+export interface ShippingAddress {
+  _id: string;
+  location_name: string;
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  phoneNumber: string;
+}
