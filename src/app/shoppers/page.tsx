@@ -7,13 +7,13 @@ import useUserStore from "@/store/userStore";
 import useApparelStore from "@/store/apparelStore";
 import { connectWebSocket, disconnectWebSocket } from "@/utils/websocket";
 import SpinnerLoader from "@/components/loader/spinnerLoader";
-
-const ProductCarousel = dynamic(() => import("@/components/carousel/ProductCarousel"));
+import ProductCarousel from "@/components/carousel/ProductCarousel";
+// const ProductCarousel = dynamic(() => import("@/components/carousel/ProductCarousel"));
 
 export default function ShoppersPage() {
-  const jwt = useJwt();
   const { startPolling, fetchData, data } = useApparelStore();
   const [isLoading, setIsLoading] = useState(true);
+  const initialize = useUserStore((state) => state.initialize);
 
 
 
@@ -29,6 +29,11 @@ export default function ShoppersPage() {
   useEffect(() => {
     startPolling(3600000); // Poll every 1 hour
   }, [startPolling]);
+
+
+  useEffect(() => {
+    initialize();
+  }, [initialize]);
 
   // Initial fetch for apparel data
   useEffect(() => {

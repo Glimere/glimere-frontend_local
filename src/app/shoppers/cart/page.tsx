@@ -64,7 +64,7 @@ const Cart: NextPage<Props> = ({}) => {
 
             {cart?.items.length == 0 || cart == null ? (
               <>
-                <div className="rounded-[1.6rem] bg-transparent-100 flex flex-col justify-center items-center p-[2rem]">
+                <div className="rounded-[1.6rem] bg-transparent-white-100 flex flex-col justify-center items-center p-[2rem]">
                   <div className="text-center">
                     {/* Empty Bag Icon */}
                     <EmptyBag className="mx-auto h-[150px] w-[150px] text-gray-400" />
@@ -87,13 +87,13 @@ const Cart: NextPage<Props> = ({}) => {
                 </div>
               </>
             ) : (
-              <div className="rounded-[1.6rem] bg-transparent-100 flex flex-col gap-[1.56rem] p-[2rem]">
+              <div className="rounded-[1.6rem] bg-transparent-white-100 flex flex-col gap-[1.56rem] p-[2rem]">
                 {cart?.items.map((cartItem) => (
                   <div
                     key={cartItem._id}
                     className="flex flex-row justify-between items-center gap-[20px]"
                   >
-                    <div className="flex-grow h-[200px] bg-[#ffffff] p-[1rem] pr-[2rem] rounded-[0.9rem] flex flex-row items-center justify-between">
+                    <div className="flex-grow h-[200px] bg-transparent-white-200 p-[1rem] pr-[2rem] rounded-[0.9rem] flex flex-row items-center justify-between">
                       <div className="flex flex-row gap-[20px] w-full h-full">
                         <div className="h-full w-[8rem] rounded-[10px] overflow-hidden">
                           <Image

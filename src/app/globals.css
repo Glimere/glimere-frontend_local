@@ -42,3 +42,25 @@
 body {
   font-family: "League Spartan", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  padding-right: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff5ee;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff8d4f;
+  border-radius: 5px;
+  -webkit-animation: scroll 3s;
+  animation: scroll 3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ed7534;
+  transition: 3s ease;
+}

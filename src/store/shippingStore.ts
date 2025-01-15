@@ -40,7 +40,7 @@ export const useShippingAddressStore = create<ShippingAddressStore>((set) => ({
                 },
             });
             set((state) => ({
-                addresses: [...state.addresses, response.data],
+                addresses: [...state.addresses, response.data.data],
             }));
         } catch (error) {
             console.error("Error adding address:", error);
@@ -55,7 +55,7 @@ export const useShippingAddressStore = create<ShippingAddressStore>((set) => ({
             });
             set((state) => ({
                 addresses: state.addresses.map((address) =>
-                    address._id === updatedAddress._id ? response.data : address
+                    address._id === updatedAddress._id ? response.data.data : address
                 ),
             }));
         } catch (error) {

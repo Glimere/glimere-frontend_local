@@ -25,7 +25,7 @@ const CheckoutPreview: NextPage<Props> = ({}) => {
           {cart?.items.map((cartItem) => (
             <div
               key={cartItem.apparel._id}
-              className="rounded-[1.6rem] bg-transparent-100 flex flex-col gap-[1.56rem] p-[1.56rem]"
+              className="rounded-[1.6rem] bg-transparent-white-100 flex flex-col gap-[1.56rem] p-[1.56rem]"
             >
               <div className="">
                 <div className="">
@@ -48,7 +48,7 @@ const CheckoutPreview: NextPage<Props> = ({}) => {
           ))}
         </div>
 
-        <div className="rounded-[1.6rem] bg-transparent-100 p-[1.56rem] flex flex-col gap-[5px]">
+        <div className="rounded-[1.6rem] bg-transparent-white-100 p-[1.56rem] flex flex-col gap-[5px]">
           <p className="text-[1.4rem] font-semibold text-primary-100">
             {formatPrice(JSON.parse(totalPrice()))}
           </p>

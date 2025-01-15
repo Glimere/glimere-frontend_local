@@ -67,8 +67,8 @@ const Navbar: React.FC = () => {
             <Link href="/cart">
               <div className="flex items-center">
                 <ShoppingBag className="w-6 h-6 text-gray-600" />
-                {cart.length > 0 && (
-                  <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{cart.length}</span>
+                {(cart?.items?.length ?? 0) > 0 && (
+                  <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{cart?.items?.length}</span>
                 )}
               </div>
             </Link>

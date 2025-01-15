@@ -23,7 +23,7 @@ const {isAuthenticated} = useUserStore()
     <>
       <div className="absolute right-0 h-full flex flex-col justify-center sm:pr-[5.75rem] z-[3]">
         <div className="flex flex-col gap-[1.56rem] min-w-[18.125rem]">
-          <div className="rounded-[1.6rem] bg-transparent-100 flex flex-col gap-[1.56rem] p-[1.56rem]">
+          <div className="rounded-[1.6rem] bg-transparent-white-100 flex flex-col gap-[1.56rem] p-[1.56rem]">
             <div className="">
               <div className="">
                 <h1 className="text-[0.8rem] text-primary-100 font-[700]">
@@ -62,7 +62,7 @@ const {isAuthenticated} = useUserStore()
               </div>
             </div>
           </div>
-          <div className="rounded-[1.6rem] bg-transparent-100 p-[1.56rem] flex flex-col gap-[5px]">
+          <div className="rounded-[1.6rem] bg-transparent-white-100 p-[1.56rem] flex flex-col gap-[5px]">
             <p className="text-[1.4rem] font-[400]">
               {formatPrice(apparel.apparel_price)}
             </p>

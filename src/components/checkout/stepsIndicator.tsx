@@ -4,14 +4,10 @@ import { ArrowRight } from "lucide-react"; // Lucide icons
 
 interface Props {
   checkoutTabSwitch: number;
-  setCheckoutTabSwitch: any;
 }
 
-const StepsIndicator: NextPage<Props> = ({
-  checkoutTabSwitch,
-  setCheckoutTabSwitch,
-}) => {
-  const steps = ["Shipping", "Payment", "Confirm"];
+const StepsIndicator: NextPage<Props> = ({ checkoutTabSwitch }) => {
+  const steps = ["Shipping", "Confirm", "Payment"];
   return (
     <div className="w-full h-[70px] flex justify-center items-center">
       <div className="w-[50%] flex flex-row justify-between">
@@ -28,7 +24,6 @@ const StepsIndicator: NextPage<Props> = ({
                       ? "bg-primary-100 text-white"
                       : "text-dark"
                   }`}
-                  onClick={() => setCheckoutTabSwitch(index + 1)}
                 >
                   <p className="text-[10px]">{index + 1}</p>
                 </div>

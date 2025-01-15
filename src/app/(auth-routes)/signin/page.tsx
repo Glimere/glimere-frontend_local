@@ -162,7 +162,7 @@ export default function Login() {
           } flex flex-col justify-center items-center`}
         >
           <div
-            className={`w-full h-full rounded-[20px] bg-transparent-200 flex flex-col items-center justify-center gap-[20px] sm:p-[40px] px-[30px] duration-300 ${
+            className={`w-full h-full rounded-[20px] bg-transparent-white-200 flex flex-col items-center justify-center gap-[20px] sm:p-[40px] px-[30px] duration-300 ${
               isVisible ? "opacity-0" : "opacity-100"
             }`}
           >
@@ -204,8 +204,11 @@ export default function Login() {
                   disabled={loading}
                   className={`w-full bg-primary-100 text-white py-2 rounded-md`}
                 >
-                  {loading ?? <Loader2 className="animate-spin" />}
-                  Login
+                  {loading ? (
+                    <Loader2 className="animate-spin text-white" />
+                  ) : (
+                    <>Login</>
+                  )}
                 </Button>
 
                 <div className="flex flex-row w-full items-center">

@@ -20,20 +20,20 @@ const useUserStore = create<UserStore>((set) => ({
   isAuthenticated: false,
 
   setAuthToken: (token) => {
-    setJwt(token); // Store token in cookies on login
+    setJwt(token); // Store token in cookies
     set({ authToken: token, isAuthenticated: true });
   },
 
   setUser: (user) => set({ user }),
 
   logout: () => {
-    removeJwt(); // Remove token from cookies
+    removeJwt(); // Clear JWT from cookies
     set({ user: null, authToken: null, isAuthenticated: false });
   },
 
   fetchUser: async () => {
-    const token = await getJwt(); // Get the token from cookies
-    if (!token) return; // If no token, stop
+    const token = await getJwt(); // Retrieve JWT from cookies
+    if (!token) return;
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
@@ -41,27 +41,21 @@ const useUserStore = create<UserStore>((set) => ({
       });
 
       if (response.ok) {
-        const responseData: ApiResponse = await response.json(); // Expecting response in UserApi format
-        const user: UserData = responseData.data; // Extract UserData from the UserApi response
+        const { data: user }: ApiResponse = await response.json();
         set({ user, authToken: token, isAuthenticated: true });
       } else if (response.status === 401) {
-        const errorData = await response.json();
-        if (errorData.message === "Invalid token.") {
-          useUserStore.getState().logout(); // Logout user if token is invalid
-        }
-      } else {
-        console.error("Unexpected response:", response.statusText);
+        useUserStore.getState().logout();
       }
     } catch (error) {
-      console.error("Failed to fetch user:", error);
-      useUserStore.getState().logout(); // Logout on error
+      console.error("Error fetching user:", error);
+      useUserStore.getState().logout();
     }
   },
 
   initialize: async () => {
-    const token = await getJwt(); // Check if JWT exists in cookies
+    const token = await getJwt(); // Check for existing JWT
     if (token) {
-      await useUserStore.getState().fetchUser(); // Fetch user if token exists
+      await useUserStore.getState().fetchUser(); // Fetch user data if JWT is valid
     }
   },
 }));

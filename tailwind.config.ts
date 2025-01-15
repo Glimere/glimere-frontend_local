@@ -45,7 +45,7 @@ const config: Config = {
         alabaster: "#EEEAE7",
         beige: "#F8F4DE",
         palePink: "#FADFD6",
-        transparent:{
+        "transparent-white":{
           100: '#FFFFFF73',
           200: '#ffffffa9',
           300: '#ffffffd3'

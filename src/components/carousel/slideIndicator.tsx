@@ -14,7 +14,7 @@ const SliderPageIndicator: FC<SliderPageIndicatorProps> = ({ totalCount, current
     <div className={`h-full flex items-center`}>
       <div className={`flex gap-[5px] ${direction === 'horizontal' ? 'flex-row' : 'flex-col'}`}>
         {Array.from({ length: totalCount }, (_, index) => (
-          <div key={index}>
+          <div key={`${direction}-${index}`}>
             <div
               className={`h-[10px] w-[10px] rounded-full ${
                 index + 1 === current ? 'bg-primary-100' : 'bg-gray-100'

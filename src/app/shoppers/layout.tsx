@@ -5,6 +5,7 @@ import ShoppersNav from "@/components/nav/ShoppersNav";
 import { useJwt } from "@/hooks/useJwt";
 import useUserStore from "@/store/userStore";
 import { useEffect } from "react";
+import ProtectedRoute from "@/utils/ProtectedRoutes";
 
 export default function DemoLayout({
   children,
@@ -20,12 +21,17 @@ export default function DemoLayout({
     }
   }, [initialize, jwt]);
 
+  const restrictedPaths = ["/shoppers/checkout", "/account", "/notification"];
+
   return (
     <div className="relative overflow-hidden bg-alabaster">
       <GradientBg />
       <ShoppersNav />
       {/* <Navbar/> */}
-      {children}
+      <ProtectedRoute restrictedPaths={restrictedPaths}>
+        {children}
+      </ProtectedRoute>
+      
     </div>
   );
 }

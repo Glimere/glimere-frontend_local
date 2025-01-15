@@ -256,7 +256,7 @@ interface MaleSize {
 }
 
 
-interface MaleSize {
+interface FemaleSize {
   name: string;
   short_name: string;
   unit: string;
@@ -321,7 +321,7 @@ export interface CartItem {
   selected_materials: Material[];
   selected_colors: Color[];
   quantity: number;
-  _id: string;
+  _id?: string;
 }
 
 // Define the type for the Cart data
@@ -378,7 +378,7 @@ export type UserData = {
 };
 
 export interface ShippingAddress {
-  _id: string;
+  _id?: string;
   location_name: string;
   address: string;
   city: string;
@@ -386,4 +386,63 @@ export interface ShippingAddress {
   postalCode: string;
   country: string;
   phoneNumber: string;
+}
+
+export type OrderItem = {
+  apparel: Apparel;
+  quantity: number;
+  selected_sizes: MaleSize[] | FemaleSize[];
+  selected_materials: Material[];
+  selected_colors: Color[];
+};
+
+export type Order = {
+  id: string;
+  user: string;
+  items: OrderItem[];
+  total_price: number;
+  total_items: number;
+  shipping_address: ShippingAddress;
+  selected_shippingOption: ShippingOption;
+  selected_courier: Courier;
+  order_status: 'pending' | 'shipped' | 'delivered' | 'cancelled';
+  payment_status: 'unpaid' | 'paid';
+  created_at: string;
+  updated_at: string;
+};
+
+export interface Location {
+  country: string;
+  state: string;
+  city: string;
+  zipCode: string;
+  addressLine?: string;
+  geoCoordinates?: {
+    latitude?: number;
+    longitude?: number;
+  };
+}
+
+// Courier Interface
+export interface Courier {
+  name: string;
+  contact_info?: {
+    email?: string;
+    phone?: string;
+  };
+  approximateDeliveryTime: string;
+  costRange: {
+    min: number;
+    max: number;
+  };
+  trackingURLTemplate?: string;
+  regions: string[];
+  location: Location;
+}
+
+// Shipping Option Interface
+export interface ShippingOption {
+  name: string;
+  couriers: Courier[]; // Array of Courier ObjectIds
+  description?: string;
 }

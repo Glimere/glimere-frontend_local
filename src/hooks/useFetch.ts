@@ -1,6 +1,7 @@
 import apiClient from "@/api/client/apiClient";
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
+import { useJwt } from "./useJwt";
 
 type UseFetchState<T> = {
   data: T | undefined;
@@ -17,7 +18,7 @@ const useFetch = <T>(url: string) => {
     refetch: async () => {},
   });
 
-  const access_token = ""
+  const access_token = useJwt();
 
   const api_url: string =
     `${process.env.NEXT_PUBLIC_BASE_URL}`;

@@ -25,7 +25,7 @@ interface SignupPageProps {
 export default function SignupPage(props: SignupPageProps) {
   return (
     <div
-      className={`w-full h-full rounded-[20px] bg-transparent-200 flex flex-col items-center justify-center gap-[20px] sm:p-[40px] px-[30px] duration-300 ${
+      className={`w-full h-full rounded-[20px] bg-transparent-white-200 flex flex-col items-center justify-center gap-[20px] sm:p-[40px] px-[30px] duration-300 ${
         props.isVisible ? "opacity-100" : "opacity-0"
       }`}
     >

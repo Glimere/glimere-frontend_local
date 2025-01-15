@@ -28,20 +28,20 @@ const ApparelEditBar: NextPage<Props> = ({
         {editToggle ? (
           <></>
         ) : (
-          <div className="flex flex-row gap-[10px] items-center">
-            <Switch checked={threeDToggle} onCheckedChange={setThreeDToggle} className="data-[state=checked]:bg-primary-100"/>
-            <ThreeDIcon />
+          <div className="flex flex-col gap-[10px] items-center">
+            <ThreeDIcon /> <Switch checked={threeDToggle} onCheckedChange={setThreeDToggle} className="data-[state=checked]:bg-primary-100"/>
+           
           </div>
         )}
       </div>
 
-      <div className="bg-transparent-100 rounded-full py-[1.3rem] px-[0.7rem] self-center flex flex-col gap-[1rem] duration-300">
+      <div className="bg-transparent-white-100 rounded-full py-[1.3rem] px-[0.7rem] self-center flex flex-col gap-[1rem] duration-300">
         <AnimatePresence>
           {threeDToggle && editToggle ? (
             <>
               <Button
                 size="icon"
-                className="rounded-full [&_svg]:size-7 bg-transparent-100 hover:bg-[#fdfdfd]"
+                className="rounded-full [&_svg]:size-7 bg-transparent-white-100 hover:bg-[#fdfdfd]"
                 onClick={() => setEditToggle(false)}
               >
                 <X className=" text-primary-100 scale-75"/>
