@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function IntroSection() {
   return (
-    <div className="h-auto sm:h-[100vh] bg-white w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[50px] sm:py-[80px] px-[40px] sm:px-[6.25rem]">
+    <div className="h-auto sm:h-[100vh] bg-light w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[50px] sm:py-[80px] px-[1.4rem] sm:px-[6.25rem]">
                 <div className="sm:flex-[1] flex flex-col h-full w-full items-start justify-center ">
                   <div className="w-[90%] sm:w-[90%] text-left">
                     <h1 className="text-dark-100 text-[30px] sm:text-[54px] font-bold sm:font-semibold">

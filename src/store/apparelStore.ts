@@ -24,7 +24,7 @@ const useApparelStore = create<StoreState<any>>((set) => ({
   setError: (error) => set({ error }),
   fetchData: async () => {
     const api_url = process.env.NEXT_PUBLIC_BASE_URL; // Direct URL setting
-    const url = '/api/apparels'; // Fixed endpoint for apparel
+    const url = '/api/apparels/featured'; // Fixed endpoint for apparel
     set({ loading: true });
     try {
       const response: AxiosResponse<any> = await axios.get(`${api_url}${url}`);

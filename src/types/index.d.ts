@@ -405,6 +405,7 @@ export type Order = {
   shipping_address: ShippingAddress;
   selected_shippingOption: ShippingOption;
   selected_courier: Courier;
+  delivery_notes: string;
   order_status: 'pending' | 'shipped' | 'delivered' | 'cancelled';
   payment_status: 'unpaid' | 'paid';
   created_at: string;
@@ -446,3 +447,20 @@ export interface ShippingOption {
   couriers: Courier[]; // Array of Courier ObjectIds
   description?: string;
 }
+
+export interface City {
+  fee: number;
+  name: string;
+}
+
+export type SelectedOrder = {
+  items: OrderItem[];
+  total_price: number;
+  total_items: number;
+  shipping_address: ShippingAddress;
+  selected_shippingOption: ShippingOption;
+  selected_courier: Courier;
+  selected_city: City;
+  delivery_notes: string;
+  shipping_fee: number;
+};

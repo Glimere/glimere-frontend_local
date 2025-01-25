@@ -84,7 +84,7 @@ export default function ProductCarousel() {
       ) : (
         <Carousel
           plugins={[plugin.current]}
-          className="w-full max-w-full"
+          className="w-full max-w-full group"
           onMouseEnter={plugin.current.stop}
           onMouseLeave={plugin.current.reset}
           setApi={setApi}
@@ -111,8 +111,8 @@ export default function ProductCarousel() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-[36%]" />
-          <CarouselNext className="absolute right-[36%]" />
+          <CarouselPrevious className="absolute left-[36%] duration-300 opacity-0 group-hover:opacity-100" />
+          <CarouselNext className="absolute right-[36%] duration-300 opacity-0 group-hover:opacity-100" />
         </Carousel>
       )}
     </div>

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import NavbarDropdown from "@/components/nav/NavbarDropdown";
-import GlimereSweet from "../../../public/images/glimere-primary.svg";
 import GlimereLogo from "../../../public/images/glimerenew.svg";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
@@ -27,17 +26,17 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
     pathname === "/" && isOpen ? "text-white" : "text-[#ed7534]";
   const handleOpen = () => setIsOpen((prev) => !prev);
 
-  const handleScrollPos = () => {
-    const currentScrollPos = window.scrollY;
-
-    if (currentScrollPos > scrollPos) {
-      setIsOpen(false);
-    }
-
-    setScrollPos(currentScrollPos);
-  };
-
   useEffect(() => {
+    const handleScrollPos = (): void => {
+      const currentScrollPos = window.scrollY;
+
+      if (currentScrollPos > scrollPos) {
+        setIsOpen(false);
+      }
+
+      setScrollPos(currentScrollPos);
+    };
+
     window.addEventListener("scroll", handleScrollPos);
 
     return () => {
@@ -119,12 +118,12 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
               <button
                 className={`text-dark-100 ${"border-black"} hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}
               >
-                Get Started
+                Start Shopping
               </button>
             </Link>
 
             <Link
-              href="/decision"
+              href="/onboarding"
               className={`${creatorsPath ? "visible" : "hidden"}`}
             >
               <button

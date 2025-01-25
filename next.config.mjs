@@ -22,7 +22,9 @@ const nextConfig = {
       },
     ],
   },
+  swcMinify: true, // Use SWC for minification
   webpack: (config) => {
+    // Handle .glb and .gltf files
     config.module.rules.push({
       test: /\.(glb|gltf)$/,
       use: [
@@ -35,15 +37,37 @@ const nextConfig = {
           },
         },
       ],
-    },
-    {
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    }
-  );
+    });
+
+    // Handle .svg files
+    config.module.rules.push(
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      },
+      {
+        test: /\.js$/, // Apply the fix for large SVGs
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      }
+    );
+
+    // Safely modify exclude for large files in Babel loader
+    config.module.rules.forEach((rule) => {
+      if (rule.loader?.includes('babel-loader')) {
+        // Ensure exclude is an array
+        rule.exclude = Array.isArray(rule.exclude)
+          ? rule.exclude
+          : rule.exclude
+          ? [rule.exclude]
+          : [];
+        rule.exclude.push(/node_modules\/three\/examples/);
+      }
+    });
+
     return config;
   },
-  transpilePackages: ['three'],
+  transpilePackages: ['three/examples/jsm'], // Transpile only specific modules
 };
 
 export default nextConfig;

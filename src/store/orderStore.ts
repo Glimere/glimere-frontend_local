@@ -2,16 +2,8 @@ import create from 'zustand';
 import { getJwt } from '@/lib/cookie';
 import { OrderItem, Order, ShippingAddress } from '@/types';
 import { ShippingOption, Courier } from '@/types';
+import { SelectedOrder, City } from '@/types';
 
-
-type SelectedOrder = {
-    items: OrderItem[];
-    total_price: number;
-    total_items: number;
-    shipping_address: ShippingAddress;
-    selected_shippingOption: ShippingOption;
-    selected_courier: Courier;
-};
 
 type OrderStore = {
     orders: Order[];
@@ -28,8 +20,13 @@ type OrderStore = {
     updateItemInSelectedOrder: (itemIndex: number, updatedItem: Partial<OrderItem>) => void;
     removeItemFromSelectedOrder: (itemIndex: number) => void;
     setTotalPrice: (price: number) => void;
+    setSelectedShippingOption: (shippingOption: ShippingOption) => void;
+    setSelectedCourier: (courier: Courier) => void;
     setTotalItems: (totalItems: number) => void;
     setShippingAddress: (address: any) => void;
+    setSelectedCity: (city: City) => void;
+    setSelectedDeliveryNotes: (notes: string) => void;
+    setSelectedShippingFee: (fee: number) => void;
     resetSelectedOrder: () => void;
 };
 
@@ -39,6 +36,7 @@ const useOrderStore = create<OrderStore>((set) => ({
         items: [],
         total_price: 0,
         total_items: 0,
+        delivery_notes: '',
         shipping_address: {
             location_name: '',
             address: '',
@@ -77,7 +75,12 @@ const useOrderStore = create<OrderStore>((set) => ({
                     longitude: 0,
                 }
             }
-        }
+        },
+        selected_city: {
+            name: "",
+            fee: 0
+        },
+        shipping_fee: 0
     },
     // Add a new order (with API call)
     addOrder: async (order) => {
@@ -260,12 +263,49 @@ const useOrderStore = create<OrderStore>((set) => ({
             : state.selectedOrder
     })),
 
+    setSelectedShippingOption: (shippingOption: ShippingOption) =>
+        set((state) => ({
+            selectedOrder: state.selectedOrder
+                ? { ...state.selectedOrder, selected_shippingOption: shippingOption }
+                : state.selectedOrder,
+        })),
+
+    // Set the selected courier for the selected order
+    setSelectedCourier: (courier: Courier) =>
+        set((state) => ({
+            selectedOrder: state.selectedOrder
+                ? { ...state.selectedOrder, selected_courier: courier }
+                : state.selectedOrder,
+        })),
+
+    setSelectedCity: (city: City) =>
+        set((state) => ({
+            selectedOrder: state.selectedOrder
+                ? { ...state.selectedOrder, selected_city: city }
+                : state.selectedOrder,
+        })),
+
+    setSelectedDeliveryNotes: (notes: string) =>
+        set((state) => ({
+            selectedOrder: state.selectedOrder
+                ? { ...state.selectedOrder, delivery_notes: notes }
+                : state.selectedOrder,
+        })),
+
+    setSelectedShippingFee: (fee: number) =>
+        set((state) => ({
+            selectedOrder: state.selectedOrder
+                ? { ...state.selectedOrder, shipping_fee: fee }
+                : state.selectedOrder,
+        })),
+
     // Reset the selected order
     resetSelectedOrder: () => set({
         selectedOrder: {
             items: [],
             total_price: 0,
             total_items: 0,
+            delivery_notes: '',
             shipping_address: {
                 location_name: '',
                 address: '',
@@ -304,7 +344,12 @@ const useOrderStore = create<OrderStore>((set) => ({
                         longitude: 0,
                     }
                 }
-            }
+            },
+            selected_city: {
+                name: "",
+                fee: 0
+            },
+            shipping_fee: 0
         },
     }),
 }));

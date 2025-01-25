@@ -55,6 +55,7 @@ export default function ShoppersPage() {
     <div className="relative h-screen z-[3]">
       <div className="pt-[80px]">
         <ProductCarousel />
+        
       </div>
     </div>
   );
