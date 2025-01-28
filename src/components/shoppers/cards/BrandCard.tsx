@@ -10,10 +10,16 @@ interface Props {
 const BrandCard: NextPage<Props> = ({ brand }) => {
     return (
         <Card key={brand._id} className="h-[200px] relative p-6 flex flex-col items-center justify-between rounded-[18px]">
-
+            <Image
+                src={brand?.coverImage?.url}
+                alt={brand?.name}
+                height={150}
+                width={150}
+                className="absolute w-full h-full object-cover"
+            />
 
             <div></div>
-            <div className="h-[40px] w-[40px] rounded-full self-start overflow-hidden shadow-sm">
+            <div className="h-[40px] w-[40px] rounded-full self-start overflow-hidden shadow-sm z-[3]">
                 <Image
                     src={brand.logo.url}
                     alt={brand.name}

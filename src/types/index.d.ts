@@ -34,12 +34,13 @@ type Brand = {
   _id: string;
   name: string;
   logo: File;
+  coverImage: File;
   description: string;
   website: string;
   country: string;
   established: number;
   socialMediaLinks: SocialMediaLinks;
-  apparels: any[]; // Array of apparels
+  apparels: Apparel[]; // Array of apparels
   views: number;
   contactInfo: ContactInfo;
   createdAt: string;
@@ -497,4 +498,15 @@ export interface ApparelData {
 
 export interface ApparelsData {
   data: Apparel[];
+}
+
+export interface Notification {
+  _id: string;
+  user: string;
+  title: string;
+  message: string;
+  type: 'info' | 'warning' | 'error' | 'success';
+  isRead: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

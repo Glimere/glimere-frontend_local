@@ -10,6 +10,8 @@ import ApparelSection from "@/components/shoppers/sections/ApparelSection";
 import useFetch from "@/hooks/useFetch";
 import { ApparelsData } from "@/types";
 import ApparelListSection from "@/components/shoppers/sections/ApparelListSection";
+import useNotificationStore from "@/store/notificationStore";
+import Footer from "@/components/Footer";
 
 export default function ShoppersPage() {
   const { data: apparelTrending, error: apparelTrendingError } = useFetch<ApparelsData>(
@@ -24,13 +26,15 @@ export default function ShoppersPage() {
   );
   const { brands, fetchBrands } = useBrandStore();
   const { getWishlist } = useWishlistStore();
+  const { getNotifications } = useNotificationStore();
   const initialize = useUserStore((state) => state.initialize);
 
   useEffect(() => {
     getWishlist();
     fetchBrands();
     initialize();
-  }, [fetchBrands, getWishlist, initialize]);
+    getNotifications();
+  }, [fetchBrands, getWishlist, initialize, getNotifications]);
 
   const isTrending404 = apparelTrendingError?.status === 404;
   const isNew404 = apparelNewError?.status === 404;
@@ -56,6 +60,7 @@ export default function ShoppersPage() {
         {!isSelling404 && (
           <ApparelListSection headerTitle="Top Selling" apparels={apparelSelling?.data} />
         )}
+         <Footer />
       </div>
     </div>
   );
