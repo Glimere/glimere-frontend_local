@@ -13,13 +13,10 @@ import type { Model, Apparel } from "@/types";
 import { AnimatePresence } from "framer-motion";
 import ApparelEdit from "@/components/3D/apparelEdit";
 import GoBack from "@/components/GoBack";
+import { ApparelData } from "@/types";
 
 interface ViewProductProps {
   params: { id: string };
-}
-
-interface ApparelData {
-  data: Apparel;
 }
 
 const ViewProduct: NextPage<ViewProductProps> = ({ params }) => {

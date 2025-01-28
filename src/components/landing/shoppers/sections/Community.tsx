@@ -1,5 +1,5 @@
 import Discord from "../../../../../public/images/landing/discord.svg";
-import community from "../../../../../public/images/landing/community.png";
+import community from "../../../../../public/images/landing/shoppers_community.png";
 import Link from "next/link";
 
 export default function Community() {
@@ -15,10 +15,7 @@ export default function Community() {
               Join Our Fashion Community
             </h1>
             <p className="text-white text-[1rem] sm:text-[1.5625rem]">
-              We connects you with a global audience of fashion enthusiasts
-              eager to discover unique and innovative styles. Showcase your
-              creations and connect with customers worldwide, expanding your
-              brand and influence beyond borders.
+              Connect with other fashion enthusiasts, share your style inspiration, and discover exclusive offers and trends. Be part of the Glimere community and experience the joy of unique fashion together.
             </p>
             <Link href="https://discord.gg/zSMSJymv" className="self-auto sm:self-start">
               <div className="bg-light hover:bg-[#3f49b9] text-[#5865F2] hover:text-light duration-100 cursor-pointer gap-[20px] sm:gap-[40px] rounded-full py-[0.5rem] px-[2rem] sm:px-[4rem] flex flex-row">
@@ -26,7 +23,7 @@ export default function Community() {
                   Join Community
                 </p>
                 <div className="w-[40px]">
-                  <Discord className="sm:w-auto w-full h-full" viewBox="0 0 57 57" preserveAspectRatio="xMidYMid meet"/>
+                  <Discord className="sm:w-auto w-full h-full" viewBox="0 0 57 57" preserveAspectRatio="xMidYMid meet" />
                 </div>
               </div>
             </Link>

@@ -1,12 +1,12 @@
 import apiClient from "@/api/client/apiClient";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useJwt } from "./useJwt";
 
 type UseFetchState<T> = {
   data: T | undefined;
   loading: boolean;
-  error: Error | undefined;
+  error: { message: string; status?: number } | undefined;
   refetch: () => Promise<void>;
 };
 
@@ -20,8 +20,7 @@ const useFetch = <T>(url: string) => {
 
   const access_token = useJwt();
 
-  const api_url: string =
-    `${process.env.NEXT_PUBLIC_BASE_URL}`;
+  const api_url: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,18 +38,20 @@ const useFetch = <T>(url: string) => {
           refetch: fetchData,
         });
       } catch (error: unknown) {
-        let errorMessage: Error;
+        let errorMessage: string = "An unknown error occurred";
+        let status: number | undefined;
 
-        // eslint-disable-next-line prefer-const
-        errorMessage =
-          error instanceof Error
-            ? error
-            : new Error("An unknown error occurred");
+        if (axios.isAxiosError(error)) {
+          errorMessage = error.response?.data?.message || error.message;
+          status = error.response?.status;
+        } else if (error instanceof Error) {
+          errorMessage = error.message;
+        }
 
         setState({
           data: undefined,
           loading: false,
-          error: errorMessage,
+          error: { message: errorMessage, status },
           refetch: fetchData,
         });
       }

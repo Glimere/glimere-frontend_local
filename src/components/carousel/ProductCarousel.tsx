@@ -24,7 +24,7 @@ export default function ProductCarousel() {
     fetchData: state.fetchData,
   }));
 
-  const plugin = useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 9000, stopOnInteraction: true }));
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -75,8 +75,8 @@ export default function ProductCarousel() {
 
   return (
     <div
-      className={`h-full w-full flex flex-row items-center ${
-        windowWidth <= 640 ? "scale-[.65]" : " scale-[1.20]"
+      className={`h-full w-full flex flex-row items-center overflow-hidden ${
+        windowWidth <= 640 ? "scale-[.90]" : " scale-[1.20]"
       }`}
     >
       {loading ? (

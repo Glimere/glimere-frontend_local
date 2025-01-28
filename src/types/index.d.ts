@@ -464,3 +464,37 @@ export type SelectedOrder = {
   delivery_notes: string;
   shipping_fee: number;
 };
+
+export interface ContactInfo {
+  email: string;
+  phone: string;
+  address: string;
+}
+
+export interface SocialMediaLinks {
+  facebook?: string;
+  twitter?: string;
+  instagram?: string;
+  linkedin?: string;
+}
+
+export interface Brand {
+  id: string;
+  name: string;
+  description: string;
+  logo: string; // URL for logo
+  website: string;
+  country: string;
+  established: number;
+  contactInfo: ContactInfo;
+  socialMediaLinks: SocialMediaLinks;
+  views: number;
+}
+
+export interface ApparelData {
+  data: Apparel;
+}
+
+export interface ApparelsData {
+  data: Apparel[];
+}

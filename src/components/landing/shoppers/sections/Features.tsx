@@ -13,21 +13,20 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}>
           <div className="scale-50 sm:scale-100 h-[400px] sm:h-auto">
-            <FeatureOneImage  
+            <FeatureOneImage
             // className="h-full w-full" 
             // preserveAspectRatio="xMidYMid meet" 
             // viewBox="0 0 585 585"
             />
           </div>
 
-          <div className="">
+          <div className="flex flex-col gap-[20px]">
             <h2 className="text-[2rem] sm:text-[3.75rem] font-[600]">
-              Immersive Shopping Experience
+              Immersive Shopping<br />Experience
             </h2>
             <div className="w-[60%]">
-              <p className="text-[1.125rem]">
-                We’re shaping the future by connecting buyers and consumers with
-                the best that African fashion has to offer.
+              <p className="text-[1.2rem]">
+                Our cutting-edge 3D visualization technology allows you to visualize your dream garment in 360 degrees, try it on virtually, and see how it looks from every angle before you buy.
               </p>
             </div>
           </div>
@@ -41,14 +40,13 @@ export default function Features() {
             <FeatureTwoImage />
           </div>
 
-          <div className="">
+          <div className="flex flex-col gap-[20px]">
             <h2 className="text-[2rem] sm:text-[3.75rem] font-[600]">
               Customize Color from available materials
             </h2>
             <div className="w-[60%]">
-              <p className="text-[1.125rem]">
-                We’re shaping the future by connecting buyers and consumers with
-                the best that African fashion has to offer.
+              <p className="text-[1.2rem]">
+                Choose from a wide range of fabrics, colors, and textures to create a truly unique and personalized piece that reflects your individual style.
               </p>
             </div>
           </div>

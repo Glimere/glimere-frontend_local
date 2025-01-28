@@ -1,5 +1,4 @@
-import Discord from "../../../../../public/images/landing/discord.svg";
-import community from "../../../../../public/images/landing/community.png";
+import community from "../../../../../public/images/landing/creators_community.jpg";
 
 export default function FeaturesCreators() {
   return (

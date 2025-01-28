@@ -13,7 +13,6 @@ interface Props {
 }
 
 const ApparelDetails: NextPage<Props> = ({ apparel }) => {
-  const [toggleLike, setToggleLike] = useState(false);
   console.log(apparel);
 
   const { cart, addItem, removeItem, getCart } = useCartStore();
@@ -33,7 +32,7 @@ const ApparelDetails: NextPage<Props> = ({ apparel }) => {
               </h1>
             </div>
 
-            <Like liked={toggleLike} setLiked={setToggleLike} />
+            <Like apparelId={apparel._id} />
           </div>
 
           <div className="flex flex-row gap-[10px] items-center">

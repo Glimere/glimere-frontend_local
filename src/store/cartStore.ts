@@ -19,55 +19,55 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       cart: null, // Default state is null
-      
+
       addItem: async (item: CartItem) => {
-  const token = await getJwt(); // Retrieve token dynamically
-  if (!token) {
-    console.warn('User not authenticated. Cannot add item.');
-    return;
-  }
+        const token = await getJwt(); // Retrieve token dynamically
+        if (!token) {
+          console.warn('User not authenticated. Cannot add item.');
+          return;
+        }
 
-  const currentCart: CartData = get().cart || { _id: '', user: '', createdAt: '', updatedAt: '', __v: 0, items: [], total_items: 0, total_price: 0 };
+        const currentCart: CartData = get().cart || { _id: '', user: '', createdAt: '', updatedAt: '', __v: 0, items: [], total_items: 0, total_price: 0 };
 
-  // Check if the item already exists in the cart
-  const existingItem = currentCart.items.find((cartItem) => cartItem.apparel._id === item.apparel._id);
+        // Check if the item already exists in the cart
+        const existingItem = currentCart.items.find((cartItem) => cartItem.apparel._id === item.apparel._id);
 
-  if (existingItem) {
-    // Update quantity if item already exists
-    existingItem.quantity += item.quantity;
-  } else {
-    // Add new item to the cart
-    currentCart.items.push(item);
-  }
+        if (existingItem) {
+          // Update quantity if item already exists
+          existingItem.quantity += item.quantity;
+        } else {
+          // Add new item to the cart
+          currentCart.items.push(item);
+        }
 
-  // Update cart totals
-  currentCart.total_items = currentCart.items.reduce((total, item) => total + item.quantity, 0);
-  currentCart.total_price = currentCart.items.reduce(
-    (total, item) => total + item.quantity * item.apparel.apparel_price,
-    0
-  );
+        // Update cart totals
+        currentCart.total_items = currentCart.items.reduce((total, item) => total + item.quantity, 0);
+        currentCart.total_price = currentCart.items.reduce(
+          (total, item) => total + item.quantity * item.apparel.apparel_price,
+          0
+        );
 
-  // Update Zustand state with the updated cart
-  set({ cart: { ...currentCart } });
+        // Update Zustand state with the updated cart
+        set({ cart: { ...currentCart } });
 
-  try {
-    // Send only {apparelId, quantity} to the backend API
-    await apiClient.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/add`,
-      {
-        apparelId: item.apparel._id,
-        quantity: item.quantity,
+        try {
+          // Send only {apparelId, quantity} to the backend API
+          await apiClient.post(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/add`,
+            {
+              apparelId: item.apparel._id,
+              quantity: item.quantity,
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+        } catch (error) {
+          console.error('Failed to add item to API', error);
+        }
       },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-  } catch (error) {
-    console.error('Failed to add item to API', error);
-  }
-},
 
-      
+
       removeItem: async (id: string) => {
         const token = await getJwt();
         if (!token) {
@@ -183,30 +183,30 @@ export const useCartStore = create<CartState>()(
           console.warn('User not authenticated. Cannot synchronize cart.');
           return;
         }
-      
+
         const localCart = get().cart;
-      
+
         try {
           // Fetch the latest cart data from the API
           const response = await apiClient.get<ApiResponse>(`/api/cart`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           const apiCart = response.data.data;
-      
+
           if (!localCart) {
             // If no local cart exists, use the API cart
             set({ cart: apiCart });
             return;
           }
-      
+
           // Reconcile differences between local cart and API cart
           const reconciledItems = [...localCart.items];
-      
+
           for (const apiItem of apiCart.items) {
             const localItemIndex = reconciledItems.findIndex(
               (item) => item.apparel._id === apiItem.apparel._id
             );
-      
+
             if (localItemIndex > -1) {
               // If the item exists in both, take the higher quantity
               reconciledItems[localItemIndex].quantity = Math.max(
@@ -218,21 +218,21 @@ export const useCartStore = create<CartState>()(
               reconciledItems.push(apiItem);
             }
           }
-      
+
           // Update totals
           const totalItems = reconciledItems.reduce((sum, item) => sum + item.quantity, 0);
           const totalPrice = reconciledItems.reduce(
             (sum, item) => sum + item.quantity * item.apparel.apparel_price,
             0
           );
-      
+
           const reconciledCart: CartData = {
             ...localCart,
             items: reconciledItems,
             total_items: totalItems,
             total_price: totalPrice,
           };
-      
+
           // Sync the reconciled cart with the backend
           await apiClient.post(
             `${process.env.NEXT_PUBLIC_BASE_URL}/api/cart/sync`,
@@ -241,7 +241,7 @@ export const useCartStore = create<CartState>()(
               headers: { Authorization: `Bearer ${token}` },
             }
           );
-      
+
           // Update Zustand state with the reconciled cart
           set({ cart: reconciledCart });
         } catch (error) {

@@ -64,7 +64,7 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
             {parentIndex === selectedCurrent() ? (
               <>
                 <div
-                  className={`absolute right-0 rotate-90 min-w-[400px] max-w-[500px] z-[3] mr-[18%] overflow-hidden ${
+                  className={`absolute right-0 rotate-90 min-w-[400px] max-w-[500px] z-[3] mr-[30%] sm:mr-[18%] overflow-hidden ${
                     selectedCurrent === undefined ? "hidden" : ""
                   }`}
                 >

@@ -24,7 +24,7 @@ export default function DemoLayout({
   const restrictedPaths = ["/shoppers/checkout", "/account", "/notification"];
 
   return (
-    <div className="relative overflow-hidden bg-alabaster">
+    <div className="relative bg-alabaster overflow-x-hidden">
       <GradientBg />
       <ShoppersNav />
       {/* <Navbar/> */}
