@@ -22,7 +22,7 @@ interface SignupPageProps {
   setIsVisible: (isVisible: boolean) => void;
 }
 
-export default function SignupPage(props: SignupPageProps) {
+const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
   return (
     <div
       className={`w-full h-full rounded-[20px] bg-transparent-white-200 flex flex-col items-center justify-center gap-[20px] sm:p-[40px] px-[30px] duration-300 ${
@@ -158,3 +158,5 @@ export default function SignupPage(props: SignupPageProps) {
     </div>
   );
 }
+
+export default SignupPage;  

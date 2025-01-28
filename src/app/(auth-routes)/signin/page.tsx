@@ -7,7 +7,7 @@ import { auth, db, googleProvider } from "@/config/firebase"; // Ensure correct 
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { signInWithPopup } from "firebase/auth";
 import { useToast } from "@/hooks/use-toast";
-import SignUpPage from "../signup/page";
+import SignupPage from "../signup/page";
 import loginImg from "../../../../public/images/login-img.jpg";
 import googleImg from "../../../../public/images/google.png";
 import facebookImg from "../../../../public/images/facebook.png";
@@ -143,7 +143,7 @@ export default function Login() {
             isVisible ? "w-full" : "overflow-hidden w-[0%] p-0 flex-[0]"
           } flex flex-col justify-center items-center`}
         >
-          <SignUpPage
+          <SignupPage
             isVisible={isVisible}
             registerUser={registerUserDetails}
             handleUserChange={handleUserChange}
