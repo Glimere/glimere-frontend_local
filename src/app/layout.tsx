@@ -42,8 +42,8 @@ export const metadata: Metadata = {
 // Loading UI Component
 function Loading() {
   return (
-    <div className="loading-ui">
-      <p>Loading, please wait...</p>
+    <div className="h-screen w-full">
+      <SpinnerLoader />
     </div>
   );
 }
@@ -56,9 +56,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={leagueSpartan.className}>
-        {/* <Suspense fallback={<SpinnerLoader />}> */}
+        <Suspense fallback={Loading()}>
           {children}
-        {/* </Suspense> */}
+        </Suspense>
         <Toaster />
       </body>
     </html>
