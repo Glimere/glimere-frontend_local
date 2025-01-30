@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import GlimereLogo from "../../../../public/images/glimerenew1.svg"; // Ensure the asset path is correct
+import GlimereLogo from "../../../../../public/images/glimerenew1.svg"; // Ensure the asset path is correct
 import { Button } from "@/components/ui/button";
 import { loginUser } from "@/utils/authService";
 import useUserStore from "@/store/userStore";
@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { auth, googleProvider } from "@/config/firebase"; // Ensure correct paths
 import { signInWithPopup } from "firebase/auth";
-import googleImg from "../../../../public/images/google.png";
-import facebookImg from "../../../../public/images/facebook.png";
+import googleImg from "../../../../../public/images/google.png";
+import facebookImg from "../../../../../public/images/facebook.png";
 import { Loader2 } from "lucide-react";
 
 
