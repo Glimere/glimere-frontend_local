@@ -7,9 +7,7 @@ import Community from "./sections/Community";
 import CallToAction from "./sections/CallToAction";
 import HeroSection from "./sections/HeroSection";
 
-interface Props {}
-
-const Shoppers: NextPage<Props> = ({}) => {
+const Shoppers: NextPage = () => {
   return (
     <>
       <HeroSection />

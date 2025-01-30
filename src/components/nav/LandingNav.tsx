@@ -93,18 +93,28 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
               } flex flex-col items-center w-fit gap-[7px] cursor-pointer md:hidden z-20`}
           >
             <span
-              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"
+              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-primary-100" : "bg-black"
                 } rounded-full`}
             ></span>
             <span
-              className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-white-100" : "bg-black"
+              className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-primary-100" : "bg-black"
                 } rounded-full`}
             ></span>
             <span
-              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"
+              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-primary-100" : "bg-black"
                 } rounded-full`}
             ></span>
           </div>
+
+          <div
+                        onClick={handleOpen}
+                        className={`${isOpen ? "open" : ""} flex flex-col items-center w-fit gap-[7px] cursor-pointer md:hidden z-20`}
+                    >
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-white-100" : "bg-black"} rounded-full`}></span>
+                        <span className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"} rounded-full`}></span>
+                    </div>
+
 
           {/* Button */}
           <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-body font-medium">

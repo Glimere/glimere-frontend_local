@@ -2,6 +2,7 @@ import GradientBg from "@/components/gradient/gradientBg";
 import CtaImage1 from "../../../../../public/images/landing/cta-image-one.svg";
 import CtaImage2 from "../../../../../public/images/landing/cta-image-two.svg";
 import { MoveUpRight } from "lucide-react";
+import Link from "next/link";
 
 export default function CallToActionCreators() {
   return (
@@ -28,10 +29,12 @@ export default function CallToActionCreators() {
           </div>
 
           <div className="flex flex-row gap-[1rem] md:gap-[1.2rem] lg:gap-[3rem] items-center">
-            <div className="py-[0.7rem] lg:py-[1.2rem] px-[0.9rem] md:px-[1.9rem] lg:px-[4rem] flex flex-row items-center gap-[9px] sm:gap-[20px] duration-150 hover:bg-dark cursor-pointer bg-primary-100 text-light rounded-full">
+            <Link href=""> <div className="py-[0.7rem] lg:py-[1.2rem] px-[0.9rem] md:px-[1.9rem] lg:px-[4rem] flex flex-row items-center gap-[9px] sm:gap-[20px] duration-150 hover:bg-dark cursor-pointer bg-primary-100 text-light rounded-full">
               <p className="text-[1rem] md:text-[1.5rem] lg:text-[2rem]">Start selling</p>
               <MoveUpRight />
             </div>
+            </Link>
+
             <span className="text-[1.5rem] md:text-[2.9rem] lg:text-[5rem] text-dark font-[600]">
               fashion game
             </span>
