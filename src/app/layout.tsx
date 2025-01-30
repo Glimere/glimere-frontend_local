@@ -6,7 +6,7 @@ import React, { Suspense } from "react";
 import SpinnerLoader from "@/components/loader/spinnerLoader";
 import GradientBg from "@/components/gradient/gradientBg";
 
-const leagueSpartan = League_Spartan({ subsets: ["latin"] });
+const leagueSpartan = League_Spartan({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Glimere | Custom-Made Fashion, Tailored to Perfection",
@@ -58,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={leagueSpartan.className}>
-        <Suspense fallback={Loading()}>
+        <Suspense fallback={<Loading/>}>
           {children}
         </Suspense>
         <Toaster />

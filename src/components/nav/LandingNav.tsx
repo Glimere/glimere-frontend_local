@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import NavbarDropdown from "@/components/nav/NavbarDropdown";
 import GlimereLogo from "../../../public/images/glimerenew.svg";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 // Define the prop types
 interface LandingNavProps {
@@ -14,14 +13,12 @@ interface LandingNavProps {
 }
 
 const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
-  const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
 
   const creatorsPath = page === "creators";
-  const navLogoColorClass =
-    pathname === "/" && isOpen ? "text-white" : "text-[#ed7534]";
+
   const handleOpen = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
@@ -54,12 +51,12 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
           {/* Icon */}
           <div className="flex flex-row items-center">
             <Link href="/">
-              <GlimereLogo className={`h-[40px] block ${navLogoColorClass}`} />
+              <GlimereLogo className={`h-[40px] block text-primary-100`} />
             </Link>
           </div>
 
           {/* Menu */}
-          <div className="flex flex-row w-[230px] items-center justify-center">
+          <div className={`flex flex-row w-[230px] items-center justify-center duration-200 ${isOpen ? "opacity-0" : "opacity-100"}`}>
             <div className="flex flex-row gap-[20px] sm:gap-[50px]">
               <div
                 className={`hover:border-gray-400 duration-150 ${!creatorsPath ? "border-primary-100" : "border-transparent"

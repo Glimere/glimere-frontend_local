@@ -24,7 +24,7 @@ export default function Features() {
             <h2 className="text-[2rem] sm:text-[3.75rem] font-[600]">
               Immersive Shopping<br />Experience
             </h2>
-            <div className="w-[60%]">
+            <div className="w-full sm:w-[60%]">
               <p className="text-[1.2rem]">
                 Our cutting-edge 3D visualization technology allows you to visualize your dream garment in 360 degrees, try it on virtually, and see how it looks from every angle before you buy.
               </p>
@@ -44,7 +44,7 @@ export default function Features() {
             <h2 className="text-[2rem] sm:text-[3.75rem] font-[600]">
               Customize Color from available materials
             </h2>
-            <div className="w-[60%]">
+            <div className="w-full sm:w-[60%]">
               <p className="text-[1.2rem]">
                 Choose from a wide range of fabrics, colors, and textures to create a truly unique and personalized piece that reflects your individual style.
               </p>

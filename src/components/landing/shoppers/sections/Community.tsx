@@ -18,13 +18,16 @@ export default function Community() {
               Connect with other fashion enthusiasts, share your style inspiration, and discover exclusive offers and trends. Be part of the Glimere community and experience the joy of unique fashion together.
             </p>
             <Link href="https://discord.gg/zSMSJymv" className="self-auto sm:self-start">
-              <div className="bg-light hover:bg-[#3f49b9] text-[#5865F2] hover:text-light duration-100 cursor-pointer gap-[20px] sm:gap-[40px] rounded-full py-[0.5rem] px-[2rem] sm:px-[4rem] flex flex-row">
-                <p className="text-[1rem] sm:text-[1.8rem] self-center font-bold text-center ">
+              <div className="bg-light hover:bg-[#3f49b9] text-[#5865F2] hover:text-light duration-100 cursor-pointer sm:gap-[40px] rounded-full py-[0.5rem] px-[2rem] sm:px-[4rem] flex flex-row items-center justify-center">
+                <div className="flex gap-[20px] items-center self-center">
+                  <p className="text-[1.2rem] sm:text-[1.8rem] self-center font-bold text-center ">
                   Join Community
                 </p>
                 <div className="w-[40px]">
                   <Discord className="sm:w-auto w-full h-full" viewBox="0 0 57 57" preserveAspectRatio="xMidYMid meet" />
+                </div> 
                 </div>
+               
               </div>
             </Link>
           </div>
