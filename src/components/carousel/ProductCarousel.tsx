@@ -32,7 +32,9 @@ export default function ProductCarousel() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetchData(); // Initial fetch when component mounts
+    if (data === undefined) {
+      fetchData(); // Initial fetch when component mounts
+    }
   }, [fetchData]);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ export default function ProductCarousel() {
 
   return (
     <div
-      className={`h-full w-full flex flex-row items-center overflow-hidden ${windowWidth <= 640 ? "scale-[.90]" : " scale-[1.20]"
+      className={`h-full w-full flex flex-row items-center overflow-hidden ${windowWidth <= 640 ? "scale-100" : " scale-[1.20]"
         }`}
     >
       {loading ? (

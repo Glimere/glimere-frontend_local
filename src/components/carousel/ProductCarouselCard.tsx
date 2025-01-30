@@ -5,8 +5,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
 import type { Apparel } from "@/types";
@@ -14,8 +12,6 @@ import Image from "next/image";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import SliderPageIndicator from "./slideIndicator";
-import { MoveRight } from "lucide-react";
-import { MoveLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
@@ -56,7 +52,7 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
         }}
         transition={{ duration: 0.5 }}
       >
-        <div className="relative h-[30rem] flex flex-row items-center justify-between">
+        <div className="relative h-[70vh] sm:h-[30rem] flex flex-row items-center justify-between">
           {parentIndex !== selectedCurrent() ? (
             <div className="absolute h-full w-full z-[4]"></div>
           ) : null}
@@ -103,13 +99,13 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
               className="w-full max-w-full z-[1]"
               setApi={setApi}
             >
-              <CarouselContent className="-mt-1 h-[30rem]">
+              <CarouselContent className="-mt-1 h-[70vh] sm:h-[30rem]">
                 {apparel.apparel_images.map((img, index) => (
                   <CarouselItem key={index} className="pt-1 md:basis-1/1">
                     <div className="p-1">
                       <Card className="bg-transparent shadow-none border-none">
                         <CardContent className="flex items-center justify-center p-0">
-                          <div className="h-[28rem]">
+                          <div className="h-[65vh] sm:h-[28rem]">
                             <Image
                               src={img.url}
                               alt={img.name}
