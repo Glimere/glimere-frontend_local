@@ -17,7 +17,7 @@ const ApparelCheckout: NextPage<Props> = ({ apparel }) => {
   }
 
   const { formatPrice } = usePrice();
-const {isAuthenticated} = useUserStore()
+  const { isAuthenticated } = useUserStore()
 
   return (
     <>
@@ -66,7 +66,7 @@ const {isAuthenticated} = useUserStore()
             <p className="text-[1.4rem] font-[400]">
               {formatPrice(apparel.apparel_price)}
             </p>
-            <Link href={isAuthenticated ? "/shoppers/checkout" : "/signin"}>
+            <Link href={isAuthenticated ? "/shoppers/checkout" : "/auth"}>
               <Button className="bg-primary-100 rounded-full">Checkout</Button>
             </Link>
           </div>

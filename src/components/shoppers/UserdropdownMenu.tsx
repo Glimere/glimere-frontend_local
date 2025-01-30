@@ -1,19 +1,10 @@
 import {
-  Cloud,
   CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
   LogIn,
   LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
   PlusCircle,
   Settings,
   User,
-  UserPlus,
-  Users,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -23,12 +14,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useUserStore from "@/store/userStore";
@@ -109,7 +95,7 @@ export function UserDropdownMenu({ children }: UserDropdownMenuProps) {
               <span className="text-red-500">Log out</span>
             </DropdownMenuItem>
           ) : (
-            <Link href="/signin" passHref>
+            <Link href="/auth" passHref>
               <DropdownMenuItem>
                 <Button className="flex flex-row gap-[10px] bg-primary-100 text-white w-full py-[2px]">
                   <LogIn />

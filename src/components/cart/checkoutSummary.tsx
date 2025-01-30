@@ -90,7 +90,7 @@ const CheckoutSummary: React.FC = () => {
           </div>
 
           {/* Checkout Button */}
-          <Link href={isAuthenticated ? "/shoppers/checkout" : "/signin"}>
+          <Link href={isAuthenticated ? "/shoppers/checkout" : "/auth"}>
             <Button className="bg-primary-100 text-white w-full rounded-full text-base">
               Checkout
             </Button>
@@ -111,7 +111,7 @@ const CheckoutSummary: React.FC = () => {
             {/* Button to Start Shopping */}
             <Button
               className="mt-6 bg-primary-100 text-white px-8 py-3 rounded-full hover:bg-primary-200"
-              onClick={() => router.push("/signin")} // Redirect to the homepage or shopping page
+              onClick={() => router.push("/auth")} // Redirect to the homepage or shopping page
             >
               Login
             </Button>
