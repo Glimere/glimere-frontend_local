@@ -17,7 +17,7 @@ import ProductCarouselCard from "./ProductCarouselCard";
 import CarouselSkeletonLoader from "./CarouselSkeletonLoader";
 
 export default function ProductCarousel() {
-  const { data, loading, error, fetchData } = useApparelStore((state) => ({
+  const { data, loading, fetchData } = useApparelStore((state) => ({
     data: state.data,
     loading: state.loading,
     error: state.error,
@@ -28,6 +28,7 @@ export default function ProductCarousel() {
   const [windowWidth, setWindowWidth] = useState<number>(0);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -37,14 +38,19 @@ export default function ProductCarousel() {
   useEffect(() => {
     // Only update `windowWidth` on the client side
     const updateWindowWidth = () => {
-      setWindowWidth(window.innerWidth);
+      setWindowWidth(typeof window !== "undefined" ? window.innerWidth : 0);
     };
 
     updateWindowWidth(); // Set initial width
-    window.addEventListener("resize", updateWindowWidth);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", updateWindowWidth);
+
+    }
 
     return () => {
-      window.removeEventListener("resize", updateWindowWidth);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", updateWindowWidth);
+      }
     };
   }, []);
 
@@ -75,9 +81,8 @@ export default function ProductCarousel() {
 
   return (
     <div
-      className={`h-full w-full flex flex-row items-center overflow-hidden ${
-        windowWidth <= 640 ? "scale-[.90]" : " scale-[1.20]"
-      }`}
+      className={`h-full w-full flex flex-row items-center overflow-hidden ${windowWidth <= 640 ? "scale-[.90]" : " scale-[1.20]"
+        }`}
     >
       {loading ? (
         <CarouselSkeletonLoader />
@@ -93,9 +98,8 @@ export default function ProductCarousel() {
             {data?.data?.map((apparel: Apparel, index: number) => (
               <CarouselItem
                 key={index}
-                className={`sm:basis-1/3 md:basis-1/3 lg:basis-1/5 duration-300 ${
-                  index === getSelectedCurrent() ? "" : ""
-                }`}
+                className={`sm:basis-1/3 md:basis-1/3 lg:basis-1/5 duration-300 ${index === getSelectedCurrent() ? "" : ""
+                  }`}
               >
                 <div className="p-1">
                   <Card className="bg-transparent shadow-none border-none">

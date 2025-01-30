@@ -45,17 +45,24 @@ const Model: React.FC<ModelProps> = ({ models, onSwitchModel, initialScale, canv
 
     useEffect(() => {
         const updateScreenMode = () => {
-            const screenWidth = window.innerWidth;
+            const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
             const isDesktopMode = screenWidth >= 768; // Set breakpoint for desktop/mobile
             setIsDesktop(isDesktopMode);
         };
 
         updateScreenMode(); // Initial check
-        window.addEventListener('resize', updateScreenMode); // Listen for resize events
 
-        return () => {
-            window.removeEventListener('resize', updateScreenMode); // Clean up event listener
-        };
+        if (typeof window !== "undefined") {
+            {
+                window.addEventListener('resize', updateScreenMode); // Listen for resize events
+            }
+
+            return () => {
+                if (typeof window !== "undefined") {
+                    window.removeEventListener('resize', updateScreenMode); // Clean up event listener
+                }
+            }
+        }
     }, []); // Run effect only once
 
     const boundingBoxConfig = isDesktop ?
@@ -101,15 +108,15 @@ const Model: React.FC<ModelProps> = ({ models, onSwitchModel, initialScale, canv
 
     useEffect(() => {
 
- 
-            const interval = setInterval(() => {
-                if (!isInteracting) {
-                    setCurrentIndex((prevIndex: number) => (prevIndex + 1) % models.length);
-                  }
-            }, 15000);
 
-            return () => clearInterval(interval);
-       
+        const interval = setInterval(() => {
+            if (!isInteracting) {
+                setCurrentIndex((prevIndex: number) => (prevIndex + 1) % models.length);
+            }
+        }, 15000);
+
+        return () => clearInterval(interval);
+
     }, [isInteracting]);
 
     return gltf ? (

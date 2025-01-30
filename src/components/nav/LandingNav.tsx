@@ -26,7 +26,8 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
 
   useEffect(() => {
     const handleScrollPos = (): void => {
-      const currentScrollPos = window.scrollY;
+
+      const currentScrollPos = typeof window !== "undefined" ? window.scrollY : 0
 
       if (currentScrollPos > scrollPos) {
         setIsOpen(false);
@@ -35,10 +36,14 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
       setScrollPos(currentScrollPos);
     };
 
-    window.addEventListener("scroll", handleScrollPos);
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScrollPos);
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScrollPos);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScrollPos);
+      }
     };
   }, [scrollPos]);
 
@@ -57,9 +62,8 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
           <div className="flex flex-row w-[230px] items-center justify-center">
             <div className="flex flex-row gap-[20px] sm:gap-[50px]">
               <div
-                className={`hover:border-gray-400 duration-150 ${
-                  !creatorsPath ? "border-primary-100" : "border-transparent"
-                } border-solid border-b-[3px]`}
+                className={`hover:border-gray-400 duration-150 ${!creatorsPath ? "border-primary-100" : "border-transparent"
+                  } border-solid border-b-[3px]`}
               >
                 <p
                   className={`text-dark-100 text-[14px] sm:text-[15px] font-medium cursor-pointer`}
@@ -69,9 +73,8 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
                 </p>
               </div>
               <div
-                className={`hover:border-gray-400 duration-150 ${
-                  creatorsPath ? "border-primary-100" : "border-transparent"
-                } border-solid border-b-[3px]`}
+                className={`hover:border-gray-400 duration-150 ${creatorsPath ? "border-primary-100" : "border-transparent"
+                  } border-solid border-b-[3px]`}
               >
                 <p
                   className={`text-dark-100 text-[14px] sm:text-[15px] font-medium cursor-pointer`}
@@ -86,24 +89,20 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
           {/* Hamburger */}
           <div
             onClick={handleOpen}
-            className={`${
-              isOpen ? "open" : ""
-            } flex flex-col items-center w-fit gap-[7px] cursor-pointer md:hidden z-20`}
+            className={`${isOpen ? "open" : ""
+              } flex flex-col items-center w-fit gap-[7px] cursor-pointer md:hidden z-20`}
           >
             <span
-              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${
-                isOpen ? "bg-white-100" : "bg-black"
-              } rounded-full`}
+              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"
+                } rounded-full`}
             ></span>
             <span
-              className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${
-                isOpen ? "bg-white-100" : "bg-black"
-              } rounded-full`}
+              className={`transition-all duration-500 ease-in-out h-[2px] w-4 ${isOpen ? "bg-white-100" : "bg-black"
+                } rounded-full`}
             ></span>
             <span
-              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${
-                isOpen ? "bg-white-100" : "bg-black"
-              } rounded-full`}
+              className={`transition-all duration-500 ease-in-out h-[2px] w-5 ${isOpen ? "bg-white-100" : "bg-black"
+                } rounded-full`}
             ></span>
           </div>
 

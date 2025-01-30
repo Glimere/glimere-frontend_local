@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 
-import SignupPage from "./components/Signup";
-import SigninPage from "./components/Signin";
+const SignupPage = dynamic(() => import("./components/Signup"), { ssr: false });
+const SigninPage = dynamic(() => import("./components/Signin"), { ssr: false });
 
 
 export default function AuthPage() {
-
 
   const [isVisible, setIsVisible] = useState(false);
 
