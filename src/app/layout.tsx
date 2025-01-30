@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import React, { Suspense } from "react";
 import SpinnerLoader from "@/components/loader/spinnerLoader";
+import GradientBg from "@/components/gradient/gradientBg";
 
 const leagueSpartan = League_Spartan({ subsets: ["latin"] });
 
@@ -42,7 +43,8 @@ export const metadata: Metadata = {
 // Loading UI Component
 function Loading() {
   return (
-    <div className="h-screen w-full">
+    <div className="relative h-screen w-full overflow-hidden">
+      <GradientBg />
       <SpinnerLoader />
     </div>
   );

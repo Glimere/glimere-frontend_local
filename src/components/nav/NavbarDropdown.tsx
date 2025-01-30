@@ -33,19 +33,19 @@ export default function NavbarDropdown({ isOpen, modalToggle }: NavbarDropdownPr
                         </a>
                     </div>
                     <div className="flex flex-col gap-8">
-                        <Link href="/login">
+                        <Link href="/auth">
                             <p className="underline text-white-100 py-3.5 border border-black">
-                                Login
+                                Create an Account
                             </p>
                         </Link>
-                        <a href="#">
+                        <Link href="/shoppers">
                             <button
                                 className="py-3.5 border border-primary-100 w-full text-white-100 bg-primary-100 font-medium"
                                 onClick={() => modalToggle(true)}
                             >
-                                Join Our Waitlist
+                                Start Shopping
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

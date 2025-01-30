@@ -1,6 +1,5 @@
 "use client";
 
-import NavbarDropdown from "@/components/nav/NavbarDropdown";
 import GlimereLogo from "../../../public/images/glimerenew.svg";
 import ShoppingBag from "../../../public/images/shopping-bag.svg";
 import User from "../../../public/images/user.svg";
@@ -10,13 +9,11 @@ import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import useUserStore from "@/store/userStore";
 import { UserDropdownMenu } from "../shoppers/UserdropdownMenu";
-import { getJwt } from "@/lib/cookie";
-import { CheckCircle, ChevronDown, XCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useJwt } from "@/hooks/useJwt";
 
 import { NotificationDropdown } from "../shoppers/NotificationDropdown";
-import { Input } from "../ui/input";
 
 interface Notification {
   id: string;
@@ -62,7 +59,6 @@ const ShoppersNav: React.FC = () => {
   const { user, isAuthenticated } = useUserStore();
 
   const [isHydrated, setIsHydrated] = useState(false);
-  const jwt = useJwt();
 
   useEffect(() => {
     setIsHydrated(true);
