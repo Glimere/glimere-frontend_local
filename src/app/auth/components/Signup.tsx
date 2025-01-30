@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import GlimereLogo from "../../../../../public/images/glimerenew1.svg"; // Ensure the asset path is correct
+import GlimereLogo from "../../../../public/images/glimerenew1.svg"; // Ensure the asset path is correct
 import { Button } from "@/components/ui/button";
 import { registerUser } from "@/utils/authService";
 
