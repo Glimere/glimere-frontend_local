@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import NavbarDropdown from "@/components/nav/NavbarDropdown";
 import GlimereLogo from "../../../public/images/glimerenew.svg";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 // Define the prop types
 interface LandingNavProps {
@@ -15,7 +14,6 @@ interface LandingNavProps {
 }
 
 const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
-  const router = useRouter();
   const pathname = usePathname();
 
   const [isOpen, setIsOpen] = useState(false);

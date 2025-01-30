@@ -40,7 +40,13 @@ const PaymentTab = () => {
   const [selectedTab, setSelectedTab] = useState<
     "bank" | "banktransfer" | "card"
   >("bank");
-  const [banks, setBanks] = useState<any[]>([]);
+  interface Bank {
+    id: string;
+    code: string;
+    name: string;
+  }
+
+  const [banks, setBanks] = useState<Bank[]>([]);
   const [selectedBankCode, setSelectedBankCode] = useState<string>("");
   const [accountNumber, setAccountNumber] = useState<string>("");
   const [isPayDisabled, setIsPayDisabled] = useState(true);
