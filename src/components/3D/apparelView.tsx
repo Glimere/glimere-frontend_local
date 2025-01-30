@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
+import { Canvas, ThreeEvent } from "@react-three/fiber";
 import {
   useGLTF,
   ContactShadows,
@@ -10,8 +11,7 @@ import {
 import { proxy, useSnapshot } from "valtio";
 import { HexColorPicker } from "react-colorful";
 import SaveBar from "./saveBar";
-import { Button } from "../ui/button";
-import { useTextureChangeStore } from "@/store/textureChangeStore";
+// import { useTextureChangeStore } from "@/store/textureChangeStore";
 
 interface ApparelViewerProps {
   modelUrl: string;
@@ -21,6 +21,7 @@ interface ApparelViewerProps {
 export const state = proxy({
   current: null as string | null,
   items: {} as Record<string, string>,
+  selectedMesh: null as string | null,
 });
 
 const ApparelViewer: React.FC<ApparelViewerProps> = ({
@@ -31,10 +32,10 @@ const ApparelViewer: React.FC<ApparelViewerProps> = ({
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
   const [pickerPosition, setPickerPosition] = useState({ x: 0, y: 0 });
   const [selectedMesh, setSelectedMesh] = useState<string | null>(null);
-  const [texture, setTexture] = useState<THREE.Texture | null>(null);
-  const { nodes, materials } = useGLTF(modelUrl) as any;
+  const [texture] = useState<THREE.Texture | null>(null);
+  const { nodes } = useGLTF(modelUrl) as any;
   const snap = useSnapshot(state);
-  const textureFile = useTextureChangeStore((state) => state.texture);
+  // const textureFile = useTextureChangeStore((state) => state.texture);
 
   const handlePointerOver = (e: ThreeEvent<PointerEvent>) => {
     if (editToggle) {

@@ -8,7 +8,7 @@ const MeshListCard: React.FC = () => {
 
   useEffect(() => {
     if (snap.selectedMesh) {
-      state.currentColor = snap.items[snap.selectedMesh] || "#ffffff";
+      state.current = snap.items[snap.selectedMesh] || "#ffffff";
     }
   }, [snap.selectedMesh]);
 
@@ -30,12 +30,12 @@ const MeshListCard: React.FC = () => {
         <div className="mt-4">
           <h3>Editing: {snap.selectedMesh}</h3>
           <HexColorPicker
-            color={snap.currentColor}
+            color={snap.current || "#ffffff"}
             onChange={(color) => {
               if (snap.selectedMesh) {
                 state.items[snap.selectedMesh] = color;
               }
-              state.currentColor = color;
+              state.current = color;
             }}
           />
         </div>
