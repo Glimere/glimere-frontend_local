@@ -11,9 +11,9 @@ import useUserStore from "@/store/userStore";
 import { UserDropdownMenu } from "../shoppers/UserdropdownMenu";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useJwt } from "@/hooks/useJwt";
 
 import { NotificationDropdown } from "../shoppers/NotificationDropdown";
+import useNotificationStore from "@/store/notificationStore";
 
 interface Notification {
   id: string;
@@ -23,42 +23,13 @@ interface Notification {
   isRead: boolean; // Flag to check if notification is new
 }
 
-const notifications: Notification[] = [
-  {
-    id: "1",
-    heading: "New Order Placed",
-    message: "You have a new order from John Doe.",
-    type: "success",
-    isRead: true,
-  },
-  {
-    id: "2",
-    heading: "Payment Failed",
-    message: "Your payment attempt was unsuccessful.",
-    type: "error",
-    isRead: true,
-  },
-  {
-    id: "3",
-    heading: "Discount Offer",
-    message: "Special discount on selected items just for you!",
-    type: "info",
-    isRead: false,
-  },
-  {
-    id: "4",
-    heading: "Product Back in Stock",
-    message: "The item you wanted is now back in stock.",
-    type: "success",
-    isRead: false,
-  },
-];
-
 const ShoppersNav: React.FC = () => {
   const { cart } = useCartStore();
   const { user, isAuthenticated } = useUserStore();
 
   const [isHydrated, setIsHydrated] = useState(false);
+
+  const { notifications } = useNotificationStore();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -72,7 +43,7 @@ const ShoppersNav: React.FC = () => {
   if (!isHydrated) return null;
 
   return (
-    <nav className="absolute w-full h-[80px] px-[25px] sm:px-[5.75rem] sm:p-0 flex items-center">
+    <nav className="absolute w-full h-[105px] sm:h-[80px] px-[25px] sm:px-[5.75rem] sm:p-0 flex flex-col items-center z-[4]">
       <div className="container mx-auto max-w-[1344px]">
         <div className="h-16 md:h-20 md:py-6 flex items-center justify-between z-20 relative">
           <div className="flex flex-row items-center justify-center">
@@ -84,7 +55,7 @@ const ShoppersNav: React.FC = () => {
           </div>
 
           <div className="flex flex-row items-center gap-[20px]">
-            <div className="relative flex flex-row items-center justify-between rounded-full gap-[10px] px-[20px] py-[7px] bg-transparent-white-300">
+            <div className="relative hidden sm:flex flex-row items-center justify-between rounded-full gap-[10px] px-[20px] py-[7px] bg-transparent-white-300">
               <Search
                 className={`block hover:fill-primary-100 duration-150 cursor-pointer`}
               />
@@ -127,10 +98,10 @@ const ShoppersNav: React.FC = () => {
                     className={`block group-hover:fill-primary-100 duration-150`}
                   />
 
-                  <p className="text-[16px] group-hover:text-primary-100 mt-1 font-medium">
+                  <p className="hidden md:block text-[16px] group-hover:text-primary-100 mt-1 font-medium">
                     Account
                   </p>
-                  <ChevronDown />
+                  <ChevronDown className="hidden md:block " />
                 </div>
               </UserDropdownMenu>
             ) : (
@@ -150,6 +121,16 @@ const ShoppersNav: React.FC = () => {
             )}
           </div>
         </div>
+      </div>
+      <div className="w-full relative flex grow sm:hidden flex-row items-center rounded-full gap-[15px] px-[20px] py-[3px] bg-transparent-white-300">
+        <Search
+          className={`block hover:fill-primary-100 duration-150 cursor-pointer scale-75`}
+        />
+        <input
+          type="text"
+          placeholder="Search"
+          className="bg-transparent outline-none"
+        ></input>
       </div>
     </nav>
   );

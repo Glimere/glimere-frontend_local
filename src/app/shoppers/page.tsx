@@ -21,6 +21,7 @@ export default function ShoppersPage() {
     `/apparels/new`
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data: apparelSelling, loading: apparelSellingLoading, error: apparelSellingError } = useFetch<ApparelsData>(
     `/apparels/top-selling`
   );
@@ -42,7 +43,7 @@ export default function ShoppersPage() {
 
   return (
     <div className="relative h-screen z-[3]">
-      <div className="pt-[80px] flex flex-col gap-[40px]">
+      <div className="pt-[110px] flex flex-col gap-[40px]">
         <ProductCarousel />
         <BrandSection headerTitle="Official Brands" itemCount={8} brands={brands} />
 
@@ -60,7 +61,7 @@ export default function ShoppersPage() {
         {!isSelling404 && (
           <ApparelListSection headerTitle="Top Selling" apparels={apparelSelling?.data} />
         )}
-         <Footer />
+        <Footer />
       </div>
     </div>
   );

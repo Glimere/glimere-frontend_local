@@ -6,7 +6,6 @@ import { useJwt } from "@/hooks/useJwt";
 import useUserStore from "@/store/userStore";
 import { useEffect } from "react";
 import ProtectedRoute from "@/utils/ProtectedRoutes";
-import Footer from "@/components/Footer";
 
 export default function DemoLayout({
   children,

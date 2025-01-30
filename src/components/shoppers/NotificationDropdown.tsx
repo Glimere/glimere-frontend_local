@@ -8,7 +8,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useNotificationStore from "@/store/notificationStore";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Inbox, AlertTriangle, CheckCircle, XCircle } from "lucide-react";
 

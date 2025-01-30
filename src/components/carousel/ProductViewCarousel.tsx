@@ -52,7 +52,7 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
       {" "}
       <AnimatePresence>
         <motion.div
-          className="duration-100 flex flex-row justify-center h-full pt-[80px]"
+          className="duration-100 flex flex-row justify-center h-full pt-[110px]"
           animate={{
             scale:
               selectedCurrent && parentIndex !== selectedCurrent() ? 0.7 : 1,
