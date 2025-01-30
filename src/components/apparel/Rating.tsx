@@ -1,5 +1,3 @@
-import { reviewsData } from "@/data/reviewsData";
-
 interface RatingProps {
   rating: number;
   reviews: number;
