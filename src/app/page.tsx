@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import LandingNav from "@/components/nav/LandingNav";
 import React, { useEffect, useRef, useState } from "react";

@@ -1,6 +1,11 @@
 import Link from 'next/link';
 
-export default function NavbarDropdown({ isOpen, modalToggle }) {
+interface NavbarDropdownProps {
+    isOpen: boolean;
+    modalToggle: (state: boolean) => void;
+}
+
+export default function NavbarDropdown({ isOpen, modalToggle }: NavbarDropdownProps) {
     return (
         <div
             className={`${
