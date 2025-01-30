@@ -1,9 +1,3 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -39,18 +33,31 @@ const nextConfig = {
       ],
     });
 
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+
     // Handle .svg files
     config.module.rules.push(
       {
-        test: /\.svg$/,
-        use: ["@svgr/webpack"],
+        ...fileLoaderRule,
+        test: /\.svg$/i,
+        resourceQuery: /url/, // *.svg?url
+      },
+      // Convert all other *.svg imports to React components
+      {
+        test: /\.svg$/i,
+        issuer: fileLoaderRule.issuer,
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+        use: ['@svgr/webpack'],
       },
       {
-        test: /\.js$/, // Apply the fix for large SVGs
+        test: /\.js$/, 
         exclude: /node_modules/,
         loader: 'babel-loader',
       }
     );
+
+      // Modify the file loader rule to ignore *.svg, since we have it handled now.
+  fileLoaderRule.exclude = /\.svg$/i;
 
     // Safely modify exclude for large files in Babel loader
     config.module.rules.forEach((rule) => {

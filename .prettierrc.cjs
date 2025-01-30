@@ -3,7 +3,8 @@
 /** @typedef {import("@ianvs/prettier-plugin-sort-imports").PluginConfig & import('prettier-plugin-tailwindcss').PluginOptions} PluginConfigs */
 
 /** @type {import('prettier').Config & PluginConfigs} */
-export default {
+// eslint-disable-next-line no-undef
+module.exports = {
   tabWidth: 2,
   printWidth: 80,
   jsxSingleQuote: false,
