@@ -84,9 +84,9 @@ const PaymentTab = () => {
       amount:
         Math.round(
           selectedOrder.total_price +
-            (selectedOrder.selected_city.fee === 0
-              ? selectedOrder?.shipping_fee
-              : selectedOrder.selected_city.fee)
+          (selectedOrder.selected_city.fee === 0
+            ? selectedOrder?.shipping_fee
+            : selectedOrder.selected_city.fee)
         ) * 100, // Convert to kobo
       bank: {
         code: selectedBankCode,
@@ -116,8 +116,10 @@ const PaymentTab = () => {
             variant: "default",
           });
 
-          // Open the payment URL in a new popup tab
-          window.open(data.url, "_blank");
+          if (typeof window != 'undefined') {
+            window.open(data.url, "_blank");
+          }
+          
         } else {
           toast({
             title: "Payment Failed",
@@ -281,11 +283,10 @@ const PaymentTab = () => {
               <div
                 key={tab}
                 onClick={() => setSelectedTab(tab)}
-                className={`cursor-pointer flex-1 text-center p-3 rounded-lg transition-all border-solid border-[2px] duration-300 ${
-                  selectedTab === tab
+                className={`cursor-pointer flex-1 text-center p-3 rounded-lg transition-all border-solid border-[2px] duration-300 ${selectedTab === tab
                     ? "bg-transparent-white-300 text-dark border-primary-100"
                     : "bg-gray-100 text-dark"
-                }`}
+                  }`}
               >
                 {tab === "bank" && (
                   <div className="flex flex-col gap-[10px] items-start">
