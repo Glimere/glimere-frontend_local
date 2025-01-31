@@ -11,7 +11,7 @@ import useUserStore from "@/store/userStore";
 import { UserDropdownMenu } from "../shoppers/UserdropdownMenu";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
-
+import { usePathname } from "next/navigation";
 import { NotificationDropdown } from "../shoppers/NotificationDropdown";
 import useNotificationStore from "@/store/notificationStore";
 
@@ -23,13 +23,18 @@ interface Notification {
   isRead: boolean; // Flag to check if notification is new
 }
 
+const ALLOWED_SEARCH_ROUTES = ["/shoppers/:id"];
+
 const ShoppersNav: React.FC = () => {
   const { cart } = useCartStore();
   const { user, isAuthenticated } = useUserStore();
+  const pathname = usePathname();
 
   const [isHydrated, setIsHydrated] = useState(false);
 
   const { notifications } = useNotificationStore();
+
+  const showSearch = ALLOWED_SEARCH_ROUTES.includes(pathname)
 
   useEffect(() => {
     setIsHydrated(true);
@@ -43,7 +48,7 @@ const ShoppersNav: React.FC = () => {
   if (!isHydrated) return null;
 
   return (
-    <nav className="absolute w-full h-[105px] sm:h-[80px] px-[25px] sm:px-[5.75rem] sm:p-0 flex flex-col items-center z-[4]">
+    <nav className="absolute w-full h-[105px] sm:h-[80px] px-[25px] sm:px-[5.75rem] sm:p-0 flex flex-col items-center z-[1000]">
       <div className="container mx-auto max-w-[1344px]">
         <div className="h-16 md:h-20 md:py-6 flex items-center justify-between z-20 relative">
           <div className="flex flex-row items-center justify-center">
@@ -122,16 +127,19 @@ const ShoppersNav: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="w-full relative flex grow sm:hidden flex-row items-center rounded-full gap-[15px] px-[20px] py-[3px] bg-transparent-white-300">
-        <Search
-          className={`block hover:fill-primary-100 duration-150 cursor-pointer scale-75`}
-        />
-        <input
-          type="text"
-          placeholder="Search"
-          className="bg-transparent outline-none"
-        ></input>
-      </div>
+      {showSearch &&
+        <div className="w-full relative flex grow sm:hidden flex-row items-center rounded-full gap-[15px] px-[20px] py-[3px] bg-transparent-white-300">
+          <Search
+            className={`block hover:fill-primary-100 duration-150 cursor-pointer scale-75`}
+          />
+          <input
+            type="text"
+            placeholder="Search"
+            className="bg-transparent outline-none"
+          ></input>
+        </div>
+      }
+
     </nav>
   );
 };

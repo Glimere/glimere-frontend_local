@@ -1,13 +1,16 @@
-// stores/useTextureChangeStore.ts
-import { create } from 'zustand';
-import * as THREE from 'three';
+import { create } from "zustand";
 
+// Define Zustand store to manage texture state
 interface TextureChangeState {
-  texture: THREE.Texture | null;
-  setTexture: (texture: THREE.Texture) => void;
+  textureImages: string[]; // Array of texture image URLs for previews
+  texture: string; // Store a single texture
+  setTextureImages: (imageUrls: string[]) => void; // Set multiple texture images
+  setTexture: (texture: string) => void; // Set a single texture
 }
 
 export const useTextureChangeStore = create<TextureChangeState>((set) => ({
-  texture: null,
-  setTexture: (texture) => set({ texture }),
+  textureImages: [],
+  texture: "",
+  setTextureImages: (imageUrls) => set({ textureImages: imageUrls }), // Update texture images
+  setTexture: (texture: string) => set({ texture: texture }), // Store a single texture
 }));

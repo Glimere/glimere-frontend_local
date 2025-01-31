@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import React, { Suspense } from "react";
-import SpinnerLoader from "@/components/loader/spinnerLoader";
-import GradientBg from "@/components/gradient/gradientBg";
+import React from "react";
 
 const leagueSpartan = League_Spartan({ subsets: ["latin"], display: "swap" });
 
@@ -40,15 +38,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Loading UI Component
-function Loading() {
-  return (
-    <div className="relative h-screen w-full overflow-hidden">
-      <GradientBg />
-      <SpinnerLoader />
-    </div>
-  );
-}
 
 export default function RootLayout({
   children,
@@ -58,9 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={leagueSpartan.className}>
-        <Suspense fallback={<Loading/>}>
-          {children}
-        </Suspense>
+        {children}
         <Toaster />
       </body>
     </html>

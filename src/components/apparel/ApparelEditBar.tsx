@@ -5,15 +5,15 @@ import Reset from "../../../public/images/reset-edit.svg";
 import Zoom from "../../../public/images/zoom.svg";
 import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
 
 interface Props {
   threeDToggle: boolean;
-  setThreeDToggle: any;
+  setThreeDToggle: (value: boolean) => void;
   editToggle: boolean;
-  setEditToggle: any;
+  setEditToggle: (value: boolean) => void;
 }
 
 const ApparelEditBar: NextPage<Props> = ({
@@ -23,7 +23,7 @@ const ApparelEditBar: NextPage<Props> = ({
   setEditToggle,
 }) => {
   return (
-    <div className="absolute right-[33%] h-full flex flex-col gap-[3rem] z-[3] pt-[120px]">
+    <div className="absolute right-[6%] sm:right-[36.5%] flex flex-col gap-[3rem] z-[3] pt-[50%] sm:pt-[10%]">
       <div className="max-h-[200px]">
         {editToggle ? (
           <></>

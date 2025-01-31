@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import * as THREE from "three"
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { useWindowWidth } from '@/hooks/useWindowsWidth'
 
 
 interface ModelProps {
@@ -19,9 +20,8 @@ interface ModelProps {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Model: React.FC<ModelProps> = ({ models, onSwitchModel, initialScale, canvasRef, setIsLoading, isInteracting, currentIndex, setCurrentIndex }) => {
 
-    const [isDesktop, setIsDesktop] = useState(true);
     const [model, setModel] = useState<ModelProps['models'][number] | null>(null);
-
+    const { isDesktop } = useWindowWidth();
 
     const [gltf, setGltf] = useState<THREE.Group | null>(null);
 
@@ -43,27 +43,7 @@ const Model: React.FC<ModelProps> = ({ models, onSwitchModel, initialScale, canv
 
     console.log('gltf', gltf)
 
-    useEffect(() => {
-        const updateScreenMode = () => {
-            const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-            const isDesktopMode = screenWidth >= 768; // Set breakpoint for desktop/mobile
-            setIsDesktop(isDesktopMode);
-        };
 
-        updateScreenMode(); // Initial check
-
-        if (typeof window !== "undefined") {
-            {
-                window.addEventListener('resize', updateScreenMode); // Listen for resize events
-            }
-
-            return () => {
-                if (typeof window !== "undefined") {
-                    window.removeEventListener('resize', updateScreenMode); // Clean up event listener
-                }
-            }
-        }
-    }, []); // Run effect only once
 
     const boundingBoxConfig = isDesktop ?
         { max: new THREE.Vector3(...(model?.boxSize?.desktop?.max || [0, 0, 0])), min: new THREE.Vector3(...(model?.boxSize?.desktop?.min || [0, 0, 0])) } :

@@ -15,6 +15,7 @@ import useApparelStore from "@/store/apparelStore";
 import type { Apparel } from "@/types";
 import ProductCarouselCard from "./ProductCarouselCard";
 import CarouselSkeletonLoader from "./CarouselSkeletonLoader";
+import { useWindowWidth } from "@/hooks/useWindowsWidth";
 
 export default function ProductCarousel() {
   const { data, loading, fetchData } = useApparelStore((state) => ({
@@ -25,11 +26,12 @@ export default function ProductCarousel() {
   }));
 
   const plugin = useRef(Autoplay({ delay: 9000, stopOnInteraction: true }));
-  const [windowWidth, setWindowWidth] = useState<number>(0);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
+
+  const { windowWidth } = useWindowWidth();
 
   useEffect(() => {
     if (data === undefined) {
@@ -37,24 +39,7 @@ export default function ProductCarousel() {
     }
   }, [fetchData]);
 
-  useEffect(() => {
-    // Only update `windowWidth` on the client side
-    const updateWindowWidth = () => {
-      setWindowWidth(typeof window !== "undefined" ? window.innerWidth : 0);
-    };
 
-    updateWindowWidth(); // Set initial width
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", updateWindowWidth);
-
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", updateWindowWidth);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     if (!api) {

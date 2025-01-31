@@ -14,10 +14,7 @@ import Image from "next/image";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import SliderPageIndicator from "./slideIndicator";
-import { MoveRight } from "lucide-react";
-import { MoveLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 
 interface ProductViewCarouselProps {
   apparel: Apparel;
@@ -96,7 +93,7 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="absolute flex flex-col gap-[20px] bottom-[20%] right-[10%] z-[5]">
+              <div className="absolute flex flex-col gap-[20px] bottom-[20%] right-[16%] sm:right-[10%] z-[5]">
                 <CarouselPrevious className="-translate-y-1/2 " />
                 <CarouselNext className="-translate-y-1/2" />
               </div>

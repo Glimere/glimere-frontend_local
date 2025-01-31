@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import type { Apparel } from "@/types";
 import Image from "next/image";
 import Like from "./Like";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Rating from "./Rating";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
@@ -13,9 +13,8 @@ interface Props {
 }
 
 const ApparelDetails: NextPage<Props> = ({ apparel }) => {
-  console.log(apparel);
 
-  const { cart, addItem, removeItem, getCart } = useCartStore();
+  const { addItem, getCart } = useCartStore();
 
   useEffect(() => {
     getCart();

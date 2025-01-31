@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type User = {
   name: string;
@@ -362,15 +363,9 @@ export type UserData = {
   profile_image: string | null;
   wishlist: string[]; // Assuming wishlist items are stored as string IDs
   preferred_payment_method: string;
-  order_history: Array<{
-    // Define the structure of an order if available, otherwise use `any`
-  }>;
-  cart: Array<{
-    // Define the structure of cart items if available, otherwise use `any`
-  }>;
-  ar_models: Array<{
-    // Define the structure of AR models if available, otherwise use `any`
-  }>;
+  order_history: Array<object>;
+  cart: Array<object>;
+  ar_models: Array<object>;
   created_at: string; // ISO date string
   updated_at: string; // ISO date string
   createdAt: string; // ISO date string
@@ -509,4 +504,12 @@ export interface Notification {
   isRead: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Texture {
+  name: string;
+  thumbnail: File;
+  description: string;
+  patternFile: File;
+  _id: string;
 }
