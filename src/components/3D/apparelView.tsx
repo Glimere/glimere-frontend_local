@@ -13,7 +13,6 @@ import SaveBar from "./saveBar";
 import SpinnerLoader from "../loader/spinnerLoader";
 import { useTextureChangeStore } from "@/store/textureChangeStore";
 import { useMeshSelectionStore } from "@/store/meshSelectStore";
-import { Slider } from "../ui/slider";
 
 interface ApparelViewerProps {
   modelUrl: string;

@@ -2,15 +2,18 @@ import { useSnapshot } from "valtio";
 import { state } from "./apparelView";
 import { HexColorPicker } from "react-colorful";
 import { useEffect } from "react";
+import { useMeshSelectionStore } from "@/store/meshSelectStore";
 
 const MeshListCard: React.FC = () => {
+
+  const {selectedMesh, setSelectedMesh} = useMeshSelectionStore();
   const snap = useSnapshot(state);
 
   useEffect(() => {
-    if (snap.selectedMesh) {
-      state.current = snap.items[snap.selectedMesh] || "#ffffff";
+    if (selectedMesh) {
+      state.current = snap.items[selectedMesh] || "#ffffff";
     }
-  }, [snap.selectedMesh]);
+  }, [selectedMesh]);
 
   return (
     <div className="w-full bg-[#ffffff6b] p-[10px] h-full overflow-y-scroll">
@@ -19,21 +22,21 @@ const MeshListCard: React.FC = () => {
         <div key={key} className="flex items-center justify-between my-2">
           <h3>{key}</h3>
           <button
-            onClick={() => (state.selectedMesh = key)}
+            onClick={() => setSelectedMesh(key)}
             className="bg-blue-500 text-white p-1 rounded"
           >
             Edit
           </button>
         </div>
       ))}
-      {snap.selectedMesh && (
+      {selectedMesh && (
         <div className="mt-4">
-          <h3>Editing: {snap.selectedMesh}</h3>
+          <h3>Editing: {selectedMesh}</h3>
           <HexColorPicker
             color={snap.current || "#ffffff"}
             onChange={(color) => {
-              if (snap.selectedMesh) {
-                state.items[snap.selectedMesh] = color;
+              if (selectedMesh) {
+                state.items[selectedMesh] = color;
               }
               state.current = color;
             }}
