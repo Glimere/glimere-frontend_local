@@ -23,8 +23,7 @@ export const useCartStore = create<CartState>()(
       addItem: async (item: CartItem) => {
         const token = await getJwt(); // Retrieve token dynamically
         if (!token) {
-          console.warn('User not authenticated. Cannot add item.');
-          return;
+          console.warn('User not authenticated. You can add item locally.');
         }
 
         const currentCart: CartData = get().cart || { _id: '', user: '', createdAt: '', updatedAt: '', __v: 0, items: [], total_items: 0, total_price: 0 };
