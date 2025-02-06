@@ -41,7 +41,7 @@ const ApparelEditMobile: NextPage<Props> = ({ apparel }) => {
     };
 
     return (
-        <div className="absolute left-[1.4rem] h-full flex flex-col justify-center sm:pl-[5.75rem] z-[3]">
+        <div className="absolute left-[1.4rem] pt-[55%] flex flex-col justify-center sm:pl-[5.75rem] z-[3]">
 
             <div className="flex flex-col gap-[10px] items-center">
                 <h1 className="text-[0.8rem] self-center text-primary-100 font-[700]">Material</h1>
