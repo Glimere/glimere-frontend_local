@@ -9,6 +9,7 @@ import ApparelDesktop from "./ApparelDesktop";
 import { useWindowWidth } from "@/hooks/useWindowsWidth";
 import ApparelMobile from "./ApparelMobile";
 import { useState } from "react";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 
 interface ViewProductProps {
@@ -44,7 +45,7 @@ const ViewApparel: NextPage<ViewProductProps> = ({ params }) => {
                             editToggle={editToggle}
                             setThreedToggle={setThreedToggle}
                             setEditToggle={setEditToggle}
-                            modelUrl={modelUrl}
+                            modelUrl={renderImageUrl(modelUrl)}
                             />}
                             {apparelData?.data && !isDesktop && 
                             <ApparelMobile 
@@ -53,7 +54,7 @@ const ViewApparel: NextPage<ViewProductProps> = ({ params }) => {
                             editToggle={editToggle}
                             setThreedToggle={setThreedToggle}
                             setEditToggle={setEditToggle}
-                            modelUrl={modelUrl}
+                            modelUrl={renderImageUrl(modelUrl)}
                             />}
                         </>
                     )}

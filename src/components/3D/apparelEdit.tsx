@@ -5,6 +5,7 @@ import { Plus } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useTextureChangeStore } from "@/store/textureChangeStore";
 import { useMeshSelectionStore } from "@/store/meshSelectStore";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 interface Props {
   apparel: Apparel;
@@ -18,7 +19,7 @@ const ApparelEdit: NextPage<Props> = ({ apparel }) => {
 
   // Load textures from apparel on page load
   useEffect(() => {
-    const textureUrls = apparel.materials.map((material) => material.textures.patternFile.url);
+    const textureUrls = apparel.materials.map((material) => renderImageUrl(material.textures.patternFile.url));
     setTextureImages(textureUrls); // Set initial texture URLs
   }, [apparel, setTextureImages]);
 

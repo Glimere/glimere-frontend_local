@@ -11,6 +11,7 @@ import CheckoutSummary from "@/components/cart/checkoutSummary";
 import { useRouter } from "next/navigation";
 import useUserStore from "@/store/userStore";
 import { Trash2 } from "lucide-react";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 const Cart: NextPage = () => {
   const { cart, removeItem } = useCartStore();
@@ -70,7 +71,7 @@ const Cart: NextPage = () => {
                         <Image
                           height={200}
                           width={200}
-                          alt={cartItem.apparel.apparel_name}
+                          alt={renderImageUrl(cartItem.apparel.apparel_name)}
                           src={cartItem.apparel.apparel_images[0].url}
                           className="object-cover h-full w-full"
                         />

@@ -1,11 +1,11 @@
 import Like from '@/components/apparel/Like';
 import { Card, CardContent } from '@/components/ui/card'
-import { Apparel, Brand } from '@/types'
+import { Apparel } from '@/types'
 import { CirclePlus } from 'lucide-react';
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useState } from 'react';
 import { usePrice } from '@/utils/usePrice';
+import { renderImageUrl } from '@/hooks/useRenderImageUrl';
 
 interface Props {
     apparel: Apparel;
@@ -25,7 +25,7 @@ const ApparelCard: NextPage<Props> = ({ apparel }) => {
                     <div className="flex flex-col gap-[10px]">
                         <div className="h-[240px] w-full overflow-hidden bg-light rounded-[10px]">
                             <Image
-                                src={apparel.apparel_images[0].url}
+                                src={renderImageUrl(apparel.apparel_images[0].url)}
                                 alt={apparel.apparel_name}
                                 height={150}
                                 width={150}

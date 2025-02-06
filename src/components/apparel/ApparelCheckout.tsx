@@ -5,6 +5,7 @@ import { usePrice } from "@/utils/usePrice";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import useUserStore from "@/store/userStore";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 interface Props {
   apparel: Apparel;
@@ -42,7 +43,7 @@ const ApparelCheckout: NextPage<Props> = ({ apparel }) => {
                 height={200}
                 width={200}
                 alt={apparel.apparel_images[0].name}
-                src={apparel.apparel_images[0].url}
+                src={renderImageUrl(apparel.apparel_images[0].url)}
                 className="object-cover h-full w-full"
               />
             </div>

@@ -7,6 +7,7 @@ import Rating from "./Rating";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 interface Props {
   apparel: Apparel;
@@ -37,7 +38,7 @@ const ApparelDetails: NextPage<Props> = ({ apparel }) => {
           <div className="flex flex-row gap-[10px] items-center">
             <div className="h-[2rem] w-[2rem] p-[5px] bg-white rounded-full border border-solid border-primary-100 overflow-hidden">
               <Image
-                src={apparel.brand.logo.url}
+                src={renderImageUrl(apparel.brand.logo.url)}
                 height={200}
                 width={200}
                 alt={apparel.brand.logo.name}

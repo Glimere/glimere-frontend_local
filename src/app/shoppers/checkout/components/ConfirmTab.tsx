@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import useOrderStore from "@/store/orderStore";
 import { NextPage } from "next";
 import Image from "next/image";
@@ -9,7 +10,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { X, Truck, Globe, Home } from "lucide-react";
+import { Truck, Globe, Home } from "lucide-react";
 import useUserStore from "@/store/userStore";
 import useFetch from "@/hooks/useFetch";
 import { usePrice } from "@/utils/usePrice";
@@ -23,6 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 type ContactInfo = {
   email: string;
@@ -90,15 +92,7 @@ interface ShippingOptionApi {
   message: string;
 }
 
-interface OrderItem {
-  apparel: {
-    apparel_name: string;
-    apparel_images: { url: string }[];
-    apparel_price: number;
-  };
-  selected_colors: { name: string }[];
-  selected_sizes: { short_name: string }[];
-}
+
 
 const ConfirmTab: NextPage = () => {
   const {
@@ -417,7 +411,7 @@ console.log('selectedOrder', selectedOrder)
                       height={200}
                       width={200}
                       alt={order.apparel.apparel_name}
-                      src={order.apparel.apparel_images[0].url}
+                      src={renderImageUrl(order.apparel.apparel_images[0].url)}
                       className="object-cover h-full w-full"
                     />
                   </div>

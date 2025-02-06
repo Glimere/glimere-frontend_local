@@ -2,10 +2,9 @@ import { usePrice } from "@/utils/usePrice";
 import { NextPage } from "next";
 import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
-interface Props {}
-
-const CheckoutPreview: NextPage<Props> = ({}) => {
+const CheckoutPreview: NextPage = () => {
   const { cart } = useCartStore();
 
   const totalPrice = () => {
@@ -40,7 +39,7 @@ const CheckoutPreview: NextPage<Props> = ({}) => {
                   height={200}
                   width={200}
                   alt={cartItem.apparel.apparel_images[0].name}
-                  src={cartItem.apparel.apparel_images[0].url}
+                  src={renderImageUrl(cartItem.apparel.apparel_images[0].url)}
                   className="object-cover h-full w-full"
                 />
               </div>

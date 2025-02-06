@@ -15,6 +15,7 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import SliderPageIndicator from "./slideIndicator";
 import { motion, AnimatePresence } from "framer-motion";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 interface ProductViewCarouselProps {
   apparel: Apparel;
@@ -80,7 +81,7 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
                         <CardContent className="flex items-center justify-center p-0 h-full">
                           <div className="h-full">
                             <Image
-                              src={img.url}
+                              src={renderImageUrl(img.url)}
                               alt={img.name}
                               width={800}
                               height={800}
