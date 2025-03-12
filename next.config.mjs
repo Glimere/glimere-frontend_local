@@ -10,6 +10,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'api.glimere.comundefined',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
         hostname: 'glimere-backend-local.onrender.com',
         port: '',
         pathname: '**',

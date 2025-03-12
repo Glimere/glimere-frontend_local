@@ -1,11 +1,10 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
-import GlimereLogo from "../../../../public/images/glimerenew1.svg"; // Ensure the asset path is correct
 import { Button } from "@/components/ui/button";
 import { registerUser } from "@/utils/authService";
+import React, { useState } from "react";
 
-
+import GlimereLogo from "../../../../public/images/Glimere-Logo.svg"; // Ensure the asset path is correct
 
 interface SignupPageProps {
   isVisible: boolean;
@@ -21,12 +20,12 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
     phone_number: "",
     password: "",
   };
-  const [registerUserDetails, setregisterUserDetailsDetails] =
-    useState(initialregisterUserDetails);
+  const [registerUserDetails, setregisterUserDetailsDetails] = useState(
+    initialregisterUserDetails,
+  );
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [role,] = useState("user");
-
+  const [role] = useState("user");
 
   const handleUserChange = ({
     target,
@@ -44,7 +43,7 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
     const { value } = target;
     setConfirmPassword(value);
     setError(
-      registerUserDetails.password !== value ? "Passwords do not match" : ""
+      registerUserDetails.password !== value ? "Passwords do not match" : "",
     );
   };
 
@@ -76,40 +75,30 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        if (error instanceof Error) {
-          if (error instanceof Error) {
-            if (error instanceof Error) {
-              setError(error.message);
-            } else {
-              setError("An unknown error occurred");
-            }
-          } else {
-            setError("An unknown error occurred");
-          }
-        } else {
-          setError("An unknown error occurred");
-        }
+        setError(error.message);
       } else {
         setError("An unknown error occurred");
       }
     }
   };
+
   return (
     <div
-      className={`w-full h-full rounded-[20px] bg-transparent-white-200 flex flex-col items-center justify-center gap-[20px] sm:p-[40px] px-[30px] duration-300 ${props.isVisible ? "opacity-100" : "opacity-0"
-        }`}
+      className={`flex h-full w-full flex-col items-center justify-center gap-[20px] rounded-[20px] bg-transparent-white-200 px-[30px] duration-300 sm:p-[40px] ${
+        props.isVisible ? "opacity-100" : "opacity-0"
+      }`}
     >
-      <div className="flex flex-col items-center gap-[20px] w-full">
+      <div className="flex w-full flex-col items-center gap-[20px]">
         <div className="flex flex-col items-center gap-[20px]">
-          <div className="w-[40px] h-[40px]">
+          <div className="h-[40px] w-[40px]">
             <GlimereLogo className="text-primary-100" />
           </div>
-          <h1 className="font-bold text-[22px]">Create an Account</h1>
+          <h1 className="text-[22px] font-bold">Create an Account</h1>
         </div>
 
-        <div className="w-full flex flex-col gap-[20px]">
-          <div className="w-full flex flex-row">
-            <div className="sm:col-span-3 mr-5 flex-[1]">
+        <div className="flex w-full flex-col gap-[20px]">
+          <div className="flex w-full flex-row">
+            <div className="mr-5 flex-[1] sm:col-span-3">
               <div className="">
                 <input
                   required
@@ -118,13 +107,13 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
                   name="firstname"
                   placeholder="First Name"
                   autoComplete="name"
-                  className="block w-full rounded-md border-0 py-1.5 px-4 shadow-sm placeholder:text-gray-400 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-white text-black hover:bg-gray-100 duration-200"
+                  className="block w-full rounded-md border-0 bg-white px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                   onChange={handleUserChange}
                 />
               </div>
             </div>
 
-            <div className="sm:col-span-3 flex-[1]">
+            <div className="flex-[1] sm:col-span-3">
               <div className="">
                 <input
                   required
@@ -133,7 +122,7 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
                   name="lastname"
                   placeholder="Last Name"
                   autoComplete="name"
-                  className="block w-full rounded-md border-0 py-1.5 px-4 shadow-sm placeholder:text-gray-400 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-white text-black hover:bg-gray-100 duration-200"
+                  className="block w-full rounded-md border-0 bg-white px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                   onChange={handleUserChange}
                 />
               </div>
@@ -149,7 +138,7 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
                 placeholder="Email"
                 type="email"
                 autoComplete="email"
-                className="block w-full rounded-md border-0 py-1.5 px-4 shadow-sm placeholder:text-gray-400 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-white text-black hover:bg-gray-100 duration-200"
+                className="block w-full rounded-md border-0 bg-white px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                 onChange={handleUserChange}
               />
             </div>
@@ -164,7 +153,7 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
                 placeholder="Phone"
                 type="phone_number"
                 autoComplete="phone_number"
-                className="block w-full rounded-md border-0 py-1.5 px-4 shadow-sm placeholder:text-gray-400 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-white text-black hover:bg-gray-100 duration-200"
+                className="block w-full rounded-md border-0 bg-white px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                 onChange={handleUserChange}
               />
             </div>
@@ -179,7 +168,7 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
                 placeholder="New Password"
                 type="password"
                 autoComplete="password"
-                className="block w-full rounded-md border-0 py-1.5 px-4 shadow-sm placeholder:text-gray-400 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-white text-black hover:bg-gray-100 duration-200"
+                className="block w-full rounded-md border-0 bg-white px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                 onChange={handleUserChange}
               />
             </div>
@@ -194,27 +183,26 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
                 placeholder="Confirm Password"
                 type="password"
                 autoComplete="confirm-password"
-                className="block w-full rounded-md border-0 py-1.5 px-4 shadow-sm placeholder:text-gray-400 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6 bg-white text-black hover:bg-gray-100 duration-200"
+                className="block w-full rounded-md border-0 bg-white px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                 onChange={handleConfirmPassword}
               />
-              <p className="text-red-700 text-[12px] mt-[5px]">{error}</p>
+              <p className="mt-[5px] text-[12px] text-red-700">{error}</p>
             </div>
           </div>
-
         </div>
 
-        <div className="w-full flex flex-col items-center justify-center gap-x-6">
+        <div className="flex w-full flex-col items-center justify-center gap-x-6">
           <Button
             type="submit"
-            className="rounded-md w-full bg-primary-100  px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="w-full rounded-md bg-primary-100 px-24 py-2 text-sm font-semibold text-white shadow-sm duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             onClick={signUp}
           >
             Sign Up
           </Button>
-          <div className="flex flex-row mt-[20px]">
-            <p className="text-[14px] mr-[5px]">Already have an Account?</p>
+          <div className="mt-[20px] flex flex-row">
+            <p className="mr-[5px] text-[14px]">Already have an Account?</p>
             <p
-              className="text-[14px] text-[#ed7534] cursor-pointer"
+              className="cursor-pointer text-[14px] text-[#ed7534]"
               onClick={() => {
                 props.setIsVisible(false);
               }}
@@ -224,9 +212,8 @@ const SignupPage: React.FC<SignupPageProps> = (props: SignupPageProps) => {
           </div>
         </div>
       </div>
-
     </div>
   );
-}
+};
 
-export default SignupPage;  
+export default SignupPage;

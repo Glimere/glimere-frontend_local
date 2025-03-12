@@ -2,5 +2,8 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "always"
+    },
+    "workbench.editorAssociations": {
+    "*.svg": "default"
     }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import CoverBg from "@/components/gradient/coverBg";
 import HowItWorksCustom1 from "../../../../../public/images/landing/how-it-works-custom-one.svg";
 import HowItWorksCustom2 from "../../../../../public/images/landing/how-it-works-custom-two.svg";
@@ -74,8 +74,6 @@ const stepsData = [
 
 export default function HowItWorksSection() {
   const [tab, setTab] = useState(0);
-  const { scrollYProgress } = useScroll();
-  const backgroundOffset = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
   return (
     <div className="relative bg-alabaster overflow-hidden flex flex-col gap-[0px] sm:gap-[100px] py-[50px] sm:py-[80px]">
@@ -85,7 +83,7 @@ export default function HowItWorksSection() {
         <h1 className="text-[2rem] sm:text-[3.357rem] text-dark font-[700]">How It Works</h1>
         <div className="flex flex-row w-[230px] items-center justify-center">
           <div className="flex flex-row gap-[20px] sm:gap-[50px]">
-            {stepsData.map((data, index) => (
+            {stepsData.map((_, index) => (
               <div
                 key={index}
                 className={`hover:border-gray-400 duration-150 ${

@@ -1,6 +1,6 @@
 "use client";
 
-import GlimereLogo from "../../../public/images/glimerenew.svg";
+import GlimereLogo from "../../../public/images/Glimere-Logo.svg";
 import ShoppingBag from "../../../public/images/shopping-bag.svg";
 import User from "../../../public/images/user.svg";
 import Search from "../../../public/images/search.svg";
@@ -20,7 +20,7 @@ interface Notification {
   heading: string;
   message: string;
   type: "warning" | "info" | "success" | "error"; // Notification types
-  isRead: boolean; // Flag to check if notification is new
+  isRead: boolean; 
 }
 
 const ALLOWED_SEARCH_ROUTES = ["/shoppers/:id"];
@@ -54,7 +54,7 @@ const ShoppersNav: React.FC = () => {
           <div className="flex flex-row items-center justify-center">
             <Link href="/shoppers">
               <GlimereLogo
-                className={`h-[40px] block text-primary-100 cursor-pointer`}
+                className={`text-primary-100 cursor-pointer`}
               />
             </Link>
           </div>
@@ -77,7 +77,7 @@ const ShoppersNav: React.FC = () => {
                     className={`block hover:fill-primary-100 duration-150 mt-[4px]`}
                   />
                   {/* Add a dot to indicate new notifications */}
-                  {notifications.some((notif) => notif.isRead) && (
+                  {notifications?.some((notif) => notif?.isRead) && (
                     <span className="absolute top-0 right-0 block w-2.5 h-2.5 bg-red-500 rounded-full"></span>
                   )}
                 </div>

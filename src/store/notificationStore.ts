@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 import axios from 'axios';
 import { getJwt } from '@/lib/cookie';
 import { ApiResponse, Notification } from '@/types';

@@ -3,7 +3,7 @@ import Facebook from "../../../public/images/facebook.svg";
 import Instagram from "../../../public/images/instagram.svg";
 import Linkedin from "../../../public/images/linkedin.svg";
 import Twitter from "../../../public/images/twitter.svg";
-import GlimereLogo from "../../../public/images/glimerenew.svg";
+import GlimereLogo from "../../../public/images/Glimere-Logo.svg";
 
 
 const LandingFooter: NextPage = () => {

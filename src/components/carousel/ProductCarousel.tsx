@@ -1,21 +1,23 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
+import { useWindowWidth } from "@/hooks/useWindowsWidth";
+import useApparelStore from "@/store/apparelStore";
+import type { Apparel } from "@/types";
 import Autoplay from "embla-carousel-autoplay";
 import { useEffect, useRef, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+
 import {
-  CarouselContent,
   Carousel,
+  CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
 } from "../ui/carousel copy";
-import useApparelStore from "@/store/apparelStore";
-import type { Apparel } from "@/types";
-import ProductCarouselCard from "./ProductCarouselCard";
 import CarouselSkeletonLoader from "./CarouselSkeletonLoader";
-import { useWindowWidth } from "@/hooks/useWindowsWidth";
+import NameSwitcher from "./NameSwitcher";
+import ProductCarouselCard from "./ProductCarouselCard";
 
 export default function ProductCarousel() {
   const { data, loading, fetchData } = useApparelStore((state) => ({
@@ -38,8 +40,6 @@ export default function ProductCarousel() {
       fetchData(); // Initial fetch when component mounts
     }
   }, [fetchData]);
-
-
 
   useEffect(() => {
     if (!api) {
@@ -68,43 +68,56 @@ export default function ProductCarousel() {
 
   return (
     <div
-      className={`h-full w-full flex flex-row items-center overflow-hidden ${windowWidth <= 640 ? "scale-100" : " scale-[1.20]"
-        }`}
+      className={`flex h-full w-full flex-row items-center overflow-hidden ${
+        windowWidth <= 640 ? "scale-100" : "scale-[1.20]"
+      }`}
     >
       {loading ? (
         <CarouselSkeletonLoader />
       ) : (
-        <Carousel
-          plugins={[plugin.current]}
-          className="w-full max-w-full group"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-          setApi={setApi}
-        >
-          <CarouselContent>
-            {data?.data?.map((apparel: Apparel, index: number) => (
-              <CarouselItem
-                key={index}
-                className={`sm:basis-1/3 md:basis-1/3 lg:basis-1/5 duration-300 ${index === getSelectedCurrent() ? "" : ""
+        <>
+          <div className="absolute flex h-full w-full items-center justify-center">
+            <div className="ml-[-19%] z-10 rotate-90">
+              <NameSwitcher
+              apparels={data?.data}
+              selectedCurrent={() => getSelectedCurrent()}
+            /> 
+            </div>
+           
+          </div>
+          <Carousel
+            plugins={[plugin.current]}
+            className="group relative w-full max-w-full"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+            setApi={setApi}
+          >
+            <CarouselContent>
+              {data?.data?.map((apparel: Apparel, index: number) => (
+                <CarouselItem
+                  key={index}
+                  className={`duration-300 sm:basis-1/3 md:basis-1/3 lg:basis-1/5 ${
+                    index === getSelectedCurrent() ? "" : ""
                   }`}
-              >
-                <div className="p-1">
-                  <Card className="bg-transparent shadow-none border-none">
-                    <CardContent className="flex aspect-square items-center justify-center p-0">
-                      <ProductCarouselCard
-                        apparel={apparel}
-                        selectedCurrent={() => getSelectedCurrent()}
-                        parentIndex={index}
-                      />
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="absolute left-[36%] duration-300 opacity-0 group-hover:opacity-100" />
-          <CarouselNext className="absolute right-[36%] duration-300 opacity-0 group-hover:opacity-100" />
-        </Carousel>
+                >
+                  <div className="p-1">
+                    <Card className="border-none bg-transparent shadow-none">
+                      <CardContent className="flex aspect-square items-center justify-center p-0">
+                        <ProductCarouselCard
+                          apparel={apparel}
+                          selectedCurrent={() => getSelectedCurrent()}
+                          parentIndex={index}
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-[36%] opacity-0 duration-300 group-hover:opacity-100" />
+            <CarouselNext className="absolute right-[36%] opacity-0 duration-300 group-hover:opacity-100" />
+          </Carousel>
+        </>
       )}
     </div>
   );

@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import LandingNav from "@/components/nav/LandingNav";
-import React, { useEffect, useState } from "react";
 import Creators from "@/components/landing/creators/Creators";
-import Shoppers from "@/components/landing/shoppers/Shoppers";
-import { useSearchParams } from "next/navigation";
 import LandingFooter from "@/components/landing/LandingFooter";
+import Shoppers from "@/components/landing/shoppers/Shoppers";
+import LandingNav from "@/components/nav/LandingNav";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 interface HomeProps {
   initialPage: string;
@@ -16,7 +16,7 @@ export default function Home({ initialPage }: HomeProps) {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(initialPage);
   const searchParameters = useSearchParams();
-  const viewertype = searchParameters.get("fashion");
+  const viewertype = searchParameters.get("shoppers");
 
   // {Host}?fashion=creators
   // {Host}?fashion=shoppers

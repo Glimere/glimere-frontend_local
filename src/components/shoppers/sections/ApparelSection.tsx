@@ -1,57 +1,72 @@
-import React from 'react';
 import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
-import { ArrowRight, CirclePlus } from 'lucide-react';
-import ApparelCard from '../cards/ApparelCard';
-import useFetch from '@/hooks/useFetch';
-import { Apparel, ApparelData } from '@/types';
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Apparel } from "@/types";
+import { ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+
+import ApparelCard from "../cards/ApparelCard";
+import ApparelLoading from "./ApparelLoading";
 
 interface ApparelSectionProps {
-    headerTitle: string;
-    apparels: Apparel[] | undefined;
+  headerTitle: string;
+  apparels: Apparel[] | undefined;
+  loading: boolean;
 }
 
-const ApparelSection: React.FC<ApparelSectionProps> = ({ headerTitle, apparels }) => {
+const ApparelSection: React.FC<ApparelSectionProps> = ({
+  headerTitle,
+  apparels,
+  loading,
+}) => {
+  const [isLoading, setIsLoading] = useState(true);
 
-    return (
-        <div className="px-[1.4rem] sm:px-[6.25rem]">
+  useEffect(() => {
+    setIsLoading(loading);
+  }, [loading]);
 
-            <div className="flex flex-col gap-[20px]">
-                <div className="flex flex-row justify-between items-center">
-                    <h2 className="text-xl sm:text-2xl  font-bold text-centerself-start">{headerTitle}</h2>
-                    <div className="flex flex-row gap-[10px] items-center">
-                        <span className='font-bold'>See More</span>
-                        <div className="h-[25px] w-[25px] rounded-full bg-primary-100 flex justify-center items-center">
-                            <ArrowRight className='text-light w-[17px]' />
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="w-full">
-                    <Carousel className="w-full max-w-full">
-                        <CarouselContent className="-ml-1">
-                            {apparels?.map((apparel) => (
-                                <CarouselItem key={apparel._id} className="pl-4 basis-1/2 md:basis-1/4 lg:basis-1/5">
-                                    <ApparelCard apparel={apparel} />
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
-                    </Carousel>
-                </div>
+  return (
+    <div className="px-[1.4rem] sm:px-[6.25rem]">
+      <div className="flex flex-col gap-[20px]">
+        <div className="flex flex-row items-center justify-between">
+          <h2 className="text-centerself-start text-xl font-bold sm:text-2xl">
+            {headerTitle}
+          </h2>
+          <div className="flex flex-row items-center gap-[10px]">
+            <span className="font-bold">See More</span>
+            <div className="flex h-[25px] w-[25px] items-center justify-center rounded-full bg-primary-100">
+              <ArrowRight className="w-[17px] text-light" />
             </div>
-
+          </div>
         </div>
-    );
 
-
+        <div className="w-full">
+          {isLoading ? (
+            <ApparelLoading />
+          ) : (
+            <Carousel className="w-full max-w-full">
+              <CarouselContent className="-ml-1">
+                {apparels?.map((apparel) => (
+                  <CarouselItem
+                    key={apparel._id}
+                    className="basis-1/3 pl-4 md:basis-1/5 lg:basis-1/6"
+                  >
+                    <ApparelCard apparel={apparel} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ApparelSection;

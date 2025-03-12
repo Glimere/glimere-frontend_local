@@ -1,18 +1,19 @@
-import { useState, useRef, useEffect } from "react";
-import * as THREE from "three";
-import { Canvas, ThreeEvent } from "@react-three/fiber";
+import { useMeshSelectionStore } from "@/store/meshSelectStore";
+import { useTextureChangeStore } from "@/store/textureChangeStore";
 import {
-  useGLTF,
   ContactShadows,
   Environment,
   OrbitControls,
+  useGLTF,
 } from "@react-three/drei";
-import { proxy, useSnapshot } from "valtio";
+import { Canvas, ThreeEvent } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
 import { HexColorPicker } from "react-colorful";
+import * as THREE from "three";
+import { proxy, useSnapshot } from "valtio";
+
+import GlimereLoader from "../loader/spinnerLoader";
 import SaveBar from "./saveBar";
-import SpinnerLoader from "../loader/spinnerLoader";
-import { useTextureChangeStore } from "@/store/textureChangeStore";
-import { useMeshSelectionStore } from "@/store/meshSelectStore";
 
 interface ApparelViewerProps {
   modelUrl: string;
@@ -24,13 +25,16 @@ export const state = proxy({
   items: {} as Record<string, string>,
 });
 
-const ApparelViewer: React.FC<ApparelViewerProps> = ({ modelUrl, editToggle }) => {
+const ApparelViewer: React.FC<ApparelViewerProps> = ({
+  modelUrl,
+  editToggle,
+}) => {
   const [loading, setLoading] = useState(true);
   const [hoveredMesh, setHoveredMesh] = useState<string | null>(null);
   const [colorPickerVisible, setColorPickerVisible] = useState(false);
   const [pickerPosition, setPickerPosition] = useState({ x: 0, y: 0 });
   const { texture } = useTextureChangeStore();
-  const {selectedMesh, setSelectedMesh} = useMeshSelectionStore()
+  const { selectedMesh, setSelectedMesh } = useMeshSelectionStore();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { nodes } = useGLTF(modelUrl) as any;
 
@@ -75,9 +79,8 @@ const ApparelViewer: React.FC<ApparelViewerProps> = ({ modelUrl, editToggle }) =
     }
   };
 
-
   useEffect(() => {
-    if (nodes && texture ) {
+    if (nodes && texture) {
       const loader = new THREE.TextureLoader();
       loader.load(texture, (loadedTexture) => {
         const tex = loadedTexture.clone();
@@ -102,13 +105,13 @@ const ApparelViewer: React.FC<ApparelViewerProps> = ({ modelUrl, editToggle }) =
     }
   }, [nodes]);
 
-  console.log("selectedMesh",selectedMesh)
+  console.log("selectedMesh", selectedMesh);
 
   return (
     <>
       {loading ? (
-        <div className="h-full w-full flex justify-center items-center">
-          <SpinnerLoader />
+        <div className="flex h-full w-full items-center justify-center">
+          <GlimereLoader />
         </div>
       ) : (
         <>
@@ -129,8 +132,8 @@ const ApparelViewer: React.FC<ApparelViewerProps> = ({ modelUrl, editToggle }) =
             </div>
           )}
 
-          <div className="relative h-full w-full flex flex-col items-center">
-          {editToggle && <SaveBar />}
+          <div className="relative flex h-full w-full flex-col items-center">
+            {editToggle && <SaveBar />}
 
             <Canvas
               shadows
@@ -206,7 +209,8 @@ const Apparel: React.FC<ApparelProps> = ({
     if (nodes) {
       Object.keys(nodes).forEach((key) => {
         const material = nodes[key].material;
-        if (material && material.color) {  // Check if color exists
+        if (material && material.color) {
+          // Check if color exists
           state.items[key] = material.color.getStyle();
         }
       });
@@ -244,4 +248,3 @@ const Apparel: React.FC<ApparelProps> = ({
 };
 
 export default ApparelViewer;
-

@@ -1,52 +1,87 @@
-import Like from '@/components/apparel/Like';
-import { Card, CardContent } from '@/components/ui/card'
-import { Apparel } from '@/types'
-import { CirclePlus } from 'lucide-react';
-import { NextPage } from 'next'
-import Image from 'next/image'
-import { usePrice } from '@/utils/usePrice';
-import { renderImageUrl } from '@/hooks/useRenderImageUrl';
+"use client";
+
+import Like from "@/components/apparel/Like";
+import { Card, CardContent } from "@/components/ui/card";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+import { useCartStore } from "@/store/cartStore";
+import { Apparel } from "@/types";
+import { usePrice } from "@/utils/usePrice";
+import { CircleCheck, CirclePlus } from "lucide-react";
+import Image from "next/image";
 
 interface Props {
-    apparel: Apparel;
+  apparel: Apparel;
 }
 
-const ApparelCard: NextPage<Props> = ({ apparel }) => {
+const ApparelCard: React.FC<Props> = ({ apparel }) => {
+  const { addItem, cart } = useCartStore();
+  const { formatPrice } = usePrice();
 
-    const { formatPrice } = usePrice();
+  // Derive `isInCart` directly from Zustand store
+  const isInCart = cart?.items.some((item) => item.apparel._id === apparel._id) ?? false;
 
-    return (
-        <div className="">
-            <Card className='bg-transparent overflow-visible shadow-none border-none'>
-                <CardContent className="relative p-0 flex items-center justify-center overflow-hidden">
-                    <div className="absolute top-4 right-4 scale-75 z-[3]">
-                        <Like apparelId={apparel._id} />
-                    </div>
-                    <div className="flex flex-col gap-[10px]">
-                        <div className="h-[240px] w-full overflow-hidden bg-light rounded-[10px]">
-                            <Image
-                                src={renderImageUrl(apparel.apparel_images[0].url)}
-                                alt={apparel.apparel_name}
-                                height={150}
-                                width={150}
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                        <div className="flex flex-col gap-[7px] items-center h-[100px]">
-                            <h3 className="font-semibold text-center">{apparel.apparel_name}</h3>
+  const handleAddToCart = () => {
+    if (!apparel) return;
 
-                            <div className="flex flex-row gap-[10px] items-center">
-                                <span className="text-sm font-normal mt-1">{formatPrice(apparel.apparel_price)}</span>
-                                <CirclePlus className='w-[20px]' />
-                            </div>
-                        </div>
-                    </div>
+    const selectedMaterial = apparel?.materials?.[0];
+    const selectedColor = selectedMaterial?.colorVariants?.[0];
 
+    addItem({
+      apparel,
+      selected_sizes: [apparel?.sizing_type],
+      selected_colors: selectedColor ? [selectedColor] : [],
+      selected_materials: selectedMaterial ? [selectedMaterial] : [],
+      quantity: 1,
+      _id: apparel._id,
+    });
+  };
 
-                </CardContent>
-            </Card>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Card className="overflow-visible border-none bg-transparent shadow-none">
+        <CardContent className="relative flex items-center justify-center overflow-hidden p-0">
+          {/* Like Button */}
+          <div className="absolute right-4 top-4 z-[3] scale-75">
+            <Like apparelId={apparel?._id} />
+          </div>
 
-export default ApparelCard
+          {/* Image */}
+          <div className="flex flex-col gap-[10px]">
+            <div className="h-[240px] w-full overflow-hidden rounded-[10px] bg-light">
+              <Image
+                src={renderImageUrl(apparel?.apparel_images?.[0]?.url)}
+                alt={apparel?.apparel_name || "Apparel Image"}
+                height={240}
+                width={240}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
+
+            {/* Name & Price */}
+            <div className="flex h-[100px] flex-col items-center gap-[7px]">
+              <h3 className="text-center font-semibold">{apparel?.apparel_name}</h3>
+
+              <div className="flex flex-row items-center gap-[10px]">
+                <span className="mt-1 text-sm font-normal">
+                  {formatPrice(apparel?.apparel_price)}
+                </span>
+
+                {/* Add to Cart Button */}
+                <button onClick={handleAddToCart} className="focus:outline-none">
+                  {isInCart ? (
+                    <CircleCheck className="w-[20px] text-green-600" />
+                  ) : (
+                    <CirclePlus className="w-[20px] text-gray-600 hover:text-black" />
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default ApparelCard;

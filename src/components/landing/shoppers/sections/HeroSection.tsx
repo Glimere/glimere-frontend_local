@@ -14,8 +14,8 @@ export default function HeroSection() {
         <div className="absolute bottom-0 w-full h-[85%] bg-hero-gradient z-[5]"></div>
         <div className="h-[20%] w-full mt-[-7.5%] z-[6]">
           <Image
-            height={2000}
-            width={2000}
+            height={1000}
+            width={1000}
             alt="Background Image"
             src="/images/landing/background/backgroundImg.png"
             className="w-full object-cover"

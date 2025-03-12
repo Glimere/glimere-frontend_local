@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import NavbarDropdown from "@/components/nav/NavbarDropdown";
-import GlimereLogo from "../../../public/images/glimerenew.svg";
+import GlimereLogo from "../../../public/images/Glimere-Logo.svg";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 // Define the prop types
 interface LandingNavProps {
@@ -104,27 +105,27 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
           </div>
 
           {/* Button */}
-          <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-body font-medium">
+          <div className="hidden md:flex md:gap-4 lg:gap-[25px] items-center text-sm lg:text-base font-medium">
             <Link
               href="/shoppers"
               className={`${!creatorsPath ? "visible" : "hidden"}`}
             >
-              <button
-                className={`text-dark-100 ${"border-black"} hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}
+              <Button
+                className={`text-dark-100 ${"border-black"} bg-transparent hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}
               >
                 Start Shopping
-              </button>
+              </Button>
             </Link>
 
             <Link
               href="/onboarding"
               className={`${creatorsPath ? "visible" : "hidden"}`}
             >
-              <button
-                className={`text-dark-100 ${"border-black"} hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}
+              <Button
+                className={`text-dark-100 ${"border-black"} bg-transparent hover:bg-black duration-150 hover:text-white border-solid border-[1px] md:py-2.5 py-3.5 px-[25px] rounded-[10px]`}
               >
                 Sell on Glimere
-              </button>
+              </Button>
             </Link>
           </div>
         </div>

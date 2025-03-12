@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import GlimereLogo from '../../public/images/glimerenew.svg';
+import GlimereLogo from '../../public/images/Glimere-Logo.svg';
 import Facebook from '../../public/images/facebook.svg';
 import Instagram from '../../public/images/instagram.svg';
 import Linkedin from '../../public/images/linkedin.svg';
@@ -13,7 +12,7 @@ export default function Footer() {
         <div className="lg:col-span-1">
           <GlimereLogo className="w-[50px] h-[50px] hidden sm:block text-dark" />
         </div>
-        <div className="grid grid-cols-2 gap-9 font-body md:grid-cols-4 lg:col-span-2 lg:mb-0">
+        <div className="grid grid-cols-2 gap-9 md:grid-cols-4 lg:col-span-2 lg:mb-0">
           {/* Feature Links */}
           <div>
             <h6 className="mb-5 font-medium text-lg text-dark">Shop Custom</h6>
@@ -80,7 +79,7 @@ export default function Footer() {
             </div>
           </div>
           {/* Footer Text */}
-          <p className="font-body text-dark font-medium order-1">
+          <p className="text-dark font-medium order-1">
             © 2023 Glimere
           </p>
         </div>

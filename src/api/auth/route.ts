@@ -3,7 +3,7 @@ import { getJwt } from "@/lib/cookie";
 import { NextRequest, NextResponse } from "next/server";
 
 // This route acts as a proxy to forward requests to the Express backend
-export async function GET(req: NextRequest) {
+export async function GET() {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/me`; // Your Express backend URL
 
   // Get the JWT token from cookies

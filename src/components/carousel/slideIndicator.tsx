@@ -1,4 +1,3 @@
-import { dir } from 'console';
 import { FC } from 'react';
 
 interface SliderPageIndicatorProps {

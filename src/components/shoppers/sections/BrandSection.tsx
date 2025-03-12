@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BrandCard from '../cards/BrandCard';
 import { Brand } from '@/types';
 

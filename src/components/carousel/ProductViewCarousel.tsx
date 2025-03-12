@@ -5,17 +5,17 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import type { Apparel } from "@/types";
-import Image from "next/image";
-import { NextPage } from "next";
-import { useEffect, useState } from "react";
-import SliderPageIndicator from "./slideIndicator";
-import { motion, AnimatePresence } from "framer-motion";
 import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+import type { Apparel } from "@/types";
+import { AnimatePresence, motion } from "framer-motion";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
+import { NextPage } from "next";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
+import SliderPageIndicator from "./slideIndicator";
 
 interface ProductViewCarouselProps {
   apparel: Apparel;
@@ -50,15 +50,15 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
       {" "}
       <AnimatePresence>
         <motion.div
-          className="duration-100 flex flex-row justify-center h-full pt-[110px]"
+          className="flex h-full flex-row justify-center pt-[110px] duration-100"
           animate={{
             scale:
               selectedCurrent && parentIndex !== selectedCurrent() ? 0.7 : 1,
           }}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative max-w-[39rem] min-w-[25rem] h-full flex flex-col items-center">
-            <div className="absolute z-[2] left-[10%] h-full">
+          <div className="relative flex h-full min-w-[25rem] max-w-[39rem] flex-col items-center">
+            <div className="absolute left-[5%] z-[2] h-full sm:left-[1%]">
               <SliderPageIndicator
                 totalCount={count}
                 current={current}
@@ -70,22 +70,22 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
                 align: "start",
               }}
               orientation="vertical"
-              className="w-full h-full max-w-[24rem] z-[1]"
+              className="relative z-[1] flex h-full w-full max-w-[24rem] flex-row items-center"
               setApi={setApi}
             >
-              <CarouselContent className="-mt-1 h-[32rem]">
+              <CarouselContent className="-mt-1 h-[40rem] sm:h-[35rem]">
                 {apparel.apparel_images.map((img, index: number) => (
-                  <CarouselItem key={index} className="pt-1 md:basis-1/1">
-                    <div className="p-1 h-full">
-                      <Card className="bg-transparent shadow-none border-none h-full">
-                        <CardContent className="flex items-center justify-center p-0 h-full">
+                  <CarouselItem key={index} className="md:basis-1/1 pt-1">
+                    <div className="h-full p-1">
+                      <Card className="h-full border-none bg-transparent shadow-none">
+                        <CardContent className="flex h-full items-center justify-center p-0">
                           <div className="h-full">
                             <Image
                               src={renderImageUrl(img.url)}
                               alt={img.name}
                               width={800}
                               height={800}
-                              className="object-cover h-full"
+                              className="h-full object-cover"
                             />
                           </div>
                         </CardContent>
@@ -94,10 +94,22 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="absolute flex flex-col gap-[20px] bottom-[20%] right-[16%] sm:right-[10%] z-[5]">
-                <CarouselPrevious className="-translate-y-1/2 " />
-                <CarouselNext className="-translate-y-1/2" />
-              </div>
+              {/* <div className="absolute bottom-[5%] z-[10] flex w-full flex-row justify-center gap-[20px]">
+                <div className="flex flex-row gap-[20px]">
+                  <div
+                    className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#ffffff91]"
+                    onClick={() => api?.scrollPrev()}
+                  >
+                    <ChevronLeft className="w-[15px]"/>
+                  </div>
+                  <div
+                    className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-[#ffffff91]"
+                    onClick={() => api?.scrollNext()}
+                  >
+                    <ChevronRight className="w-[15px]"/>
+                  </div>
+                </div>
+              </div> */}
             </Carousel>
           </div>
         </motion.div>
