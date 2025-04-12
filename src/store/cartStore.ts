@@ -82,10 +82,8 @@ export const useCartStore = create<CartState>()(
 
       removeItem: async (id: string) => {
         const token = await getJwt();
-        console.log('token', token)
         if (!token) {
           console.warn("User not authenticated. Cannot remove item.");
-          return;
         }
 
         const currentCart = get().cart;
@@ -123,7 +121,6 @@ export const useCartStore = create<CartState>()(
         const token = await getJwt();
         if (!token) {
           console.warn("User not authenticated. Cannot remove items.");
-          return;
         }
 
         const currentCart = get().cart;
@@ -162,7 +159,6 @@ export const useCartStore = create<CartState>()(
         const token = await getJwt();
         if (!token) {
           console.warn("User not authenticated. Cannot update quantity.");
-          return;
         }
 
         const currentCart = get().cart;

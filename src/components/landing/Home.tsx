@@ -4,8 +4,7 @@ import Creators from "@/components/landing/creators/Creators";
 import LandingFooter from "@/components/landing/LandingFooter";
 import Shoppers from "@/components/landing/shoppers/Shoppers";
 import LandingNav from "@/components/nav/LandingNav";
-import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface HomeProps {
   initialPage: string;
@@ -15,17 +14,7 @@ export default function Home({ initialPage }: HomeProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(initialPage);
-  const searchParameters = useSearchParams();
-  const viewertype = searchParameters.get("shoppers");
 
-  // {Host}?fashion=creators
-  // {Host}?fashion=shoppers
-
-  useEffect(() => {
-    if (viewertype === "creators" || viewertype === "shoppers") {
-      setPage(viewertype);
-    }
-  }, [viewertype]);
 
   return (
     <>
