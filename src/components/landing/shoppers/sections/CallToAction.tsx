@@ -1,42 +1,58 @@
 import GradientBg from "@/components/gradient/gradientBg";
-import CtaImage1 from "../../../../../public/images/landing/cta-image-one.svg";
-import CtaImage2 from "../../../../../public/images/landing/cta-image-two.svg";
 import { MoveUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function CallToAction() {
+  const CtaImage1 =
+    "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449131/cta-image-one_jf1n72.svg";
+  const CtaImage2 =
+    "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449129/cta-image-two_gts7ks.svg";
   return (
     <>
-      <div className="relative h-[250px] sm:h-[500px] bg-alabaster overflow-hidden flex flex-row gap-[100px] justify-center items-center px-[1.4rem] sm:px-[6.25rem] py-[50px] sm:py-[80px]">
+      <div className="relative flex h-[250px] flex-row items-center justify-center gap-[100px] overflow-hidden bg-alabaster px-[1.4rem] py-[50px] sm:h-[500px] sm:px-[6.25rem] sm:py-[80px]">
         <GradientBg />
-        <div className="absolute top-0 w-full h-[426px] bg-body-gradient rotate-180 z-[2]"></div>
-        <div className="absolute bottom-0 w-full h-[426px] bg-body-gradient z-[2]"></div>
+        <div className="absolute top-0 z-[2] h-[426px] w-full rotate-180 bg-body-gradient"></div>
+        <div className="absolute bottom-0 z-[2] h-[426px] w-full bg-body-gradient"></div>
 
-        <div className="relative flex flex-col gap-[1rem] items-center z-[4]">
-
-          <div className="flex flex-row justify-center w-full">
-
-
-            <div className="flex flex-row gap-[1rem] md:gap-[1.2rem] lg:gap-[3rem] items-center self-center sm:w-auto w-[17.2rem]">
-              <span className="text-[1.5rem] md:text-[2.9rem] lg:text-[5rem] text-dark font-[600]">Slay the</span>
-              <div className="w-[45%] md:w-[50%] lg:w-auto">
-                <CtaImage1 className="w-full h-full" preserveAspectRatio="xMidYMid meet" viewBox="0 0 364 97" />
-              </div>
-              <div className="w-[12%] md:w-[14%] lg:w-auto">
-                <CtaImage2 className="w-full h-full" preserveAspectRatio="xMidYMid meet" viewBox="0 0 97 97" />
-              </div>
+        <div className="relative z-[4] flex flex-col items-center gap-[1rem]">
+          <div className="flex w-full flex-row justify-center gap-[1rem] sm:gap-[2rem]">
+            <div className="flex items-center gap-[1rem] self-center md:w-[17.2rem] md:gap-[1.2rem] lg:gap-[3rem]">
+              <span className="whitespace-nowrap text-[1.5rem] font-[600] text-dark md:text-[2.9rem] lg:text-[5rem]">
+                Slay the
+              </span>
+            </div>
+            <div className="relative aspect-[364/97] w-[50%] lg:w-[40%]">
+              <Image
+                src={CtaImage1}
+                alt="Call to Action Image 1"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="relative aspect-square w-[14%] lg:w-[10%]">
+              <Image
+                src={CtaImage2}
+                alt="Call to Action Image 2"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </div>
 
-          <div className="flex flex-row gap-[1rem] md:gap-[1.2rem] lg:gap-[3rem] items-center">
+          <div className="flex flex-row items-center gap-[1rem] md:gap-[1.2rem] lg:gap-[3rem]">
             <Link href="/shoppers">
-              <div className="py-[0.7rem] lg:py-[1.2rem] px-[0.9rem] md:px-[1.9rem] lg:px-[4rem] flex flex-row items-center gap-[9px] sm:gap-[20px] duration-150 hover:bg-dark cursor-pointer bg-primary-100 text-light rounded-full">
-                <p className="text-[1rem] md:text-[1.5rem] lg:text-[2rem]">Start shopping</p>
+              <div className="flex cursor-pointer flex-row items-center gap-[9px] rounded-full bg-primary-100 px-[0.9rem] py-[0.7rem] text-light duration-150 hover:bg-dark sm:gap-[20px] md:px-[1.9rem] lg:px-[4rem] lg:py-[1.2rem]">
+                <p className="text-[1rem] md:text-[1.5rem] lg:text-[2rem]">
+                  Start shopping
+                </p>
                 <MoveUpRight />
               </div>
             </Link>
 
-            <span className="text-[1.5rem] md:text-[2.9rem] lg:text-[5rem] text-dark font-[600]">
+            <span className="text-[1.5rem] font-[600] text-dark md:text-[2.9rem] lg:text-[5rem]">
               fashion game
             </span>
           </div>

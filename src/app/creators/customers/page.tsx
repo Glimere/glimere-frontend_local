@@ -93,7 +93,7 @@ function CustomerTable({ customers }: { customers: Customer[] }) {
 }
 
 export default async function CustomersPage() {
-  const res = await fetch(`http://localhost:3000/api/customers`, {
+  const res = await fetch(`http://localhost:3000/creators/api/customers`, {
     cache: "no-store",
   });
   const { customers } = (await res.json()) as CustomerAPIResponse;

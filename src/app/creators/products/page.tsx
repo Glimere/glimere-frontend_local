@@ -15,7 +15,7 @@ import { ProductTable } from "./table";
 import { FilterDropdown } from "../filter-dropdown";
 
 export default async function Products() {
-  const res = await fetch(`http://localhost:3000/api/products`, {
+  const res = await fetch(`http://localhost:3000/creators/api/products`, {
     cache: "no-store",
   });
   const { products } = (await res.json()) as ProductAPIResponse;

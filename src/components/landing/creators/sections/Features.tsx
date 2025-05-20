@@ -1,4 +1,3 @@
-import community from "../../../../../public/images/landing/creators_community.jpg";
 
 export default function FeaturesCreators() {
   return (
@@ -7,7 +6,7 @@ export default function FeaturesCreators() {
       <div className="bg-light px-[1.4rem] sm:px-[6.25rem] py-[50px] sm:py-[80px] flex flex-col gap-[30px]">
         <div
           className="relative w-full flex flex-row items-end justify-between h-[36.625rem] rounded-[1.5625rem] bg-center bg-cover bg-no-repeat overflow-hidden"
-          style={{ backgroundImage: `url(${community.src})` }}
+          style={{ backgroundImage: `url(https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449128/creators_community_dluxar.jpg)` }}
         >
           <div className="flex flex-col gap-[20px] z-[2] p-[1rem] sm:p-[4rem]">
             <h1 className="text-white text-[2rem] sm:text-[3.375rem] font-[600]">

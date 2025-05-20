@@ -74,6 +74,6 @@ body {
 
 /* Disable image and asset highlighting */
 img, svg {
-  pointer-events: none; /* Prevents click & drag */
-  -webkit-user-drag: none; /* Prevents image dragging in Safari */
+  /* pointer-events: none;  */
+  -webkit-user-drag: none; 
 }

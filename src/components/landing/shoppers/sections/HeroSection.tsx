@@ -17,7 +17,7 @@ export default function HeroSection() {
             height={1000}
             width={1000}
             alt="Background Image"
-            src="/images/landing/background/backgroundImg.png"
+            src="https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449196/backgroundImg_bqcs2u.png"
             className="w-full object-cover"
             priority
           />

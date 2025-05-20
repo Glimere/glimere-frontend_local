@@ -1,4 +1,3 @@
-import Platform from "../../../../../public/images/landing/platform.svg";
 import AnimatedSVG from "../../AnimatedCreatorsSvg";
 
 export default function FeaturesPitch() {

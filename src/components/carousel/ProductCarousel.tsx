@@ -77,7 +77,7 @@ export default function ProductCarousel() {
       ) : (
         <>
           <div className="absolute flex h-full w-full items-center justify-center">
-            <div className="ml-[-19%] z-10 rotate-90">
+            <div className="ml-[-71%] sm:ml-[-19%] z-10 rotate-90">
               <NameSwitcher
               apparels={data?.data}
               selectedCurrent={() => getSelectedCurrent()}

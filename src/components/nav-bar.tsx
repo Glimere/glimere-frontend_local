@@ -33,7 +33,7 @@ export default function NavBar() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/"
+              href="/creators"
               className={`flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 ${pathname === "/" ? "bg-accent" : ""}`}
             >
               <Home className="h-5 w-5" />
@@ -45,7 +45,7 @@ export default function NavBar() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/orders"
+              href="/creators/orders"
               className={`flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 ${pathname === "/orders" ? "bg-accent" : ""}`}
             >
               <ShoppingCart className="h-5 w-5" />
@@ -57,7 +57,7 @@ export default function NavBar() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/products"
+              href="/creators/products"
               className={`flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 ${pathname === "/products" ? "bg-accent" : ""}`}
             >
               <Package className="h-5 w-5" />
@@ -69,7 +69,7 @@ export default function NavBar() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/customers"
+              href="/creators/customers"
               className={`flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 ${pathname === "/customers" ? "bg-accent" : ""}`}
             >
               <Users2 className="h-5 w-5" />
@@ -95,7 +95,7 @@ export default function NavBar() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
-              href="/settings"
+              href="/creators/settings"
               className={`flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8 ${pathname === "/settings" ? "bg-accent" : ""}`}
             >
               <Settings className="h-5 w-5" />

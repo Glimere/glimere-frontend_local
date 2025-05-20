@@ -18,7 +18,7 @@ import { FilterDropdown } from "../filter-dropdown";
 import Currency from "@/components/currancy";
 
 export default async function Orders() {
-  const res = await fetch(`http://localhost:3000/api/orders`, {
+  const res = await fetch(`http://localhost:3000/creators/api/orders`, {
     cache: "no-store",
   });
   const { orders } = (await res.json()) as OrdersAPIResponse;

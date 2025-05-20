@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function IntroSection() {
   return (
-    <div className="h-auto sm:h-[100vh] bg-light w-full gap-[20px] relative flex flex-col-reverse sm:flex-row py-[50px] sm:py-[80px] px-[1.4rem] sm:px-[6.25rem]">
+    <div className="h-auto sm:h-[100vh] bg-light w-full gap-[30px] relative flex flex-col-reverse sm:flex-row py-[50px] sm:py-[80px] px-[1.4rem] sm:px-[6.25rem]">
                 <div className="sm:flex-[1] flex flex-col h-full w-full items-start justify-center ">
                   <div className="w-[90%] sm:w-[90%] text-left">
                     <h1 className="text-dark-100 text-[30px] sm:text-[54px] font-bold sm:font-semibold">
@@ -22,7 +22,7 @@ export default function IntroSection() {
                 </div>
                 <div className="sm:flex-[1] h-[300px] sm:h-auto bg-black-100 bg-cover bg-center bg-no-repeat rounded-[30px] overflow-hidden">
                   <Image
-                    src="/images/landing/glimere-easy-of-use.png"
+                    src="https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449135/glimere-easy-of-use_glkg4j.png"
                     height={1000}
                     width={1000}
                     alt="Glimere easy of use"

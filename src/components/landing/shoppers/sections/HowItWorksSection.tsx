@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import CoverBg from "@/components/gradient/coverBg";
-import HowItWorksCustom1 from "../../../../../public/images/landing/how-it-works-custom-one.svg";
-import HowItWorksCustom2 from "../../../../../public/images/landing/how-it-works-custom-two.svg";
-import HowItWorksCustom3 from "../../../../../public/images/landing/how-it-works-custom-three.svg";
-import HowItWorksCustom4 from "../../../../../public/images/landing/how-it-works-custom-four.svg";
-import HowItWorksReady1 from "../../../../../public/images/landing/how-it-works-ready-one.svg";
-import HowItWorksReady2 from "../../../../../public/images/landing/how-it-works-ready-two.svg";
-import HowItWorksReady3 from "../../../../../public/images/landing/how-it-works-ready-three.svg";
+import Image from "next/image";
+
+const HowItWorksCustom1 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449143/how-it-works-custom-one_wqm9mb.svg";
+const HowItWorksCustom2 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449143/how-it-works-custom-two_yyaayg.svg";
+const HowItWorksCustom3 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449140/how-it-works-custom-three_pddacj.svg";
+const HowItWorksCustom4 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449139/how-it-works-custom-four_ipqvne.svg";
+const HowItWorksReady1 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449143/how-it-works-ready-one_hcolmz.svg";
+const HowItWorksReady2 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449143/how-it-works-ready-two_dao3tm.svg";
+const HowItWorksReady3 = "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449147/how-it-works-ready-three_ikqebi.svg";
 
 const stepsData = [
   {
@@ -17,29 +19,26 @@ const stepsData = [
     steps: [
       {
         title: "Choose Your Design",
-        description:
-          "Browse our extensive collection of designs or work with a designer to create a truly unique piece.",
-        Component: HowItWorksCustom1,
+        description: "Browse our extensive collection of designs or work with a designer to create a truly unique piece.",
+        imageUrl: HowItWorksCustom1,
         reverse: false,
       },
       {
         title: "Personalize Your Style",
-        description:
-          "Customize your chosen design with your preferred fabric, color, and fit.",
-        Component: HowItWorksCustom2,
+        description: "Customize your chosen design with your preferred fabric, color, and fit.",
+        imageUrl: HowItWorksCustom2,
         reverse: true,
       },
       {
         title: "Visualize your fit",
         description: "Experience your design in 3D to visualize the final product.",
-        Component: HowItWorksCustom3,
+        imageUrl: HowItWorksCustom3,
         reverse: false,
       },
       {
         title: "Order and Delivery",
-        description:
-          "Place your order and track your garment’s journey from design to delivery.",
-        Component: HowItWorksCustom4,
+        description: "Place your order and track your garment’s journey from design to delivery.",
+        imageUrl: HowItWorksCustom4,
         reverse: true,
       },
     ],
@@ -49,23 +48,20 @@ const stepsData = [
     steps: [
       {
         title: "Browse Our Collection",
-        description:
-          "Discover ready-made garments that match your style and preference.",
-        Component: HowItWorksReady1,
+        description: "Discover ready-made garments that match your style and preference.",
+        imageUrl: HowItWorksReady1,
         reverse: true,
       },
       {
         title: "Visualize Your Fit",
-        description:
-          "Experience your apparel in 3D to visualize the look and even try-on.",
-        Component: HowItWorksReady2,
+        description: "Experience your apparel in 3D to visualize the look and even try-on.",
+        imageUrl: HowItWorksReady2,
         reverse: false,
       },
       {
         title: "Checkout and Delivery",
-        description:
-          "Complete your purchase and track your order to your doorstep.",
-        Component: HowItWorksReady3,
+        description: "Complete your purchase and track your order to your doorstep.",
+        imageUrl: HowItWorksReady3,
         reverse: true,
       },
     ],
@@ -86,9 +82,7 @@ export default function HowItWorksSection() {
             {stepsData.map((_, index) => (
               <div
                 key={index}
-                className={`hover:border-gray-400 duration-150 ${
-                  tab === index ? "border-primary-100" : "border-transparent"
-                } border-solid border-b-[3px]`}
+                className={`hover:border-gray-400 duration-150 ${tab === index ? "border-primary-100" : "border-transparent"} border-solid border-b-[3px]`}
               >
                 <p
                   className="text-dark-100 text-[14px] sm:text-[15px] font-medium cursor-pointer"
@@ -106,18 +100,21 @@ export default function HowItWorksSection() {
         {stepsData[tab].steps.map((step, idx) => (
           <motion.div
             key={idx}
-            className={`flex flex-col ${step.reverse ? "lg:flex-row-reverse" : "lg:flex-row"}  gap-[6.25rem] items-center mb-[40px]`}
+            className={`flex flex-col ${step.reverse ? "lg:flex-row-reverse" : "lg:flex-row"} gap-0 sm:gap-[6.25rem] items-center mb-[40px]`}
             initial={{ opacity: 0, y: 150 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="relative w-[34.1875rem] h-[20rem] sm:h-[26.625rem]">
-              <step.Component className="scale-50 sm:scale-100"/>
+            <div className="flex-1 relative w-[44.1875rem] h-[26rem] sm:h-[29.625rem]">
+              <Image
+                src={step.imageUrl}
+                alt={step.title}
+                fill
+                className="object-contain scale-50 sm:scale-100 h-fit"
+              />
             </div>
-            <div className="flex flex-col gap-[20px]">
-              <h2 className="text-[2.375rem] text-dark font-[800]">
-                {step.title}
-              </h2>
+            <div className="flex-1 flex flex-col gap-[20px]">
+              <h2 className="text-[2.375rem] text-dark font-[800]">{step.title}</h2>
               <p className="text-[1.1rem] sm:text-[1.5rem] text-dark font-[400] leading-[1.5rem] sm:leading-[1.875rem]">
                 {step.description}
               </p>

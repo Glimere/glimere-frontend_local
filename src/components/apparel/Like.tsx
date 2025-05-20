@@ -12,7 +12,7 @@ const Like: React.FC<LikeProps> = ({ apparelId }) => {
 
   // Check if the apparel is in the wishlist
   useEffect(() => {
-    const isLiked = wishlist?.apparels.some((item) => item._id === apparelId) ?? false;
+    const isLiked = wishlist?.apparels?.some((item) => item?._id === apparelId) ?? false;
     setLiked(isLiked);
   }, [wishlist, apparelId]);
 

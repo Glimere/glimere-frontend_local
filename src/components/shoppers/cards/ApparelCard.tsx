@@ -18,7 +18,7 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
   const { formatPrice } = usePrice();
 
   // Derive `isInCart` directly from Zustand store
-  const isInCart = cart?.items.some((item) => item.apparel._id === apparel._id) ?? false;
+  const isInCart = cart?.items.some((item) => item?.apparel?._id === apparel?._id) ?? false;
 
   const handleAddToCart = () => {
     if (!apparel) return;

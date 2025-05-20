@@ -17,7 +17,7 @@ export default function HeroSectionCreators() {
             height={2000}
             width={2000}
             alt="Background Image"
-            src="/images/landing/background/backgroundImgCreators.png"
+            src="https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449188/backgroundImgCreators_txokwk.png"
             className="w-full object-cover"
             priority
           />
