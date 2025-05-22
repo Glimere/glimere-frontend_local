@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment } from "react";
 
@@ -29,30 +28,26 @@ export default function DashboardBreadcrumbs() {
   });
 
   return (
-    <Breadcrumb className="hidden md:flex">
-      <BreadcrumbList>
-        {/* Always include the home/root breadcrumb */}
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        {breadcrumbs.map(({ href, text }, index) => (
-          <Fragment key={href}>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                {/* Last breadcrumb should not be a link */}
-                {index === breadcrumbs.length - 1 ? (
-                  <BreadcrumbPage>{text}</BreadcrumbPage>
-                ) : (
-                  <Link href={href}>{text}</Link>
-                )}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-          </Fragment>
-        ))}
-      </BreadcrumbList>
-    </Breadcrumb>
+    <div className="hidden md:flex w-full font-bold pt-5">
+      <Breadcrumb className="hidden md:flex">
+        <BreadcrumbList>
+          {breadcrumbs.map(({ href, text }, index) => (
+            <Fragment key={href}>
+              {index > 0 && <BreadcrumbSeparator />}
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  {/* Last breadcrumb should not be a link */}
+                  {index === breadcrumbs.length - 1 ? (
+                    <BreadcrumbPage>{text}</BreadcrumbPage>
+                  ) : (
+                    <Link href={href}>{text}</Link>
+                  )}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </Fragment>
+          ))}
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
   );
 }

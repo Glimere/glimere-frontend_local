@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import { Apparel } from '@/types';
 import ApparelCard from '../cards/ApparelCard';

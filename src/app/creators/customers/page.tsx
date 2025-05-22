@@ -99,7 +99,7 @@ export default async function CustomersPage() {
   const { customers } = (await res.json()) as CustomerAPIResponse;
 
   return (
-    <main className="grid flex-1 items-start gap-2 p-4 sm:px-6 sm:py-0 md:gap-4 bg-muted/40">
+    <main className="grid flex-1 items-start gap-2 px-[25px] md:px-[5.75rem] sm:py-0 md:gap-4 bg-muted/40 pt-4 sm:pt-8">
       <Card>
         <CardHeader>
           <CardTitle>Customers</CardTitle>

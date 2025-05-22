@@ -38,7 +38,7 @@ function ProductRow({
 }: Product) {
   const router = useRouter();
   return (
-    <TableRow onClick={() => router.push(`/products/details/?id=${id}`)}>
+    <TableRow onClick={() => router.push(`/creators/products/view/?id=${id}`)}>
       <TableCell className="hidden sm:table-cell">
         <Image
           alt="Product image"
