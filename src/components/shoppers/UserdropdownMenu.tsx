@@ -1,12 +1,3 @@
-import {
-  CreditCard,
-  LogIn,
-  LogOut,
-  PlusCircle,
-  Settings,
-  User,
-} from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -18,6 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useUserStore from "@/store/userStore";
+import {
+  CreditCard,
+  LogIn,
+  LogOut,
+  PlusCircle,
+  Settings,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -60,12 +59,12 @@ export function UserDropdownMenu({ children }: UserDropdownMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-transparent-white-300 rounded-[20px] p-4">
+      <DropdownMenuContent className="w-56 rounded-[20px] bg-transparent-white-300 p-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         {/* Account-related items */}
-        <DropdownMenuGroup className="bg-white rounded-[10px]">
+        <DropdownMenuGroup className="rounded-[10px] bg-white">
           {navMenu.map((item) => {
             if (
               ["My Account", "Settings"].includes(item.name) &&
@@ -95,9 +94,9 @@ export function UserDropdownMenu({ children }: UserDropdownMenuProps) {
               <span className="text-red-500">Log out</span>
             </DropdownMenuItem>
           ) : (
-            <Link href="/auth" passHref>
+            <Link href="/auth/shoppers" passHref>
               <DropdownMenuItem>
-                <Button className="flex flex-row gap-[10px] bg-primary-100 text-white w-full py-[2px]">
+                <Button className="flex w-full flex-row gap-[10px] bg-primary-100 py-[2px] text-white">
                   <LogIn />
                   <span>Login</span>
                 </Button>

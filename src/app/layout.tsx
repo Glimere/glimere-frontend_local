@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
+
 import "./globals.css";
+
 import { Toaster } from "@/components/ui/toaster";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import React from "react";
 
 const leagueSpartan = League_Spartan({ subsets: ["latin"], display: "swap" });
@@ -38,7 +41,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,8 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={leagueSpartan.className}>
-        {children}
-        <Toaster />
+        <ReactQueryProvider>{children}</ReactQueryProvider> <Toaster />
       </body>
     </html>
   );

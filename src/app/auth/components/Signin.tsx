@@ -14,6 +14,7 @@ import facebookImg from "../../../../public/images/facebook.png";
 import GlimereLogo from "../../../../public/images/Glimere-Logo.svg"; // Ensure the asset path is correct
 
 import googleImg from "../../../../public/images/google.png";
+import { Card } from "@/components/ui/card";
 
 interface SigninPageProps {
   isVisible: boolean;
@@ -75,8 +76,8 @@ const SigninPage: React.FC<SigninPageProps> = (props: SigninPageProps) => {
         props.isVisible ? "w-[0%] flex-[0] overflow-hidden p-0" : "w-full"
       } flex flex-col items-center justify-center`}
     >
-      <div
-        className={`flex h-full w-full flex-col items-center justify-center gap-[20px] rounded-[20px] bg-transparent-white-200 px-[30px] duration-300 sm:p-[40px] ${
+      <Card
+        className={`flex h-full w-full flex-col items-center justify-center gap-[20px] backdrop-blur-xl bg-transparent-white-200/80 border border-transparent-white-300 shadow-2xl rounded-2xl overflow-hidden px-[30px] duration-300 sm:p-[40px] ${
           props.isVisible ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -170,7 +171,7 @@ const SigninPage: React.FC<SigninPageProps> = (props: SigninPageProps) => {
             </span>
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

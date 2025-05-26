@@ -1,10 +1,11 @@
-import React from "react";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import useUserStore from "@/store/userStore";
 import { useCartStore } from "@/store/cartStore";
+import useUserStore from "@/store/userStore";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React from "react";
+
 import Checkout from "../../../public/images/checkout.svg";
+import { Button } from "../ui/button";
 
 const CheckoutSummary: React.FC = () => {
   const { isAuthenticated, user } = useUserStore();
@@ -16,7 +17,7 @@ const CheckoutSummary: React.FC = () => {
   const subtotal =
     cart?.items?.reduce(
       (total, item) => total + item.apparel.apparel_price * item.quantity,
-      0
+      0,
     ) || 0;
 
   // Define shipping cost (e.g., flat rate or condition-based)
@@ -26,12 +27,12 @@ const CheckoutSummary: React.FC = () => {
   const total = subtotal + shippingCost;
 
   return (
-    <div className="flex flex-col justify-center rounded-[1.6rem] bg-transparent-white-100 gap-[1rem] p-[2rem] w-full max-w-md min-h-[80vh]">
+    <div className="flex min-h-[80vh] w-full max-w-md flex-col justify-center gap-[1rem] rounded-[1.6rem] bg-transparent-white-100 p-[2rem]">
       {/* Address Section */}
       {isAuthenticated ? (
         <>
           <div className="mb-6">
-            <h2 className="text-base font-bold mb-2">
+            <h2 className="mb-2 text-base font-bold">
               {user?.first_name} {user?.last_name}
             </h2>
             <p className="mb-1">{user?.address.street}</p>
@@ -42,26 +43,26 @@ const CheckoutSummary: React.FC = () => {
 
           {/* Payment Method Section */}
           <div className="mb-6">
-            <h3 className="text-base font-semibold mb-2">Payment method</h3>
+            <h3 className="mb-2 text-base font-semibold">Payment method</h3>
             <p className="mb-1">{user?.preferred_payment_method}</p>
             <button className="text-primary-100 hover:underline">Edit</button>
           </div>
 
           {/* Discount Code Section */}
           <div className="mb-6">
-            <h3 className="text-base font-semibold mb-2">
+            <h3 className="mb-2 text-base font-semibold">
               Do you have any discount code?
             </h3>
-            <p className="text-sm mb-2">
+            <p className="mb-2 text-sm">
               Only one discount code per order can be applied.
             </p>
-            <div className="flex items-center bg-[#ffffff] rounded-full p-2">
+            <div className="flex items-center rounded-full bg-[#ffffff] p-2">
               <input
                 type="text"
                 placeholder="Enter discount code"
-                className="outline-none p-2 rounded-md flex-grow mr-2"
+                className="mr-2 flex-grow rounded-md p-2 outline-none"
               />
-              <Button className="bg-primary-100 text-white rounded-full">
+              <Button className="rounded-full bg-primary-100 text-white">
                 APPLY
               </Button>
             </div>
@@ -69,49 +70,51 @@ const CheckoutSummary: React.FC = () => {
 
           {/* Order Summary Section */}
           <div className="mb-6">
-            <div className="flex justify-between mb-2">
+            <div className="mb-2 flex justify-between">
               <span>Subtotal ({cart?.items.length} items)</span>
               <span>€{subtotal.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between mb-2">
+            <div className="mb-2 flex justify-between">
               <span>Shipping costs</span>
               <span className={shippingCost === 0 ? "text-green-500" : ""}>
                 {shippingCost === 0 ? "FREE!" : `€${shippingCost.toFixed(2)}`}
               </span>
             </div>
-            <div className="flex justify-between mb-2">
+            <div className="mb-2 flex justify-between">
               <span>Discount</span>
               <span>€0</span>
             </div>
-            <div className="flex justify-between font-bold text-lg mb-2">
+            <div className="mb-2 flex justify-between text-lg font-bold">
               <span>Total (incl. VAT)</span>
               <span>€{total.toFixed(2)}</span>
             </div>
           </div>
 
           {/* Checkout Button */}
-          <Link href={isAuthenticated ? "/shoppers/checkout" : "/auth"}>
-            <Button className="bg-primary-100 text-white w-full rounded-full text-base">
+          <Link
+            href={isAuthenticated ? "/shoppers/checkout" : "/auth/shoppers"}
+          >
+            <Button className="w-full rounded-full bg-primary-100 text-base text-white">
               Checkout
             </Button>
           </Link>
         </>
       ) : (
-        <div className="flex justify-center items-center h-full w-full">
+        <div className="flex h-full w-full items-center justify-center">
           <div className="text-center">
             {/* Empty Bag Icon */}
             <Checkout className="mx-auto text-gray-400" />
             {/* Friendly Message */}
-            <p className="text-[20px] text-gray-600 mt-4">
+            <p className="mt-4 text-[20px] text-gray-600">
               Oops! You need to log in to check out.
             </p>
-            <p className="text-[14px] text-gray-500 mt-2">
+            <p className="mt-2 text-[14px] text-gray-500">
               Don’t worry, it’s quick and easy!
             </p>
             {/* Button to Start Shopping */}
             <Button
-              className="mt-6 bg-primary-100 text-white px-8 py-3 rounded-full hover:bg-primary-200"
-              onClick={() => router.push("/auth")} // Redirect to the homepage or shopping page
+              className="hover:bg-primary-200 mt-6 rounded-full bg-primary-100 px-8 py-3 text-white"
+              onClick={() => router.push("/auth/shoppers")} // Redirect to the homepage or shopping page
             >
               Login
             </Button>

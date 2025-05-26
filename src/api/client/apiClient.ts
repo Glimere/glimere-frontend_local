@@ -9,7 +9,7 @@ const apiClient = axios.create({
 apiClient.interceptors.response.use(
   (response) => response, // Return the response if successful
   (error) => {
-    if (error.response?.status === 401 && error.response?.data?.message === "Invalid token.") {
+    if (error.response?.data?.message === "Invalid token.") {
       useUserStore.getState().logout(); // Logout if JWT is invalid
     }
     return Promise.reject(error); // Pass the error along

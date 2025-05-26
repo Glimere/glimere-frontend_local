@@ -210,6 +210,36 @@ export type Apparel = {
   __v: number;
 };
 
+export interface CreateApparel {
+  apparel_name: string;
+  apparel_images: string[]; // ObjectId strings (Upload IDs)
+  apparel_desc: string;
+  apparel_price: number;
+  discounted_price?: number | null;
+  discount_percentage?: number;
+  discount_start_date?: string | null; // ISO date string
+  discount_end_date?: string | null;
+  is_discounted?: boolean;
+  apparel_type: "dresses" | "top" | "bottom" | "full wears" | "outer wears" | "accessories";
+  brand: string; // ObjectId (Brand)
+  main_category: string; // ObjectId (MainCategory)
+  sub_categories?: string[]; // ObjectId array
+  sub_subcategories?: string[]; // ObjectId array
+  materials?: string[]; // ObjectId array
+  models?: string[]; // ObjectId array
+  sizing_type?: string; // ObjectId (Size)
+  sizes: string[]; // e.g., ["S", "M", "L"]
+  views?: number;
+  is_featured?: boolean;
+  number_sold?: number;
+  average_rating?: number;
+  total_reviews?: number;
+  full_wear?: string[]; // ObjectId array (Apparel references)
+  apparel_class: "custom-made" | "ready-made";
+}
+
+export type UpdateApparel = Partial<CreateApparel>;
+
 interface Measurement {
   measurement_name: string;
   average: number;

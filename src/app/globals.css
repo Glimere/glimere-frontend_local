@@ -66,14 +66,18 @@ body {
 }
 
 * {
-  user-select: none; /* Prevents text selection */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
+  /* user-select: none;  */
+  /* Prevents text selection */
+  /* -webkit-user-select: none;  */
+  /* Safari */
+  /* -moz-user-select: none;  */
+  /* Firefox */
+  /* -ms-user-select: none;  */
+  /* Internet Explorer */
 }
 
 /* Disable image and asset highlighting */
 img, svg {
-  /* pointer-events: none;  */
-  -webkit-user-drag: none; 
+  /* pointer-events: none; 
+  -webkit-user-drag: none;  */
 }

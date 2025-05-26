@@ -34,6 +34,7 @@ const useApparelStore = create<StoreState<any>>((set) => ({
       set({ data: undefined, loading: false, error: errorMessage });
     }
   },
+  
   startPolling: (interval: number) => {
     const fetchDataIfStale = async () => {
       const { lastUpdated, fetchData } = useApparelStore.getState();

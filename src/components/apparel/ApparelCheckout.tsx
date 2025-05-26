@@ -1,11 +1,12 @@
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+import useUserStore from "@/store/userStore";
 import type { Apparel } from "@/types";
+import { usePrice } from "@/utils/usePrice";
 import { NextPage } from "next";
 import Image from "next/image";
-import { usePrice } from "@/utils/usePrice";
-import { Button } from "../ui/button";
 import Link from "next/link";
-import useUserStore from "@/store/userStore";
-import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+
+import { Button } from "../ui/button";
 
 interface Props {
   apparel: Apparel;
@@ -18,16 +19,16 @@ const ApparelCheckout: NextPage<Props> = ({ apparel }) => {
   }
 
   const { formatPrice } = usePrice();
-  const { isAuthenticated } = useUserStore()
+  const { isAuthenticated } = useUserStore();
 
   return (
     <>
-      <div className="absolute right-0 h-full flex flex-col justify-center sm:pr-[5.75rem] z-[3]">
-        <div className="flex flex-col gap-[1.56rem] min-w-[18.125rem]">
-          <div className="rounded-[1.6rem] bg-transparent-white-200 backdrop-blur-md flex flex-col gap-[1.56rem] p-[1.56rem]">
+      <div className="absolute right-0 z-[3] flex h-full flex-col justify-center sm:pr-[5.75rem]">
+        <div className="flex min-w-[18.125rem] flex-col gap-[1.56rem]">
+          <div className="flex flex-col gap-[1.56rem] rounded-[1.6rem] bg-transparent-white-200 p-[1.56rem] backdrop-blur-md">
             <div className="">
               <div className="">
-                <h1 className="text-[0.8rem] text-primary-100 font-[700]">
+                <h1 className="text-[0.8rem] font-[700] text-primary-100">
                   {capitalizeFirstLetter(apparel.apparel_type)}
                 </h1>
                 <p className="text-[1.2rem] font-[600]">
@@ -44,18 +45,18 @@ const ApparelCheckout: NextPage<Props> = ({ apparel }) => {
                 width={200}
                 alt={apparel.apparel_images[0].name}
                 src={renderImageUrl(apparel.apparel_images[0].url)}
-                className="object-cover h-full w-full"
+                className="h-full w-full object-cover"
               />
             </div>
             <div className="">
-              <h1 className="text-[0.8rem] text-primary-100 font-[700]">
+              <h1 className="text-[0.8rem] font-[700] text-primary-100">
                 Materials
               </h1>
               <div className="flex flex-col">
                 {apparel.materials.map((material) => (
                   <p
                     key={material._id}
-                    className="text-dark text-[0.9rem] font-[500]"
+                    className="text-[0.9rem] font-[500] text-dark"
                   >
                     {material.type}
                   </p>
@@ -63,12 +64,14 @@ const ApparelCheckout: NextPage<Props> = ({ apparel }) => {
               </div>
             </div>
           </div>
-          <div className="rounded-[1.6rem] bg-transparent-white-200  backdrop-blur-md p-[1.56rem] flex flex-col gap-[5px]">
+          <div className="flex flex-col gap-[5px] rounded-[1.6rem] bg-transparent-white-200 p-[1.56rem] backdrop-blur-md">
             <p className="text-[1.4rem] font-[400]">
               {formatPrice(apparel.apparel_price)}
             </p>
-            <Link href={isAuthenticated ? "/shoppers/checkout" : "/auth"}>
-              <Button className="bg-primary-100 rounded-full">Checkout</Button>
+            <Link
+              href={isAuthenticated ? "/shoppers/checkout" : "/auth/shoppers"}
+            >
+              <Button className="rounded-full bg-primary-100">Checkout</Button>
             </Link>
           </div>
         </div>

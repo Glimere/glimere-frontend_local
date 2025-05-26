@@ -545,7 +545,7 @@ export default function ApparelDetail({
                     alt="Apparel image"
                     className="aspect-square w-full rounded-md object-cover"
                     height="300"
-                    src="/placeholder.svg"
+                    src="https://res.cloudinary.com/dwnvlaitr/image/upload/e_background_removal/v1748274795/Styles_1_y4gl6l.png"
                     width="300"
                   />
                   <div className="grid grid-cols-3 gap-2">
