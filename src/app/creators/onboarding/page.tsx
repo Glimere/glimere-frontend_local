@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
-import { ChevronRight, ChevronLeft, User, Briefcase, Award, CheckCircle, Sparkles, Heart, Star, Upload, MapPin, Calendar, Globe, Palette, Camera, Scissors, Brush, Zap, Users, TrendingUp, Crown } from 'lucide-react';
+import { ChevronRight, ChevronLeft, User, Briefcase, Award, CheckCircle, Sparkles, Heart, Star, Upload, MapPin, Calendar, Globe, Palette, Camera, Zap, Users, TrendingUp} from 'lucide-react';
 
 interface OnboardingData {
   apparelType: 'custom' | 'ready-to-wear' | '';
