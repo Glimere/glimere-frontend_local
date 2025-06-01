@@ -1,5 +1,6 @@
 "use client";
 
+import GradientBg from "@/components/gradient/gradientBg";
 import {
   Center,
   Environment,
@@ -9,19 +10,17 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
-import { useState } from "react";
 
-// @ts-expect-error: Importing a GLB file which TypeScript does not recognize as a module
-import FashionModelGLB from "../../../../public/3D/High-Neck-Asymmetrical-Bodice-Sleeveless-Womens-Flare-Dress.glb";
-
-const SignupPage = dynamic(() => import("../components/Signup"), {
-  ssr: false,
-});
+// const SignupPage = dynamic(() => import("../components/Signup"), {
+//   ssr: false,
+// });
 const SigninPage = dynamic(() => import("../components/Signin"), {
   ssr: false,
 });
 
 function FashionModel() {
+  const FashionModelGLB =
+    "https://res.cloudinary.com/dwnvlaitr/image/upload/v1748328816/High-Neck-Asymmetrical-Bodice-Sleeveless-Womens-Flare-Dress_fktdzi.glb";
   const { scene } = useGLTF(FashionModelGLB);
 
   return (
@@ -34,18 +33,16 @@ function FashionModel() {
 }
 
 export default function AuthPage() {
-  const [isVisible, setIsVisible] = useState(false);
-
   return (
-    <div className="z-[3] h-[100vh] w-full">
+    <div className="z-[3] flex h-screen w-full flex-row p-5">
       <div
-        className={`card absolute inset-0 z-10 hidden h-full w-[50%] bg-cover bg-center bg-no-repeat p-6 duration-500 ease-in-out sm:flex ${
-          isVisible ? "ml-[50%]" : "mr-[50%]"
-        }`}
+        className={`relative z-10 flex h-full flex-grow items-center justify-center overflow-hidden rounded-[20px] bg-alabaster bg-cover bg-center bg-no-repeat p-6 duration-500 ease-in-out sm:flex`}
       >
+        <GradientBg />
         <Canvas
           camera={{ position: [6, 3, 6], fov: 45 }}
           style={{ background: "transparent" }}
+          className="z-[2]"
         >
           <ambientLight intensity={0.6} />
           <directionalLight
@@ -69,19 +66,20 @@ export default function AuthPage() {
           <Environment preset="studio" />
         </Canvas>
       </div>
-
-      <div className="flex h-full w-full flex-row lg:px-[6.8rem]">
-        {/* Signup Section */}
-        <div
-          className={`sm:w-[50%] sm:flex-[1] sm:p-[40px] ${
-            isVisible ? "w-full" : "w-[0%] flex-[0] overflow-hidden p-0"
-          } flex flex-col items-center justify-center`}
-        >
-          <SignupPage isVisible={isVisible} setIsVisible={setIsVisible} />
+      {/* Brand overlay */}
+      <div className="absolute bottom-10 left-10 z-10">
+        <div className="rounded-2xl border border-transparent-white-300 bg-transparent-white-200 p-6 backdrop-blur-lg">
+          <h2 className="glimere-text-gradient mb-2 text-2xl font-bold">
+            Welcome to Glimere
+          </h2>
+          <p className="max-w-xs text-sm text-dark/70">
+            Discover custom fashion made just for you. Explore unique styles and
+            try them on virtually before you buy.
+          </p>
         </div>
-
-        {/* Login Section */}
-        <SigninPage isVisible={isVisible} setIsVisible={setIsVisible} />
+      </div>
+      <div className="flex h-full w-[450px] flex-row items-center justify-center">
+        <SigninPage />
       </div>
     </div>
   );
