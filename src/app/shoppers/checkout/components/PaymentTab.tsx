@@ -1,23 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Card from "../../../../../public/images/card.svg";
-import Bank from "../../../../../public/images/bank.svg";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import useUserStore from "@/store/userStore";
-import useOrderStore from "@/store/orderStore";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import useOrderStore from "@/store/orderStore";
+import useUserStore from "@/store/userStore";
 import axios from "axios";
-import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+
+
+
+import Bank from "../../../../../public/images/bank.svg";
+import Card from "../../../../../public/images/card.svg";
+
 
 const paymentOptions = {
   bank: {
@@ -53,8 +51,6 @@ const PaymentTab = () => {
 
   const { user } = useUserStore();
   const { selectedOrder } = useOrderStore();
-
-  const { toast } = useToast();
 
   useEffect(() => {
     // Fetch list of banks
@@ -110,10 +106,8 @@ const PaymentTab = () => {
         const { status, message, data } = response.data;
 
         if (status && data?.status === "open_url") {
-          toast({
-            title: "Payment Initiated",
-            description: message,
-            variant: "default",
+          toast.success("Payment Initiated", {
+            description: message
           });
 
           if (typeof window != 'undefined') {
@@ -121,25 +115,19 @@ const PaymentTab = () => {
           }
           
         } else {
-          toast({
-            title: "Payment Failed",
+          toast.error("Payment Failed", {
             description: message,
-            variant: "destructive",
           });
         }
       } else {
-        toast({
-          title: "Payment Failed",
+        toast.error("Payment Failed", {
           description: response.data.message,
-          variant: "destructive",
         });
       }
     } catch (error) {
       console.error("Payment failed", error);
-      toast({
-        title: "Error",
+      toast.error("Error", {
         description: "An error occurred while processing the payment.",
-        variant: "destructive",
       });
     }
   };

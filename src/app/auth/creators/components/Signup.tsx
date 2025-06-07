@@ -3,13 +3,18 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import useUserStore from "@/store/userStore";
 import { registerUser } from "@/utils/authService";
 import { Eye, EyeClosed } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "sonner";
+
+
+
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+
 
 const SignupPage: React.FC = () => {
   const initialregisterUserDetails = {
@@ -28,6 +33,7 @@ const SignupPage: React.FC = () => {
   const [role] = useState("seller");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const {setAuthToken, fetchUser} = useUserStore();
 
   const router = useRouter();
 
@@ -74,11 +80,15 @@ const SignupPage: React.FC = () => {
       registerUserDetails.email &&
       registerUserDetails.password
     ) {
-      await registerUser(data);
+      const response = await registerUser(data);
       toast.success("Account created successfully!");
       // Optionally reset form
       setregisterUserDetailsDetails(initialregisterUserDetails);
       setConfirmPassword("");
+      console.log('response.data.token', response.data.token)
+      setAuthToken(response.data.token);
+      fetchUser(response.data.token);
+      
       router.push("/auth/creators/onboarding")
     } else {
       toast.error("Please fill all required fields");

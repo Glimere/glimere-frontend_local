@@ -1,7 +1,10 @@
+import { getJwt, removeJwt, setJwt } from "@/lib/cookie";
+import { ApiResponse, type UserData } from "@/types";
 import { create } from "zustand";
-import { setJwt, getJwt, removeJwt } from "@/lib/cookie";
-import type { UserData } from "@/types";
-import { ApiResponse } from "@/types";
+
+
+
+
 
 type UserStore = {
   user: UserData | null;
@@ -10,7 +13,7 @@ type UserStore = {
   setAuthToken: (token: string) => void;
   setUser: (user: UserData) => void;
   logout: () => void;
-  fetchUser: () => Promise<void>;
+  fetchUser: (directToken?: string) => Promise<void>;
   initialize: () => Promise<void>;
 };
 
@@ -31,8 +34,8 @@ const useUserStore = create<UserStore>((set) => ({
     set({ user: null, authToken: null, isAuthenticated: false });
   },
 
-  fetchUser: async () => {
-    const token = await getJwt(); // Retrieve JWT from cookies
+  fetchUser: async (directToken) => {
+    const token = await getJwt() || directToken; 
     if (!token) return;
 
     try {
