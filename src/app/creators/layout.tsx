@@ -1,3 +1,4 @@
+import CreatorsProvider from "@/components/CreatorsProvider";
 import GradientBg from "@/components/gradient/gradientBg";
 import Header from "@/components/header";
 import NavBar from "@/components/nav-bar";
@@ -10,8 +11,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn("min-h-screen bg-alabaster font-sans antialiased")}>
+    <CreatorsProvider>
+      <div className={cn("min-h-screen bg-alabaster font-sans antialiased")}>
         <TooltipProvider>
           <div className="bg-muted/40 relative flex min-h-screen w-full flex-col overflow-hidden">
             <GradientBg />
@@ -24,7 +25,7 @@ export default function RootLayout({
             </div>
           </div>
         </TooltipProvider>
-      </body>
-    </html>
+      </div>
+    </CreatorsProvider>
   );
 }

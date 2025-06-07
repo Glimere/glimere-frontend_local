@@ -13,6 +13,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
+import Link from "next/link";
 
 export default function SigninCreator() {
   const router = useRouter();
@@ -148,12 +149,12 @@ export default function SigninCreator() {
             <div className="pt-4 text-center">
               <span className="text-dark/60">
                 New creator?{" "}
-                <a
-                  href="#"
+                <Link
+                  href="/auth/creators/signup"
                   className="font-semibold text-primary-100 transition-colors hover:text-primary-100/80"
                 >
                   Join Glimere
-                </a>
+                </Link>
               </span>
             </div>
           </form>

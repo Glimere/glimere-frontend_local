@@ -7,9 +7,10 @@ import useUserStore from "@/store/userStore";
 interface ProtectedRouteProps {
   children: React.ReactNode;
   restrictedPaths: string[];
+  root: string;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, restrictedPaths }) => {
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, restrictedPaths, root }) => {
   const router = useRouter();
   const pathname = usePathname();
   const { isAuthenticated, initialize } = useUserStore();
@@ -25,7 +26,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, restrictedPat
 
   useEffect(() => {
     if (isInitialized && restrictedPaths.includes(pathname) && !isAuthenticated) {
-      router.replace("/shoppers"); // Redirect if unauthenticated
+      router.replace(root); // Redirect if unauthenticated
     }
   }, [isInitialized, isAuthenticated, restrictedPaths, pathname, router]);
 

@@ -9,7 +9,7 @@ import useNotificationStore from "@/store/notificationStore";
 import useUserStore from "@/store/userStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 
-export default function GlobalProvider({ children }: { children: React.ReactNode }) {
+export default function ShoppersProvider({ children }: { children: React.ReactNode }) {
   const { fetchBrands } = useBrandStore();
   const { getWishlist } = useWishlistStore();
   const { getNotifications } = useNotificationStore();

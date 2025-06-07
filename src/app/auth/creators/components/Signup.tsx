@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SignupPage: React.FC = () => {
   const initialregisterUserDetails = {
@@ -224,7 +225,7 @@ const SignupPage: React.FC = () => {
           </Button>
           <div className="mt-[20px] flex flex-row">
             <p className="mr-[5px] text-[14px]">Already have an Account?</p>
-            <p className="cursor-pointer text-[14px] text-[#ed7534]">Sign In</p>
+            <Link href="/auth/creators/signin" className="cursor-pointer text-[14px] text-[#ed7534]">Sign In</Link>
           </div>
         </div>
       </div>

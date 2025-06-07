@@ -118,7 +118,7 @@ const LandingNav: React.FC<LandingNavProps> = ({ setOpen, setPage, page }) => {
             </Link>
 
             <Link
-              href="auth/creators"
+              href="auth/creators/login"
               className={`${creatorsPath ? "visible" : "hidden"}`}
             >
               <Button
