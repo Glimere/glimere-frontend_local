@@ -3,6 +3,10 @@ import { MoveUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+
+
+
+
 export default function CallToActionCreators() {
   const CtaImage1 =
     "https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449131/cta-image-one_jf1n72.svg";
@@ -43,7 +47,7 @@ export default function CallToActionCreators() {
           </div>
 
           <div className="flex flex-row items-center gap-[1rem] md:gap-[1.2rem] lg:gap-[3rem]">
-            <Link href="/auth/creators">
+            <Link href="/auth/creators/login">
               {" "}
               <div className="flex cursor-pointer flex-row items-center gap-[9px] rounded-full bg-primary-100 px-[0.9rem] py-[0.7rem] text-light duration-150 hover:bg-dark sm:gap-[20px] md:px-[1.9rem] lg:px-[4rem] lg:py-[1.2rem]">
                 <p className="text-[1rem] md:text-[1.5rem] lg:text-[2rem]">

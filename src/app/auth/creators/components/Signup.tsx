@@ -11,10 +11,8 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-
-
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
-
+import { setJwt } from "@/lib/cookie";
 
 const SignupPage: React.FC = () => {
   const initialregisterUserDetails = {
@@ -33,7 +31,7 @@ const SignupPage: React.FC = () => {
   const [role] = useState("seller");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const {setAuthToken, fetchUser} = useUserStore();
+  const { setAuthToken, fetchUser } = useUserStore();
 
   const router = useRouter();
 
@@ -58,51 +56,57 @@ const SignupPage: React.FC = () => {
   };
 
   const signUp = async () => {
-  const data = {
-    first_name: registerUserDetails.firstname,
-    last_name: registerUserDetails.lastname,
-    email: registerUserDetails.email.toLowerCase(),
-    password: registerUserDetails.password,
-    phone_number: registerUserDetails.phone_number,
-    role: role,
-  };
+    const data = {
+      first_name: registerUserDetails.firstname,
+      last_name: registerUserDetails.lastname,
+      email: registerUserDetails.email.toLowerCase(),
+      password: registerUserDetails.password,
+      phone_number: registerUserDetails.phone_number,
+      role: role,
+    };
 
-  try {
-    if (registerUserDetails.password !== confirmPassword) {
-      setError("Passwords do not match");
-      toast.error("Passwords do not match");
-      return;
-    }
+    try {
+      if (registerUserDetails.password !== confirmPassword) {
+        toast.error("Passwords do not match");
+        return;
+      }
 
-    if (
-      registerUserDetails.firstname &&
-      registerUserDetails.lastname &&
-      registerUserDetails.email &&
-      registerUserDetails.password
-    ) {
+      const allFieldsFilled =
+        registerUserDetails.firstname &&
+        registerUserDetails.lastname &&
+        registerUserDetails.email &&
+        registerUserDetails.password;
+
+      if (!allFieldsFilled) {
+        toast.error("Please fill all required fields");
+        return;
+      }
+
       const response = await registerUser(data);
-      toast.success("Account created successfully!");
-      // Optionally reset form
+      console.log("response", response);
+      const token = response?.data?.token;
+      if (!token) {
+        toast.error("Registration failed: No token returned.");
+        return;
+      }
+
+      await setAuthToken(token);
+      setJwt(token)
+      await fetchUser(token);
+
       setregisterUserDetailsDetails(initialregisterUserDetails);
       setConfirmPassword("");
-      console.log('response.data.token', response.data.token)
-      setAuthToken(response.data.token);
-      fetchUser(response.data.token);
-      
-      router.push("/auth/creators/onboarding")
-    } else {
-      toast.error("Please fill all required fields");
+
+      toast.success("Account created successfully!");
+
+      router.push("/auth/creators/onboarding");
+    } catch (error: unknown) {
+      const errorMsg =
+        error instanceof Error ? error.message : "An unknown error occurred";
+
+      toast.error(errorMsg);
     }
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      setError(error.message);
-      toast.error(error.message);
-    } else {
-      setError("An unknown error occurred");
-      toast.error("An unknown error occurred");
-    }
-  }
-};
+  };
 
   return (
     <Card
@@ -194,7 +198,7 @@ const SignupPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 scale-75 top-[21px] -translate-y-1/2 text-sm text-gray-500"
+                className="absolute right-2 top-[21px] -translate-y-1/2 scale-75 text-sm text-gray-500"
               >
                 {showPassword ? <EyeClosed /> : <Eye />}
               </button>
@@ -216,7 +220,7 @@ const SignupPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-2 scale-75 top-[21px] -translate-y-1/2 text-sm text-gray-500"
+                className="absolute right-2 top-[21px] -translate-y-1/2 scale-75 text-sm text-gray-500"
               >
                 {showConfirmPassword ? <EyeClosed /> : <Eye />}
               </button>
@@ -235,7 +239,12 @@ const SignupPage: React.FC = () => {
           </Button>
           <div className="mt-[20px] flex flex-row">
             <p className="mr-[5px] text-[14px]">Already have an Account?</p>
-            <Link href="/auth/creators/signin" className="cursor-pointer text-[14px] text-[#ed7534]">Sign In</Link>
+            <Link
+              href="/auth/creators/login"
+              className="cursor-pointer text-[14px] text-[#ed7534]"
+            >
+              Sign In
+            </Link>
           </div>
         </div>
       </div>

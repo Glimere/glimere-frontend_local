@@ -22,26 +22,29 @@ const useUserStore = create<UserStore>((set) => ({
   authToken: null,
   isAuthenticated: false,
 
-  setAuthToken: (token) => {
-    setJwt(token); // Store token in cookies
+  setAuthToken: async (token) => {
+    await setJwt(token);
     set({ authToken: token, isAuthenticated: true });
   },
 
   setUser: (user) => set({ user }),
 
   logout: () => {
-    removeJwt(); // Clear JWT from cookies
+    removeJwt(); 
     set({ user: null, authToken: null, isAuthenticated: false });
   },
 
   fetchUser: async (directToken) => {
-    const token = await getJwt() || directToken; 
+    const token = (await getJwt()) || directToken;
     if (!token) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
 
       if (response.ok) {
         const { data: user }: ApiResponse = await response.json();
