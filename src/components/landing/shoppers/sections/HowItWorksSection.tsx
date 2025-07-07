@@ -116,7 +116,7 @@ export default function HowItWorksSection() {
         </div>
       </div>
 
-      <div className="z-[2] px-[1.4rem] sm:px-[6.25rem] flex flex-col sm:gap-12">
+      <div className="z-[2] px-[1.4rem] sm:px-[6.25rem] flex flex-col gap-6 sm:gap-12">
         {stepsData[tab].steps.map((step, idx) => (
           <motion.div
             key={idx}
