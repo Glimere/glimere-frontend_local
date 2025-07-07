@@ -12,6 +12,7 @@ const Home = dynamic(() => import("@/components/landing/Home"), {
   ),
 });
 
+
 export default function Page({
   searchParams,
 }: {
