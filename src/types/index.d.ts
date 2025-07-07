@@ -354,6 +354,7 @@ export interface CartItem {
   selected_colors: Color[];
   quantity: number;
   _id?: string;
+  lastModified?: string;
 }
 
 // Define the type for the Cart data

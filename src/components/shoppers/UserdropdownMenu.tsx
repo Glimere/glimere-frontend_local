@@ -94,7 +94,7 @@ export function UserDropdownMenu({ children }: UserDropdownMenuProps) {
               <span className="text-red-500">Log out</span>
             </DropdownMenuItem>
           ) : (
-            <Link href="/auth/shoppers" passHref>
+            <Link href="/auth/shoppers/login" passHref>
               <DropdownMenuItem>
                 <Button className="flex w-full flex-row gap-[10px] bg-primary-100 py-[2px] text-white">
                   <LogIn />

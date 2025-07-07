@@ -12,7 +12,10 @@ import { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+
+
 import EmptyBag from "../../../../public/images/empty-bag.svg";
+
 
 const Cart: NextPage = () => {
   const { cart, removeItem } = useCartStore();
@@ -83,7 +86,7 @@ const Cart: NextPage = () => {
                         <div className="flex w-full flex-col gap-[10px]">
                           <div className="">
                             <div className="">
-                              <p className="text-[1.2rem] font-[600]">
+                              <p className="text-[0.9rem] font-[600] sm:text-[1.2rem]">
                                 {cartItem.apparel.apparel_name}
                               </p>
                             </div>
@@ -114,7 +117,7 @@ const Cart: NextPage = () => {
                             </div>
                           </div>
 
-                          <p className="text-[1.5rem] font-[900]">
+                          <p className="text-[1.2rem] font-[900] sm:text-[1.5rem]">
                             {formatPrice(cartItem.apparel.apparel_price)}
                           </p>
                         </div>
@@ -153,7 +156,7 @@ const Cart: NextPage = () => {
               <>
                 <Button
                   className="hover:bg-primary-200 mx-[1.4rem] block rounded-full bg-primary-100 px-8 py-3 text-white sm:hidden"
-                  onClick={() => router.push("/auth/shoppers")} // Redirect to the homepage or shopping page
+                  onClick={() => router.push("auth/shoppers/login")} // Redirect to the homepage or shopping page
                 >
                   Login
                 </Button>

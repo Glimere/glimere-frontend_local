@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 
+
+
+
+
 // import HowItWorksCustom1 from "../../../../../public/images/landing/creators/how-it-works-custom-creators-one.svg";
 // import HowItWorksCustom2 from "../../../../../public/images/landing/creators/how-it-works-custom-creators-two.svg";
 // import HowItWorksCustom3 from "../../../../../public/images/landing/creators/how-it-works-custom-creators-three.svg";
@@ -121,7 +125,7 @@ export default function HowItWorksSectionCreators() {
         </div>
       </div>
 
-      <div className="z-[2] px-[1.4rem] sm:px-[6.25rem]">
+      <div className="z-[2] flex flex-col gap-6 px-[1.4rem] sm:gap-12 sm:px-[6.25rem]">
         {stepsData[tab].steps.map((step, idx) => (
           <motion.div
             key={idx}
@@ -132,15 +136,20 @@ export default function HowItWorksSectionCreators() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex-1 relative h-[20rem] w-[106.1875rem] sm:h-[26.625rem]">
-              <Image
-                src={step.imageUrl}
-                alt={step.title}
-                fill
-                className="scale-50 object-contain sm:scale-100"
-              />
+            <div className="relative flex h-[18rem] w-[50%] items-center justify-center">
+              <div
+                className={`absolute h-[26rem] w-[44.1875rem] ${idx == 0 ? "sm:h-[21rem]" : "sm:h-[25rem]"} lg:flex-1`}
+              >
+                <Image
+                  src={step.imageUrl}
+                  alt={step.title}
+                  fill
+                  className="h-fit scale-50 object-contain sm:scale-100"
+                />
+              </div>
             </div>
-            <div className="flex-1 flex flex-col gap-[20px]">
+
+            <div className="flex flex-1 flex-col gap-[20px]">
               <h2 className="text-[2.375rem] font-[800] text-dark">
                 {step.title}
               </h2>

@@ -1,34 +1,52 @@
-import React from 'react';
-import BrandCard from '../cards/BrandCard';
-import { Brand } from '@/types';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Brand } from "@/types";
+import React from "react";
+
+import BrandCard from "../cards/BrandCard";
 
 interface BrandSectionProps {
   headerTitle: string;
   itemCount: number;
-  brands: Brand[]
+  brands: Brand[];
 }
 
-const BrandSection: React.FC<BrandSectionProps> = ({ headerTitle, itemCount, brands }) => {
-
+const BrandSection: React.FC<BrandSectionProps> = ({
+  headerTitle,
+  itemCount,
+  brands,
+}) => {
   return (
-    <div className="sm:px-[6.25rem]">
-      <div className="p-6 bg-transparent-white-100 sm:rounded-[25px] flex flex-col gap-[20px]">
-        <h2 className="text-xl sm:text-2xl font-bold text-center">{headerTitle}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-          {brands.map((brand, id) => {
-            if (id <= (itemCount - 1)) {
-              return (
-                <BrandCard key={brand._id} brand={brand} />
-              )
-            }
+    <div className="flex flex-col gap-[20px] bg-transparent-white-100 p-3 sm:px-[6.25rem]">
+      <h2 className="text-center text-xl font-bold sm:text-2xl">
+        {headerTitle}
+      </h2>
 
+      <Carousel className="w-full max-w-full">
+        <CarouselContent className="-ml-1">
+          {brands.map((brand, id) => {
+            if (id <= itemCount - 1) {
+              return (
+                <CarouselItem
+                  key={brand._id}
+                  className="basis-1/3 md:basis-1/6 pl-3 lg:basis-1/7"
+                >
+                  <BrandCard brand={brand} />
+                </CarouselItem>
+              );
+            }
           })}
-        </div>
-      </div>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </div>
   );
-
-
 };
 
 export default BrandSection;

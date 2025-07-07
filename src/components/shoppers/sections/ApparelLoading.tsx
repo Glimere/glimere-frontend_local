@@ -1,6 +1,6 @@
 import React from "react";
 
-const ApparelLoading: React.FC = () => {
+const  ApparelLoading: React.FC = () => {
   return (
     <div className="animate-pulse px-[1.4rem] sm:px-[6.25rem]">
       <div className="flex flex-col gap-[20px]"></div>

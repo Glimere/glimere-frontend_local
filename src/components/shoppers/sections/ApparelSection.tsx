@@ -55,7 +55,7 @@ const ApparelSection: React.FC<ApparelSectionProps> = ({
                 {apparels?.map((apparel) => (
                   <CarouselItem
                     key={apparel._id}
-                    className="basis-1/3 pl-4 md:basis-1/5 lg:basis-1/6"
+                    className="basis-1/2 pl-4 md:basis-1/5 lg:basis-1/6"
                   >
                     <ApparelCard apparel={apparel} />
                   </CarouselItem>

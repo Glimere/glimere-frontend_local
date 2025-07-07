@@ -25,7 +25,7 @@ const ApparelListSection: React.FC<ApparelListSectionProps> = ({ headerTitle, ap
                 {isLoading ? (
                     <ApparelLoading />
                 ) : (
-                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
                         {apparels?.map((apparel) => (
                             <ApparelCard key={apparel._id} apparel={apparel} />
                         ))}
