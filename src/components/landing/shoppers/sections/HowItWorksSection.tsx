@@ -116,7 +116,7 @@ export default function HowItWorksSection() {
         </div>
       </div>
 
-      <div className="z-[2] px-[1.4rem] sm:px-[6.25rem]">
+      <div className="z-[2] px-[1.4rem] sm:px-[6.25rem] flex flex-col sm:gap-12">
         {stepsData[tab].steps.map((step, idx) => (
           <motion.div
             key={idx}
@@ -125,8 +125,10 @@ export default function HowItWorksSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="relative flex h-[18rem] items-center justify-center">
-              <div className="absolute h-[26rem] w-[44.1875rem] sm:h-[29.625rem] lg:flex-1">
+            <div className="relative flex h-[18rem] w-[50%] items-center justify-center">
+              <div
+                className={`absolute h-[26rem] w-[44.1875rem] ${idx == 0 ? "sm:h-[21rem]" : "sm:h-[25rem]"} lg:flex-1`}
+              >
                 <Image
                   src={step.imageUrl}
                   alt={step.title}
