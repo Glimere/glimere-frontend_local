@@ -19,7 +19,7 @@ const ApparelDetails: NextPage<Props> = ({ apparel }) => {
   return (
     <>
       <div className="absolute h-full left-0 sm:pl-[5.75rem] z-[3] flex flex-col justify-center">
-        <div className="flex flex-col gap-[1rem]">
+        <div className="flex flex-col gap-[1rem] w-[35%]">
           <div className="flex flex-row gap-[20px] items-center">
             <div className="md-[80%] sm:w-[100%]">
               <h1 className="text-[2.3rem] text-dark font-[600]">

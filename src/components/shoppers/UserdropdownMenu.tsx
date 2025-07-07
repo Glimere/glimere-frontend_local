@@ -59,7 +59,7 @@ export function UserDropdownMenu({ children }: UserDropdownMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 rounded-[20px] bg-transparent-white-300 p-4">
+      <DropdownMenuContent className="w-56 rounded-[20px] bg-transparent-white-300 backdrop-blur-md p-4">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
 

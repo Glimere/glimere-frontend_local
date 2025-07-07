@@ -1,9 +1,13 @@
 "use client";
 
-import SboppersProvider from "@/components/ShoppersProvider";
 import GradientBg from "@/components/gradient/gradientBg";
 import ShoppersNav from "@/components/nav/ShoppersNav";
+import ShoppersProvider from "@/components/ShoppersProvider";
 import ProtectedRoute from "@/utils/ProtectedRoutes";
+
+
+
+
 
 export default function DemoLayout({
   children,
@@ -13,7 +17,7 @@ export default function DemoLayout({
   const restrictedPaths = ["/shoppers/checkout", "/account", "/notification"];
 
   return (
-    <SboppersProvider>
+    <ShoppersProvider>
       <div className="relative overflow-x-hidden bg-alabaster">
         <GradientBg />
         <ShoppersNav />
@@ -21,6 +25,6 @@ export default function DemoLayout({
           {children}
         </ProtectedRoute>
       </div>
-    </SboppersProvider>
+    </ShoppersProvider>
   );
 }

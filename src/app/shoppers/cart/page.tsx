@@ -156,7 +156,7 @@ const Cart: NextPage = () => {
               <>
                 <Button
                   className="hover:bg-primary-200 mx-[1.4rem] block rounded-full bg-primary-100 px-8 py-3 text-white sm:hidden"
-                  onClick={() => router.push("auth/shoppers/login")} // Redirect to the homepage or shopping page
+                  onClick={() => router.push("/auth/shoppers/login")} // Redirect to the homepage or shopping page
                 >
                   Login
                 </Button>

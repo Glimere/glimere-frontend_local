@@ -35,9 +35,9 @@ const CheckoutSummary: React.FC = () => {
             <h2 className="mb-2 text-base font-bold">
               {user?.first_name} {user?.last_name}
             </h2>
-            <p className="mb-1">{user?.address.street}</p>
-            <p className="mb-1">{user?.address.nearest_bus_stop}</p>
-            <p className="mb-1">{user?.address.country}</p>
+            <p className="mb-1">{user?.address?.street}</p>
+            <p className="mb-1">{user?.address?.nearest_bus_stop}</p>
+            <p className="mb-1">{user?.address?.country}</p>
             <button className="text-primary-100 hover:underline">Edit</button>
           </div>
 
@@ -114,7 +114,7 @@ const CheckoutSummary: React.FC = () => {
             {/* Button to Start Shopping */}
             <Button
               className="hover:bg-primary-200 mt-6 rounded-full bg-primary-100 px-8 py-3 text-white"
-              onClick={() => router.push("/auth/shoppers")} // Redirect to the homepage or shopping page
+              onClick={() => router.push("/auth/shoppers/login")} // Redirect to the homepage or shopping page
             >
               Login
             </Button>

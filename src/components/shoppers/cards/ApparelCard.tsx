@@ -8,6 +8,7 @@ import { Apparel } from "@/types";
 import { usePrice } from "@/utils/usePrice";
 import { CircleCheck, CirclePlus } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   apparel: Apparel;
@@ -18,7 +19,8 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
   const { formatPrice } = usePrice();
 
   // Derive `isInCart` directly from Zustand store
-  const isInCart = cart?.items.some((item) => item?.apparel?._id === apparel?._id) ?? false;
+  const isInCart =
+    cart?.items.some((item) => item?.apparel?._id === apparel?._id) ?? false;
 
   const handleAddToCart = () => {
     if (!apparel) return;
@@ -37,8 +39,8 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
   };
 
   return (
-    <div>
-      <Card className="overflow-visible border-none bg-transparent shadow-none">
+    <Link href={`/shoppers/${apparel._id}`}>
+      <Card className="cursor-pointer overflow-visible border-none bg-transparent shadow-none">
         <CardContent className="relative flex items-center justify-center overflow-hidden p-0">
           {/* Like Button */}
           <div className="absolute right-4 top-4 z-[3] scale-75">
@@ -60,7 +62,9 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
 
             {/* Name & Price */}
             <div className="flex h-[100px] flex-col items-center gap-[7px]">
-              <h3 className="text-center font-semibold">{apparel?.apparel_name}</h3>
+              <h3 className="text-center font-semibold">
+                {apparel?.apparel_name}
+              </h3>
 
               <div className="flex flex-row items-center gap-[10px]">
                 <span className="mt-1 text-sm font-normal">
@@ -68,7 +72,10 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
                 </span>
 
                 {/* Add to Cart Button */}
-                <button onClick={handleAddToCart} className="focus:outline-none">
+                <button
+                  onClick={handleAddToCart}
+                  className="focus:outline-none"
+                >
                   {isInCart ? (
                     <CircleCheck className="w-[20px] text-green-600" />
                   ) : (
@@ -80,7 +87,7 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </Link>
   );
 };
 

@@ -15,8 +15,8 @@ export type Review = {
 };
 
 export type slide = {
-  Image: string
-}
+  Image: string;
+};
 
 type SocialMediaLinks = {
   facebook: string;
@@ -104,7 +104,6 @@ export type Material = {
   __v: number;
 };
 
-
 type ModelAnimation = {
   _id: string;
   name: string;
@@ -168,7 +167,6 @@ interface ModelTexture {
   _id: string;
 }
 
-
 type File = {
   _id: string;
   name: string;
@@ -220,7 +218,13 @@ export interface CreateApparel {
   discount_start_date?: string | null; // ISO date string
   discount_end_date?: string | null;
   is_discounted?: boolean;
-  apparel_type: "dresses" | "top" | "bottom" | "full wears" | "outer wears" | "accessories";
+  apparel_type:
+    | "dresses"
+    | "top"
+    | "bottom"
+    | "full wears"
+    | "outer wears"
+    | "accessories";
   brand: string; // ObjectId (Brand)
   main_category: string; // ObjectId (MainCategory)
   sub_categories?: string[]; // ObjectId array
@@ -287,7 +291,6 @@ interface MaleSize {
   gender?: string;
 }
 
-
 interface FemaleSize {
   name: string;
   short_name: string;
@@ -327,8 +330,6 @@ interface FemaleSize {
   gender?: string;
 }
 
-
-
 export interface Review {
   _id: string;
   rating: number;
@@ -340,9 +341,8 @@ export interface Review {
   updatedAt: string;
 }
 
-
 export interface Size {
-  sizing_type: 'mixed' | 'imperial' | 'metric';
+  sizing_type: "mixed" | "imperial" | "metric";
   male: MaleSize[];
   female: FemaleSize[];
 }
@@ -358,6 +358,7 @@ export interface CartItem {
 }
 
 // Define the type for the Cart data
+
 export interface CartData {
   _id: string;
   user: string;
@@ -367,6 +368,17 @@ export interface CartData {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  version: number;
+}
+
+interface PendingChange {
+  action: "add" | "remove" | "update";
+  apparelId: string;
+  quantity?: number;
+  selected_sizes?: MaleSize[] | FemaleSize[];
+  selected_materials?: Material[];
+  selected_colors?: Color[];
+  timestamp: string;
 }
 
 // Define the API Response structure
@@ -433,8 +445,8 @@ export type Order = {
   selected_shippingOption: ShippingOption;
   selected_courier: Courier;
   delivery_notes: string;
-  order_status: 'pending' | 'shipped' | 'delivered' | 'cancelled';
-  payment_status: 'unpaid' | 'paid';
+  order_status: "pending" | "shipped" | "delivered" | "cancelled";
+  payment_status: "unpaid" | "paid";
   created_at: string;
   updated_at: string;
 };
@@ -531,7 +543,7 @@ export interface Notification {
   user: string;
   title: string;
   message: string;
-  type: 'info' | 'warning' | 'error' | 'success';
+  type: "info" | "warning" | "error" | "success";
   isRead: boolean;
   createdAt: string;
   updatedAt: string;
