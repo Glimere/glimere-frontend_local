@@ -1,8 +1,8 @@
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+import { useCartStore } from "@/store/cartStore";
 import { usePrice } from "@/utils/usePrice";
 import { NextPage } from "next";
-import { useCartStore } from "@/store/cartStore";
 import Image from "next/image";
-import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 
 const CheckoutPreview: NextPage = () => {
   const { cart } = useCartStore();
@@ -24,11 +24,13 @@ const CheckoutPreview: NextPage = () => {
           {cart?.items.map((cartItem) => (
             <div
               key={cartItem.apparel._id}
-              className="rounded-[1.6rem] bg-transparent-white-100 flex flex-col gap-[1.56rem] p-[1.56rem]"
+              className="flex flex-col gap-[1.56rem] rounded-[1.6rem] bg-transparent-white-100 p-[1.56rem] backdrop-blur-md"
             >
               <div className="">
                 <div className="">
-                  <p className="text-[1.2rem] font-[600]">{cartItem.apparel.apparel_name}</p>
+                  <p className="text-[1.2rem] font-[600]">
+                    {cartItem.apparel.apparel_name}
+                  </p>
                 </div>
                 <p className="text-[0.875rem] font-[900]">
                   {formatPrice(cartItem.apparel.apparel_price)}
@@ -40,14 +42,14 @@ const CheckoutPreview: NextPage = () => {
                   width={200}
                   alt={cartItem.apparel.apparel_images[0].name}
                   src={renderImageUrl(cartItem.apparel.apparel_images[0].url)}
-                  className="object-cover h-full w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
           ))}
         </div>
 
-        <div className="rounded-[1.6rem] bg-transparent-white-100 p-[1.56rem] flex flex-col gap-[5px]">
+        <div className="flex flex-col gap-[5px] rounded-[1.6rem] bg-transparent-white-100 p-[1.56rem] backdrop-blur-md">
           <p className="text-[1.4rem] font-semibold text-primary-100">
             {formatPrice(JSON.parse(totalPrice()))}
           </p>

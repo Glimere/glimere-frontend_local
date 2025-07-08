@@ -27,7 +27,7 @@ const CheckoutSummary: React.FC = () => {
   const total = subtotal + shippingCost;
 
   return (
-    <div className="flex min-h-[80vh] w-full max-w-md flex-col justify-center gap-[1rem] rounded-[1.6rem] bg-transparent-white-100 p-[2rem]">
+    <div className="flex min-h-[80vh] w-full max-w-md flex-col justify-center gap-[1rem] rounded-[1.6rem] bg-transparent-white-100 p-[2rem] backdrop-blur-md">
       {/* Address Section */}
       {isAuthenticated ? (
         <>

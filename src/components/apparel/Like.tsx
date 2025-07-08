@@ -1,29 +1,36 @@
-import { Heart } from "lucide-react";
 import { useWishlistStore } from "@/store/wishlistStore";
-import { useState, useEffect } from "react";
+import { Heart } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface LikeProps {
   apparelId: string;
 }
 
 const Like: React.FC<LikeProps> = ({ apparelId }) => {
-  const { wishlist, addToWishlist, removeFromWishlist } = useWishlistStore();
+  const { wishlist, addToWishlist, removeFromWishlist} =
+    useWishlistStore();
   const [liked, setLiked] = useState(false);
 
-  // Check if the apparel is in the wishlist
+  // Update liked state based on wishlist
   useEffect(() => {
-    const isLiked = wishlist?.apparels?.some((item) => item?._id === apparelId) ?? false;
+    const isLiked =
+      wishlist?.apparels?.some((item) => item?._id === apparelId) ?? false;
     setLiked(isLiked);
   }, [wishlist, apparelId]);
 
   const handleLike = async () => {
-    if (liked) {
-      removeFromWishlist(apparelId);
-    } else {
-      addToWishlist(apparelId);
+    const previousLiked = liked;
+    setLiked(!liked); // Optimistic update
+
+    try {
+      if (previousLiked) {
+        await removeFromWishlist(apparelId);
+      } else {
+        await addToWishlist(apparelId);
+      }
+    } catch (error) {
+      setLiked(previousLiked); // Revert on error
     }
-    // Optimistically update liked state
-    setLiked(!liked);
   };
 
   return (

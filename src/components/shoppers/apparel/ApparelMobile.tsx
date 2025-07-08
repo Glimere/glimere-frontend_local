@@ -6,7 +6,10 @@ import { useMeshSelectionStore } from "@/store/meshSelectStore";
 import { Apparel } from "@/types";
 import { NextPage } from "next";
 
+
+
 import ApparelEditMobile from "./ApparelEditMobile";
+
 
 interface Props {
   apparel: Apparel;
@@ -29,12 +32,16 @@ const ApparelMobile: NextPage<Props> = ({
 
   return (
     <>
-      <ApparelEditBar
-        threeDToggle={threedToggle}
-        setThreeDToggle={setThreedToggle}
-        editToggle={editToggle}
-        setEditToggle={setEditToggle}
-      />
+      {apparel.models.length == 0 ? (
+        <></>
+      ) : (
+        <ApparelEditBar
+          threeDToggle={threedToggle}
+          setThreeDToggle={setThreedToggle}
+          editToggle={editToggle}
+          setEditToggle={setEditToggle}
+        />
+      )}
       {threedToggle && editToggle && apparel ? (
         <>{selectedMesh && <ApparelEditMobile apparel={apparel} />}</>
       ) : null}

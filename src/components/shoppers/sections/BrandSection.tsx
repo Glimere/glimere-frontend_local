@@ -22,7 +22,7 @@ const BrandSection: React.FC<BrandSectionProps> = ({
   brands,
 }) => {
   return (
-    <div className="flex flex-col gap-[20px] bg-transparent-white-100 p-3 sm:px-[6.25rem]">
+    <div className="flex flex-col gap-[20px] bg-transparent-white-100 p-3 backdrop-blur-md sm:px-[6.25rem]">
       <h2 className="text-center text-xl font-bold sm:text-2xl">
         {headerTitle}
       </h2>
@@ -34,7 +34,7 @@ const BrandSection: React.FC<BrandSectionProps> = ({
               return (
                 <CarouselItem
                   key={brand._id}
-                  className="basis-1/3 md:basis-1/6 pl-3 lg:basis-1/7"
+                  className="lg:basis-1/7 basis-1/3 pl-3 md:basis-1/6"
                 >
                   <BrandCard brand={brand} />
                 </CarouselItem>

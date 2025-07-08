@@ -1,15 +1,13 @@
 "use client";
 
 import GradientBg from "@/components/gradient/gradientBg";
-import {
-  Center,
-  Environment,
-  Float,
-  OrbitControls,
-  useGLTF,
-} from "@react-three/drei";
+import { Center, Environment, Float, OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
+
+
+
+
 
 // const SignupPage = dynamic(() => import("../components/Signup"), {
 //   ssr: false,
@@ -34,7 +32,7 @@ function FashionModel() {
 
 export default function AuthPage() {
   return (
-    <div className="z-[3] flex h-screen w-full flex-row p-5">
+    <div className="relative z-[3] flex h-screen w-full flex-row justify-center p-5 sm:justify-normal items-end sm:items-center">
       <div
         className={`relative z-10 flex h-full flex-grow items-center justify-center overflow-hidden rounded-[20px] bg-alabaster bg-cover bg-center bg-no-repeat p-6 duration-500 ease-in-out sm:flex`}
       >
@@ -67,8 +65,8 @@ export default function AuthPage() {
         </Canvas>
       </div>
       {/* Brand overlay */}
-      <div className="absolute bottom-10 left-10 z-10">
-        <div className="rounded-2xl border border-transparent-white-300 bg-transparent-white-200 p-6 backdrop-blur-lg">
+      <div className="absolute top-10 sm:bottom-10 sm:left-10 z-10 w-[80%] sm:w-auto sm:self-end">
+        <div className="rounded-2xl border border-transparent-white-300 bg-transparent-white-200 p-6 backdrop-blur-md">
           <h2 className="glimere-text-gradient mb-2 text-2xl font-bold">
             Welcome to Glimere
           </h2>
@@ -78,7 +76,7 @@ export default function AuthPage() {
           </p>
         </div>
       </div>
-      <div className="flex h-full w-[450px] flex-row items-center justify-center">
+      <div className="absolute z-[11] h-auto rounded-[20px] sm:rounded-none flex sm:h-full w-[80%] sm:w-[450px] flex-row items-center justify-center bg-transparent-white-300 backdrop-blur-lg sm:relative py-[20px] sm:py-0 mb-[20px] sm:mb-0">
         <SigninPage />
       </div>
     </div>

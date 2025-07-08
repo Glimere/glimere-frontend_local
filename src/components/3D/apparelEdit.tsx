@@ -1,11 +1,11 @@
-import { NextPage } from "next";
-import Image from "next/image";
+import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+import { useMeshSelectionStore } from "@/store/meshSelectStore";
+import { useTextureChangeStore } from "@/store/textureChangeStore";
 import { Apparel } from "@/types";
 import { Plus } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useTextureChangeStore } from "@/store/textureChangeStore";
-import { useMeshSelectionStore } from "@/store/meshSelectStore";
-import { renderImageUrl } from "@/hooks/useRenderImageUrl";
+import { NextPage } from "next";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface Props {
   apparel: Apparel;
@@ -14,12 +14,15 @@ interface Props {
 const ApparelEdit: NextPage<Props> = ({ apparel }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { textureImages, setTextureImages, setTexture, texture } = useTextureChangeStore();
-  const {selectedMesh} = useMeshSelectionStore();
+  const { textureImages, setTextureImages, setTexture, texture } =
+    useTextureChangeStore();
+  const { selectedMesh } = useMeshSelectionStore();
 
   // Load textures from apparel on page load
   useEffect(() => {
-    const textureUrls = apparel.materials.map((material) => renderImageUrl(material.textures.patternFile.url));
+    const textureUrls = apparel.materials.map((material) =>
+      renderImageUrl(material.textures.patternFile.url),
+    );
     setTextureImages(textureUrls); // Set initial texture URLs
   }, [apparel, setTextureImages]);
 
@@ -35,20 +38,22 @@ const ApparelEdit: NextPage<Props> = ({ apparel }) => {
 
   // Handle applying a texture
   const handleApplyTexture = (imageUrl: string) => {
-    setTexture(imageUrl); 
+    setTexture(imageUrl);
   };
 
   console.log("selectedFile:", selectedFile);
 
-  return (
-    <div className="absolute left-0 h-full flex flex-col justify-center sm:pl-[5.75rem] z-[3]">
-      <div className="flex flex-col gap-[1.1rem] min-w-[18.125rem]">
-        <div className="w-full rounded-full px-[20px] py-[10px] flex justify-center bg-transparent-white-200 backdrop-blur-md">
+  return (<>
+  {apparel.models.length == 0 ? <></> : <div className="absolute left-0 z-[3] flex h-full flex-col justify-center sm:pl-[5.75rem]">
+      <div className="flex min-w-[18.125rem] flex-col gap-[1.1rem]">
+        <div className="flex w-full justify-center rounded-full bg-transparent-white-200 px-[20px] py-[10px] backdrop-blur-md">
           <p className="font-medium text-primary-100">{selectedMesh}</p>
         </div>
-        <div className="rounded-[1.6rem] bg-transparent-white-200 backdrop-blur-md flex flex-col gap-[1.56rem] p-[1.56rem]">
+        <div className="flex flex-col gap-[1.56rem] rounded-[1.6rem] bg-transparent-white-200 p-[1.56rem] backdrop-blur-md">
           <div>
-            <h1 className="text-[0.8rem] text-primary-100 font-[700]">Material</h1>
+            <h1 className="text-[0.8rem] font-[700] text-primary-100">
+              Material
+            </h1>
             <div className="flex flex-col gap-[20px]">
               {apparel.materials.map((material) => (
                 <div key={material._id} className="flex flex-col gap-[20px]">
@@ -58,7 +63,7 @@ const ApparelEdit: NextPage<Props> = ({ apparel }) => {
                       {textureImages.map((imageUrl, index) => (
                         <div
                           key={index}
-                          className="h-[2.5rem] w-[2.5rem] cursor-pointer border-[2px] duration-200 border-solid border-transparent hover:border-primary-100 rounded-full overflow-hidden"
+                          className="h-[2.5rem] w-[2.5rem] cursor-pointer overflow-hidden rounded-full border-[2px] border-solid border-transparent duration-200 hover:border-primary-100"
                           onClick={() => handleApplyTexture(imageUrl)} // Apply texture when clicked
                         >
                           <Image
@@ -66,17 +71,17 @@ const ApparelEdit: NextPage<Props> = ({ apparel }) => {
                             width={200}
                             alt={`Texture ${index}`}
                             src={imageUrl}
-                            className="object-cover h-full w-full"
+                            className="h-full w-full object-cover"
                           />
                         </div>
                       ))}
-                      <div className="relative overflow-hidden h-[2.5rem] w-[2.5rem] cursor-pointer border-[2px] duration-200 border-solid border-transparent hover:border-primary-100 rounded-full bg-white flex justify-center items-center">
+                      <div className="relative flex h-[2.5rem] w-[2.5rem] cursor-pointer items-center justify-center overflow-hidden rounded-full border-[2px] border-solid border-transparent bg-white duration-200 hover:border-primary-100">
                         <Plus className="scale-90" />
                         <input
                           type="file"
                           accept="image/*"
                           onChange={handleFileChange}
-                          className="absolute z-[3] h-full w-full opacity-0 cursor-pointer"
+                          className="absolute z-[3] h-full w-full cursor-pointer opacity-0"
                         />
                       </div>
                     </div>
@@ -87,7 +92,9 @@ const ApparelEdit: NextPage<Props> = ({ apparel }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>}
+  </>
+    
   );
 };
 

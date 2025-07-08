@@ -6,7 +6,7 @@ import { useCartStore } from "@/store/cartStore";
 import useNotificationStore from "@/store/notificationStore";
 import useUserStore from "@/store/userStore";
 import { useWishlistStore } from "@/store/wishlistStore";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { toast } from "sonner";
 
 // Utility to debounce a function
@@ -26,10 +26,10 @@ export default function ShoppersProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { fetchBrands } = useBrandStore();
-  const { getWishlist } = useWishlistStore();
-  const { getNotifications } = useNotificationStore();
-  const { initialize, isAuthenticated } = useUserStore();
+  const { fetchBrands, brands } = useBrandStore();
+  const { getWishlist, wishlist } = useWishlistStore();
+  const { getNotifications, notifications } = useNotificationStore();
+  const { initialize, isAuthenticated, user } = useUserStore();
   const {
     getCart,
     synchronizeCart,
@@ -40,6 +40,15 @@ export default function ShoppersProvider({
   const jwt = useJwt();
   const isProcessingRef = useRef(false);
   const lastSyncedRef = useRef<number | null>(null); // Timestamp of last sync
+  const hasFetchedRef = useRef({
+    cart: false,
+    wishlist: false,
+    brands: false,
+    notifications: false,
+  }); // Track initial fetches
+
+  // Memoize jwt to stabilize reference
+  const stableJwt = useMemo(() => jwt, [jwt]);
 
   // Debounced sync function
   const debouncedSyncCart = useCallback(
@@ -57,7 +66,6 @@ export default function ShoppersProvider({
         return;
       }
 
-      // Check sync conditions inside the function
       const hasRecentSync =
         lastSyncedRef.current &&
         Date.now() - lastSyncedRef.current < 5 * 60 * 1000; // 5 minutes
@@ -75,7 +83,10 @@ export default function ShoppersProvider({
 
       isProcessingRef.current = true;
       try {
-        await getCart();
+        if (!cart && !hasFetchedRef.current.cart) {
+          await getCart();
+          hasFetchedRef.current.cart = true;
+        }
         await synchronizeCart();
         await processPendingChanges();
         lastSyncedRef.current = Date.now();
@@ -94,44 +105,70 @@ export default function ShoppersProvider({
       } finally {
         isProcessingRef.current = false;
       }
-    }, 1000), // 1-second debounce
-    [isAuthenticated, getCart, synchronizeCart, processPendingChanges], // Removed cart, pendingChanges
+    }, 1000),
+    [isAuthenticated, getCart, synchronizeCart, processPendingChanges],
   );
 
   useEffect(() => {
-    if (jwt) {
+    if (stableJwt && !user) {
       initialize();
     }
-  }, [jwt, initialize]);
+  }, [stableJwt, initialize, user]);
 
   useEffect(() => {
     const fetchData = async () => {
-      await Promise.allSettled([
-        getCart(), // Fetch cart first to initialize version
-        getWishlist(),
-        fetchBrands(),
-        getNotifications(),
-      ]);
+      console.log(
+        `[${new Date().toISOString()}] Fetching data: isAuthenticated=${isAuthenticated}`,
+      );
+      const promises = [];
+
+      // Only fetch if store is empty and not yet fetched
+      if (!cart && !hasFetchedRef.current.cart) {
+        promises.push(getCart());
+        hasFetchedRef.current.cart = true;
+      }
+      if (!wishlist?.apparels?.length && !hasFetchedRef.current.wishlist) {
+        promises.push(getWishlist());
+        hasFetchedRef.current.wishlist = true;
+      }
+      if (!brands?.length && !hasFetchedRef.current.brands) {
+        promises.push(fetchBrands());
+        hasFetchedRef.current.brands = true;
+      }
+      if (!notifications?.length && !hasFetchedRef.current.notifications) {
+        promises.push(getNotifications());
+        hasFetchedRef.current.notifications = true;
+      }
+
+      if (promises.length > 0) {
+        console.log(
+          `[${new Date().toISOString()}] Running promises: ${promises.length}`,
+        );
+        await Promise.allSettled(promises);
+      }
 
       // Trigger sync if authenticated and online
       if (isAuthenticated && navigator.onLine) {
         debouncedSyncCart();
       }
     };
-    fetchData();
+
+    if (isAuthenticated) {
+      fetchData();
+    }
   }, [
+    isAuthenticated,
     getCart,
     getWishlist,
     fetchBrands,
     getNotifications,
-    isAuthenticated,
     debouncedSyncCart,
-  ]);
+  ]); // Removed cart, wishlist, brands, notifications
 
   useEffect(() => {
     const handleOnline = () => {
       if (isAuthenticated && navigator.onLine) {
-        debouncedSyncCart(); // Sync on network recovery if authenticated
+        debouncedSyncCart(); // Sync on network recovery
       }
     };
 

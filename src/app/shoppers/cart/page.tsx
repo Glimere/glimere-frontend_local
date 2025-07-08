@@ -12,10 +12,7 @@ import { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
-
 import EmptyBag from "../../../../public/images/empty-bag.svg";
-
 
 const Cart: NextPage = () => {
   const { cart, removeItem } = useCartStore();
@@ -40,7 +37,7 @@ const Cart: NextPage = () => {
 
             {cart?.items.length == 0 || cart == null ? (
               <>
-                <div className="flex flex-col items-center justify-center bg-transparent-white-100 p-[1.4rem] sm:rounded-[1.6rem] sm:p-[2rem]">
+                <div className="flex flex-col items-center justify-center bg-transparent-white-100 p-[1.4rem] backdrop-blur-md sm:rounded-[1.6rem] sm:p-[2rem]">
                   <div className="text-center">
                     {/* Empty Bag Icon */}
                     <EmptyBag className="mx-auto h-[150px] w-[150px] text-gray-400" />
@@ -63,11 +60,11 @@ const Cart: NextPage = () => {
                 </div>
               </>
             ) : (
-              <div className="flex flex-col gap-[1.56rem] bg-transparent-white-100 p-[1.4rem] sm:rounded-[1.6rem] sm:p-[2rem]">
+              <div className="flex flex-col gap-[1.56rem] bg-transparent-white-100 p-[1.4rem] backdrop-blur-md sm:rounded-[1.6rem] sm:p-[2rem]">
                 {cart?.items.map((cartItem) => (
                   <div
                     key={cartItem._id}
-                    className="flex h-[150px] flex-grow flex-col items-center justify-between rounded-[0.9rem] bg-transparent-white-200 p-[1rem] sm:h-[200px] sm:flex-row"
+                    className="flex h-[150px] flex-grow flex-col items-center justify-between rounded-[0.9rem] bg-transparent-white-200 p-[1rem] backdrop-blur-md sm:h-[200px] sm:flex-row"
                   >
                     <div className="flex h-full w-full flex-row gap-[20px]">
                       <div className="h-full w-[8rem] overflow-hidden rounded-[10px]">

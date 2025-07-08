@@ -201,7 +201,7 @@ const OnboardingFlow = () => {
       />
 
       {/* Progress Bar */}
-      <div className="fixed left-0 right-0 top-0 z-50 border-b border-transparent-white-100 bg-transparent-white-200 backdrop-blur-xl">
+      <div className="fixed left-0 right-0 top-0 z-50 border-b border-transparent-white-100 bg-transparent-white-200 backdrop-blur-md backdrop-blur-xl">
         <div className="mx-auto max-w-4xl px-6 py-4">
           <div className="mb-2 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-dark">
@@ -266,7 +266,7 @@ const OnboardingFlow = () => {
                       className={`group relative cursor-pointer overflow-hidden p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
                         data.apparelType === "custom"
                           ? "bg-gradient-to-br from-palePink/80 to-beige/80 shadow-xl ring-2 ring-primary-100"
-                          : "bg-transparent-white-200 hover:bg-transparent-white-300"
+                          : "bg-transparent-white-200 backdrop-blur-md hover:bg-transparent-white-300"
                       }`}
                       onClick={() => updateData("apparelType", "custom")}
                     >
@@ -296,7 +296,7 @@ const OnboardingFlow = () => {
                       className={`group relative cursor-pointer overflow-hidden p-8 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
                         data.apparelType === "ready-to-wear"
                           ? "bg-gradient-to-br from-beige/80 to-palePink/80 shadow-xl ring-2 ring-primary-100"
-                          : "bg-transparent-white-200 hover:bg-transparent-white-300"
+                          : "bg-transparent-white-200 backdrop-blur-md hover:bg-transparent-white-300"
                       }`}
                       onClick={() => updateData("apparelType", "ready-to-wear")}
                     >
@@ -324,7 +324,7 @@ const OnboardingFlow = () => {
                   </div>
 
                   {/* Additional Info Section */}
-                  <div className="mt-12 rounded-2xl border border-transparent-white-100 bg-transparent-white-200 p-6 backdrop-blur-sm">
+                  <div className="mt-12 rounded-2xl border border-transparent-white-100 bg-transparent-white-200 p-6 backdrop-blur-md backdrop-blur-sm">
                     <div className="mb-4 flex items-center justify-center gap-3">
                       <Sparkles className="h-5 w-5 text-primary-100" />
                       <h4 className="text-lg font-semibold text-dark">
@@ -379,7 +379,7 @@ const OnboardingFlow = () => {
                   </p>
                 </div>
 
-                <Card className="border border-transparent-white-100 bg-transparent-white-200 p-8 shadow-2xl backdrop-blur-xl">
+                <Card className="border border-transparent-white-100 bg-transparent-white-200 p-8 shadow-2xl backdrop-blur-md backdrop-blur-xl">
                   <div className="space-y-6">
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
@@ -524,7 +524,7 @@ const OnboardingFlow = () => {
                         <Camera className="h-4 w-4" />
                         Profile Picture/Avatar
                       </Label>
-                      <div className="mt-1 rounded-lg border-2 border-dashed border-primary-100/30 bg-transparent-white-100 p-4 text-center">
+                      <div className="mt-1 rounded-lg border-2 border-dashed border-primary-100/30 bg-transparent-white-100 p-4 text-center backdrop-blur-md">
                         <Upload className="mx-auto mb-2 h-8 w-8 text-primary-100" />
                         <p className="text-sm text-dark/70">
                           Upload high-resolution professional headshot or brand
@@ -1193,7 +1193,7 @@ const OnboardingFlow = () => {
                   </p>
                 </div>
 
-                <Card className="border border-transparent-white-100 bg-transparent-white-200 p-8 shadow-2xl backdrop-blur-xl">
+                <Card className="border border-transparent-white-100 bg-transparent-white-200 p-8 shadow-2xl backdrop-blur-md backdrop-blur-xl">
                   <div className="max-h-96 space-y-8 overflow-y-auto">
                     {/* Apparel Type */}
                     <div className="border-b border-transparent-white-100 pb-4">
@@ -1500,7 +1500,7 @@ const OnboardingFlow = () => {
                   </p>
                 </div>
 
-                <Card className="mb-8 border border-transparent-white-100 bg-transparent-white-200 p-8 shadow-2xl backdrop-blur-xl">
+                <Card className="mb-8 border border-transparent-white-100 bg-transparent-white-200 p-8 shadow-2xl backdrop-blur-md backdrop-blur-xl">
                   <div className="text-center">
                     <Star className="mx-auto mb-4 h-16 w-16 text-primary-100" />
                     <h3 className="mb-4 text-xl font-semibold text-dark">
@@ -1530,7 +1530,7 @@ const OnboardingFlow = () => {
                   <div className="flex justify-center gap-4">
                     <Button
                       variant="outline"
-                      className="border-primary-100/30 bg-transparent-white-200 text-dark backdrop-blur-sm hover:bg-transparent-white-300"
+                      className="border-primary-100/30 bg-transparent-white-200 text-dark backdrop-blur-md backdrop-blur-sm hover:bg-transparent-white-300"
                     >
                       Learn About Our Platform
                     </Button>
@@ -1550,7 +1550,7 @@ const OnboardingFlow = () => {
                 variant="outline"
                 onClick={goToPrevious}
                 disabled={currentStep === 1}
-                className="flex items-center space-x-2 border-primary-100/30 bg-transparent-white-200 text-dark backdrop-blur-sm hover:bg-transparent-white-300"
+                className="flex items-center space-x-2 border-primary-100/30 bg-transparent-white-200 text-dark backdrop-blur-md backdrop-blur-sm hover:bg-transparent-white-300"
               >
                 <ChevronLeft className="h-4 w-4" />
                 <span>Previous</span>

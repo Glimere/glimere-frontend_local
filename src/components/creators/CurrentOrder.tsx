@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function CurrentOrder() {
   return (
     <Card
-      className="flex flex-[4] flex-col gap-[15px] rounded-[22px] bg-transparent-white-200 xl:col-span-2"
+      className="flex flex-[4] flex-col gap-[15px] rounded-[22px] bg-transparent-white-200 backdrop-blur-md xl:col-span-2"
       x-chunk="dashboard-01-chunk-4"
     >
       <CardHeader className="flex flex-row items-center">
@@ -13,7 +13,7 @@ export default function CurrentOrder() {
         </div>
       </CardHeader>
       <CardContent className="flex-grow">
-        <div className="h-full rounded-2xl bg-transparent-white-200 p-8">
+        <div className="h-full rounded-2xl bg-transparent-white-200 p-8 backdrop-blur-md">
           <div className="space-y-4">
             <div>
               <p className="text-sm font-medium text-orange-500">Dress</p>

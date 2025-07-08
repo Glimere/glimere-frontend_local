@@ -94,7 +94,7 @@ const NavBar: React.FC = () => {
         </div>
       </div>
       {showSearch && (
-        <div className="relative flex w-full grow flex-row items-center gap-[15px] rounded-full bg-transparent-white-300 px-[20px] py-[3px] sm:hidden">
+        <div className="relative flex w-full grow flex-row items-center gap-[15px] rounded-full bg-transparent-white-300 px-[20px] py-[3px] backdrop-blur-md sm:hidden">
           <Search
             className={`block scale-75 cursor-pointer duration-150 hover:fill-primary-100`}
           />

@@ -3,7 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import useOrderStore from "@/store/orderStore";
 import useUserStore from "@/store/userStore";
 import axios from "axios";
@@ -11,11 +17,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-
-
 import Bank from "../../../../../public/images/bank.svg";
 import Card from "../../../../../public/images/card.svg";
-
 
 const paymentOptions = {
   bank: {
@@ -57,7 +60,7 @@ const PaymentTab = () => {
     const fetchBanks = async () => {
       try {
         const response = await fetch(
-          `https://api.paystack.co/bank?country=${user?.address.country.toLowerCase()}&pay_with_bank=true`
+          `https://api.paystack.co/bank?country=${user?.address?.country.toLowerCase()}&pay_with_bank=true`,
         );
         const data = await response.json();
         setBanks(data.data || []);
@@ -67,7 +70,7 @@ const PaymentTab = () => {
     };
 
     fetchBanks();
-  }, [user?.address.country]);
+  }, [user?.address?.country]);
 
   useEffect(() => {
     // Enable pay button only if all fields are filled
@@ -80,9 +83,9 @@ const PaymentTab = () => {
       amount:
         Math.round(
           selectedOrder.total_price +
-          (selectedOrder.selected_city.fee === 0
-            ? selectedOrder?.shipping_fee
-            : selectedOrder.selected_city.fee)
+            (selectedOrder.selected_city.fee === 0
+              ? selectedOrder?.shipping_fee
+              : selectedOrder.selected_city.fee),
         ) * 100, // Convert to kobo
       bank: {
         code: selectedBankCode,
@@ -99,7 +102,7 @@ const PaymentTab = () => {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_TEST_PAYSTACK_SECRET_KEY}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -107,13 +110,12 @@ const PaymentTab = () => {
 
         if (status && data?.status === "open_url") {
           toast.success("Payment Initiated", {
-            description: message
+            description: message,
           });
 
-          if (typeof window != 'undefined') {
+          if (typeof window != "undefined") {
             window.open(data.url, "_blank");
           }
-          
         } else {
           toast.error("Payment Failed", {
             description: message,
@@ -150,11 +152,11 @@ const PaymentTab = () => {
         transition={{ duration: 0.3 }}
         className="flex flex-col gap-4"
       >
-        <p className="text-gray-600 text-center">Pay with your bank account.</p>
+        <p className="text-center text-gray-600">Pay with your bank account.</p>
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-sm">Select Bank</label>
+          <label className="text-sm font-semibold">Select Bank</label>
           <Select onValueChange={setSelectedBankCode}>
-            <SelectTrigger className="border rounded-md p-3">
+            <SelectTrigger className="rounded-md border p-3">
               <SelectValue placeholder="Choose a bank" />
             </SelectTrigger>
             <SelectContent>
@@ -168,18 +170,18 @@ const PaymentTab = () => {
         </div>
         {selectedBankCode && (
           <div className="flex flex-col gap-2">
-            <Label className="font-semibold text-sm">Account Number</Label>
+            <Label className="text-sm font-semibold">Account Number</Label>
             <Input
               type="text"
               value={accountNumber}
               onChange={(e) => setAccountNumber(e.target.value)}
               placeholder="Enter your account number"
-              className="border rounded-md p-3"
+              className="rounded-md border p-3"
             />
           </div>
         )}
         <Button
-          className="w-full bg-primary-100 mt-4"
+          className="mt-4 w-full bg-primary-100"
           disabled={isPayDisabled}
           onClick={handlePayment}
         >
@@ -196,7 +198,7 @@ const PaymentTab = () => {
         transition={{ duration: 0.3 }}
         className="flex flex-col items-center gap-4"
       >
-        <p className="text-gray-600 text-center">
+        <p className="text-center text-gray-600">
           Use bank transfer to pay directly from your bank account.
         </p>
         <Button className="w-full bg-primary-100">Get Bank Details</Button>
@@ -213,29 +215,29 @@ const PaymentTab = () => {
       >
         {paymentOptions.card.availability ? (
           <>
-            <div className="flex w-full h-full flex-col gap-2">
-              <label className="font-semibold text-sm">Card Number</label>
+            <div className="flex h-full w-full flex-col gap-2">
+              <label className="text-sm font-semibold">Card Number</label>
               <input
                 type="text"
                 placeholder="1264 1234 1234 1234"
-                className="border rounded-md p-3"
+                className="rounded-md border p-3"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm">Expiry (MM/YY)</label>
+                <label className="text-sm font-semibold">Expiry (MM/YY)</label>
                 <input
                   type="text"
                   placeholder="MM/YY"
-                  className="border rounded-md p-3"
+                  className="rounded-md border p-3"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-semibold text-sm">CVC</label>
+                <label className="text-sm font-semibold">CVC</label>
                 <input
                   type="text"
                   placeholder="CVC"
-                  className="border rounded-md p-3"
+                  className="rounded-md border p-3"
                 />
               </div>
             </div>
@@ -245,14 +247,14 @@ const PaymentTab = () => {
                 Billing is the same as shipping information
               </label>
             </div>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="mt-2 text-sm text-gray-500">
               By providing your card information, you allow Shop Name to charge
               your card for future payments in accordance with the terms.
             </p>
-            <Button className="w-full bg-primary-100 mt-4">Pay Now</Button>
+            <Button className="mt-4 w-full bg-primary-100">Pay Now</Button>
           </>
         ) : (
-          <p className="text-red-600 text-center">
+          <p className="text-center text-red-600">
             {paymentOptions.card.message}
           </p>
         )}
@@ -264,32 +266,33 @@ const PaymentTab = () => {
     <>
       <div className="">
         {" "}
-        <h1 className="text-2xl font-bold my-6 ml-2">Payment</h1>
-        <div className="flex flex-col gap-6 p-6 bg-transparent-white-200 rounded-[15px] overflow-hidden shadow-sm">
+        <h1 className="my-6 ml-2 text-2xl font-bold">Payment</h1>
+        <div className="flex flex-col gap-6 overflow-hidden rounded-[15px] bg-transparent-white-200 p-6 shadow-sm backdrop-blur-md">
           <div className="flex justify-between gap-4">
             {tabOptions.map((tab: "bank" | "banktransfer" | "card") => (
               <div
                 key={tab}
                 onClick={() => setSelectedTab(tab)}
-                className={`cursor-pointer flex-1 text-center p-3 rounded-lg transition-all border-solid border-[2px] duration-300 ${selectedTab === tab
-                    ? "bg-transparent-white-300 text-dark border-primary-100"
+                className={`flex-1 cursor-pointer rounded-lg border-[2px] border-solid p-3 text-center transition-all duration-300 ${
+                  selectedTab === tab
+                    ? "border-primary-100 bg-transparent-white-300 text-dark backdrop-blur-md"
                     : "bg-gray-100 text-dark"
-                  }`}
+                }`}
               >
                 {tab === "bank" && (
-                  <div className="flex flex-col gap-[10px] items-start">
+                  <div className="flex flex-col items-start gap-[10px]">
                     <Bank />
                     <p className="">Bank</p>
                   </div>
                 )}
                 {tab === "banktransfer" && (
-                  <div className="flex flex-col gap-[10px] items-start">
+                  <div className="flex flex-col items-start gap-[10px]">
                     <Bank />
                     <p className="">Bank Transfer</p>
                   </div>
                 )}
                 {tab === "card" && (
-                  <div className="flex flex-col gap-[10px] items-start">
+                  <div className="flex flex-col items-start gap-[10px]">
                     <Card />
                     <p className="">Card</p>
                   </div>

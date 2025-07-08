@@ -50,7 +50,7 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
       {" "}
       <AnimatePresence>
         <motion.div
-          className="flex h-full flex-row justify-center pt-[110px] duration-100"
+          className="relative flex h-full flex-row justify-center pt-[110px] duration-100 z-[2]"
           animate={{
             scale:
               selectedCurrent && parentIndex !== selectedCurrent() ? 0.7 : 1,
@@ -74,8 +74,8 @@ const ProductViewCarousel: NextPage<ProductViewCarouselProps> = ({
               setApi={setApi}
             >
               <CarouselContent className="-mt-1 h-[40rem] sm:h-[35rem]">
-                {apparel.apparel_images.map((img, index: number) => (
-                  <CarouselItem key={index} className="md:basis-1/1 pt-1">
+                {apparel.apparel_images.map((img) => (
+                  <CarouselItem key={img._id} className="md:basis-1/1 pt-1">
                     <div className="h-full p-1">
                       <Card className="h-full border-none bg-transparent shadow-none">
                         <CardContent className="flex h-full items-center justify-center p-0">

@@ -39,13 +39,13 @@ const ApparelEditBar: NextPage<Props> = ({
         </div>
       )}
 
-      <div className="flex flex-col gap-[1rem] self-center rounded-full bg-transparent-white-100 px-[0.7rem] py-[1.3rem] duration-300">
+      <div className="flex flex-col gap-[1rem] self-center rounded-full bg-transparent-white-100 px-[0.7rem] py-[1.3rem] backdrop-blur-md duration-300">
         <AnimatePresence>
           {threeDToggle && editToggle ? (
             <>
               <Button
                 size="icon"
-                className="rounded-full bg-transparent-white-100 hover:bg-[#fdfdfd] [&_svg]:size-7"
+                className="rounded-full bg-transparent-white-100 backdrop-blur-md hover:bg-[#fdfdfd] [&_svg]:size-7"
                 onClick={() => setEditToggle(false)}
               >
                 <X className="scale-75 text-primary-100" />

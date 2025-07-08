@@ -1,6 +1,7 @@
 import apiClient from "@/api/client/apiClient";
-import axios, { AxiosResponse, AxiosError } from "axios";
-import { useEffect, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useMemo, useState } from "react";
+
 import { useJwt } from "./useJwt";
 
 type UseFetchState<T> = {
@@ -20,15 +21,13 @@ const useFetch = <T>(url: string) => {
 
   const access_token = useJwt();
 
-  const api_url: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         setState((previous) => ({ ...previous, loading: true }));
         const response: AxiosResponse<T> = await apiClient.get(`/api${url}`, {
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: access_token ? `Bearer ${access_token}` : undefined,
           },
         });
         setState({
@@ -58,7 +57,7 @@ const useFetch = <T>(url: string) => {
     };
 
     fetchData();
-  }, [access_token, api_url, url]);
+  }, [access_token, url]);
 
   return state;
 };

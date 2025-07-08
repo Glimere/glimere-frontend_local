@@ -21,7 +21,7 @@ const Rating: React.FC<RatingProps> = ({ rating, reviews }) => {
           style={{ fill: "#FBB56C" }}
         />
       </svg>
-      <p className="text-dark text-[13px] mt-[5px]"><span className="font-bold">{roundedRating}.0</span>{" "}({reviews} Reviews)</p>
+      <p className="text-dark text-[13px]"><span className="font-bold">{roundedRating}.0</span>{" "}({reviews} Reviews)</p>
     </div>
   );
 };

@@ -15,7 +15,7 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "../ui/carousel copy";
-import CarouselSkeletonLoader from "./CarouselSkeletonLoader";
+import CarouselSkeletonLoader from "../skeletons/CarouselSkeletonLoader";
 import NameSwitcher from "./NameSwitcher";
 import ProductCarouselCard from "./ProductCarouselCard";
 
@@ -114,8 +114,8 @@ export default function ProductCarousel() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-[36%] opacity-0 duration-300 group-hover:opacity-100" />
-            <CarouselNext className="absolute right-[36%] opacity-0 duration-300 group-hover:opacity-100" />
+            <CarouselPrevious className="absolute z-[6] sm:z-0 sm:left-[35%] left-[30%] opacity-0 duration-300 group-hover:opacity-100" />
+            <CarouselNext className="absolute z-[6] sm:z-0 sm:right-[35%] right-[30%] opacity-0 duration-300 group-hover:opacity-100" />
           </Carousel>
         </>
       )}

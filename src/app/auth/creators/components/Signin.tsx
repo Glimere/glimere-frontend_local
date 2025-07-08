@@ -63,9 +63,9 @@ export default function SigninCreator() {
   };
 
   return (
-    <div className="w-full max-w-md">
+    <div className="relative z-[3] w-full max-w-md">
       <Card className="overflow-hidden rounded-2xl border-none bg-transparent shadow-none">
-        <CardHeader className="border-b border-transparent-white-300 bg-gradient-to-r from-transparent-white-100 to-transparent">
+        <CardHeader className="">
           <CardTitle className="flex items-center justify-center gap-4 text-center text-2xl font-semibold text-dark">
             <GlimereLogo className={`cursor-pointer text-primary-100`} />
             Creator Login

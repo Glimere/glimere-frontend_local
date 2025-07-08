@@ -5,9 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { registerUser } from "@/utils/authService";
 import { Eye, EyeClosed } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
 
@@ -51,49 +51,48 @@ const SignupPage: React.FC = () => {
     );
   };
 
- const signUp = async () => {
-  const data = {
-    first_name: registerUserDetails.firstname,
-    last_name: registerUserDetails.lastname,
-    email: registerUserDetails.email.toLowerCase(),
-    password: registerUserDetails.password,
-    phone_number: registerUserDetails.phone_number,
-    role: role,
+  const signUp = async () => {
+    const data = {
+      first_name: registerUserDetails.firstname,
+      last_name: registerUserDetails.lastname,
+      email: registerUserDetails.email.toLowerCase(),
+      password: registerUserDetails.password,
+      phone_number: registerUserDetails.phone_number,
+      role: role,
+    };
+
+    try {
+      if (registerUserDetails.password !== confirmPassword) {
+        setError("Passwords do not match");
+        toast.error("Passwords do not match");
+        return;
+      }
+
+      if (
+        registerUserDetails.firstname &&
+        registerUserDetails.lastname &&
+        registerUserDetails.email &&
+        registerUserDetails.password
+      ) {
+        await registerUser(data);
+        toast.success("Account created successfully!");
+        // Optionally reset form
+        setregisterUserDetailsDetails(initialregisterUserDetails);
+        setConfirmPassword("");
+        router.push("/auth/shoppers/login");
+      } else {
+        toast.error("Please fill all required fields");
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+        toast.error(error.message);
+      } else {
+        setError("An unknown error occurred");
+        toast.error("An unknown error occurred");
+      }
+    }
   };
-
-  try {
-    if (registerUserDetails.password !== confirmPassword) {
-      setError("Passwords do not match");
-      toast.error("Passwords do not match");
-      return;
-    }
-
-    if (
-      registerUserDetails.firstname &&
-      registerUserDetails.lastname &&
-      registerUserDetails.email &&
-      registerUserDetails.password
-    ) {
-      await registerUser(data);
-      toast.success("Account created successfully!");
-      // Optionally reset form
-      setregisterUserDetailsDetails(initialregisterUserDetails);
-      setConfirmPassword("");
-      router.push("/auth/shoppers/login")
-    } else {
-      toast.error("Please fill all required fields");
-    }
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      setError(error.message);
-      toast.error(error.message);
-    } else {
-      setError("An unknown error occurred");
-      toast.error("An unknown error occurred");
-    }
-  }
-};
-
 
   return (
     <Card
@@ -185,7 +184,7 @@ const SignupPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2 scale-75 top-[21px] -translate-y-1/2 text-sm text-gray-500"
+                className="absolute right-2 top-[21px] -translate-y-1/2 scale-75 text-sm text-gray-500"
               >
                 {showPassword ? <EyeClosed /> : <Eye />}
               </button>

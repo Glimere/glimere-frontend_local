@@ -1,26 +1,27 @@
 "use client";
 
+import { useCartStore } from "@/store/cartStore";
+import useNotificationStore from "@/store/notificationStore";
+import useUserStore from "@/store/userStore";
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+
 import GlimereLogo from "../../../public/images/Glimere-Logo.svg";
+import Notification from "../../../public/images/notification.svg";
+import Search from "../../../public/images/search.svg";
 import ShoppingBag from "../../../public/images/shopping-bag.svg";
 import User from "../../../public/images/user.svg";
-import Search from "../../../public/images/search.svg";
-import Notification from "../../../public/images/notification.svg";
-import Link from "next/link";
-import { useCartStore } from "@/store/cartStore";
-import useUserStore from "@/store/userStore";
-import { UserDropdownMenu } from "../shoppers/UserdropdownMenu";
-import { ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { NotificationDropdown } from "../shoppers/NotificationDropdown";
-import useNotificationStore from "@/store/notificationStore";
+import { UserDropdownMenu } from "../shoppers/UserdropdownMenu";
 
 interface Notification {
   id: string;
   heading: string;
   message: string;
   type: "warning" | "info" | "success" | "error"; // Notification types
-  isRead: boolean; 
+  isRead: boolean;
 }
 
 const ALLOWED_SEARCH_ROUTES = ["/shoppers/:id"];
@@ -34,7 +35,7 @@ const ShoppersNav: React.FC = () => {
 
   const { notifications } = useNotificationStore();
 
-  const showSearch = ALLOWED_SEARCH_ROUTES.includes(pathname)
+  const showSearch = ALLOWED_SEARCH_ROUTES.includes(pathname);
 
   useEffect(() => {
     setIsHydrated(true);
@@ -48,21 +49,19 @@ const ShoppersNav: React.FC = () => {
   if (!isHydrated) return null;
 
   return (
-    <nav className="absolute w-full h-[105px] sm:h-[80px] px-[25px] sm:px-[5.75rem] sm:p-0 flex flex-col items-center z-[1000]">
-      <div className="container mx-auto max-w-[1344px]">
-        <div className="h-16 md:h-20 md:py-6 flex items-center justify-between z-20 relative">
+    <nav className="absolute z-[1000] mt-3 flex w-full flex-col items-center px-[25px] sm:mt-0 sm:h-[80px] sm:p-0 sm:px-[5.75rem]">
+      <div className="container mx-auto max-w-[1344px] rounded-full bg-transparent-white-100 sm:bg-transparent px-3 backdrop-blur-md sm:backdrop-blur-none sm:rounded-none sm:px-0">
+        <div className="relative z-20 flex h-16 items-center justify-between md:h-20 md:py-6">
           <div className="flex flex-row items-center justify-center">
             <Link href="/shoppers">
-              <GlimereLogo
-                className={`text-primary-100 cursor-pointer`}
-              />
+              <GlimereLogo className={`cursor-pointer text-primary-100`} />
             </Link>
           </div>
 
           <div className="flex flex-row items-center gap-[20px]">
-            <div className="relative hidden sm:flex flex-row items-center justify-between rounded-full gap-[10px] px-[20px] py-[7px] bg-transparent-white-300">
+            <div className="relative hidden flex-row items-center justify-between gap-[10px] rounded-full bg-transparent-white-300 px-[20px] py-[7px] backdrop-blur-md sm:flex">
               <Search
-                className={`block hover:fill-primary-100 duration-150 cursor-pointer`}
+                className={`block cursor-pointer duration-150 hover:fill-primary-100`}
               />
               <input
                 type="text"
@@ -74,11 +73,11 @@ const ShoppersNav: React.FC = () => {
               <NotificationDropdown>
                 <div>
                   <Notification
-                    className={`block hover:fill-primary-100 duration-150 mt-[4px]`}
+                    className={`mt-[4px] block duration-150 hover:fill-primary-100`}
                   />
                   {/* Add a dot to indicate new notifications */}
                   {notifications?.some((notif) => notif?.isRead) && (
-                    <span className="absolute top-0 right-0 block w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+                    <span className="absolute right-0 top-0 block h-2.5 w-2.5 rounded-full bg-red-500"></span>
                   )}
                 </div>
               </NotificationDropdown>
@@ -88,35 +87,35 @@ const ShoppersNav: React.FC = () => {
               {cart?.items.length === 0 || cart === null ? (
                 <></>
               ) : (
-                <div className="absolute top-0 right-0 bg-primary-100 rounded-full h-[10px] w-[10px]"></div>
+                <div className="absolute right-0 top-0 h-[10px] w-[10px] rounded-full bg-primary-100"></div>
               )}
               <Link href="/shoppers/cart">
                 <ShoppingBag
-                  className={`block hover:fill-primary-100 duration-150 cursor-pointer`}
+                  className={`block cursor-pointer duration-150 hover:fill-primary-100`}
                 />
               </Link>
             </div>
             {isAuthenticated == false ? (
               <UserDropdownMenu>
-                <div className="group cursor-pointer duration-200 relative flex flex-row items-center gap-[10px]">
+                <div className="group relative flex cursor-pointer flex-row items-center gap-[10px] duration-200">
                   <User
-                    className={`block group-hover:fill-primary-100 duration-150`}
+                    className={`block duration-150 group-hover:fill-primary-100`}
                   />
 
-                  <p className="hidden md:block text-[16px] group-hover:text-primary-100 mt-1 font-medium">
+                  <p className="mt-1 hidden text-[16px] font-medium group-hover:text-primary-100 md:block">
                     Account
                   </p>
-                  <ChevronDown className="hidden md:block " />
+                  <ChevronDown className="hidden md:block" />
                 </div>
               </UserDropdownMenu>
             ) : (
               <UserDropdownMenu>
-                <div className="group cursor-pointer duration-200 relative flex flex-row items-center gap-[10px]">
+                <div className="group relative flex cursor-pointer flex-row items-center gap-[10px] duration-200">
                   <User
-                    className={`block group-hover:fill-primary-100 duration-150`}
+                    className={`block duration-150 group-hover:fill-primary-100`}
                   />
 
-                  <p className="text-[16px] group-hover:text-primary-100 mt-1 font-medium">
+                  <p className="mt-1 hidden text-[16px] font-medium group-hover:text-primary-100 sm:block">
                     Hi, <span>{user?.first_name}</span>
                   </p>
 
@@ -127,10 +126,10 @@ const ShoppersNav: React.FC = () => {
           </div>
         </div>
       </div>
-      {showSearch &&
-        <div className="w-full relative flex grow sm:hidden flex-row items-center rounded-full gap-[15px] px-[20px] py-[3px] bg-transparent-white-300">
+      {showSearch && (
+        <div className="relative flex w-full grow flex-row items-center gap-[15px] rounded-full bg-transparent-white-300 px-[20px] py-[3px] backdrop-blur-md sm:hidden">
           <Search
-            className={`block hover:fill-primary-100 duration-150 cursor-pointer scale-75`}
+            className={`block scale-75 cursor-pointer duration-150 hover:fill-primary-100`}
           />
           <input
             type="text"
@@ -138,8 +137,7 @@ const ShoppersNav: React.FC = () => {
             className="bg-transparent outline-none"
           ></input>
         </div>
-      }
-
+      )}
     </nav>
   );
 };

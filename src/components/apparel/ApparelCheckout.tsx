@@ -6,7 +6,10 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+
+
 import { Button } from "../ui/button";
+
 
 interface Props {
   apparel: Apparel;
@@ -23,8 +26,8 @@ const ApparelCheckout: NextPage<Props> = ({ apparel }) => {
 
   return (
     <>
-      <div className="absolute right-0 z-[3] flex h-full flex-col justify-center sm:pr-[5.75rem]">
-        <div className="flex min-w-[18.125rem] flex-col gap-[1.56rem]">
+      <div className="justify-center pr-4 absolute right-0 z-[3] flex h-full w-[30%] flex-col md:pr-[2.5rem] lg:pr-[5.75rem]">
+        <div className="flex flex-col gap-[1.56rem]">
           <div className="flex flex-col gap-[1.56rem] rounded-[1.6rem] bg-transparent-white-200 p-[1.56rem] backdrop-blur-md">
             <div className="">
               <div className="">

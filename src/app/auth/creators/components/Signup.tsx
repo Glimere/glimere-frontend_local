@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { setJwt } from "@/lib/cookie";
 import useUserStore from "@/store/userStore";
 import { registerUser } from "@/utils/authService";
 import { Eye, EyeClosed } from "lucide-react";
@@ -12,7 +13,6 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
-import { setJwt } from "@/lib/cookie";
 
 const SignupPage: React.FC = () => {
   const initialregisterUserDetails = {
@@ -91,7 +91,7 @@ const SignupPage: React.FC = () => {
       }
 
       await setAuthToken(token);
-      setJwt(token)
+      setJwt(token);
       await fetchUser(token);
 
       setregisterUserDetailsDetails(initialregisterUserDetails);
@@ -110,7 +110,7 @@ const SignupPage: React.FC = () => {
 
   return (
     <Card
-      className={`flex h-full w-full flex-col items-center justify-center gap-[20px] rounded-[20px] bg-transparent-white-300 px-[30px] backdrop-blur-md duration-300 sm:p-[40px]`}
+      className={`flex h-full w-full flex-col items-center justify-center gap-[20px] rounded-[20px] bg-transparent-white-300 backdrop-blur-md px-[30px] duration-300 sm:p-[40px]`}
     >
       <div className="flex w-full flex-col items-center gap-[20px]">
         <div className="flex flex-col items-center gap-[10px]">
@@ -131,7 +131,7 @@ const SignupPage: React.FC = () => {
                   name="firstname"
                   placeholder="First Name"
                   autoComplete="name"
-                  className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm backdrop-blur-md duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                   onChange={handleUserChange}
                 />
               </div>
@@ -146,7 +146,7 @@ const SignupPage: React.FC = () => {
                   name="lastname"
                   placeholder="Last Name"
                   autoComplete="name"
-                  className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm backdrop-blur-md duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                   onChange={handleUserChange}
                 />
               </div>
@@ -162,7 +162,7 @@ const SignupPage: React.FC = () => {
                 placeholder="Email"
                 type="email"
                 autoComplete="email"
-                className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm backdrop-blur-md duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                 onChange={handleUserChange}
               />
             </div>
@@ -177,7 +177,7 @@ const SignupPage: React.FC = () => {
                 placeholder="Phone"
                 type="phone_number"
                 autoComplete="phone_number"
-                className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 bg-transparent-white-200 px-4 py-1.5 text-black shadow-sm backdrop-blur-md duration-200 placeholder:text-gray-400 hover:bg-gray-100 focus:ring-[#9d5c0d] sm:text-sm sm:leading-6"
                 onChange={handleUserChange}
               />
             </div>

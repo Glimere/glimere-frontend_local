@@ -76,7 +76,7 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
               opts={{
                 align: "start",
               }}
-              orientation="vertical"
+              orientation={undefined}
               className="z-[1] w-full max-w-full"
               setApi={setApi}
             >

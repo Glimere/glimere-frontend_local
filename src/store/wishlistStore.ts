@@ -1,16 +1,10 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import axios from 'axios';
-import { getJwt } from '@/lib/cookie';
-import { Apparel } from '@/types';
-import { ApiResponse } from '@/types';
-
-export interface Wishlist {
-  _id: string;
-  userId: string;
-  apparels: Apparel[];
-  createdAt: string;
-}
+import apiClient from "@/api/client/apiClient";
+import { getJwt } from "@/lib/cookie";
+import { ApiResponse, Apparel, Wishlist } from "@/types";
+import axios from "axios";
+import { toast } from "sonner";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface WishlistStore {
   wishlist: Wishlist | null;
@@ -28,153 +22,176 @@ export const useWishlistStore = create<WishlistStore>()(
       addToWishlist: async (apparelId: string) => {
         const token = await getJwt();
         if (!token) {
-          console.warn('User not authenticated. Cannot add to wishlist.');
+          toast.error("Please log in to add items to your wishlist.");
           return;
         }
 
+        const previousWishlist = get().wishlist;
+        const optimisticApparels = previousWishlist?.apparels
+          ? [...previousWishlist.apparels, { _id: apparelId } as Apparel]
+          : [{ _id: apparelId } as Apparel];
+
+        // Optimistically update state
+        set({
+          wishlist: {
+            ...previousWishlist,
+            _id: previousWishlist?._id || "",
+            userId: previousWishlist?.userId || "",
+            apparels: optimisticApparels,
+            createdAt: previousWishlist?.createdAt || new Date().toISOString(),
+          },
+        });
+
         try {
-          const { data }: { data: ApiResponse } = await axios.post(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist/add`,
+          const { data }: { data: ApiResponse } = await apiClient.post(
+            `/api/wishlist/add`,
             { apparelId },
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
 
-          if (data.status === 'success' && data?.data?.apparel) {
-            set((state) => {
-              const updatedApparels = state.wishlist?.apparels || [];
-              return {
-                wishlist: {
-                  ...state.wishlist,
-                  _id: state.wishlist?._id || '',
-                  userId: state.wishlist?.userId || '',
-                  apparels: [...updatedApparels, data.data.apparel],
-                  createdAt: state.wishlist?.createdAt || new Date().toISOString(),
-                },
-              };
-            });
+          if (data.status === "success") {
+            set({ wishlist: data.data });
+            toast.success("Item added to wishlist successfully.");
           } else {
-            console.error('Failed to add item to wishlist:', data.message);
+            // Revert optimistic update
+            set({ wishlist: previousWishlist });
+            toast.error(data.message || "Failed to add item to wishlist.");
           }
         } catch (error) {
-          console.error('Failed to add item to wishlist:', error);
+          // Revert optimistic update
+          set({ wishlist: previousWishlist });
+          toast.error("Failed to add item to wishlist. Please try again.");
         }
       },
 
       removeFromWishlist: async (apparelId: string) => {
         const token = await getJwt();
         if (!token) {
-          console.warn('User not authenticated. Cannot remove from wishlist.');
+          toast.error("Please log in to remove items from your wishlist.");
           return;
         }
 
+        const previousWishlist = get().wishlist;
+        const optimisticApparels =
+          previousWishlist?.apparels?.filter(
+            (item) => item._id !== apparelId,
+          ) || [];
+
+        // Optimistically update state
+        set({
+          wishlist: previousWishlist
+            ? { ...previousWishlist, apparels: optimisticApparels }
+            : null,
+        });
+
         try {
-          const { data }: { data: ApiResponse } = await axios.delete(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist/remove/${apparelId}`,
+          const { data }: { data: ApiResponse } = await apiClient.delete(
+            `/api/wishlist/remove/${apparelId}`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
 
-          if (data.status === 'success') {
-            set((state) => ({
-              wishlist: state.wishlist
-                ? {
-                    ...state.wishlist,
-                    apparels: state.wishlist.apparels.filter(
-                      (item) => item._id !== apparelId
-                    ),
-                  }
-                : null,
-            }));
+          if (data.status === "success") {
+            set({ wishlist: data.data });
+            toast.success("Item removed from wishlist successfully.");
           } else {
-            console.error('Failed to remove item from wishlist:', data.message);
+            // Revert optimistic update
+            set({ wishlist: previousWishlist });
+            toast.error(data.message || "Failed to remove item from wishlist.");
           }
         } catch (error) {
-          console.error('Failed to remove item from wishlist:', error);
+          // Revert optimistic update
+          set({ wishlist: previousWishlist });
+          toast.error("Failed to remove item from wishlist. Please try again.");
         }
       },
 
       getWishlist: async () => {
         const token = await getJwt();
         if (!token) {
-          console.warn('User not authenticated. Cannot fetch wishlist.');
+          toast.error("Please log in to view your wishlist.");
           return;
         }
 
         try {
-          const { data }: { data: ApiResponse } = await axios.get(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist/me`,
+          const { data }: { data: ApiResponse } = await apiClient.get(
+            `/api/wishlist/me`,
             {
               headers: { Authorization: `Bearer ${token}` },
-            }
+            },
           );
 
-          if (data.status === 'success') {
+          if (data.status === "success") {
             set({ wishlist: data.data });
           } else {
-            console.error('Failed to fetch wishlist:', data.message);
+            toast.error(data.message || "Failed to fetch wishlist.");
           }
         } catch (error) {
-          console.error('Failed to fetch wishlist:', error);
+          toast.error("Failed to fetch wishlist. Please try again.");
         }
       },
 
       synchronizeWishlist: async () => {
         const token = await getJwt();
         if (!token) {
-          console.warn('User not authenticated. Cannot synchronize wishlist.');
+          toast.error("Please log in to synchronize your wishlist.");
           return;
         }
 
-        const localWishlist = get().wishlist;
-
         try {
-          // Fetch the latest wishlist data from the API
-          const response = await axios.get<ApiResponse>(`${process.env.NEXT_PUBLIC_BASE_URL}/api/wishlist/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          const apiWishlist = response.data.data;
+          const { data }: { data: ApiResponse } = await apiClient.get(
+            `/api/wishlist/me`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
 
-          if (!localWishlist) {
-            // If no local wishlist exists, use the API wishlist
-            set({ wishlist: apiWishlist });
-            return;
-          }
+          if (data.status === "success") {
+            const localWishlist = get().wishlist;
+            if (!localWishlist) {
+              set({ wishlist: data.data });
+              return;
+            }
 
-          // Reconcile differences between local wishlist and API wishlist
-          const reconciledApparels = [...localWishlist.apparels];
-
-          for (const apiItem of apiWishlist.apparels) {
-            const localItemIndex = reconciledApparels.findIndex(
-              (item) => item._id === apiItem._id
+            // Merge local and server apparels, removing duplicates
+            const mergedApparels = Array.from(
+              new Map(
+                [
+                  ...(localWishlist.apparels || []),
+                  ...(data.data.apparels || []),
+                ].map((item) => [item._id, item]),
+              ).values(),
             );
 
-            if (localItemIndex === -1) {
-              // If the item exists in API wishlist but not local wishlist, add it
-              reconciledApparels.push(apiItem);
-            }
+            set({
+              wishlist: {
+                ...data.data,
+                apparels: mergedApparels,
+              },
+            });
+            toast.success("Wishlist synchronized successfully.");
+          } else {
+            toast.error(data.message || "Failed to synchronize wishlist.");
           }
-
-          // Update the wishlist with reconciled apparels
-          set({ wishlist: { ...localWishlist, apparels: reconciledApparels } });
-
         } catch (error) {
-          console.error('Failed to synchronize wishlist with API', error);
+          toast.error("Failed to synchronize wishlist. Please try again.");
         }
       },
     }),
     {
-      name: 'wishlist-storage',
+      name: "wishlist-storage",
       storage: {
         getItem: (name) => {
           const item = localStorage.getItem(name);
           return item ? JSON.parse(item) : null;
         },
-        setItem: (name, value) => localStorage.setItem(name, JSON.stringify(value)),
+        setItem: (name, value) =>
+          localStorage.setItem(name, JSON.stringify(value)),
         removeItem: (name) => localStorage.removeItem(name),
       },
-    }
-  )
+    },
+  ),
 );

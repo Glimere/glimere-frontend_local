@@ -388,6 +388,13 @@ export interface ApiResponse {
   data: any;
 }
 
+export interface Wishlist {
+  _id: string;
+  userId: string;
+  apparels: Apparel[];
+  createdAt: string;
+}
+
 export type UserData = {
   address: {
     street: string;
@@ -404,7 +411,7 @@ export type UserData = {
   email: string;
   phone_number: string;
   profile_image: string | null;
-  wishlist: string[]; // Assuming wishlist items are stored as string IDs
+  wishlist: Wishlist[]; // Assuming wishlist items are stored as string IDs
   preferred_payment_method: string;
   order_history: Array<object>;
   cart: Array<object>;
@@ -536,6 +543,10 @@ export interface ApparelData {
 
 export interface ApparelsData {
   data: Apparel[];
+}
+
+export interface MaterialsData {
+  data: Material[];
 }
 
 export interface Notification {
