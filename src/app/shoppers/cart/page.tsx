@@ -61,9 +61,9 @@ const Cart: NextPage = () => {
               </>
             ) : (
               <div className="flex flex-col gap-[1.56rem] bg-transparent-white-100 p-[1.4rem] backdrop-blur-md sm:rounded-[1.6rem] sm:p-[2rem]">
-                {cart?.items.map((cartItem) => (
+                {cart?.items.map((cartItem, index) => (
                   <div
-                    key={cartItem._id}
+                    key={`${cartItem?._id ?? ""}-${index}`}
                     className="flex h-[150px] flex-grow flex-col items-center justify-between rounded-[0.9rem] bg-transparent-white-200 p-[1rem] backdrop-blur-md sm:h-[200px] sm:flex-row"
                   >
                     <div className="flex h-full w-full flex-row gap-[20px]">
@@ -94,7 +94,7 @@ const Cart: NextPage = () => {
                                   Color:{" "}
                                   {cartItem.selected_colors.map(
                                     (color, index) => (
-                                      <p key={index} className="">
+                                      <p key={color._id} className="">
                                         {color.name},
                                       </p>
                                     ),

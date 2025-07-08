@@ -8,12 +8,12 @@ import { Label } from "@/components/ui/label";
 import useUserStore from "@/store/userStore";
 import { loginUser } from "@/utils/authService";
 import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg";
-import Link from "next/link";
 
 export default function SigninCreator() {
   const router = useRouter();
@@ -36,17 +36,16 @@ export default function SigninCreator() {
     try {
       setLoading(true);
       const response = await loginUser({ email, password });
-
-      // Save token to local storage or context
-      setAuthToken(response.data.token);
-      fetchUser();
-
-      toast.success("Login successful!");
-
       const role = response.data.role;
-      if (role === "admin" || role === "super_admin") {
+      if (role === "user") {
+        toast.error("Please login with a valid seller account");
+        return;
+      } else if (role === "admin" || role === "super_admin") {
         router.push("/admin");
       } else {
+        setAuthToken(response.data.token);
+        fetchUser();
+        toast.success("Login successful!");
         router.push("/creators");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

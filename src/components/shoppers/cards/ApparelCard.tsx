@@ -11,10 +11,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-
-
-
-
 interface Props {
   apparel: Apparel;
 }
@@ -28,7 +24,7 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
     cart?.items.some((item) => item?.apparel?._id === apparel?._id) ?? false;
 
   const handleAddToCart = () => {
-    console.log('apparel', apparel)
+    console.log("apparel", apparel);
     if (!apparel) return;
 
     const selectedMaterial = apparel?.materials?.[0];
@@ -53,12 +49,15 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
             <div className="absolute right-4 top-4 z-[3] scale-75">
               <Like apparelId={apparel?._id} />
             </div>
-            <div className="absolute right-2 bottom-2 z-[3] scale-75">
-              <div className="p-2 bg-black rounded-full">
-                   <Box className="text-white h-4 w-4" />
+            {apparel.models.length == 0 ? (
+              <></>
+            ) : (
+              <div className="absolute bottom-2 right-2 z-[3] scale-75">
+                <div className="rounded-full bg-black p-2">
+                  <Box className="h-4 w-4 text-white" />
+                </div>
               </div>
-           
-            </div>
+            )}
             <Image
               src={renderImageUrl(apparel?.apparel_images?.[0]?.url)}
               alt={apparel?.apparel_name || "Apparel Image"}

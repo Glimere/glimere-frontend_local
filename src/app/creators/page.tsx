@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ProductCarousel from "@/components/carousel/ProductCarousel";
 import CurrentOrder from "@/components/creators/CurrentOrder";
@@ -9,22 +9,25 @@ import ApparelListSection from "@/components/shoppers/sections/ApparelListSectio
 import ApparelSection from "@/components/shoppers/sections/ApparelSection";
 import useUserStore from "@/store/userStore";
 
+
 export default function Dashboard() {
+  const { isAuthenticated } = useUserStore();
 
-  const {isAuthenticated} = useUserStore();
-
-  console.log('isAuthenticated', isAuthenticated)
+  console.log("isAuthenticated", isAuthenticated);
   return (
-    <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:px-[5.75rem] md:py-8">
-      <div className="flex flex-col sm:flex-row gap-[37px]">
-        <SalesChartCard />
-        <ProductNumbersCard />
+    <main className="flex flex-1 flex-col gap-[50px] sm:gap-[70px]">
+      <div className="flex flex-col">
+        <div className="flex flex-col gap-[37px] sm:flex-row md:px-[5.75rem] md:py-8">
+          <SalesChartCard />
+          <ProductNumbersCard />
+        </div>
+
+        <div className="flex flex-col gap-4 sm:flex-row md:gap-8 md:px-[5.75rem] md:py-8">
+          <RecentSalesCard />
+          <CurrentOrder />
+        </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 md:gap-8">
-        <RecentSalesCard />
-        <CurrentOrder />
-      </div>
       <ProductCarousel />
       <ApparelSection
         headerTitle="Trending Styles"

@@ -95,7 +95,7 @@ export default function ProductCarousel() {
             <CarouselContent>
               {data?.data?.map((apparel: Apparel, index: number) => (
                 <CarouselItem
-                  key={index}
+                  key={apparel._id}
                   className={`duration-300 sm:basis-1/3 md:basis-1/3 lg:basis-1/5 ${
                     index === getSelectedCurrent() ? "" : ""
                   }`}

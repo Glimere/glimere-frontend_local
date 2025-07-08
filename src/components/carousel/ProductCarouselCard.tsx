@@ -81,8 +81,8 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
               setApi={setApi}
             >
               <CarouselContent className="-mt-1 h-[70vh] sm:h-[30rem]">
-                {apparel.apparel_images.map((img, index) => (
-                  <CarouselItem key={index} className="md:basis-1/1 pt-1">
+                {apparel.apparel_images.map((img) => (
+                  <CarouselItem key={img._id} className="md:basis-1/1 pt-1">
                     <div className="p-1">
                       <Card className="border-none bg-transparent shadow-none">
                         <CardContent className="flex items-center justify-center p-0">

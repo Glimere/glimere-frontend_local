@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { auth, googleProvider } from "@/config/firebase"; // Ensure correct paths
@@ -17,7 +18,6 @@ import facebookImg from "../../../../../public/images/facebook.png";
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg"; // Ensure the asset path is correct
 
 import googleImg from "../../../../../public/images/google.png";
-import { Checkbox } from "@/components/ui/checkbox";
 
 const SigninPageShoppers: React.FC = () => {
   const initialUser = { identifier: "", password: "" };
@@ -33,42 +33,41 @@ const SigninPageShoppers: React.FC = () => {
   };
 
   const handleLogin = async () => {
-  const data = {
-    email: userDetails.identifier,
-    password: userDetails.password,
+    const data = {
+      email: userDetails.identifier,
+      password: userDetails.password,
+    };
+
+    try {
+      setLoading(true);
+      const response = await loginUser(data);
+      if (response.data.role === "seller") {
+        toast.error("Please login with a valid user account");
+        return;
+      } else if (
+        response.data.role === "admin" ||
+        response.data.role === "super_admin"
+      ) {
+        router.push("/admin");
+      } else {
+        setAuthToken(response.data.token);
+        fetchUser();
+        toast.success("Login successful!");
+        router.push("/shoppers");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.error("Login Error:", error);
+
+      if (error?.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
-
-  try {
-    setLoading(true);
-    const response = await loginUser(data);
-
-    setAuthToken(response.data.token);
-    fetchUser();
-
-    toast.success("Login successful!");
-
-    if (
-      response.data.role === "admin" ||
-      response.data.role === "super_admin"
-    ) {
-      router.push("/admin");
-    } else {
-      router.push("/shoppers");
-    }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("Login Error:", error);
-
-    if (error?.response?.data?.message) {
-      toast.error(error.response.data.message);
-    } else {
-      toast.error("Login failed. Please try again.");
-    }
-  } finally {
-    setLoading(false);
-  }
-};
-
 
   const signInWithGoogle = async () => {
     try {
@@ -132,7 +131,7 @@ const SigninPageShoppers: React.FC = () => {
 
               <div className="flex items-center justify-between">
                 <label className="group flex cursor-pointer items-center space-x-3">
-                 <Checkbox/>
+                  <Checkbox />
                   <span className="text-dark/70 transition-colors group-hover:text-dark">
                     Remember me
                   </span>
