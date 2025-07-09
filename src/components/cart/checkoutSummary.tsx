@@ -4,8 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
+
+
 import Checkout from "../../../public/images/checkout.svg";
 import { Button } from "../ui/button";
+
 
 const CheckoutSummary: React.FC = () => {
   const { isAuthenticated, user } = useUserStore();
@@ -92,7 +95,9 @@ const CheckoutSummary: React.FC = () => {
 
           {/* Checkout Button */}
           <Link
-            href={isAuthenticated ? "/shoppers/checkout" : "/auth/shoppers"}
+            href={
+              isAuthenticated ? "/shoppers/checkout" : "/auth/shoppers/login"
+            }
           >
             <Button className="w-full rounded-full bg-primary-100 text-base text-white">
               Checkout

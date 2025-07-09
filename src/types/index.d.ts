@@ -49,30 +49,33 @@ type Brand = {
   __v: number;
 };
 
-type Category = {
+// Common fields across all category types
+interface BaseCategory {
   _id: string;
   name: string;
+  slug: string;
+  description: string;
+  isActive: boolean;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  __v: number;
+}
+
+// Main Category type
+interface MainCategory extends BaseCategory {
   apparels: string[]; // Array of apparel IDs
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
+}
 
-type SubCategory = {
-  _id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
+// Sub Category type
+interface SubCategory extends BaseCategory {
+  main_category: MainCategory; // Nested main category
+}
 
-type SubSubCategory = {
-  _id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-};
+// Sub-Sub Category type
+interface SubSubCategory extends BaseCategory {
+  main_category: MainCategory; // Nested main category
+  sub_categories: SubCategory[]; // Array of sub-categories
+}
 
 export type Color = {
   _id: string;
@@ -195,7 +198,7 @@ export type Apparel = {
   discounted_price: number;
   is_discounted: boolean;
   is_featured: boolean;
-  main_category: Category;
+  main_category: MainCategory;
   materials: Material[];
   models: Model[];
   number_sold: number;

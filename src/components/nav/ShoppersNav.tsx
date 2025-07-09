@@ -1,11 +1,14 @@
 "use client";
 
+import useFetch from "@/hooks/useFetch";
+import { useWindowWidth } from "@/hooks/useWindowsWidth";
 import { useCartStore } from "@/store/cartStore";
 import useNotificationStore from "@/store/notificationStore";
 import useUserStore from "@/store/userStore";
-import { ChevronDown } from "lucide-react";
+import { ApiResponse, MainCategory, SubCategory } from "@/types";
+import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import GlimereLogo from "../../../public/images/Glimere-Logo.svg";
@@ -15,6 +18,15 @@ import ShoppingBag from "../../../public/images/shopping-bag.svg";
 import User from "../../../public/images/user.svg";
 import { NotificationDropdown } from "../shoppers/NotificationDropdown";
 import { UserDropdownMenu } from "../shoppers/UserdropdownMenu";
+import {
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "../ui/navigation-menu";
+import { NavigationMenu } from "../ui/navigation-menu copy";
+import CategorySelection from "./CategorySelection";
+import ShoppersSideBar from "./ShoppersSidebar";
 
 interface Notification {
   id: string;
@@ -30,10 +42,24 @@ const ShoppersNav: React.FC = () => {
   const { cart } = useCartStore();
   const { user, isAuthenticated } = useUserStore();
   const pathname = usePathname();
+  const router = useRouter();
 
   const [isHydrated, setIsHydrated] = useState(false);
-
   const { notifications } = useNotificationStore();
+
+  interface categoryResponse extends ApiResponse {
+    data: MainCategory[];
+  }
+
+  const { isDesktop } = useWindowWidth();
+
+  interface subcategoryResponse extends ApiResponse {
+    data: SubCategory[];
+  }
+  const { data: categories, loading: subcategoryLoading } =
+    useFetch<categoryResponse>(`/main_category`);
+  const { data: subcategories, loading } =
+    useFetch<subcategoryResponse>(`/sub_category`);
 
   const showSearch = ALLOWED_SEARCH_ROUTES.includes(pathname);
 
@@ -48,14 +74,57 @@ const ShoppersNav: React.FC = () => {
 
   if (!isHydrated) return null;
 
+  const userContent = (
+    <div className="group relative flex cursor-pointer flex-row items-center gap-2 duration-200">
+      <User className="block h-6 w-6 duration-150 group-hover:fill-primary-100" />
+      {isDesktop && (
+        <>
+          <p className="mt-1 hidden text-base font-medium group-hover:text-primary-100 md:block">
+            {isAuthenticated ? `Hi, ${user?.first_name || "User"}` : "Account"}
+          </p>
+          <ChevronDown className="hidden h-5 w-5 md:block" />
+        </>
+      )}
+    </div>
+  );
+
   return (
     <nav className="absolute z-[1000] mt-3 flex w-full flex-col items-center px-[25px] sm:mt-0 sm:h-[80px] sm:p-0 sm:px-[5.75rem]">
-      <div className="container mx-auto max-w-[1344px] rounded-full bg-transparent-white-100 sm:bg-transparent px-3 backdrop-blur-md sm:backdrop-blur-none sm:rounded-none sm:px-0">
+      <div className="container mx-auto max-w-[1344px] rounded-full bg-transparent-white-100 px-3 backdrop-blur-md sm:rounded-none sm:bg-transparent sm:px-0 sm:backdrop-blur-none">
         <div className="relative z-20 flex h-16 items-center justify-between md:h-20 md:py-6">
-          <div className="flex flex-row items-center justify-center">
+          <div className="flex flex-row items-center justify-center gap-[20px]">
+            {isDesktop ? (
+              <></>
+            ) : (
+              <ShoppersSideBar categories={categories?.data ?? []}>
+                <Menu />
+              </ShoppersSideBar>
+            )}
             <Link href="/shoppers">
               <GlimereLogo className={`cursor-pointer text-primary-100`} />
             </Link>
+
+            {isDesktop ? (
+              <NavigationMenu>
+                <NavigationMenuList className="flex flex-row items-center justify-between gap-6 rounded-[15px]">
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="rounded-full bg-transparent-white-300 text-dark">
+                      ALL CATEGORIES
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent className="h-full">
+                      <CategorySelection
+                        subcategories={subcategories?.data ?? []}
+                        subcategoryLoading={subcategoryLoading}
+                        categories={categories?.data ?? []}
+                        loading={loading}
+                      />
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="flex flex-row items-center gap-[20px]">
@@ -95,33 +164,19 @@ const ShoppersNav: React.FC = () => {
                 />
               </Link>
             </div>
-            {isAuthenticated == false ? (
-              <UserDropdownMenu>
-                <div className="group relative flex cursor-pointer flex-row items-center gap-[10px] duration-200">
-                  <User
-                    className={`block duration-150 group-hover:fill-primary-100`}
-                  />
-
-                  <p className="mt-1 hidden text-[16px] font-medium group-hover:text-primary-100 md:block">
-                    Account
-                  </p>
-                  <ChevronDown className="hidden md:block" />
-                </div>
-              </UserDropdownMenu>
+            {isDesktop ? (
+              <UserDropdownMenu>{userContent}</UserDropdownMenu>
             ) : (
-              <UserDropdownMenu>
-                <div className="group relative flex cursor-pointer flex-row items-center gap-[10px] duration-200">
-                  <User
-                    className={`block duration-150 group-hover:fill-primary-100`}
-                  />
-
-                  <p className="mt-1 hidden text-[16px] font-medium group-hover:text-primary-100 sm:block">
-                    Hi, <span>{user?.first_name}</span>
-                  </p>
-
-                  <ChevronDown />
-                </div>
-              </UserDropdownMenu>
+              <div
+                className="flex items-center"
+                onClick={() =>
+                  router.push(
+                    isAuthenticated ? "/shoppers/account" : "/auth/shoppers/login",
+                  )
+                }
+              >
+                {userContent}
+              </div>
             )}
           </div>
         </div>
