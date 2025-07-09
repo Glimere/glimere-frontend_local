@@ -67,7 +67,7 @@ const ApparelDetails: NextPage<Props> = ({ apparel }) => {
                     <div
                       className={`h-[2rem] w-[2rem] rounded-full`}
                       style={{
-                        backgroundImage: `url(${material.textures.patternFile.url})`,
+                        backgroundImage: `url(${renderImageUrl(material.textures.patternFile.url)})`,
                       }}
                     ></div>{" "}
                   </div>

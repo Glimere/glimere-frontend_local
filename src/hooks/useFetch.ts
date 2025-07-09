@@ -1,65 +1,44 @@
-import apiClient from "@/api/client/apiClient";
-import axios, { AxiosResponse } from "axios";
-import { useEffect, useMemo, useState } from "react";
+;
+// hooks/useFetch.ts
+import apiClient from "@/api/client/apiClient"; // Your axios client
+import { useQuery } from "@tanstack/react-query";
+
+
 
 import { useJwt } from "./useJwt";
 
-type UseFetchState<T> = {
-  data: T | undefined;
+
+interface FetchResponse<T> {
+  data: T | null;
   loading: boolean;
-  error: { message: string; status?: number } | undefined;
-  refetch: () => Promise<void>;
-};
+  error: { status?: number; message?: string } | null;
+}
 
-const useFetch = <T>(url: string) => {
-  const [state, setState] = useState<UseFetchState<T>>({
-    data: undefined,
-    loading: false,
-    error: undefined,
-    refetch: async () => {},
-  });
-
+export default function useFetch<T>(url: string): FetchResponse<T> {
   const access_token = useJwt();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setState((previous) => ({ ...previous, loading: true }));
-        const response: AxiosResponse<T> = await apiClient.get(`/api${url}`, {
-          headers: {
-            Authorization: access_token ? `Bearer ${access_token}` : undefined,
-          },
-        });
-        setState({
-          data: response.data,
-          loading: false,
-          error: undefined,
-          refetch: fetchData,
-        });
-      } catch (error: unknown) {
-        let errorMessage: string = "An unknown error occurred";
-        let status: number | undefined;
+  const { data, isLoading, error } = useQuery<
+    T,
+    { status?: number; message?: string }
+  >({
+    queryKey: [url, access_token], // Include access_token in queryKey to refetch if token changes
+    queryFn: async () => {
+      const response = await apiClient.get(`/api${url}`, {
+        headers: {
+          Authorization: access_token ? `Bearer ${access_token}` : undefined,
+        },
+      });
+      return response.data; // Return the data from axios response
+    },
+    staleTime: 1440 * 60 * 1000, // Data is fresh for 1 day
+    retry: 1,
+  });
 
-        if (axios.isAxiosError(error)) {
-          errorMessage = error.response?.data?.message || error.message;
-          status = error.response?.status;
-        } else if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-
-        setState({
-          data: undefined,
-          loading: false,
-          error: { message: errorMessage, status },
-          refetch: fetchData,
-        });
-      }
-    };
-
-    fetchData();
-  }, [access_token, url]);
-
-  return state;
-};
-
-export default useFetch;
+  return {
+    data: data ?? null,
+    loading: isLoading,
+    error: error
+      ? { status: error.status, message: error.message || "An error occurred" }
+      : null,
+  };
+}
