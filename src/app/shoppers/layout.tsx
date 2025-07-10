@@ -18,12 +18,14 @@ export default function DemoLayout({
 
   return (
     <ShoppersProvider>
-      <div className="relative overflow-x-hidden bg-alabaster">
-        <GradientBg />
-        <ShoppersNav />
-        <ProtectedRoute restrictedPaths={restrictedPaths} root="/shoppers">
-          {children}
-        </ProtectedRoute>
+      <div className="flex w-full justify-center bg-alabaster overflow-x-hidden">
+        <div className="relative max-w-[1440px] bg-alabaster w-full">
+          <GradientBg />
+          <ShoppersNav />
+          <ProtectedRoute restrictedPaths={restrictedPaths} root="/shoppers">
+            {children}
+          </ProtectedRoute>
+        </div>
       </div>
     </ShoppersProvider>
   );

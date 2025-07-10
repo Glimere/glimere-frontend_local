@@ -93,6 +93,8 @@ const ViewApparel: NextPage<ViewProductProps> = ({ params }) => {
 
   const modelUrl = apparelData?.data?.models[0]?.file?.url ?? "";
 
+  const {windowWidth} = useWindowWidth();
+
   // Reset selections when apparel or materials change
   useEffect(() => {
     setSelectedSize("");
@@ -145,7 +147,7 @@ const ViewApparel: NextPage<ViewProductProps> = ({ params }) => {
 
   return (
     <AnimatePresence>
-      <div className="relative z-[4] overflow-hidden sm:h-screen">
+      <div className={`relative z-[4] overflow-hidden ${windowWidth >= 1800 ? "sm:h-auto" : "sm:h-screen"} `}>
         <div className="h-[70vh]">
           <div className="absolute h-full w-full">
             {loading ? (

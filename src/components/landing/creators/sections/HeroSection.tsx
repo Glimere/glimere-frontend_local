@@ -2,9 +2,10 @@ import GradientBg from "@/components/gradient/gradientBg";
 import Image from "next/image";
 export default function HeroSectionCreators() {
   return (
-    <div className="relative h-[400px] lg:h-[110vh] bg-white-200 bg-cover bg-center bg-no-repeat w-full flex flex-row items-end overflow-hidden">
+    <div className="relative h-[400px] lg:h-[110vh] bg-white-200 bg-cover bg-center bg-no-repeat w-full flex flex-row items-end justify-center overflow-hidden">
       <GradientBg />
-      <div className="relative w-full flex flex-col items-center justify-end">
+      <div className="w-full max-w-[1440px]">
+         <div className="relative w-full flex flex-col items-center justify-end">
         <div className="z-[4] relative mb-[15px]">
           <h1 className="text-[10vw] sm:text-[8.1vw] text-center text-dark-100 leading-[12vw] sm:leading-[8vw] mb-[-10px] sm:mb-[-70px] font-[600] sm:font-semibold">
             <span className="text-primary-100">Create</span> Fashion,
@@ -23,6 +24,8 @@ export default function HeroSectionCreators() {
           />
         </div>
       </div>
+      </div>
+     
     </div>
   );
 }

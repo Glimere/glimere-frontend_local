@@ -1,9 +1,13 @@
 import Image from "next/image";
 
+
+
+
+
 export default function IntroSectionCreators() {
   return (
-    <>
-      <div className="relative flex h-auto w-full flex-col gap-[40px] bg-light px-[1.4rem] py-[50px] sm:h-[100vh] sm:flex-row sm:px-[6.25rem] sm:py-[80px]">
+    <div className="flex w-full flex-col items-center bg-light">
+      <div className="relative flex h-auto max-h-[800px] w-full max-w-[1440px] flex-col gap-[40px] bg-light px-[1.4rem] py-[50px] sm:h-[100vh] sm:flex-row sm:px-[6.25rem] sm:py-[80px]">
         <div className="bg-black-100 h-[300px] overflow-hidden rounded-[30px] bg-cover bg-center bg-no-repeat sm:h-auto sm:flex-[1]">
           <Image
             src="https://res.cloudinary.com/dwnvlaitr/image/upload/v1747449159/creatorCreating_cnfkgz.png"
@@ -29,7 +33,7 @@ export default function IntroSectionCreators() {
           </div>
         </div>
       </div>
-      <div className="relative flex h-auto w-full flex-col-reverse gap-[40px] bg-light px-[1.4rem] py-[50px] sm:h-[100vh] sm:flex-row sm:px-[6.25rem] sm:py-[80px]">
+      <div className="relative flex h-auto max-h-[800px] w-full max-w-[1440px] flex-col-reverse gap-[40px] bg-light px-[1.4rem] py-[50px] sm:h-[100vh] sm:flex-row sm:px-[6.25rem] sm:py-[80px]">
         <div className="flex h-full w-full flex-col items-start justify-center sm:flex-[1]">
           <div className="w-[90%] text-left sm:w-[90%]">
             <h1 className="text-dark-100 text-[30px] font-bold sm:text-[54px] sm:font-semibold">
@@ -55,6 +59,6 @@ export default function IntroSectionCreators() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
