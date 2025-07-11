@@ -758,7 +758,6 @@ const SearchPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Search Results */}
             {isLoading ? (
               <div className="flex items-center justify-center py-12 w-full">
                <ApparelLoading/>
