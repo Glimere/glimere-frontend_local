@@ -14,7 +14,6 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-import ApparelCard from "../cards/ApparelCard";
 import ApparelLoading from "./ApparelLoading";
 
 interface ApparelSectionProps {

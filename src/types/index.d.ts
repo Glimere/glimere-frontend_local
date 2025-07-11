@@ -77,6 +77,12 @@ interface SubSubCategory extends BaseCategory {
   sub_categories: SubCategory[]; // Array of sub-categories
 }
 
+export type ColorResponse = {
+  status: string;
+  message: string;
+  data: Color[];
+}
+
 export type Color = {
   _id: string;
   name: string;
@@ -92,6 +98,12 @@ interface Texture {
   thumbnail: File;
   description: string;
   patternFile: File;
+}
+
+export type MaterialsResponse = {
+  status: string;
+  message: string;
+  data: Material[]
 }
 
 export type Material = {
@@ -344,6 +356,12 @@ export interface Review {
   updatedAt: string;
 }
 
+export type SizeResponse = {
+  status: string;
+  message: string;
+  data: Size[];
+}
+
 export interface Size {
   sizing_type: "mixed" | "imperial" | "metric";
   male: MaleSize[];
@@ -570,3 +588,11 @@ export interface Texture {
   patternFile: File;
   _id: string;
 }
+
+  export interface categoryResponse extends ApiResponse {
+    data: MainCategory[];
+  }
+
+  export interface subcategoryResponse extends ApiResponse {
+    data: SubCategory[];
+  }

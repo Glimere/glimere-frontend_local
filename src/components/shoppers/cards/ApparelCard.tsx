@@ -41,7 +41,7 @@ const ApparelCard: React.FC<Props> = ({ apparel }) => {
   };
 
   return (
-    <Card className="overflow-visible border-none bg-transparent shadow-none">
+    <Card className="overflow-visible border-none bg-transparent shadow-none w-full">
       <CardContent className="relative flex items-center justify-center overflow-hidden p-0">
         {/* Image */}
         <div className="flex flex-col gap-[10px]">

@@ -198,7 +198,9 @@ const SigninPageShoppers: React.FC = () => {
 
           <div className="text-[14px]">
             Don’t have an account?{" "}
-            <span className="cursor-pointer text-[#ed7534]">Sign Up</span>
+            <span className="cursor-pointer text-[#ed7534]"
+            onClick={()=> router.push("/auth/shoppers/signup")}
+            >Sign Up</span>
           </div>
         </div>
       </div>

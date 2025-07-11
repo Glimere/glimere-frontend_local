@@ -1,32 +1,34 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { renderImageUrl } from "@/hooks/useRenderImageUrl";
 import type { Apparel } from "@/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
+
 
 import SliderPageIndicator from "./slideIndicator";
+
 
 interface ProductCarouselCardProps {
   apparel: Apparel;
   selectedCurrent: () => number;
   parentIndex: number;
+  setParentCurrent: Dispatch<SetStateAction<number>>;
+  parentApi: CarouselApi;
 }
 
 const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
   apparel,
   selectedCurrent,
   parentIndex,
+  setParentCurrent,
+  parentApi
 }) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -45,6 +47,8 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
     });
   }, [api]);
 
+  console.log('selectedCurrent()', selectedCurrent())
+
   return (
     <>
       <motion.div
@@ -56,7 +60,17 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
       >
         <div className="relative flex h-[70vh] flex-row items-center justify-between sm:h-[30rem]">
           {parentIndex !== selectedCurrent() ? (
-            <div className="absolute z-[4] h-full w-full"></div>
+            <div
+              className="absolute z-[4] h-full w-full"
+              onClick={() => {
+                setParentCurrent(parentIndex - 1)
+                // if (parentApi) {
+                //   parentApi.on("select", () => {
+                //     setParentCurrent(parentIndex - 1);
+                //   });
+                // }
+              }}
+            ></div>
           ) : null}
           <AnimatePresence>
             {parentIndex === selectedCurrent() ? (

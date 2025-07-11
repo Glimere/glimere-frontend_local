@@ -96,9 +96,7 @@ export default function ProductCarousel() {
               {data?.data?.map((apparel: Apparel, index: number) => (
                 <CarouselItem
                   key={apparel._id}
-                  className={`duration-300 sm:basis-1/3 md:basis-1/3 lg:basis-1/5 ${
-                    index === getSelectedCurrent() ? "" : ""
-                  }`}
+                  className={`duration-300 sm:basis-1/3 md:basis-1/3 lg:basis-1/5`}
                 >
                   <div className="p-1">
                     <Card className="border-none bg-transparent shadow-none">
@@ -107,6 +105,8 @@ export default function ProductCarousel() {
                           apparel={apparel}
                           selectedCurrent={() => getSelectedCurrent()}
                           parentIndex={index}
+                          setParentCurrent={setCurrent}
+                          parentApi={api}
                         />
                       </CardContent>
                     </Card>
