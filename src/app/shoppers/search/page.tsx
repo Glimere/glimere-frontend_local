@@ -1,6 +1,7 @@
 "use client";
 
 import ApparelCard from "@/components/shoppers/cards/ApparelCard";
+import ApparelLoading from "@/components/shoppers/sections/ApparelLoading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -759,11 +760,8 @@ const SearchPage: React.FC = () => {
 
             {/* Search Results */}
             {isLoading ? (
-              <div className="flex items-center justify-center py-12">
-                <div className="flex items-center space-x-2">
-                  <Loader2 className="h-6 w-6 animate-spin" />
-                  <span className="text-lg">Loading...</span>
-                </div>
+              <div className="flex items-center justify-center py-12 w-full">
+               <ApparelLoading/>
               </div>
             ) : error ? (
               <div className="py-12 text-center text-red-500">

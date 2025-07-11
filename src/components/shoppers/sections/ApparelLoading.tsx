@@ -4,7 +4,7 @@ import React from "react";
 const ApparelLoading: React.FC = () => {
   const {isDesktop} = useWindowWidth();
   return (
-    <div className="animate-pulse">
+    <div className="animate-pulse w-full">
       {/* <div className="flex flex-col gap-[20px]"></div>
       <div className="flex flex-row items-center justify-between">
         <div className="h-6 w-32 rounded bg-gray-300"></div>
