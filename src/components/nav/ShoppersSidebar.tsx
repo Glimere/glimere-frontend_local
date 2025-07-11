@@ -128,7 +128,7 @@ const ShoppersSideBar: React.FC<UserSideBarProps> = ({ children, categories }) =
                 <span
                   className="cursor-pointer text-primary-100 hover:underline"
                   onClick={() => {
-                    handleSearch("", "category");
+                    handleSearch("");
                     setOpen(false);
                   }}
                 >
@@ -148,12 +148,12 @@ const ShoppersSideBar: React.FC<UserSideBarProps> = ({ children, categories }) =
                     tabIndex={0}
                     aria-label={`Select category ${category.name}`}
                     onClick={() => {
-                      handleSearch(category.name, "category");
+                      handleSearch(category.name);
                       setOpen(false);
                     }}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
-                        handleSearch(category.name, "category");
+                        handleSearch(category.name);
                         setOpen(false);
                       }
                     }}

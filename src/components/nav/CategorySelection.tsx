@@ -156,14 +156,14 @@ export default function CategorySelection({
                     exit="exit"
                     className="flex cursor-pointer flex-col items-center gap-2 rounded-md p-2 text-center transition-all duration-200 hover:bg-transparent-white-300 hover:shadow-sm"
                     onClick={() =>
-                      handleSearch(subcategory.name, "subcategory")
+                      handleSearch(subcategory.name)
                     }
                     role="button"
                     tabIndex={0}
                     aria-label={`Select subcategory ${subcategory.name}`}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
-                        handleSearch(subcategory.name, "subcategory");
+                        handleSearch(subcategory.name);
                       }
                     }}
                   >
