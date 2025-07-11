@@ -145,7 +145,7 @@ export default function SigninCreator() {
               <ArrowRight className="h-5 w-5" />
             </Button>
 
-            <div className="pt-4 text-center">
+            <div className="sm:pt-4 text-center">
               <span className="text-dark/60">
                 New creator?{" "}
                 <Link

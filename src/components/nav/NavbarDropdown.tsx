@@ -32,7 +32,7 @@ export default function NavbarDropdown({
             </a>
           </div>
           <div className="flex flex-col gap-8">
-            <Link href="/auth/shoppers">
+            <Link href="/auth/shoppers/login">
               <p className="text-white-100 rounded-full border border-dark py-3.5 font-medium">
                 Create an Account
               </p>

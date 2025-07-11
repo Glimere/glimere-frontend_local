@@ -8,16 +8,19 @@ import { auth, googleProvider } from "@/config/firebase"; // Ensure correct path
 import useUserStore from "@/store/userStore";
 import { loginUser } from "@/utils/authService";
 import { signInWithPopup } from "firebase/auth";
-import { Loader2 } from "lucide-react";
+import { Eye, EyeClosed, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
+
+
 import facebookImg from "../../../../../public/images/facebook.png";
 import GlimereLogo from "../../../../../public/images/Glimere-Logo.svg"; // Ensure the asset path is correct
 
 import googleImg from "../../../../../public/images/google.png";
+
 
 const SigninPageShoppers: React.FC = () => {
   const initialUser = { identifier: "", password: "" };
@@ -26,6 +29,7 @@ const SigninPageShoppers: React.FC = () => {
   const router = useRouter();
   const { setAuthToken, fetchUser } = useUserStore();
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = target;
@@ -119,14 +123,24 @@ const SigninPageShoppers: React.FC = () => {
                 >
                   Password
                 </Label>
-                <Input
-                  type="password"
+                <div className="relative">
+                    <Input
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Enter your password"
                   value={userDetails.password}
                   onChange={handleChange}
                   className="mt-4 block w-full rounded-md border-0 bg-gray-50 px-4 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2 top-[21px] -translate-y-1/2 scale-75 text-sm text-gray-500"
+                >
+                  {showPassword ? <EyeClosed /> : <Eye />}
+                </button>
+                </div>
+              
               </div>
 
               <div className="flex items-center justify-between">
@@ -198,9 +212,12 @@ const SigninPageShoppers: React.FC = () => {
 
           <div className="text-[14px]">
             Don’t have an account?{" "}
-            <span className="cursor-pointer text-[#ed7534]"
-            onClick={()=> router.push("/auth/shoppers/signup")}
-            >Sign Up</span>
+            <span
+              className="cursor-pointer text-[#ed7534]"
+              onClick={() => router.push("/auth/shoppers/signup")}
+            >
+              Sign Up
+            </span>
           </div>
         </div>
       </div>

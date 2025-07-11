@@ -6,10 +6,7 @@ import { useCartStore } from "@/store/cartStore";
 import useNotificationStore from "@/store/notificationStore";
 import useUserStore from "@/store/userStore";
 import {
-  ApiResponse,
   categoryResponse,
-  MainCategory,
-  SubCategory,
   subcategoryResponse,
 } from "@/types";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
@@ -45,7 +42,6 @@ interface Notification {
 const ShoppersNav: React.FC = () => {
   const { cart } = useCartStore();
   const { user, isAuthenticated } = useUserStore();
-  const pathname = usePathname();
   const router = useRouter();
   const [showSearch, setShowSearch] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);

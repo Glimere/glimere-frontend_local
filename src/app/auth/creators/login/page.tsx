@@ -70,7 +70,7 @@ const Login = () => {
           </p>
         </div>
       </div>
-      <div className="absolute z-[11] mb-[20px] flex h-auto w-[80%] flex-row items-center justify-center rounded-[20px] bg-transparent-white-300 py-[20px] backdrop-blur-lg sm:relative sm:mb-0 sm:h-full sm:w-[450px] sm:rounded-none sm:py-0">
+      <div className="absolute z-[11] mt-20px sm:mt-0 mb-[20px] flex h-auto w-[80%] flex-row items-center justify-center rounded-[20px] bg-transparent-white-300 py-[20px] backdrop-blur-lg sm:relative sm:mb-0 sm:h-full sm:w-[450px] sm:rounded-none sm:py-0">
         <SigninCreator />
       </div>
     </div>
