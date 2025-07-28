@@ -47,8 +47,6 @@ const ProductCarouselCard: NextPage<ProductCarouselCardProps> = ({
     });
   }, [api]);
 
-  console.log('selectedCurrent()', selectedCurrent())
-
   return (
     <>
       <motion.div
