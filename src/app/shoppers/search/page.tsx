@@ -16,10 +16,10 @@ import useFetch from "@/hooks/useFetch";
 import useHandleSearch from "@/hooks/useHandleSearch";
 import { useWindowWidth } from "@/hooks/useWindowsWidth";
 import { useBrandStore } from "@/store/brandStore";
-import { ApiResponse, Apparel, categoryResponse, ColorResponse, Material, MaterialsResponse, SizeResponse } from "@/types";
+import { ApiResponse, Apparel, ColorResponse, MaterialsResponse, SizeResponse } from "@/types";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronDown, ChevronUp, Grid, List, Loader2, Search, SlidersHorizontal, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Grid, List, SlidersHorizontal, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -64,19 +64,19 @@ const fetchSearchResults = async (query: string): Promise<SearchResponse> => {
   return response.json();
 };
 
-// Fetch filter options (mocked API calls, replace with actual endpoints)
-const fetchFilterOptions = async (endpoint: string) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/${endpoint}`,
-  );
-  if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
-  return response.json();
-};
+// // Fetch filter options (mocked API calls, replace with actual endpoints)
+// const fetchFilterOptions = async (endpoint: string) => {
+//   const response = await fetch(
+//     `${process.env.NEXT_PUBLIC_BASE_URL}/api/${endpoint}`,
+//   );
+//   if (!response.ok) throw new Error(`Failed to fetch ${endpoint}`);
+//   return response.json();
+// };
 
 const SearchPage: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { searchTerm, setSearchTerm } = useHandleSearch();
+  const { searchTerm } = useHandleSearch();
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false); // Changed default to false for mobile drawer
@@ -118,7 +118,6 @@ const SearchPage: React.FC = () => {
   const limit = 12;
 
   const { brands: brandsData } = useBrandStore();
-  const { data: categoriesData } = useFetch<categoryResponse>("/main_category");
   const { data: materialsData } = useFetch<MaterialsResponse>("/material");
   const { data: sizeData } = useFetch<SizeResponse>("/sizes");
   const { data: colorsData } = useFetch<ColorResponse>("/color");
@@ -134,8 +133,6 @@ const SearchPage: React.FC = () => {
     "accessories",
   ];
   const brands = brandsData?.map((brand) => brand.name) || [];
-  const categories =
-    categoriesData?.data?.map((category) => category.name) || [];
   const materials =
     materialsData?.data?.map((material) => material.textures.name) || [];
   const colors = colorsData?.data.map((color) => color.name) || [];
@@ -328,9 +325,8 @@ const SearchPage: React.FC = () => {
       </button>
 
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="mt-2 space-y-2 pl-2">
           {type === "select" && items ? (
@@ -539,8 +535,8 @@ const SearchPage: React.FC = () => {
     const currentPage = pagination.currentPage;
     const visiblePages = [];
 
-    let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(totalPages, currentPage + 2);
+    const startPage = Math.max(1, currentPage - 2);
+    const endPage = Math.min(totalPages, currentPage + 2);
 
     for (let i = startPage; i <= endPage; i++) {
       visiblePages.push(i);
@@ -594,8 +590,8 @@ const SearchPage: React.FC = () => {
         <div className="flex gap-6">
           {/* Filter Sidebar (Desktop) */}
           <div className="hidden w-72 md:block">
-            <Card className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
-              <CardHeader className="pb-4">
+            <Card className="sticky top-24">
+              <CardHeader className="pb-4 shadow-sm">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">Filters</CardTitle>
                   <div className="flex items-center space-x-2">
@@ -615,7 +611,7 @@ const SearchPage: React.FC = () => {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 overflow-y-auto max-h-[calc(100vh-120px)]">
                 <FilterContent />
               </CardContent>
             </Card>
@@ -760,7 +756,7 @@ const SearchPage: React.FC = () => {
 
             {isLoading ? (
               <div className="flex items-center justify-center py-12 w-full">
-               <ApparelLoading/>
+                <ApparelLoading />
               </div>
             ) : error ? (
               <div className="py-12 text-center text-red-500">
@@ -776,11 +772,10 @@ const SearchPage: React.FC = () => {
             ) : (
               <>
                 <div
-                  className={`grid gap-6 ${
-                    viewMode === "grid"
+                  className={`grid gap-6 ${viewMode === "grid"
                       ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
                       : "grid-cols-1"
-                  } animate-in fade-in-0 slide-in-from-bottom-4`}
+                    } animate-in fade-in-0 slide-in-from-bottom-4`}
                 >
                   {apparels.map((apparel) => (
                     <div key={apparel._id}>

@@ -29,7 +29,6 @@ const ApparelDesktop: NextPage<Props> = ({
   setThreedToggle,
   setEditToggle,
   modelUrl,
-  loading
 }) => {
   const { selectedMesh } = useMeshSelectionStore();
 

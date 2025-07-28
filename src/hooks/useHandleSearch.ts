@@ -8,7 +8,6 @@ const useHandleSearch = () => {
     searchParams.get("searchTerm") || "",
   );
 
-  // Sync search term with URL on mount
   useEffect(() => {
     const term = searchParams.get("searchTerm") || "";
     setSearchTerm(term);
@@ -23,7 +22,7 @@ const useHandleSearch = () => {
     console.log("Search function called with query:", query);
     try {
       router.push(`/shoppers/search?searchTerm=${encodeURIComponent(query)}`);
-      console.log("Navigation to search page successful");
+      console.log("Navigation to search page attempted for query:", query);
     } catch (error) {
       console.error("Error navigating to search page:", error);
     }

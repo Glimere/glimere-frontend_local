@@ -56,27 +56,39 @@ export default function Footer() {
         </div>
         <div className="text-center lg:col-span-3 md:flex justify-between items-center">
           {/* Social Media Icons */}
-          <div className="flex items-center justify-center gap-4 mb-4 order-2">
-            <div className="flex justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full">
-              <Link href="https://web.facebook.com/Glimere" target="_blank" rel="noreferrer">
-                <Facebook alt="Facebook" className="w-[30px]" />
-              </Link>
-            </div>
-            <div className="flex justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full">
-              <Link href="https://twitter.com/glimereofficial" target="_blank" rel="noreferrer">
-                <Instagram alt="Twitter" className="w-[30px]" />
-              </Link>
-            </div>
-            <div className="flex justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full">
-              <Link href="https://www.instagram.com/glimereofficial/" target="_blank" rel="noreferrer">
-                <Linkedin className="w-[30px]" />
-              </Link>
-            </div>
-            <div className="flex justify-center items-center h-[40px] w-[40px] cursor-pointer hover:bg-[#ca9728] duration-150 rounded-full">
-              <Link href="https://www.linkedin.com/company/glimere/" target="_blank" rel="noreferrer">
-                <Twitter className="w-[30px]" />
-              </Link>
-            </div>
+          <div className="flex h-[40px] flex-row items-center justify-between gap-[20px]">
+            <a
+              href="https://web.facebook.com/Glimere"
+              className="h-[30px] w-[30px]"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Facebook className="text-dark" />
+            </a>
+            <a
+              href="https://twitter.com/glimereofficial"
+              className="h-[30px] w-[30px]"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Twitter className="text-dark" />
+            </a>
+            <a
+              href="https://www.instagram.com/glimereofficial/"
+              className="h-[30px] w-[30px]"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Instagram className="text-dark" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/glimere/"
+              className="h-[30px] w-[30px]"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Linkedin className="text-dark" />
+            </a>
           </div>
           {/* Footer Text */}
           <p className="text-dark font-medium order-1">

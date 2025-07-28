@@ -9,17 +9,12 @@ import { useRef, useState } from "react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-
-
-
-
 interface SearchStore {
   searchHistory: string[];
   addSearch: (term: string) => void;
   clearHistory: () => void;
 }
 
-// Zustand store for search history
 export const useSearchStore = create<SearchStore>()(
   persist(
     (set) => ({
@@ -35,11 +30,10 @@ export const useSearchStore = create<SearchStore>()(
     }),
     {
       name: "search-storage",
-    },
-  ),
+    }
+  )
 );
 
-// Custom hook for search functionality
 const useSearch = (searchTerm: string) => {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
@@ -48,7 +42,7 @@ const useSearch = (searchTerm: string) => {
     queryFn: async () => {
       if (!debouncedSearchTerm) return { data: [] };
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/apparels/search?searchTerm=${encodeURIComponent(debouncedSearchTerm)}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/apparels/search?searchTerm=${encodeURIComponent(debouncedSearchTerm)}`
       );
       if (!response.ok) throw new Error("Failed to fetch search results");
       return response.json();
@@ -59,12 +53,11 @@ const useSearch = (searchTerm: string) => {
   return { results: data?.data || [], isLoading };
 };
 
-// Search Component
 const ShoppersSearch: React.FC<{
   className?: string;
   isMobile?: boolean;
   onSearch?: () => void;
-}> = ({ className, isMobile, onSearch  }) => {
+}> = ({ className, isMobile, onSearch }) => {
   const { searchTerm, setSearchTerm, handleSearch } = useHandleSearch();
   const [isFocused, setIsFocused] = useState(false);
   const { searchHistory, addSearch, clearHistory } = useSearchStore();
@@ -73,18 +66,31 @@ const ShoppersSearch: React.FC<{
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && searchTerm.trim()) {
+      console.log("Enter key pressed, submitting search:", searchTerm);
       addSearch(searchTerm);
       handleSearch(searchTerm);
-      onSearch?.(); 
+      if (isMobile) {
+        setIsFocused(false);
+        setTimeout(() => onSearch?.(), 100); 
+      } else {
+        setTimeout(() => onSearch?.(), 100); 
+        onSearch?.();
+      }
     }
   };
 
   const handleSuggestionClick = (term: string) => {
+    console.log("Suggestion clicked:", term);
     setSearchTerm(term);
     addSearch(term);
-    handleSearch(term);
-    if (isMobile) setIsFocused(false);
-    onSearch?.();  // Close dropdown on mobile after selection
+    handleSearch(term); 
+    if (isMobile) {
+      setIsFocused(false); 
+      setTimeout(() => onSearch?.(), 100); 
+    } else {
+      setTimeout(() => onSearch?.(), 100); 
+      onSearch?.();
+    }
   };
 
   return (
@@ -111,7 +117,6 @@ const ShoppersSearch: React.FC<{
 
       {isFocused && (
         <div className="absolute left-0 top-full z-50 mt-2 max-h-[400px] w-full max-w-[400px] overflow-y-auto rounded-lg bg-white shadow-lg">
-          {/* Search History */}
           {searchHistory.length > 0 && !searchTerm && (
             <div className="p-4">
               <div className="mb-2 flex items-center justify-between">
@@ -135,7 +140,6 @@ const ShoppersSearch: React.FC<{
             </div>
           )}
 
-          {/* Search Suggestions */}
           {searchTerm && (
             <div className="p-4">
               <h3 className="mb-2 text-sm font-semibold">Suggestions</h3>

@@ -11,7 +11,7 @@ import {
 } from "@/types";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import GlimereLogo from "../../../public/images/Glimere-Logo.svg";
@@ -180,7 +180,7 @@ const ShoppersNav: React.FC = () => {
             <ShoppersSearch
               isMobile
               className="flex-1"
-              onSearch={() => setShowSearch(false)} // Close mobile search on submit
+              onSearch={() => setShowSearch(false)}
             />
           </div>
         </div>

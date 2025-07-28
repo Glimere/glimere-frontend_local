@@ -78,7 +78,7 @@ const ViewApparel: NextPage<ViewProductProps> = ({ params }) => {
 
   const {
     data: materials,
-    error: materialsError,
+    // error: materialsError,
     loading: materialsLoading,
   } = useFetch<MaterialsData>(`/material`);
 
